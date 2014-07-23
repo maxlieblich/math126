@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="vector-integration">Vector integration</h1>
+<h2 id="a-new-problem">A new problem</h2>
+<p>A joey (baby kangaroo) is riding in her mother's pouch. She has a smartphone with an accelerometer that continuously reports the acceleration vector. Her friend wrote an app that calculates the velocity at any moment in time <span class="math">\(t\)</span>. She is too small to see out of the pouch, but, like all infant kangaroos, she is interested in calculating her position as a function of time. Sadly, her somewhat stupid friend never figured out how to get the position before he started a new app that mimics the hilarious sounds that giraffes make when embarrassed.</p>
+<ul>
+<li>The joey records the velocity at time <span class="math">\(t\)</span> as <span class="math">\[\mathbf
+v(t)=\langle 1,t,\sin(t)\rangle\]</span></li>
+<li>The joey starts at the point <span class="math">\((0,0,1)\)</span></li>
+<li>Where is the joey at time <span class="math">\(t\)</span>?</li>
+</ul>
+<h2 id="integrate">Integrate!</h2>
+<p>Just like one variable calculus: reconstruct position from velocity by integrating.</p>
+<ul>
+<li>Riemann sums: <span class="math">\(\sum\mathbf v(t_i)\Delta(t)\)</span></li>
+<li>Practical: <span class="math">\[\int\langle x(t),y(t),z(t)\rangle
+dt=\left\langle\int x(t)dt,\int y(t)dt,\int
+z(t)dt\right\rangle.\]</span></li>
+<li>Example: <span class="math">\[\int\langle 1,t,t^2\rangle dt=\langle
+a,b,c\rangle+\left\langle
+t,\frac{1}{2}t^2,\frac{1}{3}t^3\right\rangle\]</span></li>
+<li>The constant of integration is now a vector!</li>
+</ul>
+<h2 id="help-the-joey">Help the joey</h2>
+<p>Using vector integration, compute the path that the joey takes, starting at <span class="math">\(t=0\)</span>. Initial position: <span class="math">\((0,0,1)\)</span>, velocity <span class="math">\(\langle 1,t,\sin(t)\rangle\)</span>. A looping animation (for <span class="math">\(t=0\)</span> to <span class="math">\(t=15\)</span> in slo-mo):</p>
+<p><a href="http://www.mathjax.org/"><img src="http://www.mathjax.org/badge.gif" title="Powered by MathJax" alt="Powered by MathJax" /></a> <a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" /></a></p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="arc-length">Arc length</h1>
+<h2 id="distance-vs-arc-length">Distance vs arc length</h2>
+<p>Important: the integrals in the &quot;Distance&quot; lecture segment give the <strong>total distance traveled</strong>.</p>
+<p>If you never reverse direction, you are also computing the length of the path, not just your choice of traversal.</p>
+<p>The physical length of the path is the arc length.</p>
+<h2 id="practical-arc-length-ii">Practical arc length, II</h2>
+<p>Here's a funny special case. Suppose that <span class="math">\(|\mathbf f&#39;(t)|=1\)</span> for all <span class="math">\(t\)</span>. Then the distance traversed from time <span class="math">\(0\)</span> to time <span class="math">\(T\)</span> is <span class="math">\[s(T)=\int_0^T|\mathbf f&#39;(t)|dt=\int_0^T1dt=T.\]</span></p>
+<p>In typical circumstances (called “smooth”: <span class="math">\(\mathbf f&#39;(t)\)</span> is never <span class="math">\(0\)</span>), one can reparametrize the curve using arc length instead of <span class="math">\(t\)</span>.</p>
+<p>Example: for the unit circle, the arc length parametrization is <span class="math">\[\langle x,y\rangle=\langle\cos(s),\sin(s)\rangle.\]</span></p>
+<p>Meaning: the arc length as <span class="math">\(s\)</span> goes from <span class="math">\(0\)</span> to <span class="math">\(T\)</span> is <span class="math">\(T\)</span>!</p>
+<h2 id="practical-arc-length-ii-1">Practical arc length, II</h2>
+<p>A parametric vector function <span class="math">\(\mathbf f(t)\)</span> is parametrized by arc length or an arc length parametrization if the arc length traced by <span class="math">\(\mathbf f\)</span> between <span class="math">\(t=a\)</span> and <span class="math">\(t=b\)</span> is <span class="math">\(b-a\)</span>.</p>
+<p><span class="math">\[\int_a^b|\mathbf f&#39;(t)|dt=b-a\]</span></p>
+<p>How do you find these things?</p>
+<ul>
+<li>Start with a parametrization: <span class="math">\(\mathbf f(t)\)</span>.</li>
+<li>Hypothetical reparametrization: <span class="math">\(t=t(s)\)</span>.</li>
+<li>Chain rule: <span class="math">\(|\mathbf f&#39;(t)| = |\mathbf f&#39;(t)t&#39;(s)| = |\mathbf f&#39;(t)||t&#39;(s)|\)</span>.</li>
+<li>In order to ensure that the speed is constant, can try to solve the differential equation <span class="math">\(t&#39;(s) = |\mathbf f&#39;(t(s))|^{-1}.\)</span></li>
+</ul>
+<h2 id="practical-arc-length-ii-2">Practical arc length, II</h2>
+<p>Example: circle of radius <span class="math">\(2\)</span>, parametrized by <span class="math">\(\mathbf f(t)=\langle 2\cos(t), 2\sin(t)\rangle\)</span></p>
+<p><span class="math">\[\mathbf f&#39;(t) = \langle -2\sin(t), 2\cos(t)\rangle\]</span></p>
+<p><span class="math">\[|\mathbf f&#39;(t)|=\sqrt{4\sin^2(t)+4\cos^2(t)}=2\]</span></p>
+<p>So: solve <span class="math">\(t&#39;(s)=1/2\)</span>; one solution is <span class="math">\(t=s/2\)</span></p>
+<p>End result: arc length parametrization of circle of radius <span class="math">\(2\)</span> is <span class="math">\(\mathbf f(s)=\langle 2\cos(s/2),2\sin(s/2)\rangle\)</span></p>
+<p>Find the arc length parametrization of the circle of radius <span class="math">\(r\)</span>.</p>
+<p><a href="http://www.mathjax.org/"><img src="http://www.mathjax.org/badge.gif" title="Powered by MathJax" alt="Powered by MathJax" /></a> <a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" /></a></p>
+</body>
+</html>

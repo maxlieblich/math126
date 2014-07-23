@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="vector-derivatives-in-practice">Vector derivatives in practice</h1>
+<h2 id="calculating-the-derivative-in-practice">Calculating the derivative in practice</h2>
+<p>Given a vector function</p>
+<p><span class="math">\[\mathbf f(t)=\langle x(t),y(t),z(t)\rangle\]</span></p>
+<p>the derivative is just</p>
+<p><span class="math">\[\mathbf f&#39;(t)=\langle x&#39;(t),y&#39;(t),z&#39;(t)\rangle,\]</span></p>
+<p>the component-wise derivative.</p>
+<p>The usual caveat applies: the derivative must exist for this to make sense! I.e., this formula works when all three derivatives exist, and when they don't neither does the derivative of <span class="math">\(\mathbf f(t)\)</span>!</p>
+<h2 id="practice" class="question">Practice</h2>
+<p>Given the formula</p>
+<p><span class="math">\[\mathbf f(t)=\langle
+\cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle\]</span></p>
+<p>for the motion of the electron on the torus,</p>
+<ul>
+<li>calculate the velocity of the electron as a function of <span class="math">\(t\)</span></li>
+<li>How does the speed vary over time?</li>
+<li>(What is the “speed”, anyway? The magnitude of the velocity vector? That sounds right....)</li>
+</ul>
+<h2 id="help-the-piglet" class="question">Help the Piglet</h2>
+<p>The piglet of calculus tried the question on the previous slide and got the following answer:</p>
+<p>The derivative of <span class="math">\(\mathbf f(t)=\langle \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle\)</span> is:</p>
+<p><span class="math">\[\frac{d\mathbf f}{dt}=\langle
+-\sin(t)(2-\cos(4t))+4\cos(t)\sin(4t),
+4\cos(t)\sin(4t),\sin(4t)\rangle\]</span></p>
+<p>Every time the piglet enters the answer in webassign, it is marked wrong. What mistakes did the piglet make?</p>
+<h2 id="the-piglet">The piglet</h2>
+<p>Forgot to differentiate the third component!</p>
+<ul>
+<li>Wrong: <span class="math">\(\sin(4t)\)</span></li>
+<li>Right: <span class="math">\(4\cos(4t)\)</span></li>
+</ul>
+<p>Used the product rule incorrectly in the second component (by just taking the product of the derivatives)!</p>
+<ul>
+<li>Wrong: <span class="math">\(4\cos(t)\sin(4t)\)</span></li>
+<li>Right: <span class="math">\(\cos(t)(2-\cos(4t))+4\sin(t)\sin(4t)\)</span></li>
+</ul>
+<p>Anything else?</p>
+<p>Have you ever made mistakes like these?</p>
+<p><a href="http://www.mathjax.org/"><img src="http://www.mathjax.org/badge.gif" title="Powered by MathJax" alt="Powered by MathJax" /></a> <a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" /></a></p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="differentials">Differentials</h1>
+<h2 id="nedwina-cummerbund-and-the-ankles-of-doom">Nedwina Cummerbund and the Ankles of Doom</h2>
+<p>Nedwina is standing on her favorite part of Rainier, given by the equation <span class="math">\(x^3+z^2(y^2+y^3)+x+y+z=0.\)</span></p>
+<p>The tangent plane: <span class="math">\(x+y+z=0\)</span>.</p>
+<p>The angle with the <span class="math">\(xy\)</span>-plane is the angle between the normal vectors <span class="math">\(\langle 1,0,0\rangle\)</span> and <span class="math">\(\langle 1,1,1\rangle\)</span>: <span class="math">\(\cos(\theta)=\frac{1}{\sqrt{3}}\)</span>.</p>
+<p>The angle is about <span class="math">\(54.74^\circ\)</span>, slightly less than the <span class="math">\(60^\circ\)</span> limit set by the doctor. Phew!</p>
+<p>Nedwina has her pet slug Boffo with her. Boffo is very sensitive to changes in elevation. He asks, sliming with fear:</p>
+<p>&quot;How many cm higher or lower will I be if you follow the path that goes 2cm in the <span class="math">\(x\)</span> direction and 1 cm in the <span class="math">\(y\)</span> direction?&quot;</p>
+<h2 id="centimeters-are-small">Centimeters are small</h2>
+<p>For making small changes, we can use the linear approximation to the function!</p>
+<ul>
+<li>The best linear approximation to the nerd's model of Rainier at <span class="math">\((0,0,0)\)</span> is the function <span class="math">\(z=-x-y\)</span>.</li>
+<li>Tiny changes in <span class="math">\(x\)</span> and <span class="math">\(y\)</span>: <span class="math">\(\Delta x=0.02\)</span> meters and <span class="math">\(\Delta y=0.01\)</span> meters.</li>
+<li>We get <span class="math">\(\Delta z=-\Delta x-\Delta y=-0.03\)</span> meters, or <span class="math">\(3\)</span> centimeters lower.</li>
+<li>Boffo will not explode.</li>
+</ul>
+<h2 id="name-for-this-differentials">Name for this: differentials</h2>
+<p>These tiny changes are called differentials, and our best linear approximation lets us compute them.</p>
+<p>General formula: if <span class="math">\(z=f(x,y)\)</span> then <span class="math">\(dz=f_x(x,y)dx+f_y(x,y)dy\)</span>. We get the tiny change in <span class="math">\(z\)</span> coming from that tiny change in the position of the point <span class="math">\((x,y)\)</span> using the partial derivatives according to the formula.</p>
+<p>Try one: find the differentials of <span class="math">\(f(x,y)=x^y\)</span>.</p>
+<h2 id="help-the-piglet">Help the piglet</h2>
+<p>Find all of the mistakes in this solution: the differential at the point <span class="math">\((a,b,a^b)\)</span> is</p>
+<p><span class="math">\[dz=yx^{y-1}(x-a)+a^b\ln(a)ydy\]</span></p>
+<p>Correct solution: the differential at <span class="math">\((a,b,a^b)\)</span> is given by <span class="math">\[dz=ba^{b-1}dx+a^b\ln(a)dy.\]</span></p>
+<h2 id="a-real-world-example">A real-world example</h2>
+<p>Roughly how much cheese (in cubic meters) did we shave off a cylinder of cheese of radius <span class="math">\(1\)</span> and height <span class="math">\(4\)</span> if it ends up with radius <span class="math">\(0.99\)</span> and height <span class="math">\(3.98\)</span>?</p>
+<ul>
+<li>Make a model of the volume depending upon two variables.</li>
+<li>Use the differential formula to estimate the change.</li>
+<li>Eat a piece of pizza.</li>
+</ul>
+<h2 id="the-piglet-of-calculus-is-wondering....">The piglet of calculus is wondering....</h2>
+<p>Can we find a differentiable function whose differential in any direction is positive?</p>
+<ul>
+<li>If so, find one.</li>
+<li>If not, explain why not.</li>
+</ul>
+<h2 id="ok-the-piglet-has-a-refined-question">OK, the piglet has a refined question</h2>
+<p>Can we find a differentiable function <span class="math">\(f(x,y)\)</span> and a point <span class="math">\((a,b)\)</span> so that the actual changes when we jiggle the point are all positive?</p>
+<ul>
+<li>If so, find one.</li>
+<li>If not, explain why not.</li>
+</ul>
+<p><a href="http://www.mathjax.org/"><img src="http://www.mathjax.org/badge.gif" title="Powered by MathJax" alt="Powered by MathJax" /></a> <a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" /></a></p>
+</body>
+</html>

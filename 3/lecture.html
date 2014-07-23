@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href=" ../pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="dot-products">Dot products</h1>
+<h2 id="warm-up">Warm up</h2>
+<p>Let’s start with a few natural questions about vectors that arise in the world.</p>
+<h2 id="warm-up-1">Warm up</h2>
+<p>Question: a light shines perpendicularly down onto the plane <span class="math">\(x+y+z=0\)</span>. Can we calculate the shadow of the vector <span class="math">\(\langle 3,4,5\rangle\)</span> in the plane? (Natural question for computer graphics, architecture, etc. )</p>
+<h2 id="warm-up-2">Warm up</h2>
+<p><strong>Similar:</strong> a light shines perpendicularly down onto the plane <span class="math">\(z=0\)</span>. How can we calculate the shadow of the vector <span class="math">\(\langle 3,4,5\rangle\)</span> in the plane?</p>
+<h2 id="warm-up-3">Warm up</h2>
+<p><strong>Similar:</strong> a light shines perpendicularly down onto the plane <span class="math">\(z=0\)</span>. How can we calculate the shadow of the vector <span class="math">\(\langle 3,4,5\rangle\)</span> in the plane?</p>
+<p>Can you draw a picture of this one?</p>
+<h2 id="warm-up-4">Warm up</h2>
+<p><strong>Similar:</strong> a light shines perpendicularly down onto the plane <span class="math">\(z=0\)</span>. How can we calculate the shadow of the vector <span class="math">\(\langle 3,4,5\rangle\)</span> in the plane?</p>
+<p>Can you draw a picture of this one?</p>
+<p><strong>Answer:</strong></p>
+<h2 id="warm-up-5">Warm up</h2>
+<p><strong>Similar:</strong> a light shines perpendicularly down onto the plane <span class="math">\(z=0\)</span>. How can we calculate the shadow of the vector <span class="math">\(\langle 3,4,5\rangle\)</span> in the plane?</p>
+<p>Can you draw a picture of this one?</p>
+<p><strong>Answer:</strong> projecting into the <span class="math">\(xy\)</span>-plane just forgets about the <span class="math">\(z\)</span>-component!</p>
+<h2 id="warm-up-6">Warm up</h2>
+<p><strong>Question:</strong> given two vectors in <span class="math">\(\mathbf R^3\)</span>, how can we compute the angle between them?</p>
+<h2 id="today">Today</h2>
+<p>We’ll learn about a marvelous tool for answering these questions called the dot product.</p>
+<p>As with components and addition of vectors, coordinates allow us to calculate the geometry.</p>
+<p>As simple as they seem, the ideas we’ll discuss here tap into one of the richest veins of ideas in mathematics.</p>
+<h2 id="definition">Definition</h2>
+<p>The dot product of two vectors</p>
+<p><span class="math">\[\mathbf a=\langle a_1,a_2,a_3\rangle\textrm{ }\mathbf
+b=\langle b_1,b_2,b_3\rangle\]</span></p>
+<p>is the number</p>
+<p><span class="math">\[\mathbf a\cdot\mathbf b=a_1b_1+a_2b_2+a_3b_3.\]</span></p>
+<h2 id="definition-1">Definition</h2>
+<p>The dot product of two vectors</p>
+<p><span class="math">\[\mathbf a=\langle a_1,a_2,a_3\rangle\textrm{ }\mathbf
+b=\langle b_1,b_2,b_3\rangle\]</span></p>
+<p>is the number</p>
+<p><span class="math">\[\mathbf a\cdot\mathbf b=a_1b_1+a_2b_2+a_3b_3.\]</span></p>
+<p>Note: this is a number (scalar), not a vector!</p>
+<h3 id="examples">Examples</h3>
+<ul>
+<li><span class="math">\(\langle 1, 2, 3\rangle\cdot\langle 3, 0, 1\rangle = 1\cdot 3+2\cdot 0+3\cdot 1=6\)</span></li>
+<li><span class="math">\(\langle 2, 5\rangle\cdot\langle 5, -2\rangle = 2\cdot 5 + 5\cdot(-2) = 0\)</span></li>
+</ul>
+<h2 id="practice">Practice</h2>
+<p>Compute these dot products (build a data set for your inner child!):</p>
+<ul>
+<li><span class="math">\(\langle 1,0,0\rangle\cdot\langle 2,3,7\rangle\)</span></li>
+<li><span class="math">\(\mathbf i\cdot\mathbf j\)</span> (you know what <span class="math">\(\mathbf i\)</span> and <span class="math">\(\mathbf j\)</span> are because you read the book!)</li>
+<li><span class="math">\(\mathbf i\cdot\mathbf i\)</span></li>
+<li>take a point <span class="math">\((x,y,z)\)</span> in the plane <span class="math">\(x+y+z=0\)</span> and compute <span class="math">\(\langle x,y,z\rangle\cdot\langle 1,1,1\rangle\)</span></li>
+</ul>
+<h2 id="observations">Observations</h2>
+<ul>
+<li><span class="math">\(\mathbf i\)</span> and <span class="math">\(\mathbf j\)</span> are perpendicular, and <span class="math">\(\mathbf i\cdot\mathbf j=0\)</span></li>
+<li><span class="math">\(\mathbf i\)</span> has length <span class="math">\(1\)</span>, and <span class="math">\(\mathbf i\cdot\mathbf i=1\)</span></li>
+<li>Coincidence?</li>
+</ul>
+<h2 id="sweet-theorem">Sweet Theorem</h2>
+<p>Given two vectors <span class="math">\(\mathbf a\)</span> and <span class="math">\(\mathbf b\)</span>, the angle <span class="math">\(\theta\)</span> between them satisfies</p>
+<p><span class="math">\[\mathbf a\cdot\mathbf b=|\mathbf a||\mathbf
+b|\cos(\theta).\]</span></p>
+<figure>
+<img src="3.1/lecture3_3.png" />
+</figure>
+<h2 id="sweet-theorem-1">Sweet Theorem</h2>
+<p>Given two vectors <span class="math">\(\mathbf a\)</span> and <span class="math">\(\mathbf b\)</span>, the angle <span class="math">\(\theta\)</span> between them satisfies</p>
+<p><span class="math">\[\mathbf a\cdot\mathbf b=|\mathbf a||\mathbf
+b|\cos(\theta).\]</span></p>
+<p>Since by convention we always take the angle between two vectors to lie between <span class="math">\(0\)</span> and <span class="math">\(\pi\)</span> radians, this determines <span class="math">\(\theta\)</span> uniquely.</p>
+<p>This theorem shows how the dot product relates to both angle and length</p>
+<p>Let’s see how we can leverage this for both angles and lengths.</p>
+<h1 id="angles">Angles</h1>
+<h2 id="angles-example">Angles: example</h2>
+<p>The angle <span class="math">\(\theta\)</span> between <span class="math">\(\langle 1,3,5\rangle\)</span> and <span class="math">\(\langle -1,3,2\rangle\)</span> satisfies</p>
+<p><span class="math">\[18=\sqrt{35}\sqrt{14}\cos(\theta).\]</span></p>
+<p>Conclusion: <span class="math">\(\theta=0.6212404....\)</span> radians, or around <span class="math">\(35.59\)</span> degrees.</p>
+<p>No picture necessary!</p>
+<h2 id="angles-one-to-try">Angles: one to try</h2>
+<p>What is the angle between <span class="math">\(\langle 1,0,0\rangle\)</span> and <span class="math">\(\langle 2,2,0\rangle\)</span>?</p>
+<h2 id="angles-orthogonality">Angles: orthogonality</h2>
+<p>Two vectors <span class="math">\(\mathbf a\)</span> and <span class="math">\(\mathbf b\)</span> are perpendicular if and only if <span class="math">\(\mathbf a\cdot\mathbf b=0\)</span>.</p>
+<p>Geometry encoded with numbers.</p>
+<h1 id="length">Length</h1>
+<h2 id="length-true-or-false" class="question">Length: True or False?</h2>
+<p>For any vector <span class="math">\(\mathbf a\)</span>, we have that <span class="math">\(\mathbf a\cdot\mathbf a\)</span> equals the length of <span class="math">\(\mathbf a\)</span>.</p>
+<h2 id="length-components">Length: components</h2>
+<p>Suppose <span class="math">\(\mathbf u\)</span> is a unit vector (i.e., a vector of length <span class="math">\(1\)</span>). Then for any vector <span class="math">\(\mathbf a\)</span>, the new vector</p>
+<p><span class="math">\[\operatorname{proj}_{\mathbf u}(\mathbf a)=(\mathbf
+a\cdot\mathbf u)\mathbf u\]</span></p>
+<p>gives the projection of <span class="math">\(\mathbf a\)</span> onto <span class="math">\(\mathbf u\)</span>.</p>
+<p>The number <span class="math">\(\mathbf a\cdot\mathbf u\)</span> is called the component of <span class="math">\(\mathbf a\)</span> in the direction of <span class="math">\(\mathbf u\)</span>.</p>
+<h2 id="example">Example</h2>
+<figure>
+<img src="3.3/lecture3_4.png" />
+</figure>
+<h2 id="practice-1" style="margin-bottom: 20px">Practice</h2>
+<ul>
+<li>Let <span class="math">\(\mathbf u\)</span> be a unit vector in the same direction as <span class="math">\(\langle 1,1,1\rangle\)</span>. Find <span class="math">\(\mathbf u\)</span> and compute the projection <span class="math">\[\mathbf c=\operatorname{proj}_{\mathbf
+u}(\langle 3,4,5\rangle).\]</span></li>
+<li>Does the difference vector <span class="math">\[\langle 3,4,5\rangle-\mathbf c\]</span> have endpoint in the plane <span class="math">\(x+y+z=0\)</span>?</li>
+</ul>
+<h1 id="dot-products-wrap-up">Dot products: wrap up</h1>
+<h2 id="more-problems">More problems</h2>
+<ul>
+<li>Find a unit vector perpendicular to both <span class="math">\(\mathbf i+\mathbf j\)</span> and <span class="math">\(\mathbf i+\mathbf k\)</span>.</li>
+<li>Calculate the angles in the triangle connecting the points <span class="math">\((0,0,0)\)</span>, <span class="math">\((0,1,3)\)</span>, <span class="math">\((2,1,-1)\)</span> to three significant digits.</li>
+</ul>
+<h2 id="original-question">Original question</h2>
+<p>How do we calculate the projection of a vector into a plane?</p>
+<p>What is the projection in human terms? “Walk along the plane from the origin of the vector until you are just underneath its tip.”</p>
+<p>So: if you look straight “up” (perpendicular to the plane) from the endpoint of the projection, you see the endpoint of the original vector.</p>
+<p>How do we express “first go here, then go there” using vectors?</p>
+<p>What if you project onto the line perpendicular to the plane and subtract that projection from the original vector?</p>
+</body>
+</html>

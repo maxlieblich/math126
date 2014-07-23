@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="local-maxmin-examples">Local max/min: examples</h1>
+<h2 id="example-fxyx2y2">Example: <span class="math">\(f(x,y)=x^2+y^2\)</span></h2>
+<ul>
+<li>Unique critical point: <span class="math">\((0,0)\)</span></li>
+<li><span class="math">\(D(x,y)=f_{xx}f_{yy}-f_{xy}^2=2\cdot 2-0=4\gt 0\)</span></li>
+<li><span class="math">\(f_{xx}=2\gt 0\)</span></li>
+<li>Conclusion: local minimum! (Phew!!)</li>
+</ul>
+<h2 id="do-one" class="question">Do one!</h2>
+<p>Describe which critical points of <span class="math">\(f(x,y)=\sin(x)\cos(y)\)</span> are local minima, local maxima, and saddle points.</p>
+<ul>
+<li><span class="math">\(D=f_{xx}f_{yy}-f_{xy}^2\)</span></li>
+<li><span class="math">\(D\gt 0\)</span>, <span class="math">\(f_{xx}\lt 0\)</span> implies local max (but not other way)</li>
+<li><span class="math">\(D\gt 0\)</span>, <span class="math">\(f_{xx}\gt 0\)</span> implies local min (but not other way)</li>
+<li><span class="math">\(D\lt 0\)</span> means saddle point</li>
+</ul>
+<h2 id="another-one-for-fun" class="question">Another one for fun</h2>
+<p>Consider the function <span class="math">\(f(x,y)=x^y\)</span> with critical point <span class="math">\((1,0)\)</span>.</p>
+<ul>
+<li>What is the Hessian determinant <span class="math">\(D(1,0)\)</span>?</li>
+<li>Is <span class="math">\((1,0)\)</span> a local max, a local min, or neither?</li>
+<li>Is there an &quot;easy&quot; explanation for the previous part?</li>
+</ul>
+<h2 id="this-matters-in-reality-too">This matters in reality, too</h2>
+<p>Here is an example of a problem that you might approach using the methods we've developed today: what is the smallest distance between the point <span class="math">\((1,2,3)\)</span> and the paraboloid <span class="math">\(z=x^2+y^2\)</span>?</p>
+<ul>
+<li>Function to be minimized: <span class="math">\(d(x,y,z)=(x-1)^2+(y-2)^2+(z-3)^2\)</span> (the square of the distance; why?)</li>
+<li>Relation: <span class="math">\(z=x^2+y^2\)</span></li>
+<li>So now trying to minimize: <span class="math">\(f(x,y)=(x-1)^2+(y-2)^2+(x^2+y^2-3)^2\)</span></li>
+<li>You can try this in the comfort of your room.</li>
+</ul>
+<p><a href="http://www.mathjax.org/"><img src="http://www.mathjax.org/badge.gif" title="Powered by MathJax" alt="Powered by MathJax" /></a><a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" /></a></p>
+</body>
+</html>

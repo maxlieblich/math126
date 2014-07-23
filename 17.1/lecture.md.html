@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="double-integrals-riemann-sums">Double integrals: Riemann sums</h1>
+<h2 id="how-big-is-mt.-rainier" class="question">How big is Mt. Rainier?</h2>
+<p>A large mining company has decided it wants to turn Mt. Rainier into pure profit by smashing and carting the whole thing away one rock at a time (for use in fishtanks). They ask the piglet of calculus to help them calculate the amount of rock they will end up with.</p>
+<p>What are the piglet's options?</p>
+<p>(Note: the piglet has access to the Puget Sound LIDAR Consortium's data set.)</p>
+<h2 id="toy-model-rides-again">Toy model rides again</h2>
+<p>Let's think about a toy model given by</p>
+<p><span class="math">\[z=\sqrt{\frac{10-x^2-y^2}{e^{x^2+y^2}}}.\]</span></p>
+<h2 id="crude-approximation">Crude approximation</h2>
+<p>Let's just try to get the volume over the 4 by 4 square centered at the origin.</p>
+<p>That oughta do it.</p>
+<h2 id="we-can-do-better-than-that">We can do better than that!</h2>
+<p>Let's refine the grid! Vol:</p>
+<p>Change the number of blocks, observe the effect on the approximation. &quot;N&quot; means &quot;N by N grid&quot;</p>
+<h2 id="keep-going">Keep going!</h2>
+<p>Just to show you, here is what happens for a 100 by 100 grid. Vol:</p>
+<p>That's a mighty fine approximation you have there. It would be a shame if anything happened to it....</p>
+<h2 id="does-this-remind-you-of-anything">Does this remind you of anything?</h2>
+<p>Are we just playing with blocks?</p>
+<p>LEGO is Danish, but these things are          .</p>
+<h2 id="remember-riemann-sums">Remember Riemann sums?</h2>
+<p>In your calculus youth, you learned about integration via Riemann sums.</p>
+<p>Recall: given a function <span class="math">\(f(x)\)</span> defined on an interval <span class="math">\([a,b]\)</span> and an integer <span class="math">\(n\)</span>, we form the <span class="math">\(n\)</span>th Riemann sum like this:</p>
+<p><span class="math">\[S_n=\sum_{i=1}^nf\left(a+(2i-1)\frac{b-a}{2n}\right)\frac{1}{n}=\sum_{i=1}^nf(x_i)\Delta(x)\]</span></p>
+<p>The idea: divide the interval into <span class="math">\(n\)</span> equal pieces, evaluate the function in the middle of each interval, and add up the areas of the resulting rectangles.</p>
+<h2 id="stew-in-brain-juices">Stew in brain juices</h2>
+<p>Try to set up a similar thing for functions of two variables <span class="math">\(f(x,y)\)</span> over a rectangle <span class="math">\([a,b]\times[c,d]\)</span>: <span class="math">\(x\)</span> goes from <span class="math">\(a\)</span> to <span class="math">\(b\)</span> and <span class="math">\(y\)</span> goes from <span class="math">\(c\)</span> to <span class="math">\(d\)</span>.</p>
+<p>Some components you might want to use to start:</p>
+<p><span class="math">\[\sum_{i=1}^m\sum_{j=1}^n\qquad\qquad
+\Delta(x)\qquad\qquad \Delta(y)\qquad\qquad f\qquad\qquad
+x_{ij}\qquad\qquad y_{ij}\]</span></p>
+<p>This is not just a mindless exercise. How would you program a computer to make these approximations? Work backwards from there if you want!</p>
+<p>Maybe I just worked some magic to make those models before.</p>
+<h2 id="riemann-sums-over-rectangles">Riemann sums over rectangles</h2>
+<p>Here's one possible answer:</p>
+<p>Suppose <span class="math">\(f(x,y)\)</span> is defined and continuous on the rectangle <span class="math">\[[a,b]\times[c,d]=\{(x,y) | a\leq x\leq b, c\leq y\leq
+d\}.\]</span> &quot;The&quot; <span class="math">\(n\)</span>th Riemann sum of <span class="math">\(f\)</span> is</p>
+<p><span class="math">\[S_n=\sum_{i=1}^n\sum_{j=1}^nf(x_{ij},y_{ij})\Delta(x)\Delta(y),\]</span></p>
+<p>where <span class="math">\((x_{ij},y_{ij})\)</span> is a point in the <span class="math">\(ij\)</span>-subrectangle <span class="math">\[\left[a+(i-1)\frac{b-a}{n},a+i\frac{b-a}{n}\right]\times\left[c+(j-1)\frac{d-c}{n},c+j\frac{d-c}{n}\right].\]</span></p>
+<p>Where the heck are the rectangles in there?!</p>
+<p><a href="http://www.mathjax.org/"><img src="http://www.mathjax.org/badge.gif" title="Powered by MathJax" alt="Powered by MathJax" /></a><a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" /></a></p>
+</body>
+</html>

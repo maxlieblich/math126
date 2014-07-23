@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href=" ../pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="vectors-geometry">Vectors: geometry</h1>
+<h2 id="flaky-definition">Flaky definition</h2>
+<p>A vector is an object with two properties: direction and magnitude. For example,</p>
+<ul>
+<li>Displacement from a fixed point</li>
+<li>Velocity</li>
+<li>Acceleration</li>
+<li>Force applied by angry customer</li>
+</ul>
+<h2 id="special-vector-mathbf-0">Special vector: <span class="math">\(\mathbf 0\)</span></h2>
+<p>There is one special vector: the <span class="math">\(0\)</span> vector, written <span class="math">\(\mathbf 0\)</span>.</p>
+<p>The vector <span class="math">\(\mathbf 0\)</span> has magnitude <span class="math">\(0\)</span> and “any” direction.</p>
+<p>Example: the trivial displacement (go nowhere!).</p>
+<h2 id="graphical-representation">Graphical representation</h2>
+<p>Draw an arrow:</p>
+<h2 id="graphical-representation-1">Graphical representation</h2>
+<p>Important (yet confusing): two vectors are equivalent if they have the same direction and magnitude. These are all equivalent:</p>
+<h2 id="quick-check">Quick check</h2>
+<p>Which vectors are equivalent to others in this picture? (Number them 1 through 5 from left to right. For simplicity, they live in a plane.)</p>
+<h2 id="graphical-representation-2">Graphical representation</h2>
+<p>Thus, we will always represent vectors as arrows starting at the origin <span class="math">\((0,0,0)\)</span>.</p>
+<h2 id="cheerleading">Cheerleading</h2>
+<p>Does a vector have a position?</p>
+<p>I can’t hear you!</p>
+<p>What does it have?</p>
+<p>A vector only has</p>
+<h3 id="direction" class="red">DIRECTION</h3>
+<h3 id="magnitude" class="red">MAGNITUDE</h3>
+<h2 id="the-magic-of-vectors">The magic of vectors</h2>
+<h3 id="vectors-can-be-added-and-scaled.">Vectors can be added and scaled.</h3>
+<h2 id="the-magic-of-vectors-1">The magic of vectors</h2>
+<h3 id="adding-vectors-graphically-with-the-triangle-rule">Adding vectors graphically with the triangle rule</h3>
+<p>Draw the two vectors to be added using our representation that positions the start at the origin.</p>
+<h2 id="the-magic-of-vectors-2">The magic of vectors</h2>
+<h3 id="adding-vectors-graphically-with-the-triangle-rule-1">Adding vectors graphically with the triangle rule</h3>
+<p>Translate the second one so that it starts at the end of the first one.</p>
+<h2 id="the-magic-of-vectors-3">The magic of vectors</h2>
+<h3 id="adding-vectors-graphically-with-the-triangle-rule-2">Adding vectors graphically with the triangle rule</h3>
+<p>Connect the start of the first with the end of the translated second. We end up with purple as red plus blue</p>
+<h2 id="the-magic-of-vectors-4">The magic of vectors</h2>
+<h3 id="check-yourself-before-you-wreck-yourself">Check yourself before you wreck yourself</h3>
+<p>What is the sum of the displacement vector connecting points <span class="math">\(p_1\)</span> and <span class="math">\(p_2\)</span> and the displacement vector connecting points <span class="math">\(p_2\)</span> and <span class="math">\(p_3\)</span>?</p>
+<h2 id="fun" class="question">Fun</h2>
+<ul>
+<li>Let <span class="math">\(A,B,C,D\)</span> be the vertices of a square. Choose a specific example if you want. Compute the sum of vectors <span class="math">\[\vec{AB}+\vec{BC}+\vec{CD}+\vec{DA}.\]</span></li>
+<li>Let <span class="math">\(A_1,A_2,A_3,A_4,A_5,A_6\)</span> be points. Compute the sum <span class="math">\[\vec{A_1A_2}+\vec{A_2A_3}+\vec{A_3A_4}+\vec{A_4A_5}+\vec{A_5A_6}+\vec{A_6A_1}.\]</span></li>
+</ul>
+<p>{#comingNext}</p>
+<h1 id="vectors-components">Vectors: components</h1>
+<h2 id="numbers-breed-vectors">Numbers breed vectors</h2>
+<h3 id="we-can-also-describe-vectors-using-numbers.">We can also describe vectors using numbers.</h3>
+<p>The vector connecting <span class="math">\(A=(0,0,0)\)</span> to <span class="math">\(B=(a,b,c)\)</span> is written as</p>
+<p><span class="math">\[\mathbf{v}=\langle a, b, c\rangle\]</span></p>
+<p>This uses the standard representation of vectors from before: force them to start at <span class="math">\((0,0,0)\)</span>.</p>
+<p>The length of <span class="math">\(\mathbf v=\langle a, b, c\rangle\)</span> is</p>
+<p><span class="math">\[|\mathbf v| = \sqrt{a^2+b^2+c^2}\]</span></p>
+<h2 id="numbers-breed-vectors-1">Numbers breed vectors</h2>
+<h3 id="any-vector-is-made-of-three-coordinates-like-that">Any vector is made of three coordinates like that:</h3>
+<p>Using this notation, the vector connecting the point <span class="math">\(A=(a,b,c)\)</span> to the point <span class="math">\(B=(a&#39;,b&#39;,c&#39;)\)</span></p>
+<p><span class="math">\[\vec{AB}=\langle a&#39;-a,b&#39;-b,c&#39;-c\rangle.\]</span></p>
+<p>Note: you must always subtract the coordinates in the same order!</p>
+<h2 id="brain-massage" class="question">Brain massage</h2>
+<ul>
+<li>Calculate the length of the vector connecting the point <span class="math">\((0,2,4)\)</span> to the point <span class="math">\((1,-1,1)\)</span>.</li>
+<li>Consider the vectors <span class="math">\(\langle 1,0,0\rangle\)</span> and <span class="math">\(\langle 0,1,0\rangle\)</span>. Find <span class="math">\(a,b,c\)</span> such that <span class="math">\[\langle
+1,0,0\rangle+\langle 0,1,0\rangle=\langle a,b,c\rangle.\]</span> Try this for another pair of vectors if you finish early. Rinse and repeat.</li>
+</ul>
+<h2 id="numbers-breed-vectors-2">Numbers breed vectors</h2>
+<h3 id="addition-and-scaling-using-numbers">Addition and scaling using numbers:</h3>
+<p><span class="math">\[\langle a,b,c\rangle +\langle a&#39;,b&#39;,c&#39;\rangle=\langle a+a&#39;,
+b+b&#39;, c+c&#39;\rangle\]</span></p>
+<p><span class="math">\[\langle 0,3,4\rangle+\langle 1,-1,0\rangle=\langle
+1,2,4\rangle\]</span></p>
+<hr />
+<p><span class="math">\[\gamma\langle a,b,c\rangle=\langle\gamma a,\gamma b,\gamma
+c\rangle\]</span></p>
+<p><span class="math">\[3\langle 1,1,2\rangle=\langle 3,3,6\rangle\]</span></p>
+<h2 id="use-it-or-lose-it" class="question">Use it or lose it</h2>
+<ul>
+<li><p>Do the points</p>
+<p><span class="math">\[(1,2,3), (2,3,4),(37, 38, 40)\]</span></p>
+<p>lie on a single line in <span class="math">\(\mathbf R^3\)</span>?</p></li>
+<li><p>Find the line containing the largest number of the following points</p>
+<p><span class="math">\[(1,0,1), (0,2,0), (1,2,3), (2,2,4), (3,2,5).\]</span></p></li>
+</ul>
+<h3 id="criterion" class="purple">Criterion</h3>
+<ul>
+<li>Two non-zero vectors <span class="math">\(\mathbf v\)</span> and <span class="math">\(\mathbf w\)</span> have the same or opposite direction if <span class="math">\[\mathbf v=c\mathbf w\]</span> for some non-zero number <span class="math">\(c\)</span>.</li>
+<li>Why is this true?</li>
+<li>Does this help with the problem?</li>
+</ul>
+</body>
+</html>

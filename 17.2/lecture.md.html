@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="double-integrals-first-examples">Double integrals: first examples</h1>
+<h2 id="the-double-integral-appears">The double integral appears</h2>
+<p>In reasonable circumstances the approximations we get from Riemann sums improve as the mesh gets finer and finer.</p>
+<p>Let's give this limit a name!</p>
+<p>If <span class="math">\(f(x,y)\)</span> is continuous on the rectangle <span class="math">\(R=[a,b]\times[c,d]\)</span> then the double integral of <span class="math">\(f\)</span> over <span class="math">\(R\)</span> is the limit</p>
+<p><span class="math">\[\iint_R f(x,y)dx
+dy=\lim_{n\to\infty}\sum_{i=1}^n\sum_{j=1}^nf(x_{ij},y_{ij})\Delta(x)\Delta(y).\]</span></p>
+<p>You will see a slightly different formulation in some books. Compare them and decide if they're the same! (He divides the two directions into different numbers of parts, etc., etc.)</p>
+<h2 id="it-computes-volume">It computes volume</h2>
+<p>As you can guess from our model, the double integral computes a volume.</p>
+<p>Theorem: given a function <span class="math">\(f(x,y)\)</span> continuous and non-negative over a rectangle <span class="math">\(R\)</span> in <span class="math">\(\mathbf R^2\)</span>, the volume of the solid between the <span class="math">\(xy\)</span>-plane and the graph of <span class="math">\(f\)</span> over <span class="math">\(R\)</span> equals <span class="math">\(\iint_Rfdxdy.\)</span></p>
+<p>This baby has volume approximately <span class="math">\(16.5895\)</span>. Sweet. (How did the computer get this?)</p>
+<h2 id="how-do-you-compute-these">How do you compute these?</h2>
+<p>Can we do a single example?</p>
+<p>Here's one: <span class="math">\(f(x,y)=1\)</span> over the rectangle <span class="math">\(R=[-1,1]\times[-1,1].\)</span> For the <span class="math">\(n\)</span>th Riemann sum, <span class="math">\(\Delta(x)=\frac{1-(-1)}{n}=\frac{2}{n}\)</span> and similarly for <span class="math">\(\Delta(y)\)</span>.</p>
+<p>Computing the Riemann sums:</p>
+<p><span class="math">\[\begin{align\*}
+S_n=\sum_{i=1}^n\sum_{j=1}^n1\Delta(x)\Delta(y)=\left(\sum_{i=1}^n\Delta(x)\right)\left(\sum_{j=1}^n\Delta(y)\right)\\
+&amp;=
+\left(\sum_{i=1}^n\frac{2}{n}\right)\left(\sum_{j=1}^n\frac{2}{n}\right)\\
+&amp;=2\cdot 2=4, \end{align\*}\]</span></p>
+<p>so we get <span class="math">\(\iint_R 1dxdy=4.\)</span></p>
+<h2 id="the-piglet-is-excited">The piglet is excited</h2>
+<p>The piglet of calculus has come knocking on your door at 2 AM. She is waving a notebook in the air. She calls you over and says:</p>
+<p>&quot;For any function <span class="math">\(f(x,y)\)</span> of the form <span class="math">\(f(x,y)=g(x)h(y)\)</span> and any rectangle <span class="math">\(R=[a,b]\times[c,d]\)</span>, I know that</p>
+<p><span class="math">\[\iint_Rf(x,y)dxdy=\left(\int_a^bg(x)dx\right)\cdot\left(\int_c^dh(y)dy\right).&quot;\]</span></p>
+<p>Is she right?</p>
+<p>To warm up, you could try <span class="math">\(f(x,y)=x\)</span> and then <span class="math">\(f(x,y)=xy.\)</span></p>
+<p>If you settle the piglet's question, you might try your hand at computing <span class="math">\(\iint_{[0,1]\times[0,2]}(x+y) dxdy\)</span>; this does not fit into the piglet's pattern, of course!</p>
+<h2 id="germany-italy-happy-pig">Germany + Italy = happy pig</h2>
+<p>Go and learn about iterated integrals, an incredibly powerful method of computing these beasts. We will use them together in other segments, but I will assume you know what they are.</p>
+<p>Observation: we can try to split up the integral by dealing with the variables separately. If we choose the center points in each rectangle, we can write a Riemann sum and then start speculating wildly.</p>
+<p><span class="math">\[\begin{align\*}&amp;\sum_{i=1}^n\sum_{i=1}^mf(x_{i},y_{j})\Delta(x)\Delta(y)=\sum_{i=1}^m\Delta(x)\sum_{j=1}f(x_i,y_j)\Delta(y)\\
+&amp;\approx\sum_{i=1}^m\Delta(x)\int_{c}^d
+f(x_i,y)dy\approx\int_{a}^b\left(\int_{c}^df(x,y)dy\right)dx\end{align\*}\]</span></p>
+<p><a href="http://www.mathjax.org/"><img src="http://www.mathjax.org/badge.gif" title="Powered by MathJax" alt="Powered by MathJax" /></a><a href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, Multimedia, and Semantics" /></a></p>
+</body>
+</html>
