@@ -68,13 +68,7 @@ Question
 
 How does it feel to fly along this trefoil path?
 <div id="trefoil"></div>
-<script src = "../bower_components/threejs/build/three.js"></script>
-<script src = "../js/MathModel.js"></script>
-<script src = "../js/TrackballControls.js"></script>
-<script src = "../js/OrbitControls.js"></script>
-<script src = "../js/Detector.js"></script>
-<script src = "../js/SubdivisionModifier.js"></script>
-<script src= "../bower_components/dat-gui/build/dat.gui.js"></script>
+
 <script>
 (function() {
     var model = new MathScene("trefoil");
@@ -110,14 +104,14 @@ How do we find lines perpendicular to a surface (even a weird one)?
 <script>
 (function() {
     var model = new MathScene("heart");
-    var a = Math.cos(0.65);
-    var b = Math.sin(0.65);
-    var f = function (xx, yy, z) {
-        var x = a * xx  - b * yy;
-        var y = b * xx + a * yy;
+   // var a = Math.cos(0.65);
+   // var b = Math.sin(0.65);
+    var f = function (x, y, z) {
+    //    var x = a * xx  - b * yy;
+    //    var y = b * xx + a * yy;
         return Math.pow(x * x + (9/4) * y * y + z * z - 1, 3)- x * x * z * z * z -  (9/80) * y * y * z * z * z;
     }
-    var mc = new MarchingCubesModel(f, [-3.02, 3.03], [-3.05, 3.01], [-3.1, 3], 150, 1);
+    var mc = new MarchingCubesModel({func: f, resolution: 150, smoothingLevel: 1});
     model.embedModel(mc);
     model.renderloop();
 }());
@@ -133,7 +127,7 @@ What makes this shape...
     var f = function (x, y, z) {
         return x*x + y*y + z*z - 1;
     }
-    var mc = new MarchingCubesModel(f, [-1, 1], [-1, 1], [-1, 1], 50);
+    var mc = new MarchingCubesModel({func: f, xmin: -1, xmax: 1, ymin: -1, ymax: 1, zmin: -1, zmax: 1, resolution: 50});
     model.embedModel(mc);
     model.renderloop();
 }());
@@ -149,7 +143,7 @@ Question
     var f = function (x, y, z) {
         return x*x + 2*y*y + 0.5*z*z - 1;
     }
-    var mc = new MarchingCubesModel(f, [-2, 2], [-2, 2], [-2, 2], 50);
+    var mc = new MarchingCubesModel({func: f, xmin: -2, xmax: 2, ymin: -2, ymax: 2, zmin: -2, zmax: 2, resolution: 50});
     model.embedModel(mc);
     model.renderloop();
 }());

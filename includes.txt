@@ -1,0 +1,9 @@
+<script src = "../bower_components/threejs/build/three.js"></script>
+<script src = "../js/MathScene.js"></script>
+<script src = "../js/TrackballControls.js"></script>
+<script src = "../js/OrbitControls.js"></script>
+<script src = "../js/Detector.js"></script>
+<script src = "../js/SubdivisionModifier.js"></script>
+<script src= "../bower_components/dat-gui/build/dat.gui.js"></script>
+<Script src="../js/marchingcubesm.js"></script>
+<link rel="stylesheet" href="../pandoc.css" type="text/css" />
