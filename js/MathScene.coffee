@@ -19,7 +19,7 @@ class MathScene
   setrenderer: ->
     if Detector.webgl
       @renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true, antialias: true})
-      @renderer.setClearColor( 0xdddddd, 1 ); 
+      @renderer.setClearColor( 0xfcfcfc, 1 ); 
     else 
       @renderer = new THREE.CanvasRenderer()
     return
@@ -128,43 +128,59 @@ class MathScene
     @init()
     null
 
-  embedModel: (model) =>
-    model.scene = @scene
-    for obj in model.objects
-      @scene.add(obj)
+  #   #MOVE THIS METHOD INTO EACH MATHMODEL -- LET THEM DECIDE HOW THEY EMBED INTO SCENES!
+  # embedModel: (model) =>
+  #   model.scene = @scene
+  #   for obj in model.objects
+  #     @scene.add(obj)
     
-    old_calc = @calc
-    @calc = (t) ->
-      if model.calc?
-        model.calc()(t)
-      old_calc(t)
-      # console.log @scene
-      null
+  #   old_calc = @calc
+  #   @calc = (t) ->
+  #     if model.calc?
+  #       model.calc()(t)
+  #     old_calc(t)
+  #     # console.log @scene
+  #     null
 
-    if model.needsGui
-      @activateGui()
-      model.addGui(@gui)
-    null
+  #   if model.needsGui
+  #     @activateGui()
+  #     model.addGui(@gui)
+  #   null
 
 class MathModel
   calc: null
-  objects: []
   needsGui: false
+  embedInScene: (mathScene) ->
+    @mathScene = mathScene
+    @embedObjects()
+    that = @
+    old_calc = mathScene.calc
+    mathScene.calc = (t) ->
+      if that.calc?
+        that.calc()(t)
+      old_calc(t)
+      null
+
+    if @needsGui
+      mathScene.activateGui()
+      @addGui(mathScene.gui)
+    null
+
 
 # x, y, z functions of t
-class ParametricPathModel# extends MathModel
+class ParametricPathModel extends MathModel
   limits: [-1, 1]
   speed: 2
   resolution: 100
-  mover: new THREE.Mesh(new THREE.SphereGeometry(0.03), new THREE.MeshNormalMaterial())
+  mover: null
   calc: null
   objects: null
   needsGui: false
+
   constructor: (@x, @y, @z, limits = [-1, 1], speed = 2) ->
-    @objects = []
     @limits = limits
     @speed = speed
-    @mover.geometry.dynamic = true # necessary?
+    @mover = new THREE.Mesh(new THREE.SphereGeometry(0.03), new THREE.MeshNormalMaterial())
     @calc = ->
       self = @
       (t) -> 
@@ -179,11 +195,13 @@ class ParametricPathModel# extends MathModel
       t = @limits[0] + (@limits[1] - @limits[0]) * i / 100.0
       geometry.vertices.push(new THREE.Vector3(@x(t), @y(t), @z(t)))
     @path = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: 0xff0000}))
-    @objects.push(@mover)
-    @objects.push(@path)
+
+  embedObjects: ->
+    @mathScene.scene.add(@mover)
+    @mathScene.scene.add(@path)
 
 
-class MarchingCubesModel# extends MathModel
+class MarchingCubesModel extends MathModel
   xmin: -3.00
   xmax: 3.00
   ymin: -3.00
@@ -193,12 +211,12 @@ class MarchingCubesModel# extends MathModel
   level: 0
   func: null
   resolution: 40
-  objects: null
   calc: null
   smoothingLevel: 0
   needsGui: false
   name: ""
   scene: null
+  surface: null
 
   constructor: ({@func, @xmin, @xmax, 
                 @ymin, @ymax, @zmin, @zmax, 
@@ -217,25 +235,31 @@ class MarchingCubesModel# extends MathModel
     @name ?= "Surface"
     @debug = false
 
-    @objects = []
-    geom = @march()
-    @objects.push new THREE.Mesh(geom, @material)
+    # geom = @march()
+    # @surface = new THREE.Mesh(geom, @material)
+    @march_async(true)
     @needsGui = true
   
+  embedObjects: ->
+    @march_async(true)
+    null
+    # @mathScene.scene.add(@surface)
+
   rerender: ->
-    if @scene?
-      @scene.remove(@objects[0])
-      # @objects = @objects.splice(0, 1)
+    if @mathScene?
+      @mathScene.scene.remove(@surface)
       console.log "surface removed"
       geom = @march()
-      new_surface = new THREE.Mesh(geom, @material)
-      @objects = [new_surface]
+      @surface = new THREE.Mesh(geom, @material)
       console.log "surface constructed"
-      @scene.add(new_surface)
+      @mathScene.scene.add(@surface)
       console.log "surface embedded"
       # console.log @scene
-      # console.log @objects
-      null
+      # console.log @objects 
+    null
+
+  rerender_async: ->
+    @march_async(true)    
 
   addGui: (gui) ->
     # console.log @
@@ -248,10 +272,75 @@ class MarchingCubesModel# extends MathModel
     f.add(@, 'zmax').step(0.05)
     f.add(@, 'resolution', 40, 150).step(1)
     f.add(@, 'smoothingLevel', 0, 2).step(1)
-    f.add(@, 'rerender')
+    f.add(@, 'rerender_async')
     f.add(@, 'debug')
     f.open()
     null
+
+  # see http://stackoverflow.com/a/10372280
+  # Need to use "fallback 2" in order to import the right scripts in the worker
+  march_async: (b) ->
+    that = @
+    debug = @debug
+    window.URL = window.URL || window.webkitURL
+    f = @func.toString()
+    mc = marchingCubes.toString()
+    
+    response = """marchingCubes = #{mc}
+    self.onmessage = function (e) {
+      output = marchingCubes([#{@resolution}, #{@resolution}, #{@resolution}], #{f}, [[#{@xmin}, #{@ymin}, #{@zmin}],[#{@xmax}, #{@ymax}, #{@zmax}]]);
+      postMessage(output);
+      } 
+    """
+    blob = null
+    try 
+      blob = new Blob([response], {type: 'application/javascript'})
+    catch e  # Backwards-compatibility
+      window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder
+      blob = new BlobBuilder()
+      blob.append(response)
+      blob = blob.getBlob()
+    
+    worker = new Worker URL.createObjectURL(blob)
+
+    worker.onmessage = (e) -> 
+      raw_data = e.data
+      console.log raw_data
+      # vs = raw_data.positions
+      # fs = raw_data.cells
+      flat_positions = raw_data.positions
+      flat_normals = raw_data.normals
+      geometry = new THREE.BufferGeometry()
+      geometry.addAttribute( 'position', new THREE.BufferAttribute( flat_positions, 3 ) );
+      geometry.addAttribute( 'normal', new THREE.BufferAttribute( flat_normals, 3 ) );
+      
+      # geometry = new THREE.Geometry()
+      # for v in vs
+      #   geometry.vertices.push new THREE.Vector3 v[0], v[1], v[2]
+      # for f in fs
+      #   geometry.faces.push new THREE.Face3 f[0], f[1], f[2]
+      # if debug
+      #   console.log geometry.vertices.length + " vertices created"
+      # geometry.mergeVertices()
+      # geometry.computeFaceNormals()
+      # geometry.computeVertexNormals()
+      # if debug
+      #   console.log geometry
+      smooth = geometry #that.modify geometry
+      new_surface = new THREE.Mesh(smooth, that.material)
+      if b
+        if that.mathScene?
+          that.mathScene.scene.remove(that.surface)
+          console.log "surface removed"
+          that.surface = new_surface
+          console.log "surface constructed"
+          that.mathScene.scene.add(that.surface)
+          console.log "surface embedded"
+      null
+
+    worker.postMessage("Go!")
+    null
+
 
   march: ->
     # Generate a list of 3D points and values at those points
@@ -378,34 +467,15 @@ class MarchingCubesModel# extends MathModel
           # vertical lines of the cube
           if bits & 256
             mu = (isolevel - value0) / (value4 - value0)
-            # if isNaN mu
-            #   vlist[8] = points[p].clone()
-            # else
             vlist[8] = points[p].clone().lerp(points[pz], mu)
           if bits & 512
             mu = (isolevel - value1) / (value5 - value1)
-            # if isNaN(mu)
-            #   vlist[9] = points[px].clone()
-            # else
             vlist[9] = points[px].clone().lerp(points[pxz], mu)
           if bits & 1024
             mu = (isolevel - value3) / (value7 - value3)
-            # if isNaN(mu)
-            #   vlist[10] = points[pxy].clone()
-            # else
             vlist[10] = points[pxy].clone().lerp(points[pxyz], mu)
-            # mu = if isNaN(mu) then 1.0 else mu
-            # if debug
-            #   if mu > 0.99
-            #     console.log pxy + ", " + points[pxy]
-            #     console.log pxyz + ", " + points[pxyz] 
-            #     console.log value3 + ", " + value7
-            # vlist[10] = points[pxy].clone().lerp(points[pxyz], mu)
           if bits & 2048
             mu = (isolevel - value2) / (value6 - value2)
-            # if isNaN(mu)
-            #   vlist[11] = points[py].clone()
-            # else
             vlist[11] = points[py].clone().lerp(points[pyz], mu)
           
           # construct triangles -- get correct vertices from triTable.
