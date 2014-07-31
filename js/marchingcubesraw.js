@@ -712,7 +712,7 @@ marchingCubes = function(dims, potential, bounds) {
 
       var len = Math.sqrt(cross[0] * cross[0] + cross[1] * cross[1] + cross[2] * cross[2]);
 
-      var n = [cross[0] / len, cross[1] / len, cross[2] / len]
+      var n = [cross[0] / len, cross[1] / len, cross[2] / len];
 
       flat_normals[ i3     ] = n[0];
       flat_normals[ i3 + 1 ] = n[1];

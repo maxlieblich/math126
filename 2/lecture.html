@@ -11,7 +11,11 @@
   <![endif]-->
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
   <script src = "../bower_components/threejs/build/three.js"></script>
-  <script src = "../js/MathModel.js"></script>
+  <script src = "../js/ArrowHelperFixed.js"></script>
+  <script src = "../js/marchingcubesraw.js"></script>
+  <script src = "../js/marchingtetrahedraraw.js"></script>
+  <script src = "../js/surfacenetsraw.js"></script>
+  <script src = "../js/MathScene.js"></script>
   <script src = "../js/TrackballControls.js"></script>
   <script src = "../js/OrbitControls.js"></script>
   <script src = "../js/Detector.js"></script>
@@ -34,11 +38,73 @@
 <p>The vector <span class="math">\(\mathbf 0\)</span> has magnitude <span class="math">\(0\)</span> and “any” direction.</p>
 <p>Example: the trivial displacement (go nowhere!).</p>
 <h2 id="graphical-representation">Graphical representation</h2>
-<p>Draw an arrow:</p>
+Draw an arrow:
+<div id="vector">
+
+</div>
+<script>
+(function(){
+    var scene = new MathScene("vector");
+    var vec = new VectorModel({color: 0xff00ff, vector: [1, 2, 2]});
+    // MathModel.embedInScene(vec, scene);
+    scene.scene.add(vec.arrow);
+    scene.scene.add(new THREE.AxisHelper());
+    scene.camera.position.set(4, 6, 5);
+    scene.renderloop();
+})();
+</script>
+
 <h2 id="graphical-representation-1">Graphical representation</h2>
 <p>Important (yet confusing): two vectors are equivalent if they have the same direction and magnitude. These are all equivalent:</p>
+<div id="equivVectors">
+
+</div>
+<script>
+(function(){
+    var scene = new MathScene("equivVectors");
+    var makeVector = function (pos, dir) {
+        var vec = new VectorModel({color: 0xff00ff, origin: pos, vector: dir});
+        return vec;
+    }
+    positions = [[0, 0, 0], [1, 0, 0], [1, 1, 1], [0, 2, 0]];
+    for (var i = 0; i < positions.length; i++){
+        var vec = makeVector(positions[i], [0.1, 0, 1]);
+        scene.scene.add(vec.arrow);
+        // MathModel.embedInScene(vec, scene);
+    }
+    scene.scene.add(new THREE.AxisHelper());
+    scene.camera.position.set(-1, 6, 2);    
+    scene.renderloop();
+})();
+</script>
+
+
 <h2 id="quick-check">Quick check</h2>
 <p>Which vectors are equivalent to others in this picture? (Number them 1 through 5 from left to right. For simplicity, they live in a plane.)</p>
+<div id="vector-check">
+
+</div>
+<script>
+(function(){
+    var scene = new MathScene("vector-check");
+    scene.camera.position.set(0, 8, 0);
+    scene.cameraControls.enabled = false;
+    var makeVector = function (pos, dir) {
+        return new VectorModel({color: 0xff0000, origin: pos, vector: dir});
+    }
+    dir = [3, 0, 4];
+    positions = [[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 4], [4, 0, 0]];
+    dirs = [[1.5, 0, 2], [1.5, 0, 2], [2, 0, 3], [-1.5, 0, -2], [-1.5, 0, 2]]
+    vectors = []
+    for (var i = 0; i < positions.length; i++){
+        var vec = makeVector(positions[i], dirs[i]);
+        scene.scene.add(vec.arrow);
+        // MathModel.embedInScene(vec, scene);
+    }
+    scene.renderloop();
+})();
+</script>
+
 <h2 id="graphical-representation-2">Graphical representation</h2>
 <p>Thus, we will always represent vectors as arrows starting at the origin <span class="math">\((0,0,0)\)</span>.</p>
 <h2 id="cheerleading">Cheerleading</h2>
@@ -46,23 +112,82 @@
 <p>I can’t hear you!</p>
 <p>What does it have?</p>
 <p>A vector only has</p>
-<h3 id="direction" class="red">DIRECTION</h3>
-<h3 id="magnitude" class="red">MAGNITUDE</h3>
+<h3 id="direction">DIRECTION</h3>
+<h3 id="magnitude">MAGNITUDE</h3>
 <h2 id="the-magic-of-vectors">The magic of vectors</h2>
 <h3 id="vectors-can-be-added-and-scaled.">Vectors can be added and scaled.</h3>
 <h2 id="the-magic-of-vectors-1">The magic of vectors</h2>
 <h3 id="adding-vectors-graphically-with-the-triangle-rule">Adding vectors graphically with the triangle rule</h3>
 <p>Draw the two vectors to be added using our representation that positions the start at the origin.</p>
+<div id="vector-add-1">
+
+</div>
+<script>
+(function(){
+    var scene = new MathScene("vector-add-1");
+    scene.camera.position.set(0, 8, 0);
+    // scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, vector: [2, 0, -3]});
+    scene.scene.add(v1.arrow);
+    scene.scene.add(v2.arrow);
+    // MathModel.embedInScene(v1, scene);
+    // MathModel.embedInScene(v2, scene);
+    scene.renderloop();    
+})();
+</script>
+
 <h2 id="the-magic-of-vectors-2">The magic of vectors</h2>
 <h3 id="adding-vectors-graphically-with-the-triangle-rule-1">Adding vectors graphically with the triangle rule</h3>
 <p>Translate the second one so that it starts at the end of the first one.</p>
+<div id="vector-add-2">
+
+</div>
+<script>
+(function(){
+    var scene = new MathScene("vector-add-2");
+    scene.camera.position.set(0, 8, 0);
+    // scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
+    console.log(v1.arrow);
+    console.log(v2.arrow);
+    scene.scene.add(v1.arrow);
+    scene.scene.add(v2.arrow);
+    // MathModel.embedInScene(v1, scene);
+    // MathModel.embedInScene(v2, scene);
+    scene.renderloop();    
+})();
+</script>
+
 <h2 id="the-magic-of-vectors-3">The magic of vectors</h2>
 <h3 id="adding-vectors-graphically-with-the-triangle-rule-2">Adding vectors graphically with the triangle rule</h3>
 <p>Connect the start of the first with the end of the translated second. We end up with purple as red plus blue</p>
+<div id="vector-add-3">
+
+</div>
+<script>
+(function(){
+    var scene = new MathScene("vector-add-3");
+    scene.camera.position.set(0, 8, 0);
+    scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
+    var v3 = new VectorModel({color: 0x551a8b, vector: [3, 0, -1]});
+    scene.scene.add(v1.arrow);
+    scene.scene.add(v2.arrow);
+    scene.scene.add(v3.arrow);
+    // MathModel.embedInScene(v1, scene);
+    // MathModel.embedInScene(v2, scene);    
+    // MathModel.embedInScene(v3, scene);
+    scene.renderloop();
+})();
+</script>
+
 <h2 id="the-magic-of-vectors-4">The magic of vectors</h2>
 <h3 id="check-yourself-before-you-wreck-yourself">Check yourself before you wreck yourself</h3>
 <p>What is the sum of the displacement vector connecting points <span class="math">\(p_1\)</span> and <span class="math">\(p_2\)</span> and the displacement vector connecting points <span class="math">\(p_2\)</span> and <span class="math">\(p_3\)</span>?</p>
-<h2 id="fun" class="question">Fun</h2>
+<h2 id="fun">Fun</h2>
 <ul>
 <li>Let <span class="math">\(A,B,C,D\)</span> be the vertices of a square. Choose a specific example if you want. Compute the sum of vectors <span class="math">\[\vec{AB}+\vec{BC}+\vec{CD}+\vec{DA}.\]</span></li>
 <li>Let <span class="math">\(A_1,A_2,A_3,A_4,A_5,A_6\)</span> be points. Compute the sum <span class="math">\[\vec{A_1A_2}+\vec{A_2A_3}+\vec{A_3A_4}+\vec{A_4A_5}+\vec{A_5A_6}+\vec{A_6A_1}.\]</span></li>

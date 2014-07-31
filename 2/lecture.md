@@ -25,6 +25,18 @@ Graphical representation
 ------------------------
 
 Draw an arrow:
+<div id="vector"></div>
+<script>
+(function(){
+    var scene = new MathScene("vector");
+    var vec = new VectorModel({color: 0xff00ff, vector: [1, 2, 2]});
+    // MathModel.embedInScene(vec, scene);
+    scene.scene.add(vec.arrow);
+    scene.scene.add(new THREE.AxisHelper());
+    scene.camera.position.set(4, 6, 5);
+    scene.renderloop();
+})();
+</script>
 
 Graphical representation
 ------------------------
@@ -32,11 +44,54 @@ Graphical representation
 Important (yet confusing): two vectors are equivalent if they have the
 same direction and magnitude. These are all equivalent:
 
+<div id="equivVectors"></div>
+<script>
+(function(){
+    var scene = new MathScene("equivVectors");
+    var makeVector = function (pos, dir) {
+        var vec = new VectorModel({color: 0xff00ff, origin: pos, vector: dir});
+        return vec;
+    }
+    positions = [[0, 0, 0], [1, 0, 0], [1, 1, 1], [0, 2, 0]];
+    for (var i = 0; i < positions.length; i++){
+        var vec = makeVector(positions[i], [0.1, 0, 1]);
+        scene.scene.add(vec.arrow);
+        // MathModel.embedInScene(vec, scene);
+    }
+    scene.scene.add(new THREE.AxisHelper());
+    scene.camera.position.set(-1, 6, 2);    
+    scene.renderloop();
+})();
+</script>
+
+
 Quick check
 -----------
 
 Which vectors are equivalent to others in this picture? (Number them 1
 through 5 from left to right. For simplicity, they live in a plane.)
+
+<div id="vector-check"></div>
+<script>
+(function(){
+    var scene = new MathScene("vector-check");
+    scene.camera.position.set(0, 8, 0);
+    scene.cameraControls.enabled = false;
+    var makeVector = function (pos, dir) {
+        return new VectorModel({color: 0xff0000, origin: pos, vector: dir});
+    }
+    dir = [3, 0, 4];
+    positions = [[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 4], [4, 0, 0]];
+    dirs = [[1.5, 0, 2], [1.5, 0, 2], [2, 0, 3], [-1.5, 0, -2], [-1.5, 0, 2]]
+    vectors = []
+    for (var i = 0; i < positions.length; i++){
+        var vec = makeVector(positions[i], dirs[i]);
+        scene.scene.add(vec.arrow);
+        // MathModel.embedInScene(vec, scene);
+    }
+    scene.renderloop();
+})();
+</script>
 
 Graphical representation
 ------------------------
@@ -55,9 +110,9 @@ What does it have?
 
 A vector only has
 
-### DIRECTION {.red}
+### DIRECTION
 
-### MAGNITUDE {.red}
+### MAGNITUDE
 
 The magic of vectors
 --------------------
@@ -72,12 +127,46 @@ The magic of vectors
 Draw the two vectors to be added using our representation that positions
 the start at the origin.
 
+<div id="vector-add-1"></div>
+<script>
+(function(){
+    var scene = new MathScene("vector-add-1");
+    scene.camera.position.set(0, 8, 0);
+    // scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, vector: [2, 0, -3]});
+    scene.scene.add(v1.arrow);
+    scene.scene.add(v2.arrow);
+    // MathModel.embedInScene(v1, scene);
+    // MathModel.embedInScene(v2, scene);
+    scene.renderloop();    
+})();
+</script>
+
 The magic of vectors
 --------------------
 
 ### Adding vectors graphically with the triangle rule
 
 Translate the second one so that it starts at the end of the first one.
+
+<div id="vector-add-2"></div>
+<script>
+(function(){
+    var scene = new MathScene("vector-add-2");
+    scene.camera.position.set(0, 8, 0);
+    // scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
+    console.log(v1.arrow);
+    console.log(v2.arrow);
+    scene.scene.add(v1.arrow);
+    scene.scene.add(v2.arrow);
+    // MathModel.embedInScene(v1, scene);
+    // MathModel.embedInScene(v2, scene);
+    scene.renderloop();    
+})();
+</script>
 
 The magic of vectors
 --------------------
@@ -86,6 +175,25 @@ The magic of vectors
 
 Connect the start of the first with the end of the translated second. We
 end up with purple as red plus blue
+
+<div id="vector-add-3"></div>
+<script>
+(function(){
+    var scene = new MathScene("vector-add-3");
+    scene.camera.position.set(0, 8, 0);
+    scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
+    var v3 = new VectorModel({color: 0x551a8b, vector: [3, 0, -1]});
+    scene.scene.add(v1.arrow);
+    scene.scene.add(v2.arrow);
+    scene.scene.add(v3.arrow);
+    // MathModel.embedInScene(v1, scene);
+    // MathModel.embedInScene(v2, scene);    
+    // MathModel.embedInScene(v3, scene);
+    scene.renderloop();
+})();
+</script>
 
 The magic of vectors
 --------------------
@@ -96,7 +204,7 @@ What is the sum of the displacement vector connecting points $p_1$
 and $p_2$ and the displacement vector connecting points $p_2$ and
 $p_3$?
 
-Fun {.question}
+Fun
 ---
 
 -   Let $A,B,C,D$ be the vertices of a square. Choose a specific
