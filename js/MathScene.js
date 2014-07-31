@@ -83,7 +83,7 @@ MathScene = (function() {
     this.gui.domElement.style.left = 0;
     this.gui.domElement.style.top = 0;
     this.gui.close();
-    this.cameraControls = new THREE.TrackballControls(this.camera, this.container);
+    this.cameraControls = new THREE.TrackballControls(this.camera, this.renderer.domElement);
     this.cameraControls.target.set(0, 0, 0);
     return null;
   };

@@ -71,7 +71,7 @@ class MathScene
 
     #controls
     # @cameraControls = new THREE.OrbitControls @camera, @renderer.domElement
-    @cameraControls = new THREE.TrackballControls @camera, @container
+    @cameraControls = new THREE.TrackballControls @camera, @renderer.domElement
     @cameraControls.target.set 0, 0, 0
     # @cameraControls.screen = { width: @WIDTH, height: @HEIGHT, offsetLeft: 0, offsetTop: 0 }
     # @cameraControls.radius = ( @cameraControls.screen.width + @cameraControls.screen.height ) / 4;
