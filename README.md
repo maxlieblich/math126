@@ -47,7 +47,7 @@ How does it feel to fly along this trefoil path?
 }());
 </script>
 ```
-The `<script>` tag holds javascript that adds interactive models to the HTML5-rendered document. If you write this to LaTeX, pandoc intelligently ignores the `<script>`. TODO: insert images in place of the dynamic parts for rendering. This will be easy.
+The `<script>` tag holds javascript that adds interactive models to the HTML5-rendered document. If you write this to LaTeX, pandoc intelligently ignores the `<script>`.
 
 ### Math functions provided
 
