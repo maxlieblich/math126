@@ -19,7 +19,7 @@ class MathScene
   setrenderer: ->
     if Detector.webgl
       @renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true, antialias: true})
-      @renderer.setClearColor( 0xfcfcfc, 1 ); 
+      @renderer.setClearColor( 0x111111, 1 ); 
     else 
       @renderer = new THREE.CanvasRenderer()
     return
@@ -340,7 +340,7 @@ class VectorModel extends MathModel
     @col = color
     dir = @vec.clone().normalize()
     @arrow = new THREE.ArrowHelper(dir, @orig.clone(), @vec.length(), @col)
-    # @arrow.cone.material = new THREE.MeshLambertMaterial({color: @col})
+    @arrow.cone.material = new THREE.MeshLambertMaterial({ambient: @col, color: 0xcccccc, opacity: 1.0})
     return
 
   embedObjects: ->

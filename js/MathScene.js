@@ -36,7 +36,7 @@ MathScene = (function() {
         preserveDrawingBuffer: true,
         antialias: true
       });
-      this.renderer.setClearColor(0xfcfcfc, 1);
+      this.renderer.setClearColor(0x111111, 1);
     } else {
       this.renderer = new THREE.CanvasRenderer();
     }
@@ -455,6 +455,11 @@ VectorModel = (function(_super) {
     this.col = color;
     dir = this.vec.clone().normalize();
     this.arrow = new THREE.ArrowHelper(dir, this.orig.clone(), this.vec.length(), this.col);
+    this.arrow.cone.material = new THREE.MeshLambertMaterial({
+      ambient: this.col,
+      color: 0xcccccc,
+      opacity: 1.0
+    });
     return;
   }
 
