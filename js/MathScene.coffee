@@ -335,7 +335,6 @@ class VectorModel extends MathModel
     @orig = new THREE.Vector3(origin[0], origin[1], origin[2])
     vector ?= [1, 0, 0]
     @vec = new THREE.Vector3(vector[0], vector[1], vector[2])
-    # @arrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 2.0, 0x756218)
     color ?= 0xff00ff
     @col = color
     dir = @vec.clone().normalize()
