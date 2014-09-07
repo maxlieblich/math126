@@ -57,7 +57,7 @@ same direction and magnitude. These are all equivalent:
         MathModel.embedInScene(vec, scene);
     }
     scene.scene.add(new THREE.AxisHelper());
-    scene.camera.position.set(-1, 6, 2);    
+    scene.camera.position.set(-1, 6, 2);
     scene.renderloop();
 })();
 </script>
@@ -136,7 +136,7 @@ the start at the origin.
     // scene.scene.add(v2.arrow);
     MathModel.embedInScene(v1, scene);
     MathModel.embedInScene(v2, scene);
-    scene.renderloop();    
+    scene.renderloop();
 })();
 </script>
 
@@ -157,7 +157,7 @@ Translate the second one so that it starts at the end of the first one.
     var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
     MathModel.embedInScene(v1, scene);
     MathModel.embedInScene(v2, scene);
-    scene.renderloop();    
+    scene.renderloop();
 })();
 </script>
 
@@ -179,7 +179,7 @@ end up with purple as red plus blue
     var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
     var v3 = new VectorModel({color: 0x551a8b, vector: [3, 0, -1]});
     MathModel.embedInScene(v1, scene);
-    MathModel.embedInScene(v2, scene);    
+    MathModel.embedInScene(v2, scene);
     MathModel.embedInScene(v3, scene);
     scene.renderloop();
 })();
@@ -265,7 +265,7 @@ c\rangle$$
 
 $$3\langle 1,1,2\rangle=\langle 3,3,6\rangle$$
 
-Use it or lose it {.question}
+Use it or lose it
 -----------------
 
 -   Do the points
@@ -278,11 +278,10 @@ Use it or lose it {.question}
 
     $$(1,0,1), (0,2,0), (1,2,3), (2,2,4), (3,2,5).$$
 
-### Criterion {.purple}
+### Criterion
 
 -   Two non-zero vectors $\mathbf v$ and $\mathbf w$ have the same
     or opposite direction if $$\mathbf v=c\mathbf w$$ for some
     non-zero number $c$.
 -   Why is this true?
 -   Does this help with the problem?
-

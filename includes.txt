@@ -1,12 +1,12 @@
-<script src = "../bower_components/threejs/build/three.js"></script>
-<script src = "../js/ArrowHelperFixed.js"></script>
-<script src = "../js/marchingcubesraw.js"></script>
-<script src = "../js/marchingtetrahedraraw.js"></script>
-<script src = "../js/surfacenetsraw.js"></script>
-<script src = "../js/MathScene.js"></script>
-<script src = "../js/TrackballControls.js"></script>
-<script src = "../js/OrbitControls.js"></script>
-<script src = "../js/Detector.js"></script>
-<script src = "../js/SubdivisionModifier.js"></script>
-<script src= "../bower_components/dat-gui/build/dat.gui.js"></script>
-<link rel="stylesheet" href="../pandoc.css" type="text/css" />
+<script src = "../../bower_components/threejs/build/three.js"></script>
+<script src = "../../js/ArrowHelperFixed.js"></script>
+<script src = "../../js/marchingcubesraw.js"></script>
+<script src = "../../js/marchingtetrahedraraw.js"></script>
+<script src = "../../js/surfacenetsraw.js"></script>
+<script src = "../../js/MathScene.js"></script>
+<script src = "../../js/TrackballControls.js"></script>
+<script src = "../../js/OrbitControls.js"></script>
+<script src = "../../js/Detector.js"></script>
+<script src = "../../js/SubdivisionModifier.js"></script>
+<script src= "../../bower_components/dat-gui/build/dat.gui.js"></script>
+<link rel="stylesheet" href="../../pandoc.css" type="text/css" />

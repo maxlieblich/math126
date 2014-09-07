@@ -9,15 +9,57 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <link rel="stylesheet" href=" ../pandoc.css">
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src = "../../bower_components/threejs/build/three.js"></script>
+  <script src = "../../js/ArrowHelperFixed.js"></script>
+  <script src = "../../js/marchingcubesraw.js"></script>
+  <script src = "../../js/marchingtetrahedraraw.js"></script>
+  <script src = "../../js/surfacenetsraw.js"></script>
+  <script src = "../../js/MathScene.js"></script>
+  <script src = "../../js/TrackballControls.js"></script>
+  <script src = "../../js/OrbitControls.js"></script>
+  <script src = "../../js/Detector.js"></script>
+  <script src = "../../js/SubdivisionModifier.js"></script>
+  <script src= "../../bower_components/dat-gui/build/dat.gui.js"></script>
+  <link rel="stylesheet" href="../../pandoc.css" type="text/css" />
 </head>
 <body>
 <h1 id="dot-products">Dot products</h1>
 <h2 id="warm-up">Warm up</h2>
 <p>Let’s start with a few natural questions about vectors that arise in the world.</p>
 <h2 id="warm-up-1">Warm up</h2>
-<p>Question: a light shines perpendicularly down onto the plane <span class="math">\(x+y+z=0\)</span>. Can we calculate the shadow of the vector <span class="math">\(\langle 3,4,5\rangle\)</span> in the plane? (Natural question for computer graphics, architecture, etc. )</p>
+Question: a light shines perpendicularly down onto the plane <span class="math">\(x-y+z=0\)</span>. Can we calculate the shadow of the vector <span class="math">\(\langle 3,4,5\rangle\)</span> in the plane? (Natural question for computer graphics, architecture, etc. )
+<div id="shadow">
+
+</div>
+<script>
+(function (){
+  var scene = new MathScene("shadow");
+  var plane = new PlaneShadowModel({
+    normal: [1, -1, 1],
+    position: [0, 0, 0],
+    color: 0xff0000,
+    xrange: [-10, 10],
+    yrange: [-10, 10]
+    });
+  var vector = new VectorModel({
+    color: 0x0000ff,
+    origin: [0, 0, 0],
+    vector: [3, 4, 5]
+    });
+  vector.arrow.castShadow = true;
+  // cheating so I don't have to ask for lines to cast shadows
+  var shadowLineGeo = new THREE.Geometry();
+  var shadowLineMat = new THREE.MeshBasicMaterial({color: 0x000000});
+  shadowLineGeo.vertices.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(1.666, 5.333, 3.666));
+  scene.scene.add(new THREE.Line(shadowLineGeo, shadowLineMat));
+  scene.camera.position.set(10, -10, 0);
+  MathModel.embedInScene(plane, scene);
+  MathModel.embedInScene(vector, scene);
+  scene.renderloop();
+  })();
+</script>
+
 <h2 id="warm-up-2">Warm up</h2>
 <p><strong>Similar:</strong> a light shines perpendicularly down onto the plane <span class="math">\(z=0\)</span>. How can we calculate the shadow of the vector <span class="math">\(\langle 3,4,5\rangle\)</span> in the plane?</p>
 <h2 id="warm-up-3">Warm up</h2>
@@ -74,7 +116,7 @@ b=\langle b_1,b_2,b_3\rangle\]</span></p>
 <p><span class="math">\[\mathbf a\cdot\mathbf b=|\mathbf a||\mathbf
 b|\cos(\theta).\]</span></p>
 <figure>
-<img src="3.1/lecture3_3.png" />
+<img src="lecture3_3.png" />
 </figure>
 <h2 id="sweet-theorem-1">Sweet Theorem</h2>
 <p>Given two vectors <span class="math">\(\mathbf a\)</span> and <span class="math">\(\mathbf b\)</span>, the angle <span class="math">\(\theta\)</span> between them satisfies</p>
@@ -105,7 +147,7 @@ a\cdot\mathbf u)\mathbf u\]</span></p>
 <p>The number <span class="math">\(\mathbf a\cdot\mathbf u\)</span> is called the component of <span class="math">\(\mathbf a\)</span> in the direction of <span class="math">\(\mathbf u\)</span>.</p>
 <h2 id="example">Example</h2>
 <figure>
-<img src="3.3/lecture3_4.png" />
+<img src="lecture3_4.png" />
 </figure>
 <h2 id="practice-1" style="margin-bottom: 20px">Practice</h2>
 <ul>

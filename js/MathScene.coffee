@@ -19,12 +19,24 @@ class MathScene
   setrenderer: ->
     if Detector.webgl
       @renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true, antialias: true})
-      @renderer.setClearColor( 0x111111, 1 ); 
-    else 
+      @renderer.setClearColor( 0x111111, 1 );
+    else
       @renderer = new THREE.CanvasRenderer()
     return
-  
+
   loader: new THREE.JSONLoader(true)
+
+  enableShadow: ->
+    @renderer.shadowMapEnabled = true
+    @renderer.shadowMapSoft = true
+#    @renderer.shadowCameraNear = 3
+    # @renderer.shadowCameraFar = @camera.far
+    # @renderer.shadowCameraFov = 50
+    @renderer.shadowMapBias = 0.0039
+    @renderer.shadowMapDarkness = 1.0
+    @renderer.shadowMapWidth = 1024
+    @renderer.shadowMapHeight = 1024
+    null
 
   populate: ->
     @scene = new THREE.Scene()
@@ -35,18 +47,10 @@ class MathScene
       @camera = new THREE.PerspectiveCamera 45, @WIDTH/@HEIGHT
       @camera.position.set 3, 3, 3
     if @shadow
-      @renderer.shadowMapEnabled = true
-      @renderer.shadowMapSoft = true
-      @renderer.shadowCameraNear = 3
-      @renderer.shadowCameraFar = @camera.far
-      @renderer.shadowCameraFov = 50
-      @renderer.shadowMapBias = 0.0039
-      @renderer.shadowMapDarkness = 1.0
-      @renderer.shadowMapWidth = 1024
-      @renderer.shadowMapHeight = 1024
+      @enableShadow()
       @pointLight = new THREE.SpotLight 0xffffff
       @pointLight.castShadow = true
-    else 
+    else
       @pointLight = new THREE.PointLight 0xffffff
     @pointLight.intensity = 1
     @pointLight.position.set 0, 0, 100
@@ -92,16 +96,16 @@ class MathScene
   addaxes: (length)->
     @scene.add new THREE.AxisHelper(length)
     null
-  
+
   render: ->
     if @live
       @cameraControls.update()
       @pointLight.position = @camera.position
     @renderer.render @scene,@camera
     null
-  
-  calc: (t) ->  
-  
+
+  calc: (t) ->
+
   animate: ->
     self = @
     framing = (t) ->
@@ -109,15 +113,15 @@ class MathScene
       self.render()
       requestAnimationFrame framing, self.container if self.live
       null
-    framing(new Date().getTime())  
+    framing(new Date().getTime())
     null
-  
-  initTime: 3000  
-  
+
+  initTime: 3000
+
   renderloop: =>
     @live = true
     @animate()
-  
+
   init: ->
     T = new Date().getTime()
     @live = false
@@ -164,14 +168,14 @@ class ParametricPathModel extends MathModel
     @mover = new THREE.Mesh(new THREE.SphereGeometry(0.03), new THREE.MeshNormalMaterial())
     @calc = ->
       self = @
-      (t) -> 
+      (t) ->
         # v = new THREE.Vector3(self.x(t), self.y(t), self.z(t))
         # console.log v
         T = self.speed * t / 1000
         self.mover.position.set self.x(T), self.y(T), self.z(T)
         # self.mover.geometry.verticesNeedUpdate = true
         null
-    geometry = new THREE.Geometry()  
+    geometry = new THREE.Geometry()
     for i in [1..100]
       t = @limits[0] + (@limits[1] - @limits[0]) * i / 100.0
       geometry.vertices.push(new THREE.Vector3(@x(t), @y(t), @z(t)))
@@ -199,9 +203,9 @@ class MarchingCubesModel extends MathModel
   surface: null
   algorithm: null
 
-  constructor: ({@func, @xmin, @xmax, 
-                @ymin, @ymax, @zmin, @zmax, 
-                @resolution, @smoothingLevel, 
+  constructor: ({@func, @xmin, @xmax,
+                @ymin, @ymax, @zmin, @zmax,
+                @resolution, @smoothingLevel,
                 @material,
                 @name, @algorithm}) ->
     @xmin ?= -3.00
@@ -237,11 +241,11 @@ class MarchingCubesModel extends MathModel
       @mathScene.scene.add(@surface)
       console.log "surface embedded"
       # console.log @scene
-      # console.log @objects 
+      # console.log @objects
     null
 
   rerender_async: ->
-    @march_async(true, @algorithm)    
+    @march_async(true, @algorithm)
 
   addGui: (gui) ->
     # console.log @
@@ -273,25 +277,25 @@ class MarchingCubesModel extends MathModel
       mc = marchingTetrahedra.toString()
     else if @algorithm is 'surfaceNets'
       mc = surfaceNets.toString()
-    
+
     response = """#{algorithm} = #{mc}
     self.onmessage = function (e) {
       output = #{algorithm}([#{@resolution}, #{@resolution}, #{@resolution}], #{f}, [[#{@xmin}, #{@ymin}, #{@zmin}],[#{@xmax}, #{@ymax}, #{@zmax}]]);
       postMessage(output);
-      } 
+      }
     """
     blob = null
-    try 
+    try
       blob = new Blob([response], {type: 'application/javascript'})
     catch e  # Backwards-compatibility
       window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder
       blob = new BlobBuilder()
       blob.append(response)
       blob = blob.getBlob()
-    
+
     worker = new Worker URL.createObjectURL(blob)
 
-    worker.onmessage = (e) -> 
+    worker.onmessage = (e) ->
       raw_data = e.data
       # console.log raw_data
       # vs = raw_data.positions
@@ -301,7 +305,7 @@ class MarchingCubesModel extends MathModel
       geometry = new THREE.BufferGeometry()
       geometry.addAttribute( 'position', new THREE.BufferAttribute( flat_positions, 3 ) );
       geometry.addAttribute( 'normal', new THREE.BufferAttribute( flat_normals, 3 ) );
-      
+
       smooth = geometry #that.modify geometry FORGET THE CATMULL-CLARK SMOOTHING. it's too annoying with buffergeometry
       new_surface = new THREE.Mesh(smooth, that.material)
       if b
@@ -346,8 +350,60 @@ class VectorModel extends MathModel
     @mathScene.scene.add(@arrow)
     null
 
+class PlaneShadowModel extends MathModel
+  normal: null
+  position: null
+  xrange: null
+  yrange: null
+
+  # TODO: add proper lights for casting shadows as desired
+
+  constructor: ({normal, position, xrange, yrange, color}) ->
+    # defaults: xy plane
+    position ?= [0, 0, 0]
+    @position = new THREE.Vector3 position[0], position[1], position[2]
+    normal ?= [0, 0, 1]
+    @normal = new THREE.Vector3 normal[0], normal[1], normal[2]
+    xrange ?= [-2, 2]
+    yrange ?= [-2, 2]
+    @xrange = xrange
+    @yrange = yrange
+    color ?= 0x555555
+    @color = color
+    @plane = new THREE.Mesh(
+      new THREE.PlaneGeometry(@xrange[1] - @xrange[0], @yrange[1] - @yrange[0]),
+      new THREE.MeshLambertMaterial({ambient: 0x555555, color: @color, side: THREE.DoubleSide}) # otherwise defaults for now....
+    )
+    # set position and quaternion to orient plane correctly
+    @plane.position = @position
+    @plane.quaternion = @plane.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), @normal.normalize())
+
+    # for some reason, this isn't quite working. defer.
+    @plane.receiveShadow = true;
+    @spotLight = new THREE.DirectionalLight(0xffffff, 1)
+    s = 10
+    @spotLight.position.set(s * normal[0], s * normal[1], s * normal[2])
+    @spotLight.castShadow = true
+    # @spotLight.shadowCameraVisible = true
+    @spotLight.shadowDarkness = 1.0
+    @spotLight.shadowCameraFar = 20
+    @spotLight.shadowCameraNear = 1
+    @spotLight.shadowCameraLeft = -10
+    @spotLight.shadowCameraRight = 10
+    @spotLight.shadowCameraBottom = -10
+    @spotLight.shadowCameraTop = 10
+    return
+
+  embedObjects: ->
+    @mathScene.enableShadow()
+    @mathScene.scene.add @plane
+    @mathScene.scene.add @spotLight
+    return
+
+
 window.MathScene = MathScene
 window.MathModel = MathModel
 window.ParametricPathModel = ParametricPathModel
 window.MarchingCubesModel = MarchingCubesModel
 window.VectorModel = VectorModel
+window.PlaneShadowModel = PlaneShadowModel

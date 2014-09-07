@@ -10,18 +10,18 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-  <script src = "../bower_components/threejs/build/three.js"></script>
-  <script src = "../js/ArrowHelperFixed.js"></script>
-  <script src = "../js/marchingcubesraw.js"></script>
-  <script src = "../js/marchingtetrahedraraw.js"></script>
-  <script src = "../js/surfacenetsraw.js"></script>
-  <script src = "../js/MathScene.js"></script>
-  <script src = "../js/TrackballControls.js"></script>
-  <script src = "../js/OrbitControls.js"></script>
-  <script src = "../js/Detector.js"></script>
-  <script src = "../js/SubdivisionModifier.js"></script>
-  <script src= "../bower_components/dat-gui/build/dat.gui.js"></script>
-  <link rel="stylesheet" href="../pandoc.css" type="text/css" />
+  <script src = "../../bower_components/threejs/build/three.js"></script>
+  <script src = "../../js/ArrowHelperFixed.js"></script>
+  <script src = "../../js/marchingcubesraw.js"></script>
+  <script src = "../../js/marchingtetrahedraraw.js"></script>
+  <script src = "../../js/surfacenetsraw.js"></script>
+  <script src = "../../js/MathScene.js"></script>
+  <script src = "../../js/TrackballControls.js"></script>
+  <script src = "../../js/OrbitControls.js"></script>
+  <script src = "../../js/Detector.js"></script>
+  <script src = "../../js/SubdivisionModifier.js"></script>
+  <script src= "../../bower_components/dat-gui/build/dat.gui.js"></script>
+  <link rel="stylesheet" href="../../pandoc.css" type="text/css" />
 </head>
 <body>
 <h1 id="vectors-geometry">Vectors: geometry</h1>
@@ -71,7 +71,7 @@ Draw an arrow:
         MathModel.embedInScene(vec, scene);
     }
     scene.scene.add(new THREE.AxisHelper());
-    scene.camera.position.set(-1, 6, 2);    
+    scene.camera.position.set(-1, 6, 2);
     scene.renderloop();
 })();
 </script>
@@ -130,7 +130,7 @@ Draw an arrow:
     // scene.scene.add(v2.arrow);
     MathModel.embedInScene(v1, scene);
     MathModel.embedInScene(v2, scene);
-    scene.renderloop();    
+    scene.renderloop();
 })();
 </script>
 
@@ -149,7 +149,7 @@ Draw an arrow:
     var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
     MathModel.embedInScene(v1, scene);
     MathModel.embedInScene(v2, scene);
-    scene.renderloop();    
+    scene.renderloop();
 })();
 </script>
 
@@ -168,7 +168,7 @@ Draw an arrow:
     var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
     var v3 = new VectorModel({color: 0x551a8b, vector: [3, 0, -1]});
     MathModel.embedInScene(v1, scene);
-    MathModel.embedInScene(v2, scene);    
+    MathModel.embedInScene(v2, scene);
     MathModel.embedInScene(v3, scene);
     scene.renderloop();
 })();
@@ -212,7 +212,7 @@ b+b&#39;, c+c&#39;\rangle\]</span></p>
 <p><span class="math">\[\gamma\langle a,b,c\rangle=\langle\gamma a,\gamma b,\gamma
 c\rangle\]</span></p>
 <p><span class="math">\[3\langle 1,1,2\rangle=\langle 3,3,6\rangle\]</span></p>
-<h2 id="use-it-or-lose-it" class="question">Use it or lose it</h2>
+<h2 id="use-it-or-lose-it">Use it or lose it</h2>
 <ul>
 <li><p>Do the points</p>
 <p><span class="math">\[(1,2,3), (2,3,4),(37, 38, 40)\]</span></p>
@@ -220,7 +220,7 @@ c\rangle\]</span></p>
 <li><p>Find the line containing the largest number of the following points</p>
 <p><span class="math">\[(1,0,1), (0,2,0), (1,2,3), (2,2,4), (3,2,5).\]</span></p></li>
 </ul>
-<h3 id="criterion" class="purple">Criterion</h3>
+<h3 id="criterion">Criterion</h3>
 <ul>
 <li>Two non-zero vectors <span class="math">\(\mathbf v\)</span> and <span class="math">\(\mathbf w\)</span> have the same or opposite direction if <span class="math">\[\mathbf v=c\mathbf w\]</span> for some non-zero number <span class="math">\(c\)</span>.</li>
 <li>Why is this true?</li>
