@@ -372,7 +372,7 @@ class PlaneShadowModel extends MathModel
     @color = color
     @plane = new THREE.Mesh(
       new THREE.PlaneGeometry(@xrange[1] - @xrange[0], @yrange[1] - @yrange[0]),
-      new THREE.MeshLambertMaterial({ambient: 0x555555, color: @color, side: THREE.DoubleSide}) # otherwise defaults for now....
+      new THREE.MeshPhongMaterial({ambient: @color, color: 0x111111, specular: 0x0c0c0c, shininess: 60, side: THREE.DoubleSide}) # otherwise defaults for now....
     )
     # set position and quaternion to orient plane correctly
     @plane.position = @position

@@ -508,9 +508,11 @@
         color = 0x555555;
       }
       this.color = color;
-      this.plane = new THREE.Mesh(new THREE.PlaneGeometry(this.xrange[1] - this.xrange[0], this.yrange[1] - this.yrange[0]), new THREE.MeshLambertMaterial({
-        ambient: 0x555555,
-        color: this.color,
+      this.plane = new THREE.Mesh(new THREE.PlaneGeometry(this.xrange[1] - this.xrange[0], this.yrange[1] - this.yrange[0]), new THREE.MeshPhongMaterial({
+        ambient: this.color,
+        color: 0x111111,
+        specular: 0x0c0c0c,
+        shininess: 60,
         side: THREE.DoubleSide
       }));
       this.plane.position = this.position;
