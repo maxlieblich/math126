@@ -9,7 +9,7 @@ Warm up
 -   What is the area of the parallelogram?
 -   What is a unit vector perpendicular to the parallelogram?
 
-![](4.1/lecture4_pic1.png)
+![](lecture4_pic1.png)
 
 Warm up
 -------
@@ -18,7 +18,7 @@ Warm up
 $\langle 4,0\rangle$ and $\langle 3,4\rangle$ in the
 $xy$-plane?
 
-![](4.1/lecture4_pic1.png)
+![](lecture4_pic1.png)
 
 Warm up
 -------
@@ -27,7 +27,7 @@ Warm up
 $\langle 4,0\rangle$ and $\langle 3,4\rangle$ in the
 $xy$-plane?
 
-![](4.1/lecture4_pic2.png)
+![](lecture4_pic2.png)
 
 Warm up
 -------
@@ -36,7 +36,7 @@ Warm up
 $\langle 4,0\rangle$ and $\langle 3,4\rangle$ in the
 $xy$-plane?
 
-![](4.1/lecture4_pic2.png)
+![](lecture4_pic2.png)
 
 The area is thus $4\cdot 4=16$.
 
@@ -105,7 +105,7 @@ Read about this in a textbook or the internet. Let's review it!
 Computing with a determinant
 ----------------------------
 
-$$ \begin{align\*} \mathbf a \times\mathbf
+$$ \begin{align} \mathbf a \times\mathbf
 b&=\left|\begin{array}{ccc} \mathbf i & \mathbf j & \mathbf k\\
 a_1 & a_2 & a_3\\ b_1 & b_2 &
 b_3\end{array}\right|\\&\\&=\mathbf
@@ -113,12 +113,12 @@ i\left|\begin{array}{cc}a_2 & a_3\\ b_2 &
 b_3\end{array}\right|- \mathbf j\left|\begin{array}{cc}a_1 &
 a_3\\ b_1 & b_3\end{array}\right|+ \mathbf
 k\left|\begin{array}{cc}a_1 & a_2\\ b_1 &
-b_2\end{array}\right| \end{align\*}$$
+b_2\end{array}\right| \end{align}$$
 
 Computing with a determinant
 ----------------------------
 
-$$ \begin{align\*} \mathbf a \times\mathbf
+$$ \begin{align} \mathbf a \times\mathbf
 b&=\left|\begin{array}{ccc} \mathbf i & \mathbf j & \mathbf k\\
 a_1 & a_2 & a_3\\ b_1 & b_2 &
 b_3\end{array}\right|\\&\\&=\mathbf
@@ -128,38 +128,38 @@ a_3\\ b_1 & b_3\end{array}\right|+ \mathbf
 k\left|\begin{array}{cc}a_1 & a_2\\ b_1 &
 b_2\end{array}\right|\\ &=\mathbf i(a_2b_3-a_3b_2)-\mathbf
 j(a_1b_3-a_3b_1)\\ &\quad\quad\quad+\mathbf
-k(a_1b_2-a_2b_1) \end{align\*}$$
+k(a_1b_2-a_2b_1) \end{align}$$
 
 Example
 -------
 
-$$\begin{align\*} \langle 1,1,0\rangle\times&\langle
+$$\begin{align} \langle 1,1,0\rangle\times&\langle
 0,1,1\rangle\\ =&\left|\begin{array}{ccc} \mathbf i & \mathbf j &
 \mathbf k\\ 1 & 1 & 0\\ 0 & 1 & 1\end{array}\right|\\
-\end{align\*}$$
+\end{align}$$
 
 Example
 -------
 
-$$\begin{align\*} \langle 1,1,0\rangle\times&\langle
+$$\begin{align} \langle 1,1,0\rangle\times&\langle
 0,1,1\rangle\\ =&\left|\begin{array}{ccc} \mathbf i & \mathbf j &
 \mathbf k\\ 1 & 1 & 0\\ 0 & 1 & 1\end{array}\right|\\
 =&\mathbf i\left|\begin{array}{cc}1 & 0\\ 1 &
 1\end{array}\right|- \mathbf j\left|\begin{array}{cc}1 & 0\\ 0 &
 1\end{array}\right|+ \mathbf k\left|\begin{array}{cc}1 & 1\\ 0 &
-1\end{array}\right| \end{align\*}$$
+1\end{array}\right| \end{align}$$
 
 Example
 -------
 
-$$\begin{align\*} \langle 1,1,0\rangle\times&\langle
+$$\begin{align} \langle 1,1,0\rangle\times&\langle
 0,1,1\rangle\\ =&\left|\begin{array}{ccc} \mathbf i & \mathbf j &
 \mathbf k\\ 1 & 1 & 0\\ 0 & 1 & 1\end{array}\right|\\
 =&\mathbf i\left|\begin{array}{cc}1 & 0\\ 1 &
 1\end{array}\right|- \mathbf j\left|\begin{array}{cc}1 & 0\\ 0 &
 1\end{array}\right|+ \mathbf k\left|\begin{array}{cc}1 & 1\\ 0 &
 1\end{array}\right|\\ =&\mathbf i-\mathbf j+\mathbf k=\langle
-1,-1,1\rangle\\ \end{align\*}$$
+1,-1,1\rangle\\ \end{align}$$
 
 Brain squeeze
 -------------
@@ -249,5 +249,3 @@ use them to distinguish "inside" from "outside"?
 
 Use the internet to find out if these things come up outside of math
 class!
-
-

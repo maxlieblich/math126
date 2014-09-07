@@ -9,8 +9,19 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <link rel="stylesheet" href=" ../pandoc.css">
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src = "../../bower_components/threejs/build/three.js"></script>
+  <script src = "../../js/ArrowHelperFixed.js"></script>
+  <script src = "../../js/marchingcubesraw.js"></script>
+  <script src = "../../js/marchingtetrahedraraw.js"></script>
+  <script src = "../../js/surfacenetsraw.js"></script>
+  <script src = "../../js/MathScene.js"></script>
+  <script src = "../../js/TrackballControls.js"></script>
+  <script src = "../../js/OrbitControls.js"></script>
+  <script src = "../../js/Detector.js"></script>
+  <script src = "../../js/SubdivisionModifier.js"></script>
+  <script src= "../../bower_components/dat-gui/build/dat.gui.js"></script>
+  <link rel="stylesheet" href="../../pandoc.css" type="text/css" />
 </head>
 <body>
 <h1 id="cross-products-mechanics">Cross products: mechanics</h1>
@@ -21,22 +32,22 @@
 <li>What is a unit vector perpendicular to the parallelogram?</li>
 </ul>
 <figure>
-<img src="4.1/lecture4_pic1.png" />
+<img src="lecture4_pic1.png" />
 </figure>
 <h2 id="warm-up-1">Warm up</h2>
 <p><strong>Example:</strong> how about the parallelogram spanned by the two vectors <span class="math">\(\langle 4,0\rangle\)</span> and <span class="math">\(\langle 3,4\rangle\)</span> in the <span class="math">\(xy\)</span>-plane?</p>
 <figure>
-<img src="4.1/lecture4_pic1.png" />
+<img src="lecture4_pic1.png" />
 </figure>
 <h2 id="warm-up-2">Warm up</h2>
 <p><strong>Example:</strong> how about the parallelogram spanned by the two vectors <span class="math">\(\langle 4,0\rangle\)</span> and <span class="math">\(\langle 3,4\rangle\)</span> in the <span class="math">\(xy\)</span>-plane?</p>
 <figure>
-<img src="4.1/lecture4_pic2.png" />
+<img src="lecture4_pic2.png" />
 </figure>
 <h2 id="warm-up-3">Warm up</h2>
 <p><strong>Example:</strong> how about the parallelogram spanned by the two vectors <span class="math">\(\langle 4,0\rangle\)</span> and <span class="math">\(\langle 3,4\rangle\)</span> in the <span class="math">\(xy\)</span>-plane?</p>
 <figure>
-<img src="4.1/lecture4_pic2.png" />
+<img src="lecture4_pic2.png" />
 </figure>
 <p>The area is thus <span class="math">\(4\cdot 4=16\)</span>.</p>
 <h2 id="magic-on-the-way">Magic on the way</h2>
@@ -61,9 +72,9 @@ a_3b_1-a_1b_3, a_1b_2-a_2b_1\rangle. \]</span></p>
 <p>Note: unlike the dot product, this <em>is</em> a vector!</p>
 <h2 id="computing-with-a-determinant">Computing with a determinant</h2>
 <p>This is a slight abuse of notation, but we have</p>
-<p><span class="math">\[\mathbf a\times\mathbf b=\left|\begin{array}{ccc} \mathbf i &amp;
-\mathbf j &amp; \mathbf k\\ a_1 &amp; a_2 &amp; a_3\\ b_1 &amp; b_2 &amp;
-b_3\end{array}\right|\]</span></p>
+[ab=|
+
+<p>|]</p>
 <h2 id="computing-with-a-determinant-1">Computing with a determinant</h2>
 <p>This is a slight abuse of notation, but we have</p>
 <p><span class="math">\[\mathbf a\times\mathbf b=\left|\begin{array}{ccc} \mathbf i &amp;
@@ -71,7 +82,7 @@ b_3\end{array}\right|\]</span></p>
 b_3\end{array}\right|\]</span></p>
 <p>Read about this in a textbook or the internet. Let’s review it!</p>
 <h2 id="computing-with-a-determinant-2">Computing with a determinant</h2>
-<p><span class="math">\[ \begin{align*} \mathbf a \times\mathbf
+<p><span class="math">\[ \begin{align} \mathbf a \times\mathbf
 b&amp;=\left|\begin{array}{ccc} \mathbf i &amp; \mathbf j &amp; \mathbf k\\
 a_1 &amp; a_2 &amp; a_3\\ b_1 &amp; b_2 &amp;
 b_3\end{array}\right|\\&amp;\\&amp;=\mathbf
@@ -79,9 +90,9 @@ i\left|\begin{array}{cc}a_2 &amp; a_3\\ b_2 &amp;
 b_3\end{array}\right|- \mathbf j\left|\begin{array}{cc}a_1 &amp;
 a_3\\ b_1 &amp; b_3\end{array}\right|+ \mathbf
 k\left|\begin{array}{cc}a_1 &amp; a_2\\ b_1 &amp;
-b_2\end{array}\right| \end{align*}\]</span></p>
+b_2\end{array}\right| \end{align}\]</span></p>
 <h2 id="computing-with-a-determinant-3">Computing with a determinant</h2>
-<p><span class="math">\[ \begin{align*} \mathbf a \times\mathbf
+<p><span class="math">\[ \begin{align} \mathbf a \times\mathbf
 b&amp;=\left|\begin{array}{ccc} \mathbf i &amp; \mathbf j &amp; \mathbf k\\
 a_1 &amp; a_2 &amp; a_3\\ b_1 &amp; b_2 &amp;
 b_3\end{array}\right|\\&amp;\\&amp;=\mathbf
@@ -91,29 +102,29 @@ a_3\\ b_1 &amp; b_3\end{array}\right|+ \mathbf
 k\left|\begin{array}{cc}a_1 &amp; a_2\\ b_1 &amp;
 b_2\end{array}\right|\\ &amp;=\mathbf i(a_2b_3-a_3b_2)-\mathbf
 j(a_1b_3-a_3b_1)\\ &amp;\quad\quad\quad+\mathbf
-k(a_1b_2-a_2b_1) \end{align*}\]</span></p>
+k(a_1b_2-a_2b_1) \end{align}\]</span></p>
 <h2 id="example">Example</h2>
-<p><span class="math">\[\begin{align*} \langle 1,1,0\rangle\times&amp;\langle
+<p><span class="math">\[\begin{align} \langle 1,1,0\rangle\times&amp;\langle
 0,1,1\rangle\\ =&amp;\left|\begin{array}{ccc} \mathbf i &amp; \mathbf j &amp;
 \mathbf k\\ 1 &amp; 1 &amp; 0\\ 0 &amp; 1 &amp; 1\end{array}\right|\\
-\end{align*}\]</span></p>
+\end{align}\]</span></p>
 <h2 id="example-1">Example</h2>
-<p><span class="math">\[\begin{align*} \langle 1,1,0\rangle\times&amp;\langle
+<p><span class="math">\[\begin{align} \langle 1,1,0\rangle\times&amp;\langle
 0,1,1\rangle\\ =&amp;\left|\begin{array}{ccc} \mathbf i &amp; \mathbf j &amp;
 \mathbf k\\ 1 &amp; 1 &amp; 0\\ 0 &amp; 1 &amp; 1\end{array}\right|\\
 =&amp;\mathbf i\left|\begin{array}{cc}1 &amp; 0\\ 1 &amp;
 1\end{array}\right|- \mathbf j\left|\begin{array}{cc}1 &amp; 0\\ 0 &amp;
 1\end{array}\right|+ \mathbf k\left|\begin{array}{cc}1 &amp; 1\\ 0 &amp;
-1\end{array}\right| \end{align*}\]</span></p>
+1\end{array}\right| \end{align}\]</span></p>
 <h2 id="example-2">Example</h2>
-<p><span class="math">\[\begin{align*} \langle 1,1,0\rangle\times&amp;\langle
+<p><span class="math">\[\begin{align} \langle 1,1,0\rangle\times&amp;\langle
 0,1,1\rangle\\ =&amp;\left|\begin{array}{ccc} \mathbf i &amp; \mathbf j &amp;
 \mathbf k\\ 1 &amp; 1 &amp; 0\\ 0 &amp; 1 &amp; 1\end{array}\right|\\
 =&amp;\mathbf i\left|\begin{array}{cc}1 &amp; 0\\ 1 &amp;
 1\end{array}\right|- \mathbf j\left|\begin{array}{cc}1 &amp; 0\\ 0 &amp;
 1\end{array}\right|+ \mathbf k\left|\begin{array}{cc}1 &amp; 1\\ 0 &amp;
 1\end{array}\right|\\ =&amp;\mathbf i-\mathbf j+\mathbf k=\langle
-1,-1,1\rangle\\ \end{align*}\]</span></p>
+1,-1,1\rangle\\ \end{align}\]</span></p>
 <h2 id="brain-squeeze">Brain squeeze</h2>
 <p>Compute these cross products and draw the resulting vectors:</p>
 <ul>
