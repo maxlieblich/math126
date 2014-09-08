@@ -1,3 +1,4 @@
+<script src = "../../js/jquery.min.js"></script>
 <script src = "../../bower_components/threejs/build/three.js"></script>
 <script src = "../../js/ArrowHelperFixed.js"></script>
 <script src = "../../js/marchingcubesraw.js"></script>

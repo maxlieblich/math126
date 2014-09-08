@@ -10,26 +10,103 @@ A menagerie of shapes
 ---------------------
 
 Cone: $x^2+y^2=z^2$
+<div id="cone"></div>
+<script>
+var scene = new MathScene("cone");
+var f = function (x, y, z){
+  return x*x + y*y - z*z;
+}
+scene.camera.position.set(8, 8, 4);
+window.UWMaterial = new THREE.MeshPhongMaterial({
+  ambient: 0x39275b,
+  color: 0xc79900,
+  specular: 0x111111,
+  shininess: 20,
+  side: THREE.DoubleSide
+  })
+var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
+MathModel.embedInScene(surface, scene);
+scene.controlAnimation();
+scene.renderloop();
+</script>
 
 A menagerie of shapes
 ---------------------
 
 Freaky “cylinder”: $y^2=x^2(x-1)$
+<div id="cylinder"></div>
+<script>
+var scene = new MathScene("cylinder");
+var f = function (x, y, z){
+  return y*y - x*x*(x-1);
+}
+scene.camera.position.set(8, 8, 4);
+var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
+MathModel.embedInScene(surface, scene);
+scene.controlAnimation();
+scene.renderloop();
+</script>
+
 
 A menagerie of shapes
 ---------------------
 
 Ellipsoid: $\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1$
+<div id="ellipsoid"></div>
+<script>
+var scene = new MathScene("ellipsoid");
+var f = function (x, y, z){
+  return 1/2*x*x + 1/3 * y*y + z*z - 1;
+}
+scene.camera.position.set(8, 8, 4);
+var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
+MathModel.embedInScene(surface, scene);
+scene.controlAnimation();
+scene.renderloop();
+</script>
 
 A menagerie of shapes
 ---------------------
 
 Hyperbolic paraboloid: $\frac{1}{9}x^2-\frac{1}{4}y^2=z$
+<div id="hyp-par"></div>
+<script>
+var scene = new MathScene("hyp-par");
+var f = function (x, y, z){
+  return 1/9 * x*x - 1/4 * y*y - z;
+}
+scene.camera.position.set(8, 8, 4);
+var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
+MathModel.embedInScene(surface, scene);
+scene.controlAnimation();
+scene.renderloop();
+</script>
 
 A menagerie of shapes
 ---------------------
 
 Elliptic paraboloid: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
+<div id="ell-par"></div>
+<script>
+var scene = new MathScene("ell-par");
+var f = function (x, y, z){
+  return 1/9 * x*x + 1/4 * y*y - z;
+}
+scene.camera.position.set(16, 16, 8);
+scene.cameraControls.target.set(0, 0, 6)
+var surface = new MarchingCubesModel({
+  func: f,
+  resolution: 150,
+  xmin: -10,
+  xmax: 10,
+  ymin: -10,
+  ymax: 10,
+  zmin: 0,
+  zmax: 10, material: UWMaterial.clone()});
+MathModel.embedInScene(surface, scene);
+scene.controlAnimation();
+scene.renderloop();
+</script>
 
 Key idea
 --------
@@ -122,10 +199,3 @@ solutions to these equations in three variables.
 -   $z^2-x^2-y^2=1$
 -   $x^2+y^2=1$
 -   $x^2-2x+y^2-z^2=0$
-
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)
-[![HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects,
-Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
-

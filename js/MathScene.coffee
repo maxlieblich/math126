@@ -119,6 +119,7 @@ class MathScene
   initTime: 3000
 
   renderloop: =>
+    @render()
     @live = true
     @animate()
 
@@ -131,6 +132,19 @@ class MathScene
   go: ->
     @init()
     null
+
+  controlAnimation: ->
+    # uses jquery. yuck.
+    # needs to be fixed for touch devices
+    self = @
+    self.live = false
+    $(@container).on('mouseenter', (e) ->
+      self.renderloop()
+      )
+    $(@container).on('mouseleave', (e) ->
+      self.live = false
+      )
+    return
 
 
 class MathModel
@@ -186,6 +200,9 @@ class ParametricPathModel extends MathModel
     @mathScene.scene.add(@path)
 
 
+# Should call this isosurface model!
+# But "upcoming" ray marcher might have a slightly different structure. Hm.
+# Current issue: the normals don't seem quite right
 class MarchingCubesModel extends MathModel
   xmin: -3.00
   xmax: 3.00
@@ -245,7 +262,7 @@ class MarchingCubesModel extends MathModel
     null
 
   rerender_async: ->
-    @march_async(true, @algorithm)
+    @march_async(false, @algorithm)
 
   addGui: (gui) ->
     # console.log @
@@ -308,6 +325,7 @@ class MarchingCubesModel extends MathModel
 
       smooth = geometry #that.modify geometry FORGET THE CATMULL-CLARK SMOOTHING. it's too annoying with buffergeometry
       new_surface = new THREE.Mesh(smooth, that.material)
+
       if b
         if that.mathScene?
           that.mathScene.scene.remove(that.surface)

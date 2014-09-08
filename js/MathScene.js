@@ -136,6 +136,7 @@
     MathScene.prototype.initTime = 3000;
 
     MathScene.prototype.renderloop = function() {
+      this.render();
       this.live = true;
       return this.animate();
     };
@@ -151,6 +152,18 @@
     MathScene.prototype.go = function() {
       this.init();
       return null;
+    };
+
+    MathScene.prototype.controlAnimation = function() {
+      var self;
+      self = this;
+      self.live = false;
+      $(this.container).on('mouseenter', function(e) {
+        return self.renderloop();
+      });
+      $(this.container).on('mouseleave', function(e) {
+        return self.live = false;
+      });
     };
 
     return MathScene;
@@ -342,7 +355,7 @@
     };
 
     MarchingCubesModel.prototype.rerender_async = function() {
-      return this.march_async(true, this.algorithm);
+      return this.march_async(false, this.algorithm);
     };
 
     MarchingCubesModel.prototype.addGui = function(gui) {
