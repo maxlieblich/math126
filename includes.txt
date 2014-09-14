@@ -1,5 +1,5 @@
 <script src = "../../js/jquery.min.js"></script>
-<script src = "../../bower_components/threejs/build/three.js"></script>
+<script src = "../../bower_components/three.js/build/three.min.js"></script>
 <script src = "../../js/ArrowHelperFixed.js"></script>
 <script src = "../../js/marchingcubesraw.js"></script>
 <script src = "../../js/marchingtetrahedraraw.js"></script>
@@ -9,5 +9,5 @@
 <script src = "../../js/OrbitControls.js"></script>
 <script src = "../../js/Detector.js"></script>
 <script src = "../../js/SubdivisionModifier.js"></script>
-<script src= "../../bower_components/dat-gui/build/dat.gui.js"></script>
+<script src= "../../bower_components/dat-gui/build/dat.gui.min.js"></script>
 <link rel="stylesheet" href="../../pandoc.css" type="text/css" />
