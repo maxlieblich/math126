@@ -1,9 +1,2 @@
 *.swp
-*.tex
-*.aux
-*.out
-*.log
-*.pdf
-*.html
-*.epub
-*.gz
+/build
