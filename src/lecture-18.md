@@ -60,7 +60,7 @@ Example
 Let's return to the function $f(x,y)=x+y$, but let's integrate it over
 the region inside the parabola $x=y^2$ between $x=0$ and $x=1$.
 
-![](18/region.jpg)
+![](media/region.jpg)
 
 The integral becomes $\int_0^1\int_{-\sqrt x}^\sqrt{x}
 (x+y)dydx$.

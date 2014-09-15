@@ -9,7 +9,7 @@ Warm up
 -   What is the area of the parallelogram?
 -   What is a unit vector perpendicular to the parallelogram?
 
-![](lecture4_pic1.png)
+![](media/lecture4_pic1.png)
 
 Warm up
 -------
@@ -18,7 +18,7 @@ Warm up
 $\langle 4,0\rangle$ and $\langle 3,4\rangle$ in the
 $xy$-plane?
 
-![](lecture4_pic1.png)
+![](media/lecture4_pic1.png)
 
 Warm up
 -------
@@ -27,7 +27,7 @@ Warm up
 $\langle 4,0\rangle$ and $\langle 3,4\rangle$ in the
 $xy$-plane?
 
-![](lecture4_pic2.png)
+![](media/lecture4_pic2.png)
 
 Warm up
 -------
@@ -36,7 +36,7 @@ Warm up
 $\langle 4,0\rangle$ and $\langle 3,4\rangle$ in the
 $xy$-plane?
 
-![](lecture4_pic2.png)
+![](media/lecture4_pic2.png)
 
 The area is thus $4\cdot 4=16$.
 

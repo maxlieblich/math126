@@ -100,7 +100,7 @@ Question
 
 How do we find lines perpendicular to a surface (even a weird one)?
 <div id="heart"></div>
-<script src="../js/MarchingCubesData.js"></script>
+<script src="js/MarchingCubesData.js"></script>
 <script>
 (function() {
     var scene = new MathScene("heart");
@@ -200,7 +200,7 @@ René Descartes
 -   $$\mathbf{R^3}=\{(x,y,z) | x,y,z\in\mathbf{R}\}$$
 -   Here's a picture you probably recognize.
 
-![](cartesian.png)
+![](media/cartesian.png)
 
 Numbers breed numbers
 ---------------------

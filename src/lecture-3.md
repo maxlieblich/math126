@@ -163,7 +163,7 @@ $\theta$ between them satisfies
 $$\mathbf a\cdot\mathbf b=|\mathbf a||\mathbf
 b|\cos(\theta).$$
 
-![](lecture3_3.png)
+![](media/lecture3_3.png)
 
 Sweet Theorem
 -------------
@@ -238,7 +238,7 @@ $\mathbf a$ in the direction of $\mathbf u$.
 Example
 -------
 
-![](lecture3_4.png)
+![](media/lecture3_4.png)
 
 Practice {style="margin-bottom: 20px"}
 --------

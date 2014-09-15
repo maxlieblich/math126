@@ -19,7 +19,7 @@ Let's consider one of the marvelous polar shapes from before.
 
 How about the area inside the curve $r=1+\sin(3\theta)$?
 
-![There would be a flower here. Sigh.](20.1/flower.png)
+![There would be a flower here. Sigh.](media/flower.png)
 
 The integral becomes
 $$\int_0^{2\pi}\int_0^{1+\sin(3\theta)}rdrd\theta$$

@@ -3,43 +3,37 @@ all: html
 clean:
 	rm -rf build
 
-files := $(wildcard lectures/*/*)
-
-# TODO: figure out how to merge these into fewer targes
-build/js/%: js/%
-	install -D $< $@
-build/js/%: bower_components/dat-gui/build/%
-	install -D $< $@
-build/js/%: bower_components/three.js/build/%
-	install -D $< $@
-
-build/html/%: lectures/%
-	install -D $< $@
-
-build/html/pandoc.css: pandoc.css
-	install -D $< $@
+files := $(wildcard src/*) $(wildcard media/*)
 
 # javascript/coffeescript make targets
-js_source := $(wildcard js/*.js) $(patsubst %, js/%, $(notdir $(wildcard bower_components/*/build/*.min.js)))
-cs_source := $(wildcard js/*.coffee)
-javascript := $(patsubst %, build/%, $(js_source)) $(patsubst %.coffee, build/%.js, $(cs_source))
+js_source := $(wildcard js-src/*.js)
+cs_source := $(wildcard js-src/*.coffee)
+javascript := $(patsubst js-src/%, build/js/%, $(js_source)) $(patsubst js-src/%.coffee, build/js/%.js, $(cs_source))
 
-build/js/%.js: js/%.coffee
+build/js/%: js-src/%
+	install -D $< $@
+build/html/%: src/%
+	install -D $< $@
+build/html/media/%: media/%
+	install -D $< $@
+
+build/js/%.js: js-src/%.coffee
 	coffee --output $(@D) --compile $<
 
 build/js: $(javascript)
+	mkdir -p $@
 
 build/%/js: build/js
-	@mkdir -p $(@D)
-	cp -rf $< $@
+	@mkdir -p $@
+	cp -rf build/js/* $@/
 
 # html build targets
-html_files := $(patsubst %.md, %.html, $(patsubst lectures/%, build/html/%, $(files)))
+html_files := $(patsubst %.md, %.html, $(patsubst media/%, build/html/media/%, $(patsubst src/%, build/html/%, $(files))))
 
-build/html/%/lecture.html: lectures/%/lecture.md includes.html
+build/html/%.html: src/%.md src/includes.html
 	@mkdir -p $(@D)
-	pandoc -w html5 -o $@ --standalone --smart --mathjax --include-in-header=includes.html $<
+	pandoc -w html5 -o $@ --smart --standalone --mathjax --css=pandoc.css --include-in-header=src/includes.html $<
 
-html: build/html/js build/html/pandoc.css $(html_files)
+html: build/html/js $(html_files)
 
-.PHONY: all html
+.PHONY: all clean html

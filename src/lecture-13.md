@@ -4,7 +4,7 @@ Multivariable functions
 How to describe Mt. Rainier?
 ----------------------------
 
-![There's supposed to be a picture of a mountain here](14/Rainier.jpg)
+![There's supposed to be a picture of a mountain here](media/Rainier.jpg)
 
 How to describe Mt. Rainier?
 ----------------------------
