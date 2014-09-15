@@ -30,7 +30,7 @@ $$(x,y,z)=(\cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t))$$
 
 In vector form:
 
-$$\mathbf f(t)=\langle
+$$\mathbf{f}(t)=\langle
 \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle$$
 
 What is the velocity? What *should* it be?
@@ -38,14 +38,12 @@ What is the velocity? What *should* it be?
 Velocity: derivative of position, right?
 ----------------------------------------
 
-We should have that the velocity of the electron is $$\mathbf
-v(t)=\mathbf f'(t).$$ But what is this?
+We should have that the velocity of the electron is $$\mathbf{v}(t)=\mathbf{f}'(t).$$ But what is this?
 
 Classical definition of the derivative still works for vector-valued
 functions:
 
-$$\mathbf f'(t)=\lim_{h\to 0}\frac{\mathbf f(t+h)-\mathbf
-f(t)}{h}$$
+$$\mathbf{f}'(t)=\lim_{h\to 0}\frac{\mathbf{f}(t+h)-\mathbf{f}(t)}{h}$$
 
 As usual, the derivative of the position vector is the velocity vector.
 

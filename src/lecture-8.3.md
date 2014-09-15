@@ -13,8 +13,7 @@ her position as a function of time. Sadly, her somewhat stupid friend
 never figured out how to get the position before he started a new app
 that mimics the hilarious sounds that giraffes make when embarrassed.
 
--   The joey records the velocity at time $t$ as $$\mathbf
-    v(t)=\langle 1,t,\sin(t)\rangle$$
+-   The joey records the velocity at time $t$ as $$\mathbf{v}(t)=\langle 1,t,\sin(t)\rangle$$
 -   The joey starts at the point $(0,0,1)$
 -   Where is the joey at time $t$?
 
@@ -24,7 +23,7 @@ Integrate!
 Just like one variable calculus: reconstruct position from velocity by
 integrating.
 
--   Riemann sums: $\sum\mathbf v(t_i)\Delta(t)$
+-   Riemann sums: $\sum\mathbf{v}(t_i)\Delta(t)$
 -   Practical: $$\int\langle x(t),y(t),z(t)\rangle
     dt=\left\langle\int x(t)dt,\int y(t)dt,\int
     z(t)dt\right\rangle.$$

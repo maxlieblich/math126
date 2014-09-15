@@ -12,12 +12,12 @@ example,
 -   Acceleration
 -   Force applied by angry customer
 
-Special vector: $\mathbf 0$
+Special vector: $\mathbf{0}$
 ------------------------------
 
-There is one special vector: the $0$ vector, written $\mathbf 0$.
+There is one special vector: the $0$ vector, written $\mathbf{0}$.
 
-The vector $\mathbf 0$ has magnitude $0$ and "any" direction.
+The vector $\mathbf{0}$ has magnitude $0$ and "any" direction.
 
 Example: the trivial displacement (go nowhere!).
 
@@ -220,9 +220,9 @@ $$\mathbf{v}=\langle a, b, c\rangle$$
 This uses the standard representation of vectors from before: force them
 to start at $(0,0,0)$.
 
-The length of $\mathbf v=\langle a, b, c\rangle$ is
+The length of $\mathbf{v}=\langle a, b, c\rangle$ is
 
-$$|\mathbf v| = \sqrt{a^2+b^2+c^2}$$
+$$|\mathbf{v}| = \sqrt{a^2+b^2+c^2}$$
 
 Numbers breed vectors
 ---------------------
@@ -272,7 +272,7 @@ Use it or lose it
 
     $$(1,2,3), (2,3,4),(37, 38, 40)$$
 
-    lie on a single line in $\mathbf R^3$?
+    lie on a single line in $\mathbf{R}^3$?
 
 -   Find the line containing the largest number of the following points
 
@@ -280,8 +280,8 @@ Use it or lose it
 
 ### Criterion
 
--   Two non-zero vectors $\mathbf v$ and $\mathbf w$ have the same
-    or opposite direction if $$\mathbf v=c\mathbf w$$ for some
+-   Two non-zero vectors $\mathbf{v}$ and $\mathbf{w}$ have the same
+    or opposite direction if $$\mathbf{v}=c\mathbf{w}$$ for some
     non-zero number $c$.
 -   Why is this true?
 -   Does this help with the problem?

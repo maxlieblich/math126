@@ -85,7 +85,7 @@ $z$-component!
 Warm up
 -------
 
-**Question:** given two vectors in $\mathbf R^3$, how can we compute
+**Question:** given two vectors in $\mathbf{R}^3$, how can we compute
 the angle between them?
 
 Today
@@ -105,24 +105,22 @@ Definition
 
 The dot product of two vectors
 
-$$\mathbf a=\langle a_1,a_2,a_3\rangle\textrm{ }\mathbf
-b=\langle b_1,b_2,b_3\rangle$$
+$$\mathbf{a}=\langle a_1,a_2,a_3\rangle\textrm{ }\mathbf{b}=\langle b_1,b_2,b_3\rangle$$
 
 is the number
 
-$$\mathbf a\cdot\mathbf b=a_1b_1+a_2b_2+a_3b_3.$$
+$$\mathbf{a}\cdot\mathbf{b}=a_1b_1+a_2b_2+a_3b_3.$$
 
 Definition
 ----------
 
 The dot product of two vectors
 
-$$\mathbf a=\langle a_1,a_2,a_3\rangle\textrm{ }\mathbf
-b=\langle b_1,b_2,b_3\rangle$$
+$$\mathbf{a}=\langle a_1,a_2,a_3\rangle\textrm{ }\mathbf{b}=\langle b_1,b_2,b_3\rangle$$
 
 is the number
 
-$$\mathbf a\cdot\mathbf b=a_1b_1+a_2b_2+a_3b_3.$$
+$$\mathbf{a}\cdot\mathbf{b}=a_1b_1+a_2b_2+a_3b_3.$$
 
 Note: this is a number (scalar), not a vector!
 
@@ -139,40 +137,36 @@ Practice
 Compute these dot products (build a data set for your inner child!):
 
 -   $\langle 1,0,0\rangle\cdot\langle 2,3,7\rangle$
--   $\mathbf i\cdot\mathbf j$ (you know what $\mathbf i$ and
-    $\mathbf j$ are because you read the book!)
--   $\mathbf i\cdot\mathbf i$
+-   $\mathbf{i}\cdot\mathbf{j}$ (you know what $\mathbf{i}$ and
+    $\mathbf{j}$ are because you read the book!)
+-   $\mathbf{i}\cdot\mathbf{i}$
 -   take a point $(x,y,z)$ in the plane $x+y+z=0$ and compute
     $\langle x,y,z\rangle\cdot\langle 1,1,1\rangle$
 
 Observations
 ------------
 
--   $\mathbf i$ and $\mathbf j$ are perpendicular, and $\mathbf
-    i\cdot\mathbf j=0$
--   $\mathbf i$ has length $1$, and $\mathbf i\cdot\mathbf
-    i=1$
+-   $\mathbf{i}$ and $\mathbf{j}$ are perpendicular, and $\mathbf{i}\cdot\mathbf{j}=0$
+-   $\mathbf{i}$ has length $1$, and $\mathbf{i}\cdot\mathbf{i}=1$
 -   Coincidence?
 
 Sweet Theorem
 -------------
 
-Given two vectors $\mathbf a$ and $\mathbf b$, the angle
+Given two vectors $\mathbf{a}$ and $\mathbf{b}$, the angle
 $\theta$ between them satisfies
 
-$$\mathbf a\cdot\mathbf b=|\mathbf a||\mathbf
-b|\cos(\theta).$$
+$$\mathbf{a}\cdot\mathbf{b}=|\mathbf{a}||\mathbf{b}|\cos(\theta).$$
 
 ![](media/lecture3_3.png)
 
 Sweet Theorem
 -------------
 
-Given two vectors $\mathbf a$ and $\mathbf b$, the angle
+Given two vectors $\mathbf{a}$ and $\mathbf{b}$, the angle
 $\theta$ between them satisfies
 
-$$\mathbf a\cdot\mathbf b=|\mathbf a||\mathbf
-b|\cos(\theta).$$
+$$\mathbf{a}\cdot\mathbf{b}=|\mathbf{a}||\mathbf{b}|\cos(\theta).$$
 
 Since by convention we always take the angle between two vectors to lie
 between $0$ and $\pi$ radians, this determines $\theta$
@@ -207,8 +201,8 @@ What is the angle between $\langle 1,0,0\rangle$ and $\langle
 Angles: orthogonality
 ---------------------
 
-Two vectors $\mathbf a$ and $\mathbf b$ are perpendicular if and
-only if $\mathbf a\cdot\mathbf b=0$.
+Two vectors $\mathbf{a}$ and $\mathbf{b}$ are perpendicular if and
+only if $\mathbf{a}\cdot\mathbf{b}=0$.
 
 Geometry encoded with numbers.
 
@@ -218,22 +212,20 @@ Length
 Length: True or False? {.question}
 ----------------------
 
-For any vector $\mathbf a$, we have that $\mathbf a\cdot\mathbf
-a$ equals the length of $\mathbf a$.
+For any vector $\mathbf{a}$, we have that $\mathbf{a}\cdot\mathbf{a}$ equals the length of $\mathbf{a}$.
 
 Length: components
 ------------------
 
-Suppose $\mathbf u$ is a unit vector (i.e., a vector of length
-$1$). Then for any vector $\mathbf a$, the new vector
+Suppose $\mathbf{u}$ is a unit vector (i.e., a vector of length
+$1$). Then for any vector $\mathbf{a}$, the new vector
 
-$$\operatorname{proj}_{\mathbf u}(\mathbf a)=(\mathbf
-a\cdot\mathbf u)\mathbf u$$
+$$\operatorname{proj}_{\mathbf{u}}(\mathbf{a})=(\mathbf{a}\cdot\mathbf{u})\mathbf{u}$$
 
-gives the projection of $\mathbf a$ onto $\mathbf u$.
+gives the projection of $\mathbf{a}$ onto $\mathbf{u}$.
 
-The number $\mathbf a\cdot\mathbf u$ is called the component of
-$\mathbf a$ in the direction of $\mathbf u$.
+The number $\mathbf{a}\cdot\mathbf{u}$ is called the component of
+$\mathbf{a}$ in the direction of $\mathbf{u}$.
 
 Example
 -------
@@ -243,11 +235,10 @@ Example
 Practice {style="margin-bottom: 20px"}
 --------
 
--   Let $\mathbf u$ be a unit vector in the same direction as
-    $\langle 1,1,1\rangle$. Find $\mathbf u$ and compute the
-    projection $$\mathbf c=\operatorname{proj}_{\mathbf
-    u}(\langle 3,4,5\rangle).$$
--   Does the difference vector $$\langle 3,4,5\rangle-\mathbf c$$
+-   Let $\mathbf{u}$ be a unit vector in the same direction as
+    $\langle 1,1,1\rangle$. Find $\mathbf{u}$ and compute the
+    projection $$\mathbf{c}=\operatorname{proj}_{\mathbf{u}}(\langle 3,4,5\rangle).$$
+-   Does the difference vector $$\langle 3,4,5\rangle-\mathbf{c}$$
     have endpoint in the plane $x+y+z=0$?
 
 Dot products: wrap up
@@ -256,8 +247,8 @@ Dot products: wrap up
 More problems
 -------------
 
--   Find a unit vector perpendicular to both $\mathbf i+\mathbf j$
-    and $\mathbf i+\mathbf k$.
+-   Find a unit vector perpendicular to both $\mathbf{i}+\mathbf{j}$
+    and $\mathbf{i}+\mathbf{k}$.
 -   Calculate the angles in the triangle connecting the points
     $(0,0,0)$, $(0,1,3)$, $(2,1,-1)$ to three significant digits.
 

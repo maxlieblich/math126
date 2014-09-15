@@ -6,24 +6,24 @@ Calculating the derivative in practice
 
 Given a vector function
 
-$$\mathbf f(t)=\langle x(t),y(t),z(t)\rangle$$
+$$\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle$$
 
 the derivative is just
 
-$$\mathbf f'(t)=\langle x'(t),y'(t),z'(t)\rangle,$$
+$$\mathbf{f}'(t)=\langle x'(t),y'(t),z'(t)\rangle,$$
 
 the component-wise derivative.
 
 The usual caveat applies: the derivative must exist for this to make
 sense! I.e., this formula works when all three derivatives exist, and
-when they don't neither does the derivative of $\mathbf f(t)$!
+when they don't neither does the derivative of $\mathbf{f}(t)$!
 
 Practice {.question}
 --------
 
 Given the formula
 
-$$\mathbf f(t)=\langle
+$$\mathbf{f}(t)=\langle
 \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle$$
 
 for the motion of the electron on the torus,
@@ -39,10 +39,10 @@ Help the Piglet {.question}
 The piglet of calculus tried the question on the previous slide and got
 the following answer:
 
-The derivative of $\mathbf f(t)=\langle
+The derivative of $\mathbf{f}(t)=\langle
 \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle$ is:
 
-$$\frac{d\mathbf f}{dt}=\langle
+$$\frac{d\mathbf{f}}{dt}=\langle
 -\sin(t)(2-\cos(4t))+4\cos(t)\sin(4t),
 4\cos(t)\sin(4t),\sin(4t)\rangle$$
 

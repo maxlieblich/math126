@@ -69,42 +69,42 @@ The enemy of my enemy...
 Quick review
 ------------
 
-How can you tell if two vectors $\mathbf a$ and $\mathbf b$ are
+How can you tell if two vectors $\mathbf{a}$ and $\mathbf{b}$ are
 perpendicular?
 
 Quick review
 ------------
 
-How can you tell if two vectors $\mathbf a$ and $\mathbf b$ are
+How can you tell if two vectors $\mathbf{a}$ and $\mathbf{b}$ are
 perpendicular?
 
 So how do you write the equation describing "the set of all endpoints of
-vectors $\mathbf b$ that are perpendicular to a fixed vector
-$\mathbf a$"?
+vectors $\mathbf{b}$ that are perpendicular to a fixed vector
+$\mathbf{a}$"?
 
 Quick review
 ------------
 
-How can you tell if two vectors $\mathbf a$ and $\mathbf b$ are
+How can you tell if two vectors $\mathbf{a}$ and $\mathbf{b}$ are
 perpendicular?
 
 So how do you write the equation describing "the set of all endpoints of
-vectors $\mathbf b$ that are perpendicular to a fixed vector
-$\mathbf a$"?
+vectors $\mathbf{b}$ that are perpendicular to a fixed vector
+$\mathbf{a}$"?
 
 Don't look at the next slide if you don't want to see the answer!
 
 Quick review
 ------------
 
-How can you tell if two vectors $\mathbf a$ and $\mathbf b$ are
+How can you tell if two vectors $\mathbf{a}$ and $\mathbf{b}$ are
 perpendicular?
 
 So how do you write the equation describing "the set of all endpoints of
-vectors $\mathbf b$ that are perpendicular to a fixed vector
-$\mathbf a$"?
+vectors $\mathbf{b}$ that are perpendicular to a fixed vector
+$\mathbf{a}$"?
 
-If $\mathbf a=\langle \alpha,\beta,\gamma\rangle$ then the
+If $\mathbf{a}=\langle \alpha,\beta,\gamma\rangle$ then the
 equation is
 
 $$\alpha x+\beta y+\gamma z = 0.$$
@@ -112,37 +112,37 @@ $$\alpha x+\beta y+\gamma z = 0.$$
 Quick review
 ------------
 
-How can you tell if two vectors $\mathbf a$ and $\mathbf b$ are
+How can you tell if two vectors $\mathbf{a}$ and $\mathbf{b}$ are
 perpendicular?
 
 So how do you write the equation describing "the set of all endpoints of
-vectors $\mathbf b$ that are perpendicular to a fixed vector
-$\mathbf a$"?
+vectors $\mathbf{b}$ that are perpendicular to a fixed vector
+$\mathbf{a}$"?
 
-If $\mathbf a=\langle \alpha,\beta,\gamma\rangle$ then the
+If $\mathbf{a}=\langle \alpha,\beta,\gamma\rangle$ then the
 equation is
 
 $$\alpha x+\beta y+\gamma z = 0.$$
 
-Example: if $\mathbf a=\langle 1, 2, -1\rangle$, you get
+Example: if $\mathbf{a}=\langle 1, 2, -1\rangle$, you get
 $x+2y-z=0$.
 
 Quick review
 ------------
 
-How can you tell if two vectors $\mathbf a$ and $\mathbf b$ are
+How can you tell if two vectors $\mathbf{a}$ and $\mathbf{b}$ are
 perpendicular?
 
 So how do you write the equation describing "the set of all endpoints of
-vectors $\mathbf b$ that are perpendicular to a fixed vector
-$\mathbf a$"?
+vectors $\mathbf{b}$ that are perpendicular to a fixed vector
+$\mathbf{a}$"?
 
-If $\mathbf a=\langle \alpha,\beta,\gamma\rangle$ then the
+If $\mathbf{a}=\langle \alpha,\beta,\gamma\rangle$ then the
 equation is
 
 $$\alpha x+\beta y+\gamma z = 0.$$
 
-Example: if $\mathbf a=\langle 1, 2, -1\rangle$, you get
+Example: if $\mathbf{a}=\langle 1, 2, -1\rangle$, you get
 $x+2y-z=0$.
 
 What shape is that?
@@ -151,10 +151,9 @@ Piglet of calculus conjectures
 ------------------------------
 
 Any plane is just the set of endpoints of vectors perpendicular to a
-fixed one! So just fix a vector $\mathbf u$ and let
+fixed one! So just fix a vector $\mathbf{u}$ and let
 
-$$P_{\mathbf u}=\{\mathbf v\textrm{ such that }\mathbf
-v\cdot\mathbf u=0\}.$$
+$$P_{\mathbf{u}}=\{\mathbf{v}\textrm{ such that }\mathbf{v}\cdot\mathbf{u}=0\}.$$
 
 For example, the $xy$-plane is the set of endpoints of vectors
 perpendicular to $\langle 0,0,1\rangle$
@@ -170,7 +169,7 @@ Conundrum: translation
     (i.e., move it away from $(0,0,0)$).
 -   This is just like making the plane $z=4$ by translating the
     $xy$-plane up $4$ units: the plane $z=4$ is **not** the set of
-    **endpoints** of vectors perpendicular to $\mathbf k$, just a
+    **endpoints** of vectors perpendicular to $\mathbf{k}$, just a
     parallel **translation** of it.
 
 Lines and planes: doing it
@@ -179,11 +178,11 @@ Lines and planes: doing it
 Planes described using vectors
 ------------------------------
 
-If $\mathbf u=\langle\alpha, \beta,\gamma\rangle$ is
+If $\mathbf{u}=\langle\alpha, \beta,\gamma\rangle$ is
 perpendicular to plane $P$ and $u=(a,b,c)$ is a point of $P$, we
 can describe $P$ like this:
 
-$$P=\{(x,y,z):\langle x-a, y-b, z-c\rangle\cdot\mathbf u=0\}$$
+$$P=\{(x,y,z):\langle x-a, y-b, z-c\rangle\cdot\mathbf{u}=0\}$$
 
 -   Get a linear equation: $\alpha(x-a)+\beta(y-b)+\gamma(z-c)=0$
 -   Any linear equation gives a plane.
@@ -197,7 +196,7 @@ Describe the plane $x-3y+47z-28=0$ using vectors.
 -   Trick: always just use the coefficients of $x$, $y$, and $z$
 -   To translate: find one solution by eyeballs. A solution:
     $(-16,1,1)$.
--   So the plane is the set of endpoints of vectors $\mathbf v$ such
+-   So the plane is the set of endpoints of vectors $\mathbf{v}$ such
     that
 -   Another way to say it: it is what you get when you take the set of
     vectors perpendicular to $\langle 1, -3, 47\rangle$ and
@@ -224,18 +223,18 @@ Example
 -   Perpendicular vectors: $\langle 1,-2,-1\rangle$ and $\langle
     2,-1,1\rangle$
 -   Common solution: $(2,0,2)$
--   Thus, the line of intersection is the set of vectors $\mathbf v$
+-   Thus, the line of intersection is the set of vectors $\mathbf{v}$
     such that
 
-    $$(\mathbf v-\langle 2,0,2\rangle)\cdot\langle
+    $$(\mathbf{v}-\langle 2,0,2\rangle)\cdot\langle
     1,-2,-1\rangle=0$$
 
     and
 
-    $$(\mathbf v-\langle 2,0,2\rangle)\cdot\langle
+    $$(\mathbf{v}-\langle 2,0,2\rangle)\cdot\langle
     2,-1,1\rangle=0.$$
 
--   The vector $\mathbf v-\langle 2,0,2\rangle$ is perpendicular to
+-   The vector $\mathbf{v}-\langle 2,0,2\rangle$ is perpendicular to
     both: cross product!
 -   The line is just the endpoints of vectors of the form
 
