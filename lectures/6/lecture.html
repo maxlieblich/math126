@@ -10,19 +10,6 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-  <script src = "../../js/jquery.min.js"></script>
-  <script src = "../../bower_components/threejs/build/three.js"></script>
-  <script src = "../../js/ArrowHelperFixed.js"></script>
-  <script src = "../../js/marchingcubesraw.js"></script>
-  <script src = "../../js/marchingtetrahedraraw.js"></script>
-  <script src = "../../js/surfacenetsraw.js"></script>
-  <script src = "../../js/MathScene.js"></script>
-  <script src = "../../js/TrackballControls.js"></script>
-  <script src = "../../js/OrbitControls.js"></script>
-  <script src = "../../js/Detector.js"></script>
-  <script src = "../../js/SubdivisionModifier.js"></script>
-  <script src= "../../bower_components/dat-gui/build/dat.gui.js"></script>
-  <link rel="stylesheet" href="../../pandoc.css" type="text/css" />
 </head>
 <body>
 <h1 id="surfaces">Surfaces</h1>
@@ -33,103 +20,26 @@ Cone: <span class="math">\(x^2+y^2=z^2\)</span>
 <div id="cone">
 
 </div>
-<script>
-var scene = new MathScene("cone");
-var f = function (x, y, z){
-  return x*x + y*y - z*z;
-}
-scene.camera.position.set(8, 8, 4);
-window.UWMaterial = new THREE.MeshPhongMaterial({
-  ambient: 0x39275b,
-  color: 0xc79900,
-  specular: 0x111111,
-  shininess: 20,
-  side: THREE.DoubleSide
-  })
-var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
-MathModel.embedInScene(surface, scene);
-scene.controlAnimation();
-scene.renderloop();
-</script>
-
 <h2 id="a-menagerie-of-shapes-1">A menagerie of shapes</h2>
 Freaky “cylinder”: <span class="math">\(y^2=x^2(x-1)\)</span>
 <div id="cylinder">
 
 </div>
-<script>
-var scene = new MathScene("cylinder");
-var f = function (x, y, z){
-  return y*y - x*x*(x-1);
-}
-scene.camera.position.set(8, 8, 4);
-var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
-MathModel.embedInScene(surface, scene);
-scene.controlAnimation();
-scene.renderloop();
-</script>
-
-
 <h2 id="a-menagerie-of-shapes-2">A menagerie of shapes</h2>
 Ellipsoid: <span class="math">\(\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1\)</span>
 <div id="ellipsoid">
 
 </div>
-<script>
-var scene = new MathScene("ellipsoid");
-var f = function (x, y, z){
-  return 1/2*x*x + 1/3 * y*y + z*z - 1;
-}
-scene.camera.position.set(8, 8, 4);
-var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
-MathModel.embedInScene(surface, scene);
-scene.controlAnimation();
-scene.renderloop();
-</script>
-
 <h2 id="a-menagerie-of-shapes-3">A menagerie of shapes</h2>
 Hyperbolic paraboloid: <span class="math">\(\frac{1}{9}x^2-\frac{1}{4}y^2=z\)</span>
 <div id="hyp-par">
 
 </div>
-<script>
-var scene = new MathScene("hyp-par");
-var f = function (x, y, z){
-  return 1/9 * x*x - 1/4 * y*y - z;
-}
-scene.camera.position.set(8, 8, 4);
-var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
-MathModel.embedInScene(surface, scene);
-scene.controlAnimation();
-scene.renderloop();
-</script>
-
 <h2 id="a-menagerie-of-shapes-4">A menagerie of shapes</h2>
 Elliptic paraboloid: <span class="math">\(\frac{1}{9}x^2+\frac{1}{4}y^2=z\)</span>
 <div id="ell-par">
 
 </div>
-<script>
-var scene = new MathScene("ell-par");
-var f = function (x, y, z){
-  return 1/9 * x*x + 1/4 * y*y - z;
-}
-scene.camera.position.set(16, 16, 8);
-scene.cameraControls.target.set(0, 0, 6)
-var surface = new MarchingCubesModel({
-  func: f,
-  resolution: 150,
-  xmin: -10,
-  xmax: 10,
-  ymin: -10,
-  ymax: 10,
-  zmin: 0,
-  zmax: 10, material: UWMaterial.clone()});
-MathModel.embedInScene(surface, scene);
-scene.controlAnimation();
-scene.renderloop();
-</script>
-
 <h2 id="key-idea">Key idea</h2>
 <ul>
 <li>Slice the shape with planes and reassemble the pieces.</li>
@@ -189,5 +99,20 @@ scene.renderloop();
 <li><span class="math">\(x^2+y^2=1\)</span></li>
 <li><span class="math">\(x^2-2x+y^2-z^2=0\)</span></li>
 </ul>
+<script src = "../../js/jquery.min.js"></script>
+<script src = "../../bower_components/threejs/build/three.js"></script>
+<script src = "../../js/ArrowHelperFixed.js"></script>
+<script src = "../../js/marchingcubesraw.js"></script>
+<script src = "../../js/marchingtetrahedraraw.js"></script>
+<script src = "../../js/surfacenetsraw.js"></script>
+<script src = "../../js/MathScene.js"></script>
+<script src = "../../js/TrackballControls.js"></script>
+<script src = "../../js/OrbitControls.js"></script>
+<script src = "../../js/Detector.js"></script>
+<script src = "../../js/SubdivisionModifier.js"></script>
+<script src= "../../bower_components/dat-gui/build/dat.gui.js"></script>
+<script src="../../js/MarchingCubesData.js"></script>
+<script src="models.js"></script>
+<link rel="stylesheet" href="../../pandoc.css" type="text/css" />
 </body>
 </html>

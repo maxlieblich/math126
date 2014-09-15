@@ -10,4 +10,6 @@
 <script src = "../../js/Detector.js"></script>
 <script src = "../../js/SubdivisionModifier.js"></script>
 <script src= "../../bower_components/dat-gui/build/dat.gui.js"></script>
+<script src="../../js/MarchingCubesData.js"></script>
+<script src="models.js"></script>
 <link rel="stylesheet" href="../../pandoc.css" type="text/css" />

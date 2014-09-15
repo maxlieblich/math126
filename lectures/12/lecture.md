@@ -4,7 +4,7 @@ Tangential and normal acceleration
 Question
 --------
 
-### The electron again {.question}
+### The electron again
 
 The electron is joined by a tiny rubber blob of length and width each
 equal to $0.1$. Usual motion:
@@ -155,10 +155,4 @@ r''(t)|}{|\mathbf r'(t)|}$$
 
 Do one: the electron/rubber blob $$\mathbf f(t)=\langle
 \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle$$
-
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)
-[![HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects,
-Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
 

@@ -137,8 +137,3 @@ know that for every value $t=b$, there is an interval $[b,c]$ such
 that $f''(x)=0$ for $x\in[b,c]$? Can we say (or conjecture)
 anything about the structure of $f$?
 
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)[![HTML5
-Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
-

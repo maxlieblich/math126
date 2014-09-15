@@ -98,8 +98,3 @@ given points.
 -   $f(x)=\frac{1}{1-x}$ around $b=2$
 -   $f(x)=e^{-1/x^2}$ around $b=0$
 
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)[![HTML5
-Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
-

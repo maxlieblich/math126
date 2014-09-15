@@ -4,7 +4,7 @@ Multivariable functions
 How to describe Mt. Rainier?
 ----------------------------
 
-![There's supposed to be a picture of a mountain here](14/Rainier.jpg)
+![There's supposed to be a picture of a mountain here](Rainier.jpg)
 
 How to describe Mt. Rainier?
 ----------------------------
@@ -57,11 +57,17 @@ Take a whack at graphing these:
 Match the graph with the function
 ---------------------------------
 
-  ------------------------ ------------------------ ------------------------
-  $\sin(x)$             ![](14/jiggly.jpg)
-  $\sin(x)\cos(y)$     ![](14/siny.jpg)
-  $\sqrt{1-x^2-y^2}$  ![](14/sphery.jpg)
-  ------------------------ ------------------------ ------------------------
+### Functions 
+
+- $\sin(x)$
+- $\sin(x)\cos(y)$
+- $\sqrt{1-x^2-y^2}$
+
+### Graphs
+![](jiggly.jpg)
+![](siny.jpg)
+![](sphery.jpg)
+
 
 Enter the domain of the sheep\*
 -------------------------------
@@ -114,10 +120,4 @@ What about more variables?
 We can plot level surfaces for functions of three variables (but it's
 rather hard to visualize). Here's an example with
 $f(x,y,z)=x^2+y^2+2z^2$.
-
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)
-[![HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects,
-Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
 

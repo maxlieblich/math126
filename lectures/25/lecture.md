@@ -62,8 +62,3 @@ Follow up:
     $0$.
 -   What is $f^{(666)}(0)$?
 
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)[![HTML5
-Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
-

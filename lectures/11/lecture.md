@@ -1,7 +1,7 @@
 Tangents, normals, binormals
 ============================
 
-Consider the electron spiraling around the torus. {.question}
+Consider the electron spiraling around the torus
 -------------------------------------------------
 
 The vector description:
@@ -108,10 +108,4 @@ More problems to think about
 -   How do the osculating planes of the electron's path on the torus
     relate to the tangent planes of the torus?
 -   How awesome is this?
-
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)
-[![HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects,
-Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
 

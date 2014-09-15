@@ -1,7 +1,7 @@
 Polar Coordinates
 =================
 
-How does radar work? {.question}
+How does radar work?
 --------------------
 
 Antenna sweeps around broadcasting signal.
@@ -89,10 +89,3 @@ then use $r^2=x^2+y^2$ and $r\sin\theta=y$.
     $r=\sin(\theta)+\cos(\theta)$?
 -   How about $r=\cos(\theta)$?
 -   Or $r^2=\sec(\theta)$?
-
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)
-[![HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects,
-Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
-
