@@ -22,5 +22,5 @@
   scene.camera.position.set(10, -10, 0);
   MathModel.embedInScene(plane, scene);
   MathModel.embedInScene(vector, scene);
-  scene.renderloop();
+  scene.render();
   })();

@@ -4,7 +4,7 @@
     scene.scene.add(vec.arrow);
     scene.scene.add(new THREE.AxisHelper());
     scene.camera.position.set(4, 6, 5);
-    scene.renderloop();
+    scene.render();
 })();
 
 
@@ -21,7 +21,7 @@
     }
     scene.scene.add(new THREE.AxisHelper());
     scene.camera.position.set(-1, 6, 2);
-    scene.renderloop();
+    scene.render();
 })();
 
 
@@ -40,7 +40,7 @@
         var vec = makeVector(positions[i], dirs[i]);
         MathModel.embedInScene(vec, scene);
     }
-    scene.renderloop();
+    scene.render();
 })();
 
 
@@ -55,7 +55,7 @@
     // scene.scene.add(v2.arrow);
     MathModel.embedInScene(v1, scene);
     MathModel.embedInScene(v2, scene);
-    scene.renderloop();
+    scene.render();
 })();
 
 
@@ -68,7 +68,7 @@
     var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
     MathModel.embedInScene(v1, scene);
     MathModel.embedInScene(v2, scene);
-    scene.renderloop();
+    scene.render();
 })();
 
 
@@ -83,5 +83,5 @@
     MathModel.embedInScene(v1, scene);
     MathModel.embedInScene(v2, scene);
     MathModel.embedInScene(v3, scene);
-    scene.renderloop();
+    scene.render();
 })();

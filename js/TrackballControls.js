@@ -177,6 +177,8 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 			if ( angle ) {
 
+				// console.log(angle);
+
 				axis.crossVectors( _rotateStart, _rotateEnd ).normalize();
 
 				angle *= _this.rotateSpeed;

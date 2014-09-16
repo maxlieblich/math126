@@ -13,8 +13,7 @@
   })
   var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
   MathModel.embedInScene(surface, scene);
-  scene.controlAnimation();
-  scene.renderloop();
+  scene.render();
 }());
 
 (function() {
@@ -25,8 +24,7 @@
   scene.camera.position.set(8, 8, 4);
   var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
   MathModel.embedInScene(surface, scene);
-  scene.controlAnimation();
-  scene.renderloop();
+  scene.render();
 }());
 
 (function () {
@@ -37,8 +35,7 @@
   scene.camera.position.set(8, 8, 4);
   var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
   MathModel.embedInScene(surface, scene);
-  scene.controlAnimation();
-  scene.renderloop();
+  scene.render();
 }());
 
 (function () {
@@ -49,8 +46,7 @@
   scene.camera.position.set(8, 8, 4);
   var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
   MathModel.embedInScene(surface, scene);
-  scene.controlAnimation();
-  scene.renderloop();
+  scene.render();
 }());
 
 (function () {
@@ -70,6 +66,5 @@
     zmin: 0,
     zmax: 10, material: UWMaterial.clone()});
     MathModel.embedInScene(surface, scene);
-    scene.controlAnimation();
-    scene.renderloop();
+    scene.render();
   }());

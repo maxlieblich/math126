@@ -19,6 +19,7 @@ What is the position and velocity of the electron at time $t$?
 
 Fun-loving electron in action
 -----------------------------
+<div id="torus"></div>
 
 A similar but simpler question
 ------------------------------
@@ -52,8 +53,8 @@ Parametric description
 ----------------------
 
 We can trace the coordinates of the electron as it moves, giving
-functions $$\begin{align\*} x&=x(t)\\ y&=y(t)\\ z&=z(t)
-\end{align\*} $$
+functions $$\begin{align} x&=x(t)\\ y&=y(t)\\ z&=z(t)
+\end{align} $$
 
 Equivalent formulation: view $\langle x(t),y(t),z(t)\rangle$ as a
 vector-valued function.
@@ -119,8 +120,8 @@ A parametric description of the torus
 Given two numbers $t$ and $u$ between $0$ and $2\pi$, we get a
 point on a torus of radius $2$ and tube radius $1$ like this:
 
-$$\begin{align\*} x(t,u)&=\cos(t)(2-\cos(u))\\
-y(t,u)&=\sin(t)(2-\cos(u))\\ z(t,u)&=\sin(u) \end{align\*}$$
+$$\begin{align} x(t,u)&=\cos(t)(2-\cos(u))\\
+y(t,u)&=\sin(t)(2-\cos(u))\\ z(t,u)&=\sin(u) \end{align}$$
 
 If you fix $u$, the $t$-path is a circle around the torus. If you
 fix $t$, the $u$-path is a circle around the “tube”.
@@ -138,8 +139,8 @@ A parametric description of the torus
 Given two numbers $t$ and $u$ between $0$ and $2\pi$, we get a
 point on a torus of radius $2$ and tube radius $1$ like this:
 
-$$\begin{align\*} x(t,u)&=\cos(t)(2-\cos(u))\\
-y(t,u)&=\sin(t)(2-\cos(u))\\ z(t,u)&=\sin(u) \end{align\*}$$
+$$\begin{align} x(t,u)&=\cos(t)(2-\cos(u))\\
+y(t,u)&=\sin(t)(2-\cos(u))\\ z(t,u)&=\sin(u) \end{align}$$
 
 If you fix $u$, the $t$-path is a circle around the torus. If you
 fix $t$, the $u$-path is a circle around the “tube”.
@@ -155,8 +156,8 @@ Question {.question}
 
 Two tiny cars travel on paths
 
-$$\begin{align\*} (x,y,z)&=(\cos(t),\sin(t),0)\\
-(x',y',z')&=(0,\cos(t),\sin(t)) \end{align\*} $$
+$$\begin{align} (x,y,z)&=(\cos(t),\sin(t),0)\\
+(x',y',z')&=(0,\cos(t),\sin(t)) \end{align} $$
 
 Will they collide?
 

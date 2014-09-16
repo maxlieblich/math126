@@ -2,8 +2,10 @@ class MathScene
   HEIGHT: 400
   WIDTH: 700
   shadow: null
-  live: null
   guiActive: false
+  live: false
+  animated: false
+
   constructor: (containerName) ->
     if containerName?
       @container = document.getElementById containerName
@@ -12,7 +14,6 @@ class MathScene
     @container.style.position = "relative"
     @populate()
     @mathUp()
-    @live = true
     @shadow = false
     @guiActive = false
 
@@ -82,7 +83,30 @@ class MathScene
     # @cameraControls.target.set 0, 0, 0
     # @cameraControls.center.set 0, 0, 0
     # @cameraControls.userPanSpeed = 0.1
+    self = @
+    # SLIGHTLY KLUDGY: NEED TO KNOW THAT THE CONTROLS IN QUESTION EMIT THESE EVENTS
+    self.cameraControls.addEventListener 'end', self.kill
+    self.cameraControls.addEventListener 'start', self.birth
+
+    # ALSO WEIRD: need to allow time for everything to be ok for initial render
+    # is there an intelligent callback driven approach? What is here is awful.
+    @create()
     null
+
+  initTime: 3000
+
+  create: =>
+    @birth()
+    setTimeout @kill, @initTime
+
+  birth: =>
+    @live = true
+    @animate()
+    return
+
+  kill: =>
+    @live = false
+    return
 
   activateGui: ->
     if not @guiActive
@@ -97,54 +121,30 @@ class MathScene
     @scene.add new THREE.AxisHelper(length)
     null
 
-  render: ->
-    if @live
-      @cameraControls.update()
-      @pointLight.position = @camera.position
-    @renderer.render @scene,@camera
+  render: =>
+    @cameraControls.update()
+    @pointLight.position = @camera.position
+    @renderer.render @scene, @camera
+    # console.log @scene
     null
 
   calc: (t) ->
 
-  animate: ->
+  animate: =>
     self = @
     framing = (t) ->
       self.calc(t)
       self.render()
-      requestAnimationFrame framing, self.container if self.live
+      if self.animated or self.live
+        requestAnimationFrame framing, self.container
       null
     framing(new Date().getTime())
     null
 
-  initTime: 3000
-
-  renderloop: =>
-    @render()
-    @live = true
-    @animate()
-
   init: ->
     T = new Date().getTime()
-    @live = false
     @render()
     null
-
-  go: ->
-    @init()
-    null
-
-  controlAnimation: ->
-    # uses jquery. yuck.
-    # needs to be fixed for touch devices
-    self = @
-    self.live = false
-    $(@container).on('mouseenter', (e) ->
-      self.renderloop()
-      )
-    $(@container).on('mouseleave', (e) ->
-      self.live = false
-      )
-    return
 
 
 class MathModel
@@ -175,6 +175,7 @@ class ParametricPathModel extends MathModel
   calc: null
   objects: null
   needsGui: false
+  changeEvent: {type: 'change'}
 
   constructor: (@x, @y, @z, limits = [-1, 1], speed = 2) ->
     @limits = limits
@@ -198,6 +199,8 @@ class ParametricPathModel extends MathModel
   embedObjects: ->
     @mathScene.scene.add(@mover)
     @mathScene.scene.add(@path)
+    @mathScene.animated = true
+    @mathScene.animate()
 
 
 # Should call this isosurface model!
@@ -240,11 +243,11 @@ class MarchingCubesModel extends MathModel
 
     # geom = @march()
     # @surface = new THREE.Mesh(geom, @material)
-    @march_async(true)
+    @march_async(false)
     @needsGui = true
 
   embedObjects: ->
-    @march_async(true, @algorithm)
+    @march_async(false, @algorithm)
     null
     # @mathScene.scene.add(@surface)
 
@@ -276,7 +279,7 @@ class MarchingCubesModel extends MathModel
     f.add(@, 'resolution', 40, 800).step(1)
     f.add(@, 'algorithm', ['marchingCubes', 'marchingTetrahedra', 'surfaceNets'])
     # f.add(@, 'smoothingLevel', 0, 2).step(1)
-    f.add(@, 'rerender_async')
+    f.add(@, 'rerender_async').name("Render")
     # f.add(@, 'debug')
     f.open()
     null
@@ -334,6 +337,11 @@ class MarchingCubesModel extends MathModel
           console.log "surface constructed"
           that.mathScene.scene.add(that.surface)
           console.log "surface embedded"
+      else
+        if that.mathScene?
+          that.mathScene.scene.remove(that.surface)
+          that.surface = new_surface
+          that.mathScene.scene.add(that.surface)
       null
 
     worker.postMessage("Go!")
