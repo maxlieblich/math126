@@ -127,7 +127,7 @@ It computes volume
 As you can guess from our model, the double integral computes a volume.
 
 Theorem: given a function $f(x,y)$ continuous and non-negative over a
-rectangle $R$ in $\mathbf R^2$, the volume of the solid between
+rectangle $R$ in $\mathbf{R}^2$, the volume of the solid between
 the $xy$-plane and the graph of $f$ over $R$ equals
 $\iint_Rfdxdy.$
 

@@ -76,6 +76,37 @@ What is the electron's position at time $t$?
 
 Awkward electron (loop)
 -----------------------
+<div id="electroncylindercontainer"></div>
+<script>
+  var EC = new MathScene("electroncylindercontainer");
+  EC.camera.position.set(0, 1, 10);
+  EC.cameraControls.target.set(0, 2, 0);
+  var cylgeo = new THREE.CylinderGeometry(1, 1, 4, 64, 48);
+  var cyl = new THREE.Mesh(EC.cylgeo, new THREE.MeshPhongMaterial({
+    ambient: 0x555555,
+    color: 0xee0000,
+    emmissive: 0x00eeee,
+    specular: 0x123456,
+    shininess: 5,
+    opacity: 0.7,
+    transparent: true,
+    side: THREE.DoubleSide
+  }));
+  EC.scene.add(cyl);
+  cyl.position.set(0, 2, 0);
+  var electron = new THREE.Mesh(new THREE.SphereGeometry(0.1), new THREE.MeshLambertMaterial({
+    ambient: 0x555555,
+    color: 0xffff00,
+    reflectivity: 100,
+    side: THREE.DoubleSide
+  }));
+  EC.scene.add(electron);
+  electron.position.set(1, 0, 0);
+  EC.calc = function(t) {
+    t = t / 400;
+    return EC.electron.position.set(Math.cos(2 * t), t / Math.PI % 4.000, Math.sin(-2 * t));
+  };
+  </script>
 
 Teach the piglet of calculus
 ----------------------------
@@ -190,7 +221,7 @@ its starting point.
 
 Think about this for next time!
 
-Question {.question}
+Question
 --------
 
 Two tiny cars travel on paths

@@ -19,6 +19,47 @@ What is the position and velocity of the electron at time $t$?
 
 Fun-loving electron in action
 -----------------------------
+<div id="torus"></div>
+<script>
+(function(){
+    var scene = new MathScene("torus");
+    scene.camera.position.set(0, 1, 10);
+    var torusgeo = new THREE.TorusGeometry(2, 1, 64, 48);
+
+    var torus = new THREE.Mesh(torusgeo, new THREE.MeshPhongMaterial({
+        ambient: 0x555555,
+        color: 0xee0000,
+        emmissive: 0x00eeee,
+        specular: 0x123456,
+        shininess: 5,
+        opacity: 0.7,
+        transparent: true,
+        side: THREE.DoubleSide
+    }));
+
+    scene.scene.add(torus);
+
+    var electron = new THREE.Mesh(new THREE.SphereGeometry(0.1), new THREE.MeshLambertMaterial({
+        ambient: 0x555555,
+        color: 0xffff00,
+        reflectivity: 100,
+        side: THREE.DoubleSide
+    }));
+
+    scene.scene.add(electron);
+
+    electron.position.set(1, 0, 0);
+
+    scene.calc = function(t) {
+        t = t / 1000;
+        electron.position.set(Math.cos(t) * (2 - Math.cos(4 * t)), Math.sin(t) * (2 - Math.cos(4 * t)), Math.sin(4 * t));
+        // console.log(scene);
+    };
+
+    scene.render();
+}());
+</script>
+
 
 It moves!
 ---------
@@ -30,7 +71,7 @@ $$(x,y,z)=(\cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t))$$
 
 In vector form:
 
-$$\mathbf f(t)=\langle
+$$\mathbf{f}(t)=\langle
 \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle$$
 
 What is the velocity? What *should* it be?
@@ -38,14 +79,12 @@ What is the velocity? What *should* it be?
 Velocity: derivative of position, right?
 ----------------------------------------
 
-We should have that the velocity of the electron is $$\mathbf
-v(t)=\mathbf f'(t).$$ But what is this?
+We should have that the velocity of the electron is $$\mathbf{v}(t)=\mathbf{f}'(t).$$ But what is this?
 
 Classical definition of the derivative still works for vector-valued
 functions:
 
-$$\mathbf f'(t)=\lim_{h\to 0}\frac{\mathbf f(t+h)-\mathbf
-f(t)}{h}$$
+$$\mathbf{f}'(t)=\lim_{h\to 0}\frac{\mathbf{f}(t+h)-\mathbf{f}(t)}{h}$$
 
 As usual, the derivative of the position vector is the velocity vector.
 
@@ -57,24 +96,24 @@ Calculating the derivative in practice
 
 Given a vector function
 
-$$\mathbf f(t)=\langle x(t),y(t),z(t)\rangle$$
+$$\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle$$
 
 the derivative is just
 
-$$\mathbf f'(t)=\langle x'(t),y'(t),z'(t)\rangle,$$
+$$\mathbf{f}'(t)=\langle x'(t),y'(t),z'(t)\rangle,$$
 
 the component-wise derivative.
 
 The usual caveat applies: the derivative must exist for this to make
 sense! I.e., this formula works when all three derivatives exist, and
-when they don't neither does the derivative of $\mathbf f(t)$!
+when they don't neither does the derivative of $\mathbf{f}(t)$!
 
 Practice
 --------
 
 Given the formula
 
-$$\mathbf f(t)=\langle
+$$\mathbf{f}(t)=\langle
 \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle$$
 
 for the motion of the electron on the torus,
@@ -90,10 +129,10 @@ Help the Piglet
 The piglet of calculus tried the question on the previous slide and got
 the following answer:
 
-The derivative of $\mathbf f(t)=\langle
+The derivative of $\mathbf{f}(t)=\langle
 \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle$ is:
 
-$$\frac{d\mathbf f}{dt}=\langle
+$$\frac{d\mathbf{f}}{dt}=\langle
 -\sin(t)(2-\cos(4t))+4\cos(t)\sin(4t),
 4\cos(t)\sin(4t),\sin(4t)\rangle$$
 
@@ -144,7 +183,7 @@ Integrate!
 Just like one variable calculus: reconstruct position from velocity by
 integrating.
 
--   Riemann sums: $\sum\mathbf v(t_i)\Delta(t)$
+-   Riemann sums: $\sum\mathbf{v}(t_i)\Delta(t)$
 -   Practical: $$\int\langle x(t),y(t),z(t)\rangle
     dt=\left\langle\int x(t)dt,\int y(t)dt,\int
     z(t)dt\right\rangle.$$
@@ -160,3 +199,67 @@ Using vector integration, compute the path that the joey takes, starting
 at $t=0$. Initial position: $(0,0,1)$, velocity $\langle
 1,t,\sin(t)\rangle$. A looping animation (for $t=0$ to $t=15$ in
 slo-mo):
+
+<div id="joeycontainer"></script>
+<script>
+  var joey = new MathScene("joeycontainer");
+  joey.camera.position.set(22, 20, 15);
+  joey.cameraControls.target.set(3, 0, 3);
+  joey.renderer.shadowMapEnabled = true;
+  joey.renderer.shadowMapSoft = true;
+  joey.renderer.shadowCameraNear = 3;
+  joey.renderer.shadowCameraFar = joey.camera.far;
+  joey.renderer.shadowCameraFov = 50;
+  joey.renderer.shadowMapBias = 0.0039;
+  joey.renderer.shadowMapDarkness = 1.0;
+  joey.renderer.shadowMapWidth = 1024;
+  joey.renderer.shadowMapHeight = 1024;
+  joey.pointLight.intensity = 0;
+  joey.spot = new THREE.SpotLight(0xffffff, 0.7);
+  joey.spot.position.set(40, 40, 40);
+  joey.spot.castShadow = true;
+  joey.spot.shadowDarkness = 1.0;
+  joey.spot.shadowCameraFov = 50;
+  joey.scene.add(joey.spot);
+  joey.joey = new THREE.Mesh(new THREE.SphereGeometry(0.6), new THREE.MeshLambertMaterial({
+    color: 0xff0000,
+    ambient: 0x333333
+  }));
+  joey.joey.castShadow = true;
+  joey.joey.receiveShadow = true;
+  joey.scene.add(joey.joey);
+  joey.joey.position.set(0, 0, 1);
+  joey.joeylet = new THREE.Mesh(new THREE.SphereGeometry(0.3), new THREE.MeshLambertMaterial({
+    color: 0xffff00,
+    ambient: 0x123456
+  }));
+  joey.joeylet.castShadow = true;
+  joey.joeylet.receiveShadow = true;
+  joey.scene.add(joey.joeylet);
+  joey.joeylet.position.set(0, 0, 1);
+  joey.ground = new THREE.Mesh(new THREE.CubeGeometry(30, 40, 0.1), new THREE.MeshLambertMaterial({
+    color: 0xc2b5ab,
+    ambient: 0x555555,
+    side: THREE.DoubleSide
+  }));
+  joey.ground.rotation.set(3 * Math.PI / 2, 0, 0);
+  joey.ground.position.set(0, 0, 0);
+  joey.ground.castShadow = true;
+  joey.ground.receiveShadow = true;
+  joey.scene.add(joey.ground);
+  joey.x = function(t) {
+    return 0.05 * t ^ 2;
+  };
+  joey.y = function(t) {
+    return 2 - Math.cos(t);
+  };
+  joey.z = function(t) {
+    return t;
+  };
+
+  joey.calc = function(t) {
+    t = t / 300 % 15;
+    joey.joey.position.set(joey.x(t), joey.y(t), joey.z(t));
+    return joey.joeylet.position.set(joey.x(t - 0.5), joey.y(t - 0.5), joey.z(t - 0.5));
+  };
+</script>
