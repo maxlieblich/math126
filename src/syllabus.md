@@ -2,10 +2,9 @@
 
 *This syllabus is subject to minor revision throughout the quarter; changes will be announced on the [course webpage](http://maxlieblich.github.io/math126), in class, or on [Piazza](http://piazza.com/washington/fall2014/math126gi/home)*.
 
-**Professor:** [Max Lieblich](http://www.math.washington.edu/~lieblich/)
-**Office:** Padelford C-529
-**Office hours:** TBA or by appointment. *This is subject to change at
-any time.*
+**Professor:** [Max Lieblich](http://www.math.washington.edu/~lieblich/)  
+**Office:** Padelford C-529  
+**Office hours:** TBA or by appointment. *This is subject to change at any time.*
 
 **Course Materials:** The primary repository of information for the course will be the [course site](http://maxlieblich.github.io/math126) and [Piazza](http://piazza.com/washington/fall2014/math126gi/home). Quizzes, surveys, and the discussion group will be on [Piazza](http://piazza.com/washington/fall2014/math126gi/home).
 
