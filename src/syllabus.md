@@ -9,9 +9,9 @@ any time.*
 
 **Course Materials:** The primary repository of information for the course will be the [course site](http://maxlieblich.github.io/math126) and [Piazza](http://piazza.com/washington/fall2014/math126gi/home). Quizzes, surveys, and the discussion group will be on [Piazza](http://piazza.com/washington/fall2014/math126gi/home).
 
-**Text: **Multivariable Calculus by James Stewart.
+**Text:** Multivariable Calculus by James Stewart.
 
-**Course Content:  ** Vectors and vector functions, polar coordinates, calculus on vector functions, dot products and cross products, lines and planes, curvature, multi-variable functions, partial derivatives, optimization, tangent planes, double integrals, Taylor polynomials and Taylor series. You're going to love it!
+**Course Content:** Vectors and vector functions, polar coordinates, calculus on vector functions, dot products and cross products, lines and planes, curvature, multi-variable functions, partial derivatives, optimization, tangent planes, double integrals, Taylor polynomials and Taylor series. You're going to love it!
 
 **Course Organization:** Each week is outlined on the course website. There will be three lectures per week given by your instructor. In addition, you will meet on the discussion forum and in occasional online office hours to work on problems, discuss the homework, and get answers to your questions about the material.
 
@@ -48,7 +48,7 @@ You are responsible for the sections of the book indicated in the course outline
 
 **Calculators:** Only simple scientific calculators will be allowed on the midterms and the final exam. Any calculator that can replace your brain (or mine!) is not permitted.
 
-**Math Study Center:  ** You are encouraged to visit the Math Study Center for help with the course. It is located in Communications B-014. The hours are
+**Math Study Center:** You are encouraged to visit the Math Study Center for help with the course. It is located in Communications B-014. The hours are
 
 -   M - Th: 9:30 AM to 9:30 PM
 -   Fri: 9:30 AM to 1:30 PM
