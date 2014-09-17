@@ -30,7 +30,7 @@ You are responsible for the sections of the book indicated in the course outline
     sporadically, if at all.
 -   The two **midterm tests** will take place on the dates specified in
     the schedule popup (the small calendar icon) on the [course
-    site](http://www.math.washington.edu/~lieblich/Math126/all.html). No
+    site](http://www.math.washington.edu/~lieblich/Math126/all.html) and in the "schedule" section of the Resources tab on  [Piazza](http://piazza.com/washington/fall2014/math126gi/home). No
     make-up exams will be given. You may bring one formula sheet to the
     exams; this is a single 8.5 by 11 inch piece of paper, with writing
     permitted on both sides.
