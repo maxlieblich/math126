@@ -20,10 +20,8 @@ Question
 
 How does it feel to fly along this trefoil path?
 <div id="trefoil"></div>
-```
-and a file `models.js` in that lecture's directory that contains scripts like this: 
 
-```
+<script>
 (function() {
     var scene = new MathScene("trefoil");
     var trefoilFunc = function(t) {
@@ -47,8 +45,9 @@ and a file `models.js` in that lecture's directory that contains scripts like th
     MathModel.embedInScene(ppath, scene);
     scene.renderloop();
 }());
+</script>
 ```
-The javascript adds interactive models to the HTML5-rendered document. If you write this to LaTeX, pandoc intelligently ignores the `<div>` tags.
+The `<script>` tag holds javascript that adds interactive models to the HTML5-rendered document. If you write this to LaTeX, pandoc intelligently ignores the `<script>`. TODO: insert images in place of the dynamic parts for rendering. This will be easy.
 
 ### Math functions provided
 
@@ -57,8 +56,10 @@ The files `js/MathScene.js`, `js/marchingcubesraw.js`, `js/marchintetrahedraraw.
 All of the 3d rendering uses [Three.js](threejs.org). We will eventually (hopefully) give more documentation about the MathScene and MathModel classes. There is nothing earth-shattering in there.
 
 ### Plans
+
 We will continuously add functionality over the next year. In the short term, we plan to:
   
   - add image placeholders to dynamic content so that non-HTML-output gets an approximation of the content
   - make all content epub friendly
   - continue to enlarge the script collection to enable more content creation
+
