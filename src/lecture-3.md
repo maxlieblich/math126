@@ -39,8 +39,8 @@ architecture, etc. )
   shadowLineGeo.vertices.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(1.666, 5.333, 3.666));
   scene.scene.add(new THREE.Line(shadowLineGeo, shadowLineMat));
   scene.camera.position.set(10, -10, 0);
-  MathModel.embedInScene(plane, scene);
-  MathModel.embedInScene(vector, scene);
+  plane.embedInScene(scene);
+  vector.embedInScene(scene);
   scene.render();
   })();
 //]]>

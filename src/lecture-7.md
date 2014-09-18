@@ -24,6 +24,7 @@ Fun-loving electron in action
 //<![CDATA[
 (function(){
     var scene = new MathScene("torus");
+    scene.animated = true;
     scene.camera.position.set(0, 1, 10);
     var torusgeo = new THREE.TorusGeometry(2, 1, 64, 48);
 
@@ -82,18 +83,18 @@ Awkward electron (loop)
 <script type="text/javascript">
 //<![CDATA[
   var EC = new MathScene("electroncylindercontainer");
+  EC.animated = true;
   EC.camera.position.set(0, 1, 10);
   EC.cameraControls.target.set(0, 2, 0);
   var cylgeo = new THREE.CylinderGeometry(1, 1, 4, 64, 48);
-  var cyl = new THREE.Mesh(EC.cylgeo, new THREE.MeshPhongMaterial({
+  var cyl = new THREE.Mesh(cylgeo, new THREE.MeshPhongMaterial({
     ambient: 0x555555,
     color: 0xee0000,
     emmissive: 0x00eeee,
     specular: 0x123456,
     shininess: 5,
     opacity: 0.7,
-    transparent: true,
-    side: THREE.DoubleSide
+    transparent: true
   }));
   EC.scene.add(cyl);
   cyl.position.set(0, 2, 0);
@@ -107,7 +108,7 @@ Awkward electron (loop)
   electron.position.set(1, 0, 0);
   EC.calc = function(t) {
     t = t / 400;
-    return EC.electron.position.set(Math.cos(2 * t), t / Math.PI % 4.000, Math.sin(-2 * t));
+    electron.position.set(Math.cos(2 * t), t / Math.PI % 4.000, Math.sin(-2 * t));
   };
 //]]>
 </script>

@@ -5,6 +5,13 @@ class MathScene
   guiActive: false
   live: false
   animated: false
+  @UWMaterial: new THREE.MeshPhongMaterial({
+    ambient: 0x39275b,
+    color: 0xc79900,
+    specular: 0x111111,
+    shininess: 20,
+    side: THREE.DoubleSide
+  })
 
   constructor: (containerName) ->
     if containerName?
@@ -150,7 +157,8 @@ class MathScene
 class MathModel
   calc: null
   needsGui: false
-  @embedInScene: (model, mathScene) ->
+  embedInScene: (mathScene) ->
+    model = @
     model.mathScene = mathScene
     model.embedObjects()
     old_calc = mathScene.calc

@@ -19,15 +19,8 @@ Cone: $x^2+y^2=z^2$
     return x*x + y*y - z*z;
   }
   scene.camera.position.set(8, 8, 4);
-  window.UWMaterial = new THREE.MeshPhongMaterial({
-    ambient: 0x39275b,
-    color: 0xc79900,
-    specular: 0x111111,
-    shininess: 20,
-    side: THREE.DoubleSide
-  })
-  var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
-  MathModel.embedInScene(surface, scene);
+  var surface = new MarchingCubesModel({func: f, resolution: 150, material: MathScene.UWMaterial.clone()});
+  surface.embedInScene(scene);
   scene.render();
 }());
 //]]>
@@ -47,8 +40,8 @@ Freaky “cylinder”: $y^2=x^2(x-1)$
     return y*y - x*x*(x-1);
   }
   scene.camera.position.set(8, 8, 4);
-  var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
-  MathModel.embedInScene(surface, scene);
+  var surface = new MarchingCubesModel({func: f, resolution: 150, material: MathScene.UWMaterial.clone()});
+  surface.embedInScene(scene);
   scene.render();
 }());
 //]]>
@@ -69,8 +62,8 @@ Ellipsoid: $\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1$
     return 1/2*x*x + 1/3 * y*y + z*z - 1;
   }
   scene.camera.position.set(8, 8, 4);
-  var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
-  MathModel.embedInScene(surface, scene);
+  var surface = new MarchingCubesModel({func: f, resolution: 150, material: MathScene.UWMaterial.clone()});
+  surface.embedInScene(scene);
   scene.render();
 }());
 //]]>
@@ -90,8 +83,8 @@ Hyperbolic paraboloid: $\frac{1}{9}x^2-\frac{1}{4}y^2=z$
     return 1/9 * x*x - 1/4 * y*y - z;
   }
   scene.camera.position.set(8, 8, 4);
-  var surface = new MarchingCubesModel({func: f, resolution: 150, material: UWMaterial.clone()});
-  MathModel.embedInScene(surface, scene);
+  var surface = new MarchingCubesModel({func: f, resolution: 150, material: MathScene.UWMaterial.clone()});
+  surface.embedInScene(scene);
   scene.render();
 }());
 //]]>
@@ -120,8 +113,8 @@ Elliptic paraboloid: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
     ymin: -10,
     ymax: 10,
     zmin: 0,
-    zmax: 10, material: UWMaterial.clone()});
-    MathModel.embedInScene(surface, scene);
+    zmax: 10, material: MathScene.UWMaterial.clone()});
+    surface.embedInScene(scene);
     scene.render();
   }());
 //]]>

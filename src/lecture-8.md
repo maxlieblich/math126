@@ -239,30 +239,26 @@ slo-mo):
   joey.joeylet.receiveShadow = true;
   joey.scene.add(joey.joeylet);
   joey.joeylet.position.set(0, 0, 1);
-  joey.ground = new THREE.Mesh(new THREE.CubeGeometry(30, 40, 0.1), new THREE.MeshLambertMaterial({
-    color: 0xc2b5ab,
-    ambient: 0x555555,
-    side: THREE.DoubleSide
-  }));
-  joey.ground.rotation.set(3 * Math.PI / 2, 0, 0);
+  joey.ground = new THREE.Mesh(new THREE.PlaneGeometry(30, 40), MathScene.UWMaterial.clone());
+  //joey.ground.rotation.set(3 * Math.PI / 2, 0, 0);
   joey.ground.position.set(0, 0, 0);
   joey.ground.castShadow = true;
   joey.ground.receiveShadow = true;
   joey.scene.add(joey.ground);
-  joey.x = function(t) {
+  joey.y = function(t) {
     return 0.05 * t ^ 2;
   };
-  joey.y = function(t) {
+  joey.z = function(t) {
     return 2 - Math.cos(t);
   };
-  joey.z = function(t) {
+  joey.x = function(t) {
     return t;
   };
 
   joey.calc = function(t) {
     t = t / 300 % 15;
     joey.joey.position.set(joey.x(t), joey.y(t), joey.z(t));
-    return joey.joeylet.position.set(joey.x(t - 0.5), joey.y(t - 0.5), joey.z(t - 0.5));
+    joey.joeylet.position.set(joey.x(t - 0.5), joey.y(t - 0.5), joey.z(t - 0.5));
   };
 //]]>
 </script>

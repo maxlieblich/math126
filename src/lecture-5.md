@@ -24,8 +24,8 @@ var plane2 = new PlaneShadowModel({
   position: [0, 0, 0],
   color: 0x00aaaa
   });
-  MathModel.embedInScene(plane1, scene);
-  MathModel.embedInScene(plane2, scene);
+  plane1.embedInScene(scene);
+  plane2.embedInScene(scene);
   scene.render();
 }());
 //]]>
@@ -54,8 +54,8 @@ var plane2 = new PlaneShadowModel({
   position: [0, 0, 0],
   color: 0x00aaaa
   });
-  MathModel.embedInScene(plane1, scene);
-  MathModel.embedInScene(plane2, scene);
+  plane1.embedInScene(scene);
+  plane2.embedInScene(scene);
   scene.render();
 }());
 //]]>

@@ -57,7 +57,7 @@ same direction and magnitude. These are all equivalent:
     positions = [[0, 0, 0], [1, 0, 0], [1, 1, 1], [0, 2, 0]];
     for (var i = 0; i < positions.length; i++){
         var vec = makeVector(positions[i], [0.1, 0, 1]);
-        MathModel.embedInScene(vec, scene);
+        vec.embedInScene(scene);
     }
     scene.scene.add(new THREE.AxisHelper());
     scene.camera.position.set(-1, 6, 2);
@@ -88,7 +88,7 @@ through 5 from left to right. For simplicity, they live in a plane.)
     vectors = []
     for (var i = 0; i < positions.length; i++){
         var vec = makeVector(positions[i], dirs[i]);
-        MathModel.embedInScene(vec, scene);
+        vec.embedInScene(scene);
     }
     scene.render();
 })();
@@ -140,8 +140,8 @@ the start at the origin.
     var v2 = new VectorModel({color: 0x0000ff, vector: [2, 0, -3]});
     // scene.scene.add(v1.arrow);
     // scene.scene.add(v2.arrow);
-    MathModel.embedInScene(v1, scene);
-    MathModel.embedInScene(v2, scene);
+    v1.embedInScene(scene);
+    v2.embedInScene(scene);
     scene.render();
 })();
 //]]>
@@ -164,8 +164,8 @@ Translate the second one so that it starts at the end of the first one.
     scene.cameraControls.enabled = false;
     var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
     var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
-    MathModel.embedInScene(v1, scene);
-    MathModel.embedInScene(v2, scene);
+    v1.embedInScene(scene);
+    v2.embedInScene(scene);
     scene.render();
 })();
 //]]>
@@ -190,9 +190,9 @@ end up with purple as red plus blue
     var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
     var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
     var v3 = new VectorModel({color: 0x551a8b, vector: [3, 0, -1]});
-    MathModel.embedInScene(v1, scene);
-    MathModel.embedInScene(v2, scene);
-    MathModel.embedInScene(v3, scene);
+    v1.embedInScene(scene);
+    v2.embedInScene(scene);
+    v3.embedInScene(scene);
     scene.render();
 })();
 //]]>
