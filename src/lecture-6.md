@@ -11,7 +11,8 @@ A menagerie of shapes
 
 Cone: $x^2+y^2=z^2$
 <div id="cone"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function() {
   var scene = new MathScene("cone");
   var f = function (x, y, z){
@@ -29,6 +30,7 @@ Cone: $x^2+y^2=z^2$
   MathModel.embedInScene(surface, scene);
   scene.render();
 }());
+//]]>
 </script>
 
 
@@ -37,7 +39,8 @@ A menagerie of shapes
 
 Freaky “cylinder”: $y^2=x^2(x-1)$
 <div id="cylinder"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function() {
   var scene = new MathScene("cylinder");
   var f = function (x, y, z){
@@ -48,6 +51,7 @@ Freaky “cylinder”: $y^2=x^2(x-1)$
   MathModel.embedInScene(surface, scene);
   scene.render();
 }());
+//]]>
 </script>
 
 
@@ -57,7 +61,8 @@ A menagerie of shapes
 
 Ellipsoid: $\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1$
 <div id="ellipsoid"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function () {
   var scene = new MathScene("ellipsoid");
   var f = function (x, y, z){
@@ -68,6 +73,7 @@ Ellipsoid: $\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1$
   MathModel.embedInScene(surface, scene);
   scene.render();
 }());
+//]]>
 </script>
 
 
@@ -76,7 +82,8 @@ A menagerie of shapes
 
 Hyperbolic paraboloid: $\frac{1}{9}x^2-\frac{1}{4}y^2=z$
 <div id="hyp-par"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function () {
   var scene = new MathScene("hyp-par");
   var f = function (x, y, z){
@@ -87,6 +94,7 @@ Hyperbolic paraboloid: $\frac{1}{9}x^2-\frac{1}{4}y^2=z$
   MathModel.embedInScene(surface, scene);
   scene.render();
 }());
+//]]>
 </script>
 
 
@@ -95,7 +103,8 @@ A menagerie of shapes
 
 Elliptic paraboloid: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
 <div id="ell-par"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function () {
   var scene = new MathScene("ell-par");
   var f = function (x, y, z){
@@ -115,6 +124,7 @@ Elliptic paraboloid: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
     MathModel.embedInScene(surface, scene);
     scene.render();
   }());
+//]]>
 </script>
 
 

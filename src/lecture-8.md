@@ -20,7 +20,8 @@ What is the position and velocity of the electron at time $t$?
 Fun-loving electron in action
 -----------------------------
 <div id="torus"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function(){
     var scene = new MathScene("torus");
     scene.camera.position.set(0, 1, 10);
@@ -58,6 +59,7 @@ Fun-loving electron in action
 
     scene.render();
 }());
+//]]>
 </script>
 
 
@@ -172,8 +174,7 @@ her position as a function of time. Sadly, her somewhat stupid friend
 never figured out how to get the position before he started a new app
 that mimics the hilarious sounds that giraffes make when embarrassed.
 
--   The joey records the velocity at time $t$ as $$\mathbf
-    v(t)=\langle 1,t,\sin(t)\rangle$$
+-   The joey records the velocity at time $t$ as $$\mathbf{v}(t)=\langle 1,t,\sin(t)\rangle$$
 -   The joey starts at the point $(0,0,1)$
 -   Where is the joey at time $t$?
 
@@ -200,8 +201,9 @@ at $t=0$. Initial position: $(0,0,1)$, velocity $\langle
 1,t,\sin(t)\rangle$. A looping animation (for $t=0$ to $t=15$ in
 slo-mo):
 
-<div id="joeycontainer"></script>
-<script>
+<div id="joeycontainer">
+<script type="text/javascript">
+//<![CDATA[
   var joey = new MathScene("joeycontainer");
   joey.camera.position.set(22, 20, 15);
   joey.cameraControls.target.set(3, 0, 3);
@@ -262,4 +264,6 @@ slo-mo):
     joey.joey.position.set(joey.x(t), joey.y(t), joey.z(t));
     return joey.joeylet.position.set(joey.x(t - 0.5), joey.y(t - 0.5), joey.z(t - 0.5));
   };
+//]]>
 </script>
+</div>

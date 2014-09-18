@@ -12,12 +12,12 @@ example,
 -   Acceleration
 -   Force applied by angry customer
 
-Special vector: $\mathbf 0$
+Special vector: $\mathbf{0}$
 ------------------------------
 
-There is one special vector: the $0$ vector, written $\mathbf 0$.
+There is one special vector: the $0$ vector, written $\mathbf{0}$.
 
-The vector $\mathbf 0$ has magnitude $0$ and "any" direction.
+The vector $\mathbf{0}$ has magnitude $0$ and "any" direction.
 
 Example: the trivial displacement (go nowhere!).
 
@@ -26,7 +26,8 @@ Graphical representation
 
 Draw an arrow:
 <div id="vector"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function(){
     var scene = new MathScene("vector");
     var vec = new VectorModel({color: 0xff00ff, vector: [1, 2, 2]});
@@ -35,6 +36,7 @@ Draw an arrow:
     scene.camera.position.set(4, 6, 5);
     scene.render();
 })();
+//]]>
 </script>
 
 Graphical representation
@@ -44,7 +46,8 @@ Important (yet confusing): two vectors are equivalent if they have the
 same direction and magnitude. These are all equivalent:
 
 <div id="equivVectors"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function(){
     var scene = new MathScene("equivVectors");
     var makeVector = function (pos, dir) {
@@ -60,6 +63,7 @@ same direction and magnitude. These are all equivalent:
     scene.camera.position.set(-1, 6, 2);
     scene.render();
 })();
+//]]>
 </script>
 
 Quick check
@@ -69,7 +73,8 @@ Which vectors are equivalent to others in this picture? (Number them 1
 through 5 from left to right. For simplicity, they live in a plane.)
 
 <div id="vector-check"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function(){
     var scene = new MathScene("vector-check");
     scene.camera.position.set(0, -10, 0);
@@ -87,6 +92,7 @@ through 5 from left to right. For simplicity, they live in a plane.)
     }
     scene.render();
 })();
+//]]>
 </script>
 
 Graphical representation
@@ -124,7 +130,8 @@ Draw the two vectors to be added using our representation that positions
 the start at the origin.
 
 <div id="vector-add-1"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function(){
     var scene = new MathScene("vector-add-1");
     scene.camera.position.set(0, 8, 0);
@@ -137,6 +144,7 @@ the start at the origin.
     MathModel.embedInScene(v2, scene);
     scene.render();
 })();
+//]]>
 </script>
 
 
@@ -148,7 +156,8 @@ The magic of vectors
 Translate the second one so that it starts at the end of the first one.
 
 <div id="vector-add-2"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function(){
     var scene = new MathScene("vector-add-2");
     scene.camera.position.set(0, 8, 0);
@@ -159,6 +168,7 @@ Translate the second one so that it starts at the end of the first one.
     MathModel.embedInScene(v2, scene);
     scene.render();
 })();
+//]]>
 </script>
 
 
@@ -171,7 +181,8 @@ Connect the start of the first with the end of the translated second. We
 end up with purple as red plus blue
 
 <div id="vector-add-3"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function(){
     var scene = new MathScene("vector-add-3");
     scene.camera.position.set(0, 8, 0);
@@ -184,6 +195,7 @@ end up with purple as red plus blue
     MathModel.embedInScene(v3, scene);
     scene.render();
 })();
+//]]>
 </script>
 
 
@@ -221,9 +233,9 @@ $$\mathbf{v}=\langle a, b, c\rangle$$
 This uses the standard representation of vectors from before: force them
 to start at $(0,0,0)$.
 
-The length of $\mathbf v=\langle a, b, c\rangle$ is
+The length of $\mathbf{v}=\langle a, b, c\rangle$ is
 
-$$|\mathbf v| = \sqrt{a^2+b^2+c^2}$$
+$$|\mathbf{v}| = \sqrt{a^2+b^2+c^2}$$
 
 Numbers breed vectors
 ---------------------
@@ -273,7 +285,7 @@ Use it or lose it
 
     $$(1,2,3), (2,3,4),(37, 38, 40)$$
 
-    lie on a single line in $\mathbf R^3$?
+    lie on a single line in $\mathbf{R}^3$?
 
 -   Find the line containing the largest number of the following points
 
@@ -281,8 +293,8 @@ Use it or lose it
 
 ### Criterion
 
--   Two non-zero vectors $\mathbf v$ and $\mathbf w$ have the same
-    or opposite direction if $$\mathbf v=c\mathbf w$$ for some
+-   Two non-zero vectors $\mathbf{v}$ and $\mathbf{w}$ have the same
+    or opposite direction if $$\mathbf{v}=c\mathbf{w}$$ for some
     non-zero number $c$.
 -   Why is this true?
 -   Does this help with the problem?

@@ -20,7 +20,8 @@ What is the position and velocity of the electron at time $t$?
 Fun-loving electron in action
 -----------------------------
 <div id="torus"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function(){
     var scene = new MathScene("torus");
     scene.camera.position.set(0, 1, 10);
@@ -58,6 +59,7 @@ Fun-loving electron in action
 
     scene.render();
 }());
+//]]>
 </script>
 
 A similar but simpler question
@@ -77,7 +79,8 @@ What is the electron's position at time $t$?
 Awkward electron (loop)
 -----------------------
 <div id="electroncylindercontainer"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
   var EC = new MathScene("electroncylindercontainer");
   EC.camera.position.set(0, 1, 10);
   EC.cameraControls.target.set(0, 2, 0);
@@ -106,7 +109,8 @@ Awkward electron (loop)
     t = t / 400;
     return EC.electron.position.set(Math.cos(2 * t), t / Math.PI % 4.000, Math.sin(-2 * t));
   };
-  </script>
+//]]>
+</script>
 
 Teach the piglet of calculus
 ----------------------------

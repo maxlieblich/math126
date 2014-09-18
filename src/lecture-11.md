@@ -27,8 +27,7 @@ How can we recover more of the curving structure?
 
 Take the derivative of the unit tangent vector!
 
-Definition: the unit normal vector to the parametrized path $\mathbf
-f(t)$ with unit tangent vector $\mathbf{T}(t)$ is defined to be
+Definition: the unit normal vector to the parametrized path $\mathbf{f}(t)$ with unit tangent vector $\mathbf{T}(t)$ is defined to be
 $$\mathbf{N}(t)=\frac{\mathbf{T}'(T)}{|\mathbf{T}'(t)|}.$$
 
 We are normalizing the derivative of the unit tangent so that we can get

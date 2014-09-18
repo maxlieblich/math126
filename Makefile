@@ -1,10 +1,11 @@
-outputs := html
+outputs := html epub
 
 files := $(wildcard src/*)
 markdown := $(shell find src -name "*.md" | sort -t- -k2 -n)
+includes := src/includes.html
+css := src/pandoc.css
 
-# basic maketargets
-
+# basic rules
 all: $(outputs)
 
 clean:
@@ -21,7 +22,13 @@ endef
 $(foreach output, $(outputs), \
 	$(eval $(call INSTALL_TARGET, build/$(output)/%, src/%, 644)))
 
-# media make targets
+# mathjax rules
+MathJax/.git:
+	git submodule update --init $(@D)
+
+MathJax: MathJax/.git
+
+# media rules
 media = $(wildcard media/*)
 
 $(foreach output, $(outputs), \
@@ -30,7 +37,7 @@ $(foreach output, $(outputs), \
 $(foreach output, $(outputs), \
 	$(eval $(output)_media := $(patsubst media/%, build/$(output)/media/%, $(media))))
 
-# javascript/coffeescript make targets
+# javascript/coffeescript rules
 js_source := $(wildcard js-src/*.js)
 cs_source := $(wildcard js-src/*.coffee)
 javascript := $(patsubst js-src/%, build/js/%, $(js_source)) $(patsubst js-src/%.coffee, build/js/%.js, $(cs_source))
@@ -59,7 +66,7 @@ $(foreach output, $(outputs), \
 # so we don't have to rebuild them for different outputs
 .PRECIOUS: build/js/%.js
 
-# html build targets
+# html rules
 html_files := $(patsubst %.md, %.html, $(patsubst src/%, build/html/%, $(files)))
 
 build/html/%.html: src/%.md src/includes.html
@@ -67,3 +74,13 @@ build/html/%.html: src/%.md src/includes.html
 	pandoc --write=html5 --output=$@ --smart --standalone --mathjax --css=pandoc.css --include-in-header=src/includes.html $<
 
 html: $(html_js) $(html_media) $(html_files)
+
+# epub rules
+build/epub/intermediate.epub: $(css) $(markdown)
+	@mkdir -p $(@D)
+	pandoc --write=epub3 --output=$@ --smart --mathjax --epub-stylesheet=$(css) $(markdown)
+
+build/epub/output.epub: build/epub/intermediate.epub MathJax $(includes) $(javascript)
+	python utils/post-process-epub.py --output=$@ --input=$< --include-in-headers=$(includes) --mathjax=MathJax $(javascript)
+
+epub: build/epub/output.epub
