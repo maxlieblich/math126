@@ -80,7 +80,7 @@ build/epub/intermediate.epub: $(css) $(markdown)
 	@mkdir -p $(@D)
 	pandoc --write=epub3 --output=$@ --smart --mathjax --epub-stylesheet=$(css) $(markdown)
 
-build/epub/output.epub: build/epub/intermediate.epub MathJax $(includes) $(javascript)
+build/epub/output.epub: build/epub/intermediate.epub MathJax $(includes) $(javascript) utils/post-process-epub.py
 	python utils/post-process-epub.py --output=$@ --input=$< --include-in-headers=$(includes) --mathjax=MathJax $(javascript)
 
 epub: build/epub/output.epub

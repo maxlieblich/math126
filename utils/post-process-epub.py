@@ -13,16 +13,24 @@ import xml.etree.ElementTree as ElementTree
 EPUB_URI = 'http://www.idpf.org/2007/opf'
 XHTML_URI = 'http://www.w3.org/1999/xhtml'
 
-ElementTree.register_namespace('', EPUB_URI)
-ElementTree.register_namespace('', XHTML_URI)
-
 CHAPTER_REGEX = re.compile(r'ch\d+\.xhtml')
+
+def parse_xml(file, uri=XHTML_URI):
+    ElementTree.register_namespace('', uri)
+    if uri == XHTML_URI:
+        ElementTree.register_namespace('epub', EPUB_URI)
+
+    xmltree = ElementTree.parse(file)
+    if uri == XHTML_URI:
+        xmltree.getroot().set('xmlns:epub', EPUB_URI)
+
+    return xmltree
 
 class EpubUpdater:
     def __init__(self, oldpath, newpath):
         self._old = zipfile.ZipFile(oldpath, 'r')
         self._new = zipfile.ZipFile(newpath, 'w')
-        self._contentopf = ElementTree.parse(self._old.open('content.opf'))
+        self._contentopf = parse_xml(self._old.open('content.opf'), uri=EPUB_URI)
         self._manifest = self._contentopf.find('{%s}manifest'%EPUB_URI)
         self._extra_headers = []
         self._closed = False
@@ -34,13 +42,16 @@ class EpubUpdater:
         if self._closed:
             return
         self._write_headers()
-        self._write_xml('content.opf', self._contentopf)
+        self._write_xml('content.opf', self._contentopf, uri=EPUB_URI)
         self._copy_missing()
         self._old.close()
         self._new.close()
         self._closed = True
 
-    def _write_xml(self, path, xmltree):
+    def _write_xml(self, path, xmltree, uri=XHTML_URI):
+        ElementTree.register_namespace('', uri)
+        if uri == XHTML_URI:
+            ElementTree.register_namespace('epub', EPUB_URI)
         buf = BytesIO()
         xmltree.write(buf, encoding='UTF-8', xml_declaration=True)
         self._new.writestr(self._old.getinfo(path), buf.getvalue())
@@ -50,14 +61,15 @@ class EpubUpdater:
         if not self._extra_headers:
             return
         for item in self._manifest:
-            if not CHAPTER_REGEX.match(item.get('href')):
+            href = item.get('href')
+            if not CHAPTER_REGEX.match(href):
                 continue
             item.set('properties', 'scripted')
-            xmltree = ElementTree.parse(self._old.open(item.get('href')))
+            xmltree = parse_xml(self._old.open(href))
             head = xmltree.find('{%s}head'%XHTML_URI)
             for header in self._extra_headers:
                 head.append(header)
-            self._write_xml(item.get('href'), xmltree)
+            self._write_xml(href, xmltree)
 
     def _copy_missing(self):
         updated = {f.filename for f in self._new.filelist}
@@ -69,7 +81,7 @@ class EpubUpdater:
         paths = set()
         for script in scripts:
             path = os.path.join('js', os.path.basename(script))
-            self._new.write(script, path)
+            self._new.write(script, path, zipfile.ZIP_DEFLATED)
             paths.add(path)
 
         for path in paths:
