@@ -68,7 +68,8 @@ Question
 
 How does it feel to fly along this trefoil path?
 <div id="trefoil"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function() {
     var scene = new MathScene("trefoil");
     var trefoilFunc = function(t) {
@@ -92,6 +93,7 @@ How does it feel to fly along this trefoil path?
     MathModel.embedInScene(ppath, scene);
     scene.animate();
 }());
+//]]>
 </script>
 
 Question
@@ -99,7 +101,8 @@ Question
 
 How do we find lines perpendicular to a surface (even a weird one)?
 <div id="heart"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function() {
     var scene = new MathScene("heart");
    // var a = Math.cos(0.65);
@@ -113,6 +116,7 @@ How do we find lines perpendicular to a surface (even a weird one)?
     MathModel.embedInScene(mc, scene);
     scene.render();
 }());
+//]]>
 </script>
 
 Question
@@ -120,7 +124,8 @@ Question
 
 What makes this shape...
 <div id="sphere"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function() {
     var scene = new MathScene("sphere");
     var f = function (x, y, z) {
@@ -130,6 +135,7 @@ What makes this shape...
     MathModel.embedInScene(mc, scene);
     scene.render();
 }());
+//]]>
 </script>
 
 Question
@@ -137,7 +143,8 @@ Question
 
 ...different from this one?
 <div id="ellipsoid"></div>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 (function() {
     var scene = new MathScene("ellipsoid");
     var f = function (x, y, z) {
@@ -147,6 +154,7 @@ Question
     MathModel.embedInScene(mc, scene);
     scene.render();
 }());
+//]]>
 </script>
 
 Properties we might examine

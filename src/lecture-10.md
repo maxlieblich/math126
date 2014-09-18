@@ -8,8 +8,7 @@ A joey (baby kangaroo) is riding in her mother's pouch with a
 sophisticated inertial navigation system. She is too small to see out of
 the pouch, but her system records the velocity vector at any time.
 
--   The joey records the velocity at time $t$ as $$\mathbf
-    v(t)=\langle 1,t,\sin(t)\rangle$$
+-   The joey records the velocity at time $t$ as $$\mathbf{v}(t)=\langle 1,t,\sin(t)\rangle$$
 -   The joey starts at the point $(0,0,1)$
 -   Last time: the position is $\mathbf{f}(t)=\langle
     t,\frac{1}{2}t^2,2-\cos(t) \rangle$
@@ -22,8 +21,7 @@ Distance by accretion
 How can we calculate the distance $s$ travelled by the joey from
 $t=a$ to $t=b$?
 
--   Linear approximation to function near time $t=a$: $\mathbf
-    L(t)=\mathbf{f}(a)+(t-a)\mathbf{f}'(a)$.
+-   Linear approximation to function near time $t=a$: $\mathbf{L}(t)=\mathbf{f}(a)+(t-a)\mathbf{f}'(a)$.
 -   For a small change $\Delta(t)$, the distance travelled is thus
     approximately $\Delta(s)\approx|\mathbf{f}'(t)|\Delta(t)$.
 -   The resulting Riemann sums approximate the integral
@@ -117,16 +115,14 @@ How do you find these things?
 
 -   Start with a parametrization: $\mathbf{f}(t)$.
 -   Hypothetical reparametrization: $t=t(s)$.
--   Chain rule: $|\mathbf{f}'(t)| = |\mathbf{f}'(t)t'(s)| = |\mathbf
-    f'(t)||t'(s)|$.
+-   Chain rule: $|\mathbf{f}'(t)| = |\mathbf{f}'(t)t'(s)| = |\mathbf{f}'(t)||t'(s)|$.
 -   In order to ensure that the speed is constant, can try to solve the
     differential equation $t'(s) = |\mathbf{f}'(t(s))|^{-1}.$
 
 Practical arc length, II
 ------------------------
 
-Example: circle of radius $2$, parametrized by $\mathbf
-f(t)=\langle 2\cos(t), 2\sin(t)\rangle$
+Example: circle of radius $2$, parametrized by $\mathbf{f}(t)=\langle 2\cos(t), 2\sin(t)\rangle$
 
 $$\mathbf{f}'(t) = \langle -2\sin(t), 2\cos(t)\rangle$$
 
@@ -148,17 +144,14 @@ Unit tangent vectors
 Something remarkable happens when parametrizing curves by arc length:
 every tangent vector has length $1$.
 
-We can do this more generally whenever we know that $\mathbf
-f'(t)\neq 0$.
+We can do this more generally whenever we know that $\mathbf{f}'(t)\neq 0$.
 
 The unit tangent vector to the curve $\mathbf{f}(t)$ at a point
-$t=a$ is $$\mathbf{T}(a)=\frac{\mathbf{f}'(a)}{|\mathbf
-f'(a)|}.$$
+$t=a$ is $$\mathbf{T}(a)=\frac{\mathbf{f}'(a)}{|\mathbf{f}'(a)|}.$$
 
 Example: for the joey from the "Distance" lecture segment with
 $\mathbf{f}'(t)=\langle 1,t,\sin(t)\rangle$, the unit tangent
-vector at time $a$ is $$\mathbf
-T(a)=\frac{1}{\sqrt{1+t^2+\sin^2(t)}}\langle 1,t,\sin(t)
+vector at time $a$ is $$\mathbf{T}(a)=\frac{1}{\sqrt{1+t^2+\sin^2(t)}}\langle 1,t,\sin(t)
 \rangle.$$
 
 Practice
@@ -181,12 +174,9 @@ Why work with arc length and unit tangents?
     choices we made in our description.
 -   Recovers delicate static information about the shape.
 
-For example: $\mathbf{T}'(t)\cdot\mathbf{T}(t)=0.$ I.e., $\mathbf
-T'(t)$ is perpendicular to $\mathbf{T}(t)$.
+For example: $\mathbf{T}'(t)\cdot\mathbf{T}(t)=0.$ I.e., $\mathbf{T}'(t)$ is perpendicular to $\mathbf{T}(t)$.
 
-Indeed, $$0=\frac{d}{dt}1=\frac{d}{dt}|\mathbf
-T(t)|=\frac{d}{dt}\left(\mathbf{T}(t)\cdot\mathbf
-T(t)\right)=2\mathbf{T}(t)\cdot\mathbf{T}'(t).$$
+Indeed, $$0=\frac{d}{dt}1=\frac{d}{dt}|\mathbf{T}(t)|=\frac{d}{dt}\left(\mathbf{T}(t)\cdot\mathbf{T}(t)\right)=2\mathbf{T}(t)\cdot\mathbf{T}'(t).$$
 
 Meaning: $\mathbf{T}'(t)$, unlike the acceleration in general, is
 always changing the tangent to the curve in the “most efficient” way.
@@ -195,11 +185,9 @@ Curvature
 ---------
 
 The curvature of the smooth parametric curve $\mathbf{f}(t)$ is
-defined to be $$\kappa(t)=\left|\frac{d\mathbf
-T(t)}{ds}\right|,$$ where $s$ is the arc length function.
+defined to be $$\kappa(t)=\left|\frac{d\mathbf{T}(t)}{ds}\right|,$$ where $s$ is the arc length function.
 
-Since $s'(t)=|\mathbf{f}'(t)|$, we also have $\kappa(t)=|\mathbf
-T'(t)|/|\mathbf{f}'(t)|$.
+Since $s'(t)=|\mathbf{f}'(t)|$, we also have $\kappa(t)=|\mathbf{T}'(t)|/|\mathbf{f}'(t)|$.
 
 A lot to digest!
 
@@ -225,8 +213,7 @@ Makes sense: the curvature of a circle of large radius is small. After
 all, the path is basically a straight line!
 
 What about for something like the parabola? Try it. You might consider
-using $\mathbf{f}(t)=\langle t,t^2\rangle$ and $\kappa=|\mathbf
-T'|/|\mathbf{f}'|$, together with your calculation of $\mathbf{T}$
+using $\mathbf{f}(t)=\langle t,t^2\rangle$ and $\kappa=|\mathbf{T}'|/|\mathbf{f}'|$, together with your calculation of $\mathbf{T}$
 from before. What a mess!
 
 Curvature in practice
@@ -236,8 +223,7 @@ Mathematicians have thought about this one pretty hard, and here is what
 turns out to happen:
 
 The curvature of the smooth path parametrized by $\mathbf{f}(t)$ is
-$$\kappa(t)=\frac{|\mathbf{f}'(t)\times\mathbf{f}''(t)|}{|\mathbf
-f'(t)|^3}.$$ Any book or the internet contains a proof!
+$$\kappa(t)=\frac{|\mathbf{f}'(t)\times\mathbf{f}''(t)|}{|\mathbf{f}'(t)|^3}.$$ Any book or the internet contains a proof!
 
 We can dispatch the parabola $\mathbf{f}(t)=\langle t,t^2\rangle$:
 
@@ -252,8 +238,6 @@ t,\frac{1}{2}t^2,2-\cos(t)\rangle$.
 
 Calculate the limit of the curvature as $t\to\infty$.
 
-Formulas for curvature: $$\kappa(t)=\left|\frac{d\mathbf
-T}{ds}\right|=\frac{|\mathbf{T}'(t)|}{|s'(t)|}=\frac{|\mathbf
-f'(t)\times\mathbf{f}''(t)|}{|\mathbf{f}'(t)|^3}$$
+Formulas for curvature: $$\kappa(t)=\left|\frac{d\mathbf{T}}{ds}\right|=\frac{|\mathbf{T}'(t)|}{|s'(t)|}=\frac{|\mathbf{f}'(t)\times\mathbf{f}''(t)|}{|\mathbf{f}'(t)|^3}$$
 
 
