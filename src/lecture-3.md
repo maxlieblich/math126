@@ -14,7 +14,9 @@ Question: a light shines perpendicularly down onto the plane
 $x-y+z=0$. Can we calculate the shadow of the vector $\langle
 3,4,5\rangle$ in the plane? (Natural question for computer graphics,
 architecture, etc. )
-<div id="shadow"></div>
+<div id="shadow">
+  <img src="media/lecture-3-shadow.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 

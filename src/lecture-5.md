@@ -7,7 +7,9 @@ Warm up
 **Question:** how can we describe the line of intersection of two
 planes?
 
-<div id="warm-up"></div>
+<div id="warm-up">
+  <img src="media/lecture-5-warm-up.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -37,7 +39,9 @@ Warm up
 
 **Simpler:** what is the intersection of the planes $x=0$ and $y=0$
 
-<div id="simple"></div>
+<div id="simple">
+  <img src="media/lecture-5-simple.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){

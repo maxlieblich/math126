@@ -19,7 +19,9 @@ What is the position and velocity of the electron at time $t$?
 
 Fun-loving electron in action
 -----------------------------
-<div id="torus"></div>
+<div id="torus">
+  <img src="media/lecture-8-torus.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -57,7 +59,7 @@ Fun-loving electron in action
         // console.log(scene);
     };
 
-    scene.render();
+    scene.create();
 }());
 //]]>
 </script>
@@ -202,6 +204,8 @@ at $t=0$. Initial position: $(0,0,1)$, velocity $\langle
 slo-mo):
 
 <div id="joeycontainer">
+  <img src="media/lecture-8-joeycontainer"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
   var joey = new MathScene("joeycontainer");
@@ -260,6 +264,7 @@ slo-mo):
     joey.joey.position.set(joey.x(t), joey.y(t), joey.z(t));
     joey.joeylet.position.set(joey.x(t - 0.5), joey.y(t - 0.5), joey.z(t - 0.5));
   };
+
+  joey.create();
 //]]>
 </script>
-</div>

@@ -67,7 +67,9 @@ Question
 --------
 
 How does it feel to fly along this trefoil path?
-<div id="trefoil"></div>
+<div id="trefoil">
+  <img src="media/lecture-1-trefoil.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function() {
@@ -100,7 +102,9 @@ Question
 --------
 
 How do we find lines perpendicular to a surface (even a weird one)?
-<div id="heart"></div>
+<div id="heart">
+  <img src="media/lecture-1-heart.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function() {
@@ -123,7 +127,9 @@ Question
 --------
 
 What makes this shape...
-<div id="sphere"></div>
+<div id="sphere">
+  <img src="media/lecture-1-sphere.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function() {
@@ -142,7 +148,9 @@ Question
 --------
 
 ...different from this one?
-<div id="ellipsoid"></div>
+<div id="ellipsoid">
+  <img src="media/lecture-1-ellipsoid.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function() {

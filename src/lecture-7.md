@@ -19,12 +19,15 @@ What is the position and velocity of the electron at time $t$?
 
 Fun-loving electron in action
 -----------------------------
-<div id="torus"></div>
+<div id="torus">
+  <img src="media/lecture-7-torus.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
     var scene = new MathScene("torus");
-    scene.animated = true;
+    scene.create();
+    // scene.animated = true;
     scene.camera.position.set(0, 1, 10);
     var torusgeo = new THREE.TorusGeometry(2, 1, 64, 48);
 
@@ -58,7 +61,7 @@ Fun-loving electron in action
         // console.log(scene);
     };
 
-    scene.render();
+    scene.create();
 }());
 //]]>
 </script>
@@ -79,11 +82,14 @@ What is the electron's position at time $t$?
 
 Awkward electron (loop)
 -----------------------
-<div id="electroncylindercontainer"></div>
+<div id="electroncylindercontainer">
+  <img src="media/lecture-7-electroncylindercontainer.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
   var EC = new MathScene("electroncylindercontainer");
-  EC.animated = true;
+  EC.create();
+  // EC.animated = true;
   EC.camera.position.set(0, 1, 10);
   EC.cameraControls.target.set(0, 2, 0);
   var cylgeo = new THREE.CylinderGeometry(1, 1, 4, 64, 48);

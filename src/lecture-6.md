@@ -10,7 +10,9 @@ A menagerie of shapes
 ---------------------
 
 Cone: $x^2+y^2=z^2$
-<div id="cone"></div>
+<div id="cone">
+  <img src="media/lecture-6-cone.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function() {
@@ -31,7 +33,9 @@ A menagerie of shapes
 ---------------------
 
 Freaky “cylinder”: $y^2=x^2(x-1)$
-<div id="cylinder"></div>
+<div id="cylinder">
+  <img src="media/lecture-6-cylinder.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function() {
@@ -53,7 +57,9 @@ A menagerie of shapes
 ---------------------
 
 Ellipsoid: $\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1$
-<div id="ellipsoid"></div>
+<div id="ellipsoid">
+  <img src="media/lecture-6-ellipsoid.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function () {
@@ -74,7 +80,9 @@ A menagerie of shapes
 ---------------------
 
 Hyperbolic paraboloid: $\frac{1}{9}x^2-\frac{1}{4}y^2=z$
-<div id="hyp-par"></div>
+<div id="hyp-par">
+  <img src="media/lecture-6-hyp-par.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function () {
@@ -95,7 +103,9 @@ A menagerie of shapes
 ---------------------
 
 Elliptic paraboloid: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
-<div id="ell-par"></div>
+<div id="ell-par">
+  <img src="media/lecture-6-ell-par.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function () {

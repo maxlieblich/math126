@@ -5,6 +5,9 @@ class MathScene
   guiActive: false
   live: false
   animated: false
+  initTime: 3000
+  showingObjects: false
+  # static material for surfaces, made from official UW colors
   @UWMaterial: new THREE.MeshPhongMaterial({
     ambient: 0x39275b,
     color: 0xc79900,
@@ -19,20 +22,34 @@ class MathScene
     else
       @container = document.body.appendChild(document.createElement("div"))
     @container.style.position = "relative"
-    @populate()
+    webGLEnabled = @populate()
+    if not webGLEnabled
+      return
     @mathUp()
     @shadow = false
     @guiActive = false
+    return
 
   setrenderer: ->
     if Detector.webgl
       @renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true, antialias: true})
       @renderer.setClearColor( 0x111111, 1 );
-    else
+    else # this should never be called
       @renderer = new THREE.CanvasRenderer()
     return
 
-  loader: new THREE.JSONLoader(true)
+  setCameraControls: =>
+    # preserve old target if reinstantiating cameraControls
+    # this is a kludge related to changing the display property of @renderer.domElement
+    # for some reason, need to reattach cameraControls, but then lose properties that have been set
+    # maybe it is wiser to keep more properties?
+    # target = if @cameraControls? then @cameraControls.target else new THREE.Vector3 0, 0, 0
+    # delete @cameraControls
+    @cameraControls = new THREE.TrackballControls @camera, @renderer.domElement
+    @cameraControls.target.set 0, 0, 0
+    @cameraControls.addEventListener 'end', @kill
+    @cameraControls.addEventListener 'start', @birth
+    null 
 
   enableShadow: ->
     @renderer.shadowMapEnabled = true
@@ -46,7 +63,26 @@ class MathScene
     @renderer.shadowMapHeight = 1024
     null
 
+  replaceStaticImage: =>
+    # swap static image for canvas and add controls
+    # (including snapshot controls)
+    elts = @container.getElementsByTagName("img")
+    for elt in elts
+      elt.style.display = "none"
+    @renderer.domElement.style.display = "block"
+    @cameraControls.handleResize()
+    @showGui()
+    null
+
+  # this populates the basic objects, but they will not be inserted into the page
+  # until at least one object is embedded in the scene or the create() method is called explicitly
   populate: ->
+    # test code: remove below comment to test static images
+    # return false
+
+    if not Detector.webgl
+      return false
+
     @scene = new THREE.Scene()
     @scene.add(new THREE.AmbientLight 0xffffff)
     @scene.add(new THREE.DirectionalLight 0xffffff)
@@ -71,6 +107,7 @@ class MathScene
     @setrenderer()
     @renderer.setSize @WIDTH, @HEIGHT
     @renderer.domElement.style.position = "relative"
+    @renderer.domElement.style.display = "none"
     @container.appendChild @renderer.domElement
     @renderer.clear()
 
@@ -80,31 +117,22 @@ class MathScene
     @gui.domElement.style.left = 0
     @gui.domElement.style.top = 0
     @gui.close()
+    # temporary snapshot facility
+    # actually, make this permanent if students make something they like (once playground is up)!
+    # TODO: make it possible to show/hide images they have taken in page. Will be easy.
+    @gui.add(@, "generateSnapshot").name("Take picture")
+    @activateGui()
+    @hideGui()
 
     #controls
-    # @cameraControls = new THREE.OrbitControls @camera, @renderer.domElement
-    @cameraControls = new THREE.TrackballControls @camera, @renderer.domElement
-    @cameraControls.target.set 0, 0, 0
-    # @cameraControls.screen = { width: @WIDTH, height: @HEIGHT, offsetLeft: 0, offsetTop: 0 }
-    # @cameraControls.radius = ( @cameraControls.screen.width + @cameraControls.screen.height ) / 4;
-    # @cameraControls.target.set 0, 0, 0
-    # @cameraControls.center.set 0, 0, 0
-    # @cameraControls.userPanSpeed = 0.1
-    self = @
-    # SLIGHTLY KLUDGY: NEED TO KNOW THAT THE CONTROLS IN QUESTION EMIT THESE EVENTS
-    self.cameraControls.addEventListener 'end', self.kill
-    self.cameraControls.addEventListener 'start', self.birth
+    @setCameraControls()
 
-    # ALSO WEIRD: need to allow time for everything to be ok for initial render
-    # is there an intelligent callback driven approach? What is here is awful.
-    @create()
-    null
-
-  initTime: 3000
+    true
 
   create: =>
     @birth()
     setTimeout @kill, @initTime
+    @showingObjects = true
 
   birth: =>
     @live = true
@@ -112,7 +140,22 @@ class MathScene
     return
 
   kill: =>
+    @replaceStaticImage()
     @live = false
+    return
+
+  # inspired by http://jsfiddle.net/TxcTr/3/
+  generateSnapshot: ->
+    @hideGui()
+    imgData = @renderer.domElement.toDataURL()
+    imgNode = document.createElement("img")
+    imgNode.src = imgData
+    @container.appendChild(imgNode)
+    @showGui()
+    return
+
+  loadSnapshot: ->
+    throw "Not yet implemented"
     return
 
   activateGui: ->
@@ -120,6 +163,14 @@ class MathScene
       @container.appendChild(@gui.domElement)
       @guiActive = true
     null
+
+  hideGui: ->
+    @gui.domElement.style.display = "none"
+    return
+
+  showGui: ->
+    @gui.domElement.style.display = ""
+    return
 
   mathUp: ->
     @camera.up = new THREE.Vector3 0,0,1
@@ -129,7 +180,7 @@ class MathScene
     null
 
   render: =>
-    @cameraControls.update()
+    @cameraControls?.update()
     @pointLight.position = @camera.position
     @renderer.render @scene, @camera
     # console.log @scene
@@ -148,9 +199,10 @@ class MathScene
     framing(new Date().getTime())
     null
 
-  init: ->
-    T = new Date().getTime()
-    @render()
+  # create the dom elements and add to the internal THREE.js scene
+  add: (obj) ->
+    @create()
+    @scene.add obj
     null
 
 
@@ -169,8 +221,11 @@ class MathModel
       null
 
     if model.needsGui
-      mathScene.activateGui()
+    #   mathScene.activateGui()
       model.addGui(mathScene.gui)
+
+    if not mathScene.showingObjects
+      mathScene.create()
     null
 
 
@@ -350,6 +405,7 @@ class MarchingCubesModel extends MathModel
           that.mathScene.scene.remove(that.surface)
           that.surface = new_surface
           that.mathScene.scene.add(that.surface)
+          that.mathScene.render()
       null
 
     worker.postMessage("Go!")
