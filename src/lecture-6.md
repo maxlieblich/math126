@@ -145,20 +145,105 @@ Example: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
 
 We can make a horizontal trace (horizontal slice) at $z=6$.
 
-Example: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
-------------------------------------------------
+Geometrically, we are intersecting the surface with a horizontal plane.
+<div id="horizontal-trace-1">
+  <img src="lecture-6-horizontal-trace-1"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function () {
+  var scene = new MathScene("horizontal-trace-1");
+  var f = function (x, y, z){
+    return 1/9 * x*x + 1/4 * y*y - z;
+  }
+  scene.camera.position.set(16, 16, 8);
+  scene.cameraControls.target.set(0, 0, 6);
+  var surface = new MarchingCubesModel({
+    func: f,
+    resolution: 150,
+    xmin: -10,
+    xmax: 10,
+    ymin: -10,
+    ymax: 10,
+    zmin: 0,
+    zmax: 10, material: MathScene.UWMaterial.clone()});
+    surface.embedInScene(scene);
+  var tracePlaneGeom = new THREE.PlaneGeometry(20, 20);
+  var tracePlane = new THREE.Mesh(tracePlaneGeom, new THREE.MeshNormalMaterial({side: THREE.DoubleSide}));
+  tracePlane.position.set(0, 0, 6);
+  scene.scene.add(tracePlane);
+  scene.render();
+}());
+//]]>
+</script>
+To calculate this algebraically:
 
-We can make a horizontal trace (horizontal slice) at $z=6$.
+- First, set $z=6$ in the equation to find a curve to plot: $\frac{1}{9}x^2+\frac{1}{4}y^2=6.$
+- This will be an ellipse. (For which values of $z$ is this an ellipse?)
+- We can plot the ellipse in a plane to visualize this slice. We can vary the value of $z$ and see how the horizontal traces vary. For the sake of visualization, we are plotting plane at its corresponding height over the $xy$-plane, but the "horizontal trace" is the red curve, **viewed simply as a curve in the plane, not in space**.
 
-Example: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
-------------------------------------------------
+<div id="horizontal-trace-2">
+  <img src="lecture-6-horizontal-trace-2"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function () {
+  var scene = new MathScene("horizontal-trace-2");
+  scene.camera.position.set(16, 16, 8);
+  scene.cameraControls.target.set(0, 0, 6);
 
-We can make a horizontal trace (horizontal slice) at $z=6$.
+  var x = function (z){
+    return function (t){
+      return 3 * Math.sqrt(z) * Math.cos(2 * Math.PI * t);
+    }
+  }
 
--   Equation for the curve in the horizontal plane:
-    $$\frac{1}{9}x^2+\frac{1}{4}y^2=6.$$
--   What shape is this?
--   What shape will a general horizontal trace have?
+  var y = function (z){
+    return function (t){
+      return 2 * Math.sqrt(z) * Math.sin(2 * Math.PI * t);
+    }
+  }
+
+  var z = function (z) { 
+    return function (t){
+      return z; 
+    }
+  }
+
+  var trace = new ParametricPathModel(
+    x(6), y(6), z(6), [0, 1.01], 0, 100
+  );
+
+  trace.embedInScene(scene);
+
+  trace.redraw = function (h) {
+    trace.x = x(h);
+    trace.y = y(h);
+    trace.z = z(h)
+    tracePlane.position.set(0, 0, h-0.01);
+    scene.scene.remove(trace.path);
+    trace.generate();
+    trace.embedObjects();
+    scene.render();
+  }
+
+  trace.level = 6;
+
+  var levelControl = scene.gui.add(trace, "level", 0, 10).step(0.05);
+  levelControl.onChange(function(value){
+    trace.redraw(value);
+  });
+
+  var tracePlaneGeom = new THREE.PlaneGeometry(20, 20);
+  var tracePlane = new THREE.Mesh(tracePlaneGeom, MathScene.UWMaterial.clone());
+  tracePlane.position.set(0, 0, 6-0.1);
+  scene.scene.add(tracePlane);
+  scene.gui.open();
+  scene.render();
+}());
+//]]>
+</script>
+
 
 Example: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
 ------------------------------------------------
