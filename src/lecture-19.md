@@ -87,9 +87,3 @@ $$\iint_R\frac{3}{4}+\sqrt{\frac{1}{4}-x^2-y^2}-\sqrt{1-x^2-y^2}dA.$$
 Do it!
 
 (The numbers might get ugly. That's ok: eyeballs are messy.)
-
-[![Powered by
-MathJax](http://www.mathjax.org/badge.gif "Powered by MathJax")](http://www.mathjax.org/)[![HTML5
-Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and
-Semantics](http://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-multimedia-semantics.png "HTML5 Powered with CSS3 / Styling, Graphics, 3D & Effects, Multimedia, and Semantics")](http://www.w3.org/html/logo/)
-
