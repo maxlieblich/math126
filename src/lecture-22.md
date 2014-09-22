@@ -132,8 +132,8 @@ Maybe we should refresh our memories about the notation.
 The formula again: the $n$th Taylor polynomial of $f(x)$ around
 $b$ is
 
-$$\begin{align\*}T_n(x)&=f(b)+f^{(1)}(b)(x-b)+\frac{1}{2}f^{(2)}(b)(x-b)^2+\cdots+\frac{1}{n!}f^{(n)}(b)(x-b)^n\\&
-=\sum_{i=0}^n\frac{1}{i!}f^{(i)}(b)(x-b)^i\end{align\*}$$
+$$\begin{align}T_n(x)&=f(b)+f^{(1)}(b)(x-b)+\frac{1}{2}f^{(2)}(b)(x-b)^2+\cdots+\frac{1}{n!}f^{(n)}(b)(x-b)^n\\&
+=\sum_{i=0}^n\frac{1}{i!}f^{(i)}(b)(x-b)^i\end{align}$$
 
 Example
 -------

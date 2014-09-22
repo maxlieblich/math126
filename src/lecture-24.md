@@ -105,9 +105,9 @@ Integration
 -----------
 
 Thus,
-$$\begin{align\*}\int_0^t\sin(x^2)dx&=\int_0^t\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}x^{4n+2}dx\\
+$$\begin{align}\int_0^t\sin(x^2)dx&=\int_0^t\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}x^{4n+2}dx\\
 &=\sum_{n=0}^\infty\frac{(-1)^n}{(4n+3)(2n+1)!}x^{4n+3}\Bigr|_0^t\\
-&=\sum_{n=0}^\infty\frac{(-1)^n}{(4n+3)(2n+1)!}t^{4n+3}.\end{align\*}$$
+&=\sum_{n=0}^\infty\frac{(-1)^n}{(4n+3)(2n+1)!}t^{4n+3}.\end{align}$$
 
 This may (does!) look inscrutable, but the point is that it is a formula
 that we could use to compute that integral if we had to.

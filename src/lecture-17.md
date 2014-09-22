@@ -146,11 +146,11 @@ $\Delta(y)$.
 
 Computing the Riemann sums:
 
-$$\begin{align\*}
-S_n=\sum_{i=1}^n\sum_{j=1}^n1\Delta(x)\Delta(y)=\left(\sum_{i=1}^n\Delta(x)\right)\left(\sum_{j=1}^n\Delta(y)\right)\\
-&=
-\left(\sum_{i=1}^n\frac{2}{n}\right)\left(\sum_{j=1}^n\frac{2}{n}\right)\\
-&=2\cdot 2=4, \end{align\*}$$
+$$\begin{align}
+S_n&=\sum_{i=1}^n\sum_{j=1}^n1\Delta(x)\Delta(y) \\
+&=\left(\sum_{i=1}^n\Delta(x)\right)\left(\sum_{j=1}^n\Delta(y)\right)\\
+&=\left(\sum_{i=1}^n\frac{2}{n}\right)\left(\sum_{j=1}^n\frac{2}{n}\right)\\
+&=2\cdot 2=4, \end{align}$$
 
 so we get $\iint_R 1dxdy=4.$
 
@@ -184,9 +184,9 @@ Observation: we can try to split up the integral by dealing with the
 variables separately. If we choose the center points in each rectangle,
 we can write a Riemann sum and then start speculating wildly.
 
-$$\begin{align\*}&\sum_{i=1}^n\sum_{i=1}^mf(x_{i},y_{j})\Delta(x)\Delta(y)=\sum_{i=1}^m\Delta(x)\sum_{j=1}f(x_i,y_j)\Delta(y)\\
+$$\begin{align}&\sum_{i=1}^n\sum_{i=1}^mf(x_{i},y_{j})\Delta(x)\Delta(y)=\sum_{i=1}^m\Delta(x)\sum_{j=1}f(x_i,y_j)\Delta(y)\\
 &\approx\sum_{i=1}^m\Delta(x)\int_{c}^d
-f(x_i,y)dy\approx\int_{a}^b\left(\int_{c}^df(x,y)dy\right)dx\end{align\*}$$
+f(x_i,y)dy\approx\int_{a}^b\left(\int_{c}^df(x,y)dy\right)dx\end{align}$$
 
 Double integrals: iterated integrals
 ====================================
@@ -197,17 +197,17 @@ Iterated integrals: summary
 Given a continuous function $f(x,y)$ on a rectangle
 $[a,b]\times[c,d]$,
 
-$$\begin{align\*}\iint_Rf(x,y)dxdy&=\int_c^d\left(\int_a^b
+$$\begin{align}\iint_Rf(x,y)dxdy&=\int_c^d\left(\int_a^b
 f(x,y)dx\right)dy\\ &=\int_a^b\left(\int_c^d
-f(x,y)dy\right)dx.\end{align\*}$$
+f(x,y)dy\right)dx.\end{align}$$
 
 Example: for $f(x,y)=x+y$ and $R=[0,1]\times[0,1]$
 
-$$\begin{align\*} \iint_Rf(x,y)dxdy&=\int_0^1\left(\int_0^1
+$$\begin{align} \iint_Rf(x,y)dxdy&=\int_0^1\left(\int_0^1
 (x+y)dx\right)dy
 =\int_0^1\left(\frac{1}{2}x^2+yx\right)\Biggr|_0^1dy\\
 &=\int_0^1\frac{1}{2}+ydy=\frac{1}{2}y+\frac{1}{2}y^2\Biggr|_0^1=1.
-\end{align\*}$$
+\end{align}$$
 
 Do one!
 -------
