@@ -30,22 +30,13 @@ MATHJAX_CONFIG = r'''
 //<![CDATA[
 MathJax.Hub.Config({
     jax: [
-        "input/TeX",
+        "input/MathML",
         "output/SVG",
     ],
     extensions: [
-        "tex2jax.js",
+        "mml2jax.js",
         "MathEvents.js",
     ],
-    TeX: {
-        extensions: [
-            "AMSmath.js",
-            "AMSsymbols.js",
-            "noErrors.js",
-            "noUndefined.js",
-            "autoload-all.js"
-        ]
-    },
     MathMenu: {
         showRenderer: false
     },
@@ -62,7 +53,9 @@ MATHJAX_FILES = (
         'MathJax.js',
         'images',
         'jax/element',
-        'jax/input/TeX',
+        'jax/input/MathML',
+#        'jax/input/TeX',
+#        'extensions/MathML',
         'jax/output/SVG/autoload',
         'jax/output/SVG/config.js',
         'jax/output/SVG/fonts/TeX',
@@ -73,11 +66,15 @@ MATHJAX_FILES = (
         'extensions/MathEvents.js',
         'extensions/MathMenu.js',
         'extensions/MathZoom.js',
-        'extensions/tex2jax.js',
+        'extensions/mml2jax.js',
+#        'extensions/tex2jax.js',
         )
 
 EPUB_URI = 'http://www.idpf.org/2007/opf'
 XHTML_URI = 'http://www.w3.org/1999/xhtml'
+MATHML_URI = 'http://www.w3.org/1998/Math/MathML'
+
+URI_REGEX = re.compile(r'^{(.*)}')
 
 CHAPTER_REGEX = re.compile(r'ch\d+\.xhtml')
 
@@ -125,6 +122,14 @@ class EpubUpdater:
         ElementTree.register_namespace('', uri)
         if uri == XHTML_URI:
             ElementTree.register_namespace('epub', EPUB_URI)
+            for elem in xmltree.getiterator():
+                match = URI_REGEX.match(elem.tag)
+                if match is None:
+                    continue
+                uri = match.group(1)
+                if uri != XHTML_URI:
+                    elem.tag = URI_REGEX.sub('{%s}'%XHTML_URI, elem.tag)
+                    elem.set('xmlns', uri)
 
         # as far as I can tell you have to dump to a file to get the
         # xml_declaration, so we use BytesIO to emulate a file
