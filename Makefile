@@ -73,6 +73,7 @@ html_files := $(patsubst %.md, %.html, $(patsubst src/%, build/html/%, $(files))
 build/html/%.html: src/%.md src/includes.html
 	@mkdir -p $(@D)
 	pandoc --write=html5 --output=$@ --smart --standalone --mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" --css=pandoc.css --include-in-header=src/includes.html $<
+	install -m644 $< build/html
 
 html: $(html_js) $(html_media) $(html_files)
 
