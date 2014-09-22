@@ -33,7 +33,7 @@ MathJax: MathJax/.git
 media = $(wildcard media/*)
 
 $(foreach output, $(outputs), \
-	$(eval $(call INSTALL_TARGET, build/$(output)/media/%, media/%, 755)))
+	$(eval $(call INSTALL_TARGET, build/$(output)/media/%, media/%, 644)))
 
 $(foreach output, $(outputs), \
 	$(eval $(output)_media := $(patsubst media/%, build/$(output)/media/%, $(media))))
