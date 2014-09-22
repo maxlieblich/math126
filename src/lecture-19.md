@@ -63,12 +63,15 @@ Nedwina's shark
 
 In our example, we can thus do this:
 
-$$\begin{align\*}
-\iint_RzdA&=\int_{-\pi/4}^{\pi/4}\int_0^{\cos(2\theta)}zrdrd\theta=\int_{-\pi/4}^{\pi/4}\int_0^{\cos(2\theta)}(\cos(2\theta)-r)rdrd\theta\\
-&=\int_{-\pi/4}^{\pi/4}\frac{1}{2}\cos(2\theta)r^2-\frac{1}{3}r^3|_0^{\cos(2\theta)}d\theta
-=\int_{-\pi/4}^{\pi/4}\frac{1}{6}\cos^3(2\theta)d\theta=\frac{1}{12}\int_{-\pi/2}^{\pi/2}\cos^3(u)du\\
-&=\frac{1}{12}\int_{-\pi/2}^{\pi/2}\cos(u)(1-\sin^2(u))du=\frac{1}{12}(\sin(u)-\frac{1}{3}\sin^3(u))|_{-\pi/2}^{\pi/2}=\frac{1}{9}.\\
-\end{align\*}$$
+$$\begin{align}
+\iint_RzdA&=\int_{-\pi/4}^{\pi/4}\int_0^{\cos(2\theta)}zrdrd\theta \\
+&=\int_{-\pi/4}^{\pi/4}\int_0^{\cos(2\theta)}(\cos(2\theta)-r)rdrd\theta \\
+&=\int_{-\pi/4}^{\pi/4}\frac{1}{2}\cos(2\theta)r^2-\frac{1}{3}r^3|_0^{\cos(2\theta)}d\theta \\
+&=\int_{-\pi/4}^{\pi/4}\frac{1}{6}\cos^3(2\theta)d\theta \\
+&=\frac{1}{12}\int_{-\pi/2}^{\pi/2}\cos^3(u)du \\
+&=\frac{1}{12}\int_{-\pi/2}^{\pi/2}\cos(u)(1-\sin^2(u))du \\
+&=\frac{1}{12}\left[\sin(u)-\frac{1}{3}\sin^3(u)\right]_{-\pi/2}^{\pi/2}=\frac{1}{9}. \\
+\end{align}$$
 
 (Look at this slide later for the details. It is a standard integration
 problem once you change the variables!)
