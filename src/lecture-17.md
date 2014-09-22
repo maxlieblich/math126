@@ -163,7 +163,7 @@ waving a notebook in the air. She calls you over and says:
 "For any function $f(x,y)$ of the form $f(x,y)=g(x)h(y)$ and any
 rectangle $R=[a,b]\times[c,d]$, I know that
 
-$$\iint_Rf(x,y)dxdy=\left(\int_a^bg(x)dx\right)\cdot\left(\int_c^dh(y)dy\right)."$$
+$$\iint_Rf(x,y)dxdy=\left(\int_a^bg(x)dx\right)\cdot\left(\int_c^dh(y)dy\right).\text{"}$$
 
 Is she right?
 
@@ -230,7 +230,7 @@ notebook in the air. She called you over and said:
 "For any function $f(x,y)$ of the form $f(x,y)=g(x)h(y)$ and any
 rectangle $R=[a,b]\times[c,d]$, I know that
 
-$$\iint_Rf(x,y)dxdy=\left(\int_a^bg(x)dx\right)\cdot\left(\int_c^dh(y)dy\right)."$$
+$$\iint_Rf(x,y)dxdy=\left(\int_a^bg(x)dx\right)\cdot\left(\int_c^dh(y)dy\right).\text{"}$$
 
 Was she right?
 
