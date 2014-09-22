@@ -1,4 +1,4 @@
-### Math 126
+# Math 126
 
 *This syllabus is subject to minor revision throughout the quarter; changes will be announced on the [course webpage](http://maxlieblich.github.io/math126), in class, or on [Piazza](http://piazza.com/washington/fall2014/math126gi/home)*.
 
