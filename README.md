@@ -1,7 +1,7 @@
 Math 126
 ========
 
-We are rebuilding the University of Washington's online Math 126 course materials out in the open. We have just started.
+We are rebuilding the University of Washington's online Math 126 course materials out in the open. We have just started. You can see the live course site (corresponding to the `gh-pages` branch of this repository) [here](http://maxlieblich.github.io/math126).
 
 ### Written in markdown
 The course notes have been (are being!) converted into markdown format. Each numbered folder corresponds to a lecture from the course; the old lecture slides are now markdown documents. Using pandoc, these documents can be convered to a bunch of formats:
