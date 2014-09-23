@@ -246,10 +246,39 @@ class MarchingCubesModel extends MathModel
     @march_async(false)
     @needsGui = true
 
-  embedObjects: ->
-    @march_async(false, @algorithm)
+  embedObjects: =>
+    @march_async(false, @algorithm, @embedCallback)
     null
     # @mathScene.scene.add(@surface)
+
+  # need to override embedInScene to handle asynchronous rendering so as not to 
+  # make the snapshot vanish early
+
+  embedCallback: ->
+    model = @
+    old_calc = model.mathScene.calc
+    model.mathScene.calc = (t) ->
+      if model.calc?
+        model.calc()(t)
+      old_calc(t)
+      null
+
+    if model.needsGui
+    #   mathScene.activateGui()
+      model.addGui(model.mathScene.gui)
+
+    if not @mathScene.showingObjects
+      mathScene.create()
+
+    null
+
+
+  embedInScene: (mathScene) ->
+    model = @
+    model.mathScene = mathScene
+    model.embedObjects()
+    null
+
 
   rerender: ->
     if @mathScene?
@@ -285,7 +314,7 @@ class MarchingCubesModel extends MathModel
     null
 
   # see http://stackoverflow.com/a/10372280 for starting Workers via blobs
-  march_async: (b, algorithm="marchingCubes") ->
+  march_async: (b, algorithm="marchingCubes", callback) ->
     that = @
     debug = @debug
     window.URL = window.URL || window.webkitURL
@@ -337,12 +366,14 @@ class MarchingCubesModel extends MathModel
           console.log "surface constructed"
           that.mathScene.scene.add(that.surface)
           console.log "surface embedded"
+          if callback? then callback()
       else
         if that.mathScene?
           that.mathScene.scene.remove(that.surface)
           that.surface = new_surface
           that.mathScene.scene.add(that.surface)
           that.mathScene.render()
+          if callback? then callback()
       null
 
     worker.postMessage("Go!")
