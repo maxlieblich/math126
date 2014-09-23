@@ -9,7 +9,8 @@ Vague question
 A menagerie of shapes
 ---------------------
 
-Cone: $x^2+y^2=z^2$
+**Cone**: $x^2+y^2=z^2$
+
 <div id="cone">
   <img src="media/lecture-6-cone.png"></img>
 </div>
@@ -21,18 +22,14 @@ Cone: $x^2+y^2=z^2$
     return x*x + y*y - z*z;
   }
   scene.camera.position.set(8, 8, 4);
-  var surface = new MarchingCubesModel({func: f, resolution: 150, material: MathScene.UWMaterial.clone()});
+  var surface = new MarchingCubesModel({func: f, resolution: 70, material: MathScene.UWMaterial.clone()});
   surface.embedInScene(scene);
-  scene.render();
 }());
 //]]>
 </script>
 
+**Freaky “cylinder”**: $y^2=x^2(x-1)$
 
-A menagerie of shapes
----------------------
-
-Freaky “cylinder”: $y^2=x^2(x-1)$
 <div id="cylinder">
   <img src="media/lecture-6-cylinder.png"></img>
 </div>
@@ -44,19 +41,15 @@ Freaky “cylinder”: $y^2=x^2(x-1)$
     return y*y - x*x*(x-1);
   }
   scene.camera.position.set(8, 8, 4);
-  var surface = new MarchingCubesModel({func: f, resolution: 150, material: MathScene.UWMaterial.clone()});
+  var surface = new MarchingCubesModel({func: f, resolution: 70, material: MathScene.UWMaterial.clone()});
   surface.embedInScene(scene);
-  scene.render();
 }());
 //]]>
 </script>
 
 
+**Ellipsoid**: $\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1$
 
-A menagerie of shapes
----------------------
-
-Ellipsoid: $\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1$
 <div id="ellipsoid">
   <img src="media/lecture-6-ellipsoid.png"></img>
 </div>
@@ -68,18 +61,14 @@ Ellipsoid: $\frac{1}{2}x^2+\frac{1}{3}y^2+z^2=1$
     return 1/2*x*x + 1/3 * y*y + z*z - 1;
   }
   scene.camera.position.set(8, 8, 4);
-  var surface = new MarchingCubesModel({func: f, resolution: 150, material: MathScene.UWMaterial.clone()});
+  var surface = new MarchingCubesModel({func: f, resolution: 70, material: MathScene.UWMaterial.clone()});
   surface.embedInScene(scene);
-  scene.render();
 }());
 //]]>
 </script>
 
+**Hyperbolic paraboloid**: $\frac{1}{9}x^2-\frac{1}{4}y^2=z$
 
-A menagerie of shapes
----------------------
-
-Hyperbolic paraboloid: $\frac{1}{9}x^2-\frac{1}{4}y^2=z$
 <div id="hyp-par">
   <img src="media/lecture-6-hyp-par.png"></img>
 </div>
@@ -91,18 +80,14 @@ Hyperbolic paraboloid: $\frac{1}{9}x^2-\frac{1}{4}y^2=z$
     return 1/9 * x*x - 1/4 * y*y - z;
   }
   scene.camera.position.set(8, 8, 4);
-  var surface = new MarchingCubesModel({func: f, resolution: 150, material: MathScene.UWMaterial.clone()});
+  var surface = new MarchingCubesModel({func: f, resolution: 70, material: MathScene.UWMaterial.clone()});
   surface.embedInScene(scene);
-  scene.render();
 }());
 //]]>
 </script>
 
+**Elliptic paraboloid**: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
 
-A menagerie of shapes
----------------------
-
-Elliptic paraboloid: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
 <div id="ell-par">
   <img src="media/lecture-6-ell-par.png"></img>
 </div>
@@ -117,7 +102,7 @@ Elliptic paraboloid: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
   scene.cameraControls.target.set(0, 0, 6)
   var surface = new MarchingCubesModel({
     func: f,
-    resolution: 150,
+    resolution: 70,
     xmin: -10,
     xmax: 10,
     ymin: -10,
@@ -125,7 +110,6 @@ Elliptic paraboloid: $\frac{1}{9}x^2+\frac{1}{4}y^2=z$
     zmin: 0,
     zmax: 10, material: MathScene.UWMaterial.clone()});
     surface.embedInScene(scene);
-    scene.render();
   }());
 //]]>
 </script>
@@ -160,7 +144,7 @@ Geometrically, we are intersecting the surface with a horizontal plane.
   scene.cameraControls.target.set(0, 0, 6);
   var surface = new MarchingCubesModel({
     func: f,
-    resolution: 150,
+    resolution: 70,
     xmin: -10,
     xmax: 10,
     ymin: -10,
@@ -172,7 +156,6 @@ Geometrically, we are intersecting the surface with a horizontal plane.
   var tracePlane = new THREE.Mesh(tracePlaneGeom, new THREE.MeshNormalMaterial({side: THREE.DoubleSide}));
   tracePlane.position.set(0, 0, 6);
   scene.scene.add(tracePlane);
-  scene.render();
 }());
 //]]>
 </script>
@@ -239,7 +222,6 @@ To calculate this algebraically:
   tracePlane.position.set(0, 0, 6-0.1);
   scene.scene.add(tracePlane);
   scene.gui.open();
-  scene.render();
 }());
 //]]>
 </script>
