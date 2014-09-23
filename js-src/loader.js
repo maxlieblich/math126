@@ -9,7 +9,7 @@ var loader = function (s) {
       var result = $(data);
       $("#content").html(result);
       // send event to Google Analytics
-      // ga('send', 'event', 'content', 'load', s);
+      ga('send', 'event', 'content', 'load', s);
       // process math
       MathJax.Hub.Queue(["Typeset", MathJax.Hub, "content"]);
   });
