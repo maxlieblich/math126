@@ -24,8 +24,7 @@ title: Math 126
 <div class="wrapper">
 <header>
 
-Math126
-=======
+# Math126
 
 Welcome to the new online Math 126. Choose a lecture and start learning.
 Fork us on GitHub, add your own thoughts, and send us a pull request!
