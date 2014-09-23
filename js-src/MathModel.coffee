@@ -13,7 +13,6 @@ class MathModel
       null
 
     if model.needsGui
-    #   mathScene.activateGui()
       model.addGui(mathScene.gui)
 
     if not mathScene.showingObjects
@@ -247,14 +246,15 @@ class MarchingCubesModel extends MathModel
     @needsGui = true
 
   embedObjects: =>
-    @march_async(false, @algorithm, @embedCallback)
+    @march_async(false, @algorithm)
     null
     # @mathScene.scene.add(@surface)
 
   # need to override embedInScene to handle asynchronous rendering so as not to 
   # make the snapshot vanish early
+  # binding @ is necessary because it appears that without this, the window is the caller!
 
-  embedCallback: ->
+  embedCallback: =>
     model = @
     old_calc = model.mathScene.calc
     model.mathScene.calc = (t) ->
@@ -263,19 +263,16 @@ class MarchingCubesModel extends MathModel
       old_calc(t)
       null
 
-    if model.needsGui
-    #   mathScene.activateGui()
-      model.addGui(model.mathScene.gui)
-
     if not @mathScene.showingObjects
-      mathScene.create()
-
+      model.mathScene.create()
     null
 
 
   embedInScene: (mathScene) ->
     model = @
     model.mathScene = mathScene
+    if model.needsGui
+      model.addGui(model.mathScene.gui)
     model.embedObjects()
     null
 
@@ -306,7 +303,7 @@ class MarchingCubesModel extends MathModel
     f.add(@, 'zmin').step(0.05)
     f.add(@, 'zmax').step(0.05)
     f.add(@, 'resolution', 40, 800).step(1)
-    f.add(@, 'algorithm', ['marchingCubes', 'marchingTetrahedra', 'surfaceNets'])
+    f.add(@, 'algorithm', ['marchingCubes', 'surfaceNets'])
     # f.add(@, 'smoothingLevel', 0, 2).step(1)
     f.add(@, 'rerender_async').name("Render")
     # f.add(@, 'debug')
@@ -314,7 +311,7 @@ class MarchingCubesModel extends MathModel
     null
 
   # see http://stackoverflow.com/a/10372280 for starting Workers via blobs
-  march_async: (b, algorithm="marchingCubes", callback) ->
+  march_async: (b, algorithm="marchingCubes") ->
     that = @
     debug = @debug
     window.URL = window.URL || window.webkitURL
@@ -366,14 +363,14 @@ class MarchingCubesModel extends MathModel
           console.log "surface constructed"
           that.mathScene.scene.add(that.surface)
           console.log "surface embedded"
-          if callback? then callback()
+          that.embedCallback()
       else
         if that.mathScene?
           that.mathScene.scene.remove(that.surface)
           that.surface = new_surface
           that.mathScene.scene.add(that.surface)
           that.mathScene.render()
-          if callback? then callback()
+          that.embedCallback()
       null
 
     worker.postMessage("Go!")
