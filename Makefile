@@ -69,15 +69,18 @@ $(foreach output, $(outputs), \
 
 # html rules
 html_files := $(patsubst %.md, %.html, $(patsubst src/%, build/html/%, $(files)))
+standalone_html_files := $(patsubst %.md, %-st.html, $(patsubst src/%, build/html/%, $(files)))
 
-build/html/%.html: src/%.md src/includes.html
+build/html/%.html: src/%.md
 	@mkdir -p $(@D)
-	# restore standalone files as separate target later?
-	# pandoc --write=html5 --output=$@ --smart --standalone --mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" --css=pandoc.css --include-in-header=src/includes.html $<
 	pandoc --write=html5 --output=$@ --smart --mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" $<
 	install -m644 $< build/html
 
-html: $(html_js) $(html_media) $(html_files)
+build/html/%-st.html: src/%.md src/includes.html
+	@mkdir -p $(@D)
+	pandoc --write=html5 --output=$@ --smart --standalone --mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" --css=pandoc.css --include-in-header=src/includes.html $<
+
+html: $(html_js) $(html_media) $(html_files) $(standalone_html_files)
 
 # epub rules
 build/epub/intermediate.epub: $(metadata) $(css) $(markdown)
