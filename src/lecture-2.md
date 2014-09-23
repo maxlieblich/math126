@@ -25,7 +25,9 @@ Graphical representation
 ------------------------
 
 Draw an arrow:
-<div id="vector"></div>
+<div id="vector">
+  <img src="media/lecture-2-vector.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -34,7 +36,7 @@ Draw an arrow:
     scene.scene.add(vec.arrow);
     scene.scene.add(new THREE.AxisHelper());
     scene.camera.position.set(4, 6, 5);
-    scene.render();
+    scene.create();
 })();
 //]]>
 </script>
@@ -45,7 +47,9 @@ Graphical representation
 Important (yet confusing): two vectors are equivalent if they have the
 same direction and magnitude. These are all equivalent:
 
-<div id="equivVectors"></div>
+<div id="equivVectors">
+  <img src="media/lecture-2-equivVectors.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -61,7 +65,6 @@ same direction and magnitude. These are all equivalent:
     }
     scene.scene.add(new THREE.AxisHelper());
     scene.camera.position.set(-1, 6, 2);
-    scene.render();
 })();
 //]]>
 </script>
@@ -72,7 +75,9 @@ Quick check
 Which vectors are equivalent to others in this picture? (Number them 1
 through 5 from left to right. For simplicity, they live in a plane.)
 
-<div id="vector-check"></div>
+<div id="vector-check">
+  <img src="media/lecture-2-vector-check.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -90,7 +95,6 @@ through 5 from left to right. For simplicity, they live in a plane.)
         var vec = makeVector(positions[i], dirs[i]);
         vec.embedInScene(scene);
     }
-    scene.render();
 })();
 //]]>
 </script>
@@ -129,7 +133,9 @@ The magic of vectors
 Draw the two vectors to be added using our representation that positions
 the start at the origin.
 
-<div id="vector-add-1"></div>
+<div id="vector-add-1">
+  <img src="media/lecture-2-vector-add-1.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -142,7 +148,6 @@ the start at the origin.
     // scene.scene.add(v2.arrow);
     v1.embedInScene(scene);
     v2.embedInScene(scene);
-    scene.render();
 })();
 //]]>
 </script>
@@ -155,7 +160,9 @@ The magic of vectors
 
 Translate the second one so that it starts at the end of the first one.
 
-<div id="vector-add-2"></div>
+<div id="vector-add-2">
+  <img src="media/lecture-2-vector-add-2.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -166,7 +173,6 @@ Translate the second one so that it starts at the end of the first one.
     var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
     v1.embedInScene(scene);
     v2.embedInScene(scene);
-    scene.render();
 })();
 //]]>
 </script>
@@ -180,7 +186,9 @@ The magic of vectors
 Connect the start of the first with the end of the translated second. We
 end up with purple as red plus blue
 
-<div id="vector-add-3"></div>
+<div id="vector-add-3">
+  <img src="media/lecture-2-vector-add-3.png"></img>
+</div>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -193,7 +201,6 @@ end up with purple as red plus blue
     v1.embedInScene(scene);
     v2.embedInScene(scene);
     v3.embedInScene(scene);
-    scene.render();
 })();
 //]]>
 </script>
