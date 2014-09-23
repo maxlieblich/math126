@@ -1,9 +1,10 @@
 outputs := html epub
 
-files := $(wildcard src/*)
-markdown := $(shell find src -name "*.md" | sort -t- -k2 -n)
+repo := $(shell git config --get remote.origin.url)
+index := src/index.md
+welcome := src/welcome.md
+markdown := $(filter-out $(welcome) $(index), $(shell find src -name "*.md" | sort -t- -k2 -n))
 includes := src/includes.html
-css := src/pandoc.css
 metadata := src/metadata.yml
 
 # basic rules
@@ -12,7 +13,12 @@ all: $(outputs)
 clean:
 	rm -rf build
 
-.PHONY: all clean $(outputs)
+.PHONY: all clean deploy $(outputs)
+
+define \n
+
+
+endef
 
 define INSTALL_TARGET
 $(1): $(2)
@@ -20,23 +26,26 @@ $(1): $(2)
 	install -m$(3) $$< $$@
 endef
 
-$(foreach output, $(outputs), \
-	$(eval $(call INSTALL_TARGET, build/$(output)/%, src/%, 644)))
-
 # mathjax rules
 MathJax/.git:
 	git submodule update --init $(@D)
 
 MathJax: MathJax/.git
 
-# media rules
-media = $(wildcard media/*)
+# simple directories
+copy_directories := stylesheets media images
 
-$(foreach output, $(outputs), \
-	$(eval $(call INSTALL_TARGET, build/$(output)/media/%, media/%, 644)))
+$(foreach directory, $(copy_directories), \
+	$(eval $(directory) := $(wildcard $(directory)/*)))
 
-$(foreach output, $(outputs), \
-	$(eval $(output)_media := $(patsubst media/%, build/$(output)/media/%, $(media))))
+$(foreach directory, $(copy_directories), \
+	$(foreach output, $(outputs), \
+		$(eval $(call INSTALL_TARGET, \
+			build/$(output)/$(directory)/%, $(directory)/%, 644))))
+
+$(foreach directory, $(copy_directories), \
+	$(foreach output, $(outputs), \
+		$(eval $(output)_$(directory) := $(addprefix build/$(output)/, $($(directory))))))
 
 # javascript/coffeescript rules
 js_source := $(wildcard js-src/*.js)
@@ -68,26 +77,58 @@ $(foreach output, $(outputs), \
 .PRECIOUS: build/js/%.js
 
 # html rules
-html_files := $(patsubst %.md, %.html, $(patsubst src/%, build/html/%, $(files)))
-standalone_html_files := $(patsubst %.md, %-st.html, $(patsubst src/%, build/html/%, $(files)))
+html_files := $(patsubst src/%.md, build/html/%.html, $(index) $(welcome) $(markdown))
+standalone_html_files := $(patsubst src/%.md, build/html/%-st.html, $(markdown))
+
+build/welcome.md: $(welcome) $(markdown)
+	@mkdir -p $(@D)
+	install -m 644 $< $@
+	echo "\n### Contents" >> $@
+	$(foreach file, $(markdown), \
+		head -1 $(file) | sed 's/^\#*[[:space:]]*\(.*\)/1. [\1](#$(patsubst src/%.md,%.html, $(file)))/' >> $@${\n}\
+	)
+
+build/html/welcome.html: build/welcome.md
+	@mkdir -p $(@D)
+	pandoc --write=html5 --output=$@ --smart --mathjax $<
+
+build/html/index.html: $(index)
+	@mkdir -p $(@D)
+	pandoc --write=html5 --output=$@ --smart --standalone $<
 
 build/html/%.html: src/%.md
 	@mkdir -p $(@D)
-	pandoc --write=html5 --output=$@ --smart --mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" $<
-	install -m644 $< build/html
+	pandoc --write=html5 --output=$@ --smart --mathjax $<
 
 build/html/%-st.html: src/%.md src/includes.html
 	@mkdir -p $(@D)
-	pandoc --write=html5 --output=$@ --smart --standalone --mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" --css=pandoc.css --include-in-header=src/includes.html $<
+	pandoc --write=html5 --output=$@ --smart --standalone \
+		--mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" \
+		--css=stylesheets/pandoc.css --include-in-header=src/includes.html $<
 
-html: $(html_js) $(html_media) $(html_files) $(standalone_html_files)
+html: $(html_stylesheets) $(html_media) $(html_images) $(html_js) $(html_files) $(standalone_html_files)
 
 # epub rules
-build/epub/intermediate.epub: $(metadata) $(css) $(markdown)
+build/epub/intermediate.epub: $(metadata) stylesheets/pandoc.css $(markdown)
 	@mkdir -p $(@D)
-	pandoc --write=epub3 --output=$@ --smart --mathml --epub-stylesheet=$(css) $(metadata) $(markdown)
+	pandoc --write=epub3 --output=$@ --smart --mathml --epub-stylesheet=stylesheets/pandoc.css $(metadata) $(markdown)
 
 build/epub/output.epub: build/epub/intermediate.epub MathJax $(includes) $(javascript) utils/post-process-epub.py
 	python utils/post-process-epub.py --output=$@ --input=$< --include-in-headers=$(includes) --mathjax=MathJax $(javascript)
 
 epub: build/epub/output.epub
+
+# deploy targets
+EPUB := build/html/downloads/UWOnlineMath126-$(shell date +%Y%m%d).epub
+$(EPUB): build/epub/output.epub
+	@mkdir -p $(@D)
+	install -m 644 $< $@
+	ln -sf $(@F) $(@D)/UWOnlineMath126.epub
+
+deploy: html $(EPUB)
+	rm -rf build/html/.git
+	git init build/html
+	git --git-dir=build/html/.git remote add origin $(repo)
+	git --git-dir=build/html/.git --work-tree=build/html add .
+	git --git-dir=build/html/.git commit -m 'test'
+	git --git-dir=build/html/.git push --force origin master:gh-pages
