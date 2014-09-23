@@ -130,5 +130,5 @@ deploy: html $(EPUB)
 	git init build/html
 	git --git-dir=build/html/.git remote add origin $(repo)
 	git --git-dir=build/html/.git --work-tree=build/html add .
-	git --git-dir=build/html/.git commit -m 'test'
+	git --git-dir=build/html/.git commit -m 'Update Website'
 	git --git-dir=build/html/.git push --force origin master:gh-pages

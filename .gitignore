@@ -1,3 +1,4 @@
 *.swp
 *.DS_Store
+js-src/gooan.js
 /build
