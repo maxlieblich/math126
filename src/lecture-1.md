@@ -126,7 +126,6 @@ What makes this shape...
     }
     var mc = new MarchingCubesModel({func: f, xmin: -1.5, xmax: 1.5, ymin: -1.5, ymax: 1.5, zmin: -1.5, zmax: 1.5, resolution: 50});
     mc.embedInScene(scene);
-    scene.render();
 }());
 //]]>
 </script>
@@ -145,7 +144,6 @@ What makes this shape...
     var mc = new MarchingCubesModel({func: f, xmin: -2, xmax: 2,
     ymin: -2, ymax: 2, zmin: -2, zmax: 2, resolution: 50});
     mc.embedInScene(scene);
-    scene.render();
 }());
 //]]>
 </script>
@@ -193,7 +191,6 @@ In the mean time, here's some math love to end on:
     }
     var mc = new MarchingCubesModel({func: f, resolution: 150, smoothingLevel: 1});
     mc.embedInScene(scene);
-    scene.render();
 }());
 //]]>
 </script>
