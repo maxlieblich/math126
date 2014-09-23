@@ -1,5 +1,6 @@
 outputs := html epub
 
+course := $(shell cat course.txt)
 repo := $(shell git config --get remote.origin.url)
 index := src/index.md
 welcome := src/welcome.md
@@ -119,13 +120,19 @@ build/epub/output.epub: build/epub/intermediate.epub MathJax $(includes) $(javas
 epub: build/epub/output.epub
 
 # deploy targets
-EPUB := build/html/downloads/UWOnlineMath126-$(shell date +%Y%m%d).epub
+EPUB := build/html/downloads/$(course)-$(shell date +%Y%m%d).epub
 $(EPUB): build/epub/output.epub
 	@mkdir -p $(@D)
+	@rm -f $(@D)/$(course)-*.epub
 	install -m 644 $< $@
-	ln -sf $(@F) $(@D)/UWOnlineMath126.epub
 
-deploy: html $(EPUB)
+downloadepubjs := build/html/js/downloadepub.js
+
+$(downloadepubjs):
+	@mkdir -p $(@D)
+	echo "function DownloadEpub(){window.open(\"$(patsubst build/html/%, %, $(EPUB))\");}" > $@
+
+deploy: html $(EPUB) $(downloadepubjs)
 	rm -rf build/html/.git
 	git init build/html
 	git --git-dir=build/html/.git remote add origin $(repo)
