@@ -28,7 +28,6 @@ var plane2 = new PlaneShadowModel({
   });
   plane1.embedInScene(scene);
   plane2.embedInScene(scene);
-  scene.render();
 }());
 //]]>
 </script>
@@ -60,7 +59,6 @@ var plane2 = new PlaneShadowModel({
   });
   plane1.embedInScene(scene);
   plane2.embedInScene(scene);
-  scene.render();
 }());
 //]]>
 </script>
