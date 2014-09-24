@@ -93,9 +93,9 @@ build/html/welcome.html: build/welcome.md
 	@mkdir -p $(@D)
 	pandoc --write=html5 --output=$@ --smart --mathjax $<
 
-build/html/index.html: $(index)
+build/html/index.html: $(index) src/index.layout
 	@mkdir -p $(@D)
-	pandoc --write=html5 --output=$@ --smart --standalone $<
+	pandoc --template=src/index.layout --write=html5 --output=$@ --smart --standalone $<
 
 build/html/%.html: src/%.md
 	@mkdir -p $(@D)
