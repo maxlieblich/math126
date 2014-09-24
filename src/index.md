@@ -4,6 +4,7 @@ header-includes: |
     <script src="js/scale.fix.js" type="text/javascript"></script>
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <script src="js/downloadepub.js" type="text/javascript"></script>
+    <script src="js/gotorepo.js" type="text/javascript"></script>
     <script src="js/loader.js" type="text/javascript"></script>
     <script src="js/three.min.js" type="text/javascript"></script>
     <script src="js/ArrowHelperFixed.js" type="text/javascript"></script>
@@ -31,7 +32,7 @@ Welcome to the new online Math 126. Choose a lecture and start learning.
 Fork us on GitHub, add your own thoughts, and send us a pull request!
 
 - <a class="buttons download" onclick="DownloadEpub();">Download ebook</a>
-- <a class="buttons github" href="https://github.com/maxlieblich/math126">View On GitHub</a>
+- <a class="buttons github" onclick="GotoRepo();">View On GitHub</a>
 - <a class="buttons menu" href="#welcome.html">Contents</a>
 
 This project is maintained by

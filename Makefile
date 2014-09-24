@@ -132,7 +132,12 @@ $(downloadepubjs):
 	@mkdir -p $(@D)
 	echo "function DownloadEpub(){window.open(\"$(patsubst build/html/%, %, $(EPUB))\");}" > $@
 
-deploy: html $(EPUB) $(downloadepubjs)
+gotorepojs := build/html/js/gotorepo.js
+$(gotorepojs):
+	@mkdir -p $(@D)
+	echo "function GotoRepo(){window.location=\"$(shell echo $(repo) | sed -e 's+^git@github.com:+https://github.com/+' -e 's+.git$$++')\";}" > $@
+
+deploy: html $(EPUB) $(downloadepubjs) $(gotorepojs)
 	rm -rf build/html/.git
 	git init build/html
 	git --git-dir=build/html/.git remote add origin $(repo)
