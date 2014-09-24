@@ -9,7 +9,7 @@ three (or more!) dimensions?
 
 This course will introduce you to calculus in multiple dimensions. Unlike
 previous courses, it will rely more heavily on visualization skills and
-phyiscal understanding/intuition than symbol pushing. Here's a rough
+physical understanding/intuition than symbol pushing. Here's a rough
 **outline of topics**:
 
  * Baby steps in three dimensions: 3D coordinates, vectors, lines and
