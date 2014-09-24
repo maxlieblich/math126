@@ -1,30 +1,41 @@
-Vectors: geometry
-=================
+# Vectors Defined, Manipulated
 
-Flaky definition
-----------------
+## Summary
 
-A vector is an object with two properties: direction and magnitude. For
-example,
+Today we'll introduce **vectors**. We'll define some geometric operations
+on vectors including addition and scaling. Finally we'll translate our
+geometric considerations into algebra via coordinates.
+
+## Motivating Vectors
+
+Imagine pushing a book across a desk with your finger. How would you
+communicate to someone else precisely how you pushed the book? For a good
+approximation, you'd need to specify the direction of your push and how
+strong it was. Now imagine an arrow attached to your finger pointing
+through the book, with the length of the arrow increasing or decreasing
+depending on how hard you push. Roughly, that arrow is a **vector** which
+describes your push quantitatively.
+
+Continuing informally, a vector is an object with two properties: direction
+and magnitude. It's a surprisingly flexible concept. They also model...
 
 -   Displacement from a fixed point
 -   Velocity
 -   Acceleration
--   Force applied by angry customer
+-   The law of cosines
+-   Force applied by angry customers
+-   Direction of magnetic fields
+-   Polarization of photons
+-   ...
 
-Special vector: $\mathbf{0}$
-------------------------------
+## Defining Vectors
 
-There is one special vector: the $0$ vector, written $\mathbf{0}$.
+More formally, a **vector** is a directed line segment up to translation
+equivalence. That is, a vector has a start point and an end point, but
+if we move both the start point and end point in the same way, we have the
+same vector.
 
-The vector $\mathbf{0}$ has magnitude $0$ and "any" direction.
-
-Example: the trivial displacement (go nowhere!).
-
-Graphical representation
-------------------------
-
-Draw an arrow:
+For example, here's a vector in 3D:
 <div id="vector">
   <img src="media/lecture-2-vector.png"></img>
 </div>
@@ -40,12 +51,14 @@ Draw an arrow:
 })();
 //]]>
 </script>
+This vector starts at the origin and ends at $(1, 2, 2)$. (Red is the
+x-axis, green is the y-axis, blue is the z-axis.) We write this vector
+as $\langle 1, 2, 2 \rangle$ (read as "The vector one two two").
 
-Graphical representation
-------------------------
-
-Important (yet confusing): two vectors are equivalent if they have the
-same direction and magnitude. These are all equivalent:
+Important yet confusing: two vectors are equivalent if they have the
+same direction and magnitude, i.e. if you can translate one to the other
+without rotation or reflection. Here's four copies of the **same vector**
+$\langle 0.1, 0, 1 \rangle$:
 
 <div id="equivVectors">
   <img src="media/lecture-2-equivVectors.png"></img>
@@ -69,11 +82,9 @@ same direction and magnitude. These are all equivalent:
 //]]>
 </script>
 
-Quick check
------------
-
-Which vectors are equivalent to others in this picture? (Number them 1
-through 5 from left to right. For simplicity, they live in a plane.)
+**Exercise:** Which vectors are equivalent to others in this picture?
+(For simplicity, they live in a plane. Vectors can live in space with
+any number of dimensions.)
 
 <div id="vector-check">
   <img src="media/lecture-2-vector-check.png"></img>
@@ -99,39 +110,31 @@ through 5 from left to right. For simplicity, they live in a plane.)
 //]]>
 </script>
 
-Graphical representation
-------------------------
+### Vectors, Points, and Zero
 
-Thus, we will always represent vectors as arrows starting at the origin
-$(0,0,0)$.
+The **zero vector** $\langle 0, 0, 0 \rangle$ starts and ends at the same
+point. It represents the "trivial displacement" (go nowhere!). It has
+magnitude $0$ and "any" direction; all other vectors have a single
+direction. (This points out a weakness in the "definition" of a vector as
+an object with direction and magnitude, since the zero vector has no single
+direction, but allowing the zero vector will bring us only happiness.)
 
-Cheerleading
-------------
+We write $\mathbf{0}$ for the zero vector, though depending on context we
+may also mean $\mathbf{0} = \langle 0, 0 \rangle$. More generally we
+frequently refer to vectors via bold variables like $\mathbf{u}$ or
+$\mathbf{v}$. We may instead draw an arrow over variable names like
+$\vec{a}$ or $\vec{b}$.
 
-Does a vector have a position?
+Since a vector can always be thought of as starting at the origin, we
+will almost always represent vectors as arrows starting at the origin.
+We will also frequently translate between points and vectors without
+comment. Finally, given two points $P$ and $Q$, the vector starting at
+$P$ ending at $Q$ is written $\overrightarrow{PQ}$.
 
-I can't hear you!
+## Adding Vectors Graphically
 
-What does it have?
-
-A vector only has
-
-### DIRECTION
-
-### MAGNITUDE
-
-The magic of vectors
---------------------
-
-### Vectors can be added and scaled.
-
-The magic of vectors
---------------------
-
-### Adding vectors graphically with the triangle rule
-
-Draw the two vectors to be added using our representation that positions
-the start at the origin.
+If I jog north-northwest 2 miles and then southwest 3 miles, where do I end
+up? Represent the NNW leg by a red vector and the SW leg by a blue vector:
 
 <div id="vector-add-1">
   <img src="media/lecture-2-vector-add-1.png"></img>
@@ -152,13 +155,7 @@ the start at the origin.
 //]]>
 </script>
 
-
-The magic of vectors
---------------------
-
-### Adding vectors graphically with the triangle rule
-
-Translate the second one so that it starts at the end of the first one.
+Translate the second one so that it starts at the end of the first one:
 
 <div id="vector-add-2">
   <img src="media/lecture-2-vector-add-2.png"></img>
@@ -177,14 +174,8 @@ Translate the second one so that it starts at the end of the first one.
 //]]>
 </script>
 
-
-The magic of vectors
---------------------
-
-### Adding vectors graphically with the triangle rule
-
-Connect the start of the first with the end of the translated second. We
-end up with purple as red plus blue
+Connect the start of the first with the end of the translated second. This gives
+purple as the result of adding red and blue:
 
 <div id="vector-add-3">
   <img src="media/lecture-2-vector-add-3.png"></img>
@@ -205,103 +196,117 @@ end up with purple as red plus blue
 //]]>
 </script>
 
+Moreover, the purple vector represents my final position after jogging both
+legs, so this is a physically useful operation.
 
-The magic of vectors
---------------------
+**Exercise:** Check yourself before you wreck yourself! What is the sum of
+the vector connecting points $p_1$ and $p_2$ and the vector connecting points
+$p_2$ and $p_3$?
 
-### Check yourself before you wreck yourself
-
-What is the sum of the displacement vector connecting points $p_1$
-and $p_2$ and the displacement vector connecting points $p_2$ and
-$p_3$?
-
-Fun
----
+**Exercise:**
 
 -   Let $A,B,C,D$ be the vertices of a square. Choose a specific
     example if you want. Compute the sum of vectors
-    $$\vec{AB}+\vec{BC}+\vec{CD}+\vec{DA}.$$
+    $$\overrightarrow{AB}+\overrightarrow{BC}
+      +\overrightarrow{CD}+\overrightarrow{DA}.$$
 -   Let $A_1,A_2,A_3,A_4,A_5,A_6$ be points. Compute the sum
-    $$\vec{A_1A_2}+\vec{A_2A_3}+\vec{A_3A_4}+\vec{A_4A_5}+\vec{A_5A_6}+\vec{A_6A_1}.$$
+    $$\overrightarrow{A_1A_2}+\overrightarrow{A_2A_3}
+      +\overrightarrow{A_3A_4}+\overrightarrow{A_4A_5}
+      +\overrightarrow{A_5A_6}+\overrightarrow{A_6A_1}.$$
 
+## Scaling Vectors Graphically
 
-Vectors: components
-===================
+Given a vector $\mathbf{v}$, there's an obvious interpretation of
+$2\mathbf{v}$: it's the same as $\mathbf{v}$ but twice as long.
+Likewise $\mathbf{v}/2$ is $\mathbf{v}$ but half as long. What about
+negatives? They reverse the direction of the vector.
 
-Numbers breed vectors
----------------------
+**Exercise:** Show graphically that
 
-### We can also describe vectors using numbers.
+-   $\mathbf{v} + \mathbf{v} = 2\mathbf{v}$.
+-   $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$.
 
-The vector connecting $A=(0,0,0)$ to $B=(a,b,c)$ is written as
+**Exercise:** (Difficult.) Let $A, B, C$ be vertices of a triangle.
+What is
+    $$ \frac{A+B+C}{3} $$
+geometrically? (Here we're treating $A$ as the vector
+$\overrightarrow{OA}$ where $O$ is the origin.) Does it lie inside
+the triangle or outside? (Hint: look up "barycentric coordinates.")
 
-$$\mathbf{v}=\langle a, b, c\rangle$$
+## Manipulating Vectors Algebraically
 
-This uses the standard representation of vectors from before: force them
-to start at $(0,0,0)$.
+The geometric definitions above are simple and beautiful. They are
+not particularly efficient: to add two vectors, you have to draw
+them out. So, we'll next distill the essence of these definitions
+into a few algebraic rules. To motivate those rules, try the
+following concrete examples first:
 
-The length of $\mathbf{v}=\langle a, b, c\rangle$ is
+**Exercise:**
 
-$$|\mathbf{v}| = \sqrt{a^2+b^2+c^2}$$
+1. Consider the vectors $\langle 1,0,0\rangle$ and $\langle
+   0,1,0\rangle$. Find $a,b,c$ such that
+   $$\langle1,0,0\rangle+\langle 0,1,0\rangle=\langle a,b,c\rangle.$$
+2. Show that
+   $$\langle 0,3,4\rangle+\langle 1,-1,0\rangle=\langle
+     1,2,4\rangle$$
+   from the geometric definition.
+3. Calculate the length of the vector connecting the point $(0,2,4)$
+   to the point $(1,-1,1)$.
 
-Numbers breed vectors
----------------------
+From these examples (and similar ones) we can guess a few general
+rules for computing scaled vector sums, which we'll get to shortly.
+It's often convenient to "decompose" a vector into coordinates:
+for instance, in $\langle a, b, c\rangle$, $a$ is called the x-coordinate,
+$b$ is the y-coordinate, and $c$ is the z-coordinate. Using the first
+property below, we can frequently reduce general properties of vectors
+to their one-dimensional counterparts, like the second property below:
 
-### Any vector is made of three coordinates like that:
+**Exercise:** Prove **any three** from the geometric definition:
 
-Using this notation, the vector connecting the point $A=(a,b,c)$ to
-the point $B=(a',b',c')$
+1. $$\langle a, b, c \rangle = \langle a, 0, 0 \rangle
+     + \langle 0, b, 0 \rangle + \langle 0, 0, c \rangle.$$
+2. $$t \langle a, 0, 0 \rangle = \langle ta, 0, 0 \rangle.$$
+3. $$t \langle a, b, c \rangle = \langle ta, tb, tc \rangle.$$
+4. $$\langle a, b, c \rangle + \langle a', b', c' \rangle
+     = \langle a+a', b+b', c+c' \rangle.$$
+5. Show that the vector connecting the point $A=(a,b,c)$ to
+   the point $B=(a',b',c')$ is
+   $$\overrightarrow{AB} = \langle a'-a,b'-b,c'-c\rangle.$$
+6. Show that the length of $\langle a, b, c\rangle$ is
+   $$\sqrt{a^2+b^2+c^2}.$$
 
-$$\vec{AB}=\langle a'-a,b'-b,c'-c\rangle.$$
+We write $|\mathbf{v}|$ for the **length** or **magnitude** of $\mathbf{v}$.
+If $\mathbf{v} \neq \mathbf{0}$, then
+$$ \frac{\mathbf{v}}{|\mathbf{v}|} $$
+has length 1 but points in the same direction as $\mathbf{v}$. It will
+frequently be convenient to throw away the length information and keep only
+direction information using this operation.
 
-Note: you must always subtract the coordinates in the same order!
+Unimportant remark: vectors behave extremely well under addition and scaling.
+These operations are associative, commutative, distributive, various
+inverses exist, identities exist and behave themselves, etc. We will typically
+assume such properties as geometrically obvious without further comment.
+If you're interested in this sort of thing, vectors are formally a
+"real vector space". For more on this, see Math 308 or any introductory
+book on linear algebra.
 
-Brain massage
--------------
+## Brain massage: use it or lose it
 
--   Calculate the length of the vector connecting the point $(0,2,4)$
-    to the point $(1,-1,1)$.
--   Consider the vectors $\langle 1,0,0\rangle$ and $\langle
-    0,1,0\rangle$. Find $a,b,c$ such that $$\langle
-    1,0,0\rangle+\langle 0,1,0\rangle=\langle a,b,c\rangle.$$ Try
-    this for another pair of vectors if you finish early. Rinse and
-    repeat.
+Here are some problems that require a little creativity--the sort
+of thing that might show up on an exam.
 
-Numbers breed vectors
----------------------
-
-### Addition and scaling using numbers:
-
-$$\langle a,b,c\rangle +\langle a',b',c'\rangle=\langle a+a',
-b+b', c+c'\rangle$$
-
-$$\langle 0,3,4\rangle+\langle 1,-1,0\rangle=\langle
-1,2,4\rangle$$
-
-* * * * *
-
-$$\gamma\langle a,b,c\rangle=\langle\gamma a,\gamma b,\gamma
-c\rangle$$
-
-$$3\langle 1,1,2\rangle=\langle 3,3,6\rangle$$
-
-Use it or lose it
------------------
+**Exercise:**
 
 -   Do the points
-
-    $$(1,2,3), (2,3,4),(37, 38, 40)$$
-
+    $$(1,2,3), (2,3,4), (37, 38, 40)$$
     lie on a single line in $\mathbf{R}^3$?
-
 -   Find the line containing the largest number of the following points
-
     $$(1,0,1), (0,2,0), (1,2,3), (2,2,4), (3,2,5).$$
 
-### Criterion
+Hint:
 
 -   Two non-zero vectors $\mathbf{v}$ and $\mathbf{w}$ have the same
-    or opposite direction if $$\mathbf{v}=c\mathbf{w}$$ for some
+    or opposite direction if and only if $$\mathbf{v}=c\mathbf{w}$$ for some
     non-zero number $c$.
 -   Why is this true?
 -   Does this help with the problem?
