@@ -1,6 +1,6 @@
 class MathScene
   HEIGHT: 400
-  WIDTH: 700
+  WIDTH: 650
   shadow: null
   guiActive: false
   live: false
@@ -23,6 +23,8 @@ class MathScene
     else
       @container = document.body.appendChild(document.createElement("div"))
     @container.style.position = "relative"
+    @WIDTH = Math.min(650, window.innerWidth - 10)
+    @HEIGHT = Math.floor(@WIDTH * 400 / 650)
     webGLEnabled = @populate()
     if not webGLEnabled
       return
