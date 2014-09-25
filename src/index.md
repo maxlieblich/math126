@@ -18,7 +18,7 @@ header-includes: |
     <script src="js/Detector.js" type="text/javascript"></script>
     <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
     <script src="js/dat.gui.min.js" type="text/javascript"></script>
-    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+    <script src="MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 css: stylesheets/styles.css
 title: Math 126
 ...
