@@ -27,6 +27,8 @@ $(1): $(2)
 	install -m$(3) $$< $$@
 endef
 
+add_files = $(shell find $(1) -type f)
+
 # mathjax rules
 MathJax/.git:
 	git submodule update --init $(@D)
@@ -37,7 +39,12 @@ MathJax: MathJax/.git
 copy_directories := stylesheets media images
 
 $(foreach directory, $(copy_directories), \
-	$(eval $(directory) := $(wildcard $(directory)/*)))
+	$(eval $(directory) := $(call add_files, $(directory))))
+
+MathJax := MathJax.js config/TeX-AMS_HTML.js jax/element images jax/output/HTML-CSS
+MathJax := $(foreach file, $(addprefix MathJax/, $(MathJax)), $(call add_files, $(file)))
+
+copy_directories += MathJax
 
 $(foreach directory, $(copy_directories), \
 	$(foreach output, $(outputs), \
@@ -77,6 +84,16 @@ $(foreach output, $(outputs), \
 # so we don't have to rebuild them for different outputs
 .PRECIOUS: build/js/%.js
 
+# epub rules
+build/epub/intermediate.epub: $(metadata) stylesheets/pandoc.css $(markdown)
+	@mkdir -p $(@D)
+	pandoc --write=epub3 --output=$@ --smart --mathml --epub-stylesheet=stylesheets/pandoc.css $(metadata) $(markdown)
+
+build/epub/output.epub: build/epub/intermediate.epub MathJax $(includes) $(javascript) utils/post-process-epub.py
+	python utils/post-process-epub.py --output=$@ --input=$< --include-in-headers=$(includes) --mathjax=MathJax $(javascript)
+
+epub: build/epub/output.epub
+
 # html rules
 html_files := $(patsubst src/%.md, build/html/%.html, $(index) $(welcome) $(markdown))
 standalone_html_files := $(patsubst src/%.md, build/html/%-st.html, $(markdown))
@@ -84,7 +101,10 @@ standalone_html_files := $(patsubst src/%.md, build/html/%-st.html, $(markdown))
 build/welcome.md: $(welcome) $(markdown)
 	@mkdir -p $(@D)
 	install -m 644 $< $@
-	echo "\n### Contents" >> $@
+	echo >> $@
+	echo >> $@
+	echo >> $@
+	echo "### Contents" >> $@
 	$(foreach file, $(markdown), \
 		head -1 $(file) | sed 's/^\#*[[:space:]]*\(.*\)/1. [\1](#$(patsubst src/%.md,%.html, $(file)))/' >> $@${\n}\
 	)
@@ -107,19 +127,6 @@ build/html/%-st.html: src/%.md src/includes.html
 		--mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" \
 		--css=stylesheets/pandoc.css --include-in-header=src/includes.html $<
 
-html: $(html_stylesheets) $(html_media) $(html_images) $(html_js) $(html_files) $(standalone_html_files)
-
-# epub rules
-build/epub/intermediate.epub: $(metadata) stylesheets/pandoc.css $(markdown)
-	@mkdir -p $(@D)
-	pandoc --write=epub3 --output=$@ --smart --mathml --epub-stylesheet=stylesheets/pandoc.css $(metadata) $(markdown)
-
-build/epub/output.epub: build/epub/intermediate.epub MathJax $(includes) $(javascript) utils/post-process-epub.py
-	python utils/post-process-epub.py --output=$@ --input=$< --include-in-headers=$(includes) --mathjax=MathJax $(javascript)
-
-epub: build/epub/output.epub
-
-# deploy targets
 EPUB := build/html/downloads/$(course)-$(shell date +%Y%m%d).epub
 $(EPUB): build/epub/output.epub
 	@mkdir -p $(@D)
@@ -127,7 +134,6 @@ $(EPUB): build/epub/output.epub
 	install -m 644 $< $@
 
 downloadepubjs := build/html/js/downloadepub.js
-
 $(downloadepubjs):
 	@mkdir -p $(@D)
 	echo "function DownloadEpub(){window.open(\"$(patsubst build/html/%, %, $(EPUB))\");}" > $@
@@ -137,7 +143,10 @@ $(gotorepojs):
 	@mkdir -p $(@D)
 	echo "function GotoRepo(){window.location=\"$(shell echo $(repo) | sed -e 's+^git@github.com:+https://github.com/+' -e 's+.git$$++')\";}" > $@
 
-deploy: html $(EPUB) $(downloadepubjs) $(gotorepojs)
+html: $(html_MathJax) $(html_stylesheets) $(html_media) $(html_images) $(html_js) $(html_files) $(standalone_html_files) $(EPUB) $(downloadepubjs) $(gotorepojs)
+
+# deploy targets
+deploy: html
 	rm -rf build/html/.git
 	git init build/html
 	git --git-dir=build/html/.git remote add origin $(repo)
