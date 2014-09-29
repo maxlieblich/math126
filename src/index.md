@@ -18,7 +18,34 @@ header-includes: |
     <script src="js/Detector.js" type="text/javascript"></script>
     <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
     <script src="js/dat.gui.min.js" type="text/javascript"></script>
-    <script src="MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+    //<![CDATA[
+    MathJax.Hub.Config({
+        jax: [
+            "input/TeX",
+            "output/SVG",
+        ],
+        extensions: [
+            "tex2jax.js",
+            "MathEvents.js",
+        ],
+        TeX: {
+            extensions: [
+                "AMSmath.js",
+                "AMSsymbols.js",
+            ]
+        },
+        MathMenu: {
+            showRenderer: false
+        },
+        menuSettings: {
+            zoom: "Click"
+        },
+        messageStyle: "none",
+    });
+    //]]>
+    </script>
+    <script src="MathJax/MathJax.js" type="text/javascript"></script>
 css: stylesheets/styles.css
 title: Math 126
 ...
