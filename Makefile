@@ -41,7 +41,21 @@ copy_directories := stylesheets media images
 $(foreach directory, $(copy_directories), \
 	$(eval $(directory) := $(call add_files, $(directory))))
 
-MathJax := MathJax.js config/TeX-AMS_HTML.js jax/element images jax/output/HTML-CSS
+MathJax := \
+	MathJax.js \
+	images \
+	jax/element \
+	jax/input/TeX \
+	jax/output/SVG/autoload \
+	jax/output/SVG/config.js \
+	jax/output/SVG/fonts/TeX \
+	jax/output/SVG/jax.js \
+	extensions/TeX \
+	extensions/MathEvents.js \
+	extensions/MathMenu.js \
+	extensions/MathZoom.js \
+	extensions/tex2jax.js
+
 MathJax := $(foreach file, $(addprefix MathJax/, $(MathJax)), $(call add_files, $(file)))
 
 copy_directories += MathJax
