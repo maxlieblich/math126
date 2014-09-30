@@ -7,6 +7,7 @@ class MathScene
   animated: false
   initTime: 3000
   showingObjects: false
+  idString: null
   # static material for surfaces, made from official UW colors
   # lame
   @UWMaterial: new THREE.MeshPhongMaterial({
@@ -22,6 +23,11 @@ class MathScene
       @container = document.getElementById containerName
     else
       @container = document.body.appendChild(document.createElement("div"))
+    elts = @container.getElementsByTagName("img")
+    if elts.length > 0
+      @idString = elts[0].src
+    else
+      @idString = @container.id
     @container.style.position = "relative"
     @WIDTH = Math.min(650, window.innerWidth - 10)
     @HEIGHT = Math.floor(@WIDTH * 400 / 650)
@@ -41,11 +47,24 @@ class MathScene
       @renderer = new THREE.CanvasRenderer()
     return
 
-  setCameraControls: =>
+  setCameraControls: ->
+    that = @
     @cameraControls = new THREE.TrackballControls @camera, @renderer.domElement
     @cameraControls.target.set 0, 0, 0
-    @cameraControls.addEventListener 'end', @kill
-    @cameraControls.addEventListener 'start', @birth
+    @cameraControls.addEventListener(
+      'end', 
+      () -> 
+        if ga? then ga 'send', 'event', 'interact', 'end', that.idString, Date.now()
+        that.kill()
+        return
+    )
+    @cameraControls.addEventListener(
+      'start',
+      () ->
+        if ga? then ga 'send', 'event', 'interact', 'start', that.idString, Date.now()
+        that.birth()
+        return
+    )
     null 
 
   enableShadow: ->

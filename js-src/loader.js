@@ -1,6 +1,6 @@
 $(function (){
-  location.hash = "#welcome.html";
-  loader("welcome.html");
+  var loc = location.hash.length < 2 ? "welcome.html" : location.hash.substring(1);
+  loader(loc);
 });
 
 var loader = function (s) {
