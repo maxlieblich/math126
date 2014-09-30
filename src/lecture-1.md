@@ -28,6 +28,7 @@ physical understanding/intuition than symbol pushing. Here's a rough
    (center of mass, speed, sources of acceleration, volume, etc.)
 4. ...to know if a roller coaster shaped like a trefoil knot will make riders
    black out:
+   
 <div id="trefoil">
   <img src="media/lecture-1-trefoil.png"></img>
 </div>

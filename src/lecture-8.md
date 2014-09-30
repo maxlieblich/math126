@@ -204,7 +204,7 @@ at $t=0$. Initial position: $(0,0,1)$, velocity $\langle
 slo-mo):
 
 <div id="joeycontainer">
-  <img src="media/lecture-8-joeycontainer"></img>
+  <img src="media/lecture-8-joeycontainer.png"></img>
 </div>
 <script type="text/javascript">
 //<![CDATA[

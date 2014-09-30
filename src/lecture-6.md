@@ -131,7 +131,7 @@ We can make a horizontal trace (horizontal slice) at $z=6$.
 
 Geometrically, we are intersecting the surface with a horizontal plane.
 <div id="horizontal-trace-1">
-  <img src="lecture-6-horizontal-trace-1"></img>
+  <img src="media/lecture-6-horizontal-trace-1.png"></img>
 </div>
 <script type="text/javascript">
 //<![CDATA[
@@ -166,7 +166,7 @@ To calculate this algebraically:
 - We can plot the ellipse in a plane to visualize this slice. We can vary the value of $z$ and see how the horizontal traces vary. For the sake of visualization, we are plotting plane at its corresponding height over the $xy$-plane, but the "horizontal trace" is the red curve, **viewed simply as a curve in the plane, not in space**.
 
 <div id="horizontal-trace-2">
-  <img src="lecture-6-horizontal-trace-2"></img>
+  <img src="media/lecture-6-horizontal-trace-2.png"></img>
 </div>
 <script type="text/javascript">
 //<![CDATA[
