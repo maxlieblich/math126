@@ -1,0 +1,50 @@
+<h1 id="polar-coordinates">Polar Coordinates</h1>
+<h2 id="how-does-radar-work">How does radar work?</h2>
+<p>Antenna sweeps around broadcasting signal.</p>
+<p>Signal bounces off of objects and comes back.</p>
+<p>Radar records the direction and distance to locate the object.</p>
+<h2 id="descartes-is-cool.-so-is-radar.">Descartes is cool. So is radar.</h2>
+<p>The radar uses a different coordinate system. To locate a point in the plane one can:</p>
+<ul>
+<li>Find its distance <span class="math">\(r\)</span> from the origin.</li>
+<li>Find its angle <span class="math">\(\theta\)</span> counterclockwise from the <span class="math">\(x\)</span>-axis.</li>
+<li>The pair <span class="math">\((r,\theta)\)</span> determines the location of the point, with one caveat: one point can have several different sets of polar coordinates!. (Give infinitely many examples. Now.)</li>
+</ul>
+<h2 id="code-name-polar-coordinates">Code name: polar coordinates</h2>
+<ul>
+<li>We can convert back and forth: <span class="math">\[x=r\cos(\theta),
+y=r\sin(\theta)\]</span> (like sending a code from East Berlin to West Berlin in 1974).</li>
+<li>Example: the point with polar coordinates <span class="math">\((r,\theta)=(7,\pi)\)</span> has Cartesian coordinates <span class="math">\[(x,y)=(7\cos(\pi),7\sin(\pi))=(-7,0).\]</span></li>
+<li>Converting in other direction is more fun: first, <span class="math">\(r=\sqrt{x^2+y^2}\)</span>. To get the angle, you could try to use <span class="math">\[\tan(\theta)=\frac{y}{x}\]</span> when this makes sense, or you could use one of the formulas <span class="math">\(x=r\cos(\theta)\)</span> or <span class="math">\(y=r\sin(\theta)\)</span>. Use eyeballs and brain(s).</li>
+<li>Most fun: graphing equations.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>What is the polar equation of a circle of radius <span class="math">\(a\)</span> around the origin?
+<ul>
+<li><span class="math">\(r=a\)</span></li>
+</ul></li>
+<li>What is the polar equation of the line <span class="math">\(x=3\)</span>?
+<ul>
+<li><span class="math">\(r\cos(\theta)=3\)</span></li>
+</ul></li>
+<li>Try one: find the polar equation of the line <span class="math">\(y=2x+5\)</span>.</li>
+<li>Try another one: find the polar equation of the ellipse <span class="math">\(\frac{1}{2}x^2+\frac{1}{3}y^2=1\)</span></li>
+</ul>
+<h2 id="polar-graphs-are-beautiful">Polar graphs are beautiful</h2>
+<h3 id="here-are-some-examples">Here are some examples</h3>
+<p>You can play with the parameters and see what happens!</p>
+<h2 id="examples-1">Examples</h2>
+<p><span class="math">\(r=\theta^{\textrm{power}}\)</span>, <span class="math">\(0\leq\theta\leq \textrm{multiple}\cdot\pi\)</span></p>
+<h2 id="examples-2">Examples</h2>
+<p><span class="math">\(r=\sin(\textrm{love}\cdot\theta)\)</span>, <span class="math">\(0\leq\theta\leq \textrm{multiple}\cdot\pi\)</span></p>
+<h2 id="examples-3">Examples</h2>
+<p><span class="math">\(r=c+\sin(\textrm{love}\cdot\theta)\)</span>, <span class="math">\(0\leq\theta\leq \textrm{multiple}\cdot\pi\)</span></p>
+<h2 id="try-some-the-other-way">Try some the other way!</h2>
+<p>Example: the Cartesian equation of the curve with polar equation <span class="math">\[r=\sin(\theta)\]</span> is <span class="math">\[x^2+\left(y-\frac{1}{2}\right)^2=\frac{1}{4}.\]</span></p>
+<p>Trick: multiply both sides by <span class="math">\(r\)</span>, yielding <span class="math">\(r^2=r\sin\theta\)</span>, then use <span class="math">\(r^2=x^2+y^2\)</span> and <span class="math">\(r\sin\theta=y\)</span>.</p>
+<ul>
+<li>What is the Cartesian equation corresponding to <span class="math">\(r=\sin(\theta)+\cos(\theta)\)</span>?</li>
+<li>How about <span class="math">\(r=\cos(\theta)\)</span>?</li>
+<li>Or <span class="math">\(r^2=\sec(\theta)\)</span>?</li>
+</ul>

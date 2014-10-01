@@ -1,0 +1,166 @@
+<h1 id="vector-valued-functions-theory">Vector valued functions: theory</h1>
+<h2 id="medium-term-question">Medium-term question</h2>
+<p>A fun-loving electron is traveling in a spiral path around the surface of a torus.</p>
+<ul>
+<li>The radius of the torus (i.e., the radius of the circle at the center of the tube) is <span class="math">\(2\)</span> and the diameter of the circular cross-section is <span class="math">\(1\)</span>.</li>
+<li>The electron starts at position <span class="math">\((1,0,0)\)</span>, travels at a constant angular velocity around the vertical axis of <span class="math">\(1\)</span> radian per second, and its path winds up and around the torus <span class="math">\(4\)</span> times before it returns to its starting position.</li>
+</ul>
+<p>What is the position and velocity of the electron at time <span class="math">\(t\)</span>?</p>
+<h2 id="fun-loving-electron-in-action">Fun-loving electron in action</h2>
+<div id="torus">
+<img src="media/lecture-7-torus.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    var scene = new MathScene("torus");
+    scene.create();
+    // scene.animated = true;
+    scene.camera.position.set(0, 1, 10);
+    var torusgeo = new THREE.TorusGeometry(2, 1, 64, 48);
+
+    var torus = new THREE.Mesh(torusgeo, new THREE.MeshPhongMaterial({
+        ambient: 0x555555,
+        color: 0xee0000,
+        emmissive: 0x00eeee,
+        specular: 0x123456,
+        shininess: 5,
+        opacity: 0.7,
+        transparent: true,
+        side: THREE.DoubleSide
+    }));
+
+    scene.scene.add(torus);
+
+    var electron = new THREE.Mesh(new THREE.SphereGeometry(0.1), new THREE.MeshLambertMaterial({
+        ambient: 0x555555,
+        color: 0xffff00,
+        reflectivity: 100,
+        side: THREE.DoubleSide
+    }));
+
+    scene.scene.add(electron);
+
+    electron.position.set(1, 0, 0);
+
+    scene.calc = function(t) {
+        t = t / 1000;
+        electron.position.set(Math.cos(t) * (2 - Math.cos(4 * t)), Math.sin(t) * (2 - Math.cos(4 * t)), Math.sin(4 * t));
+        // console.log(scene);
+    };
+
+    scene.create();
+}());
+//]]>
+</script>
+<h2 id="a-similar-but-simpler-question">A similar but simpler question</h2>
+<p>A socially awkward electron is traveling in a spiral path around the surface of a cylinder.</p>
+<ul>
+<li>The cylinder has radius <span class="math">\(1\)</span> and height <span class="math">\(4\)</span></li>
+<li>The electron starts at position <span class="math">\((1,0,0)\)</span>, travels counterclockwise at a rotational speed of <span class="math">\(1\)</span> radian per second.</li>
+<li>Its path winds around the cylinder exactly <span class="math">\(4\)</span> times when it reaches the top.</li>
+</ul>
+<p>What is the electron’s position at time <span class="math">\(t\)</span>?</p>
+<h2 id="awkward-electron-loop">Awkward electron (loop)</h2>
+<div id="electroncylindercontainer">
+<img src="media/lecture-7-electroncylindercontainer.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+  var EC = new MathScene("electroncylindercontainer");
+  EC.create();
+  // EC.animated = true;
+  EC.camera.position.set(0, 1, 10);
+  EC.cameraControls.target.set(0, 2, 0);
+  var cylgeo = new THREE.CylinderGeometry(1, 1, 4, 64, 48);
+  var cyl = new THREE.Mesh(cylgeo, new THREE.MeshPhongMaterial({
+    ambient: 0x555555,
+    color: 0xee0000,
+    emmissive: 0x00eeee,
+    specular: 0x123456,
+    shininess: 5,
+    opacity: 0.7,
+    transparent: true
+  }));
+  EC.scene.add(cyl);
+  cyl.position.set(0, 2, 0);
+  var electron = new THREE.Mesh(new THREE.SphereGeometry(0.1), new THREE.MeshLambertMaterial({
+    ambient: 0x555555,
+    color: 0xffff00,
+    reflectivity: 100,
+    side: THREE.DoubleSide
+  }));
+  EC.scene.add(electron);
+  electron.position.set(1, 0, 0);
+  EC.calc = function(t) {
+    t = t / 400;
+    electron.position.set(Math.cos(2 * t), t / Math.PI % 4.000, Math.sin(-2 * t));
+  };
+//]]>
+</script>
+<h2 id="teach-the-piglet-of-calculus">Teach the piglet of calculus</h2>
+<h3 id="how-can-we-break-down-the-motion-into-pieces-the-piglet-of-calculus-can-digest">How can we break down the motion into pieces the piglet of calculus can digest?</h3>
+<ul>
+<li>How would you explain the motion to the piglet?</li>
+<li>The piglet needs a precise description in order to predict future positions.</li>
+<li>If the piglet fails, it’s bacon time. Don’t let that happen.</li>
+<li>Any ideas?</li>
+</ul>
+<h2 id="parametric-description">Parametric description</h2>
+<p>We can trace the coordinates of the electron as it moves, giving functions <span class="math">\[\begin{align} x&amp;=x(t)\\ y&amp;=y(t)\\ z&amp;=z(t)
+\end{align} \]</span></p>
+<p>Equivalent formulation: view <span class="math">\(\langle x(t),y(t),z(t)\rangle\)</span> as a vector-valued function.</p>
+<p>How do we figure out these functions?</p>
+<h1 id="vector-valued-functions-practice">Vector valued functions: practice</h1>
+<h2 id="one-method-projection">One method: projection</h2>
+<p>This is a fancy say to saying: ignore some coordinates and try to describe the simpler motion. We already saw that ignoring coordinates is one way of casting a shadow.</p>
+<ul>
+<li>What happens if we ignore the <span class="math">\(z\)</span> coordinate of the electron on the cylinder?</li>
+<li>Same as projecting the path into the <span class="math">\(xy\)</span>-plane! (Looking down from above.)</li>
+<li>What is that projection in this case?</li>
+</ul>
+<h2 id="image-in-the-xy-plane">Image in the <span class="math">\(xy\)</span>-plane</h2>
+<p>The projection of the electron into the plane just moves in a circle.</p>
+<ul>
+<li>The radius is <span class="math">\(1\)</span>.</li>
+<li>It moves at <span class="math">\(1\)</span> radian per second.</li>
+<li>What are the <span class="math">\(x\)</span> and <span class="math">\(y\)</span> coordinates as functions of <span class="math">\(t\)</span>?</li>
+</ul>
+<p>The usual trigonometric formulas give</p>
+<p>REDACTED</p>
+<h2 id="image-in-the-xy-plane-1">Image in the <span class="math">\(xy\)</span>-plane</h2>
+<p>The projection of the electron into the plane just moves in a circle.</p>
+<ul>
+<li>The radius is <span class="math">\(1\)</span>.</li>
+<li>It moves at <span class="math">\(1\)</span> radian per second.</li>
+<li>What are the <span class="math">\(x\)</span> and <span class="math">\(y\)</span> coordinates as functions of <span class="math">\(t\)</span>?</li>
+</ul>
+<p>The usual trigonometric formulas give</p>
+<p><span class="math">\[(x(t),y(t))=(\cos(t),\sin(t)).\]</span></p>
+<h2 id="what-about-z">What about <span class="math">\(z\)</span>?</h2>
+<p>The key is the timing of the revolutions.</p>
+<ul>
+<li>One revolution takes <span class="math">\(2\pi\)</span> seconds.</li>
+<li>It should take four revolutions to get to the top (<span class="math">\(z=4\)</span>), so <span class="math">\(8\pi\)</span> seconds.</li>
+</ul>
+<p> </p>
+<h2 id="a-parametric-description-of-the-torus">A parametric description of the torus</h2>
+<p>Given two numbers <span class="math">\(t\)</span> and <span class="math">\(u\)</span> between <span class="math">\(0\)</span> and <span class="math">\(2\pi\)</span>, we get a point on a torus of radius <span class="math">\(2\)</span> and tube radius <span class="math">\(1\)</span> like this:</p>
+<p><span class="math">\[\begin{align} x(t,u)&amp;=\cos(t)(2-\cos(u))\\
+y(t,u)&amp;=\sin(t)(2-\cos(u))\\ z(t,u)&amp;=\sin(u) \end{align}\]</span></p>
+<p>If you fix <span class="math">\(u\)</span>, the <span class="math">\(t\)</span>-path is a circle around the torus. If you fix <span class="math">\(t\)</span>, the <span class="math">\(u\)</span>-path is a circle around the “tube”.</p>
+<p>Use this to make a spiral path around the torus that starts at <span class="math">\((1,0,0)\)</span> and winds around the tube <span class="math">\(4\)</span> times before it returns to its starting point.</p>
+<p>Hint: substitute for <span class="math">\(u\)</span> as a function of <span class="math">\(t\)</span> to make the two act in concert!</p>
+<h2 id="a-parametric-description-of-the-torus-1">A parametric description of the torus</h2>
+<p>Given two numbers <span class="math">\(t\)</span> and <span class="math">\(u\)</span> between <span class="math">\(0\)</span> and <span class="math">\(2\pi\)</span>, we get a point on a torus of radius <span class="math">\(2\)</span> and tube radius <span class="math">\(1\)</span> like this:</p>
+<p><span class="math">\[\begin{align} x(t,u)&amp;=\cos(t)(2-\cos(u))\\
+y(t,u)&amp;=\sin(t)(2-\cos(u))\\ z(t,u)&amp;=\sin(u) \end{align}\]</span></p>
+<p>If you fix <span class="math">\(u\)</span>, the <span class="math">\(t\)</span>-path is a circle around the torus. If you fix <span class="math">\(t\)</span>, the <span class="math">\(u\)</span>-path is a circle around the “tube”.</p>
+<p>Use this to make a spiral path around the torus that starts at <span class="math">\((1,0,0)\)</span> and winds around the tube <span class="math">\(4\)</span> times before it returns to its starting point.</p>
+<p>Think about this for next time!</p>
+<h2 id="question">Question</h2>
+<p>Two tiny cars travel on paths</p>
+<p><span class="math">\[\begin{align} (x,y,z)&amp;=(\cos(t),\sin(t),0)\\
+(x&#39;,y&#39;,z&#39;)&amp;=(0,\cos(t),\sin(t)) \end{align} \]</span></p>
+<p>Will they collide?</p>
+<p>Now suppose the second car travels at a different speed so that <span class="math">\((x&#39;,y&#39;,z&#39;)=(0,\cos(\alpha t),\sin(\alpha t))\)</span>. For which constants <span class="math">\(\alpha\)</span> will the tiny cars collide?</p>
