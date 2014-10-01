@@ -416,7 +416,7 @@ class PlaneShadowModel extends MathModel
   constructor: ({normal, position, xrange, yrange, color}) ->
     # defaults: xy plane
     position ?= [0, 0, 0]
-    @position = new THREE.Vector3 position[0], position[1], position[2]
+    # @position = new THREE.Vector3 position[0], position[1], position[2]
     normal ?= [0, 0, 1]
     @normal = new THREE.Vector3 normal[0], normal[1], normal[2]
     xrange ?= [-2, 2]
@@ -430,9 +430,11 @@ class PlaneShadowModel extends MathModel
       new THREE.MeshPhongMaterial({ambient: @color, color: 0x111111, specular: 0x0c0c0c, shininess: 60, side: THREE.DoubleSide}) # otherwise defaults for now....
     )
     # set position and quaternion to orient plane correctly
-    @plane.position = @position
+    @plane.position.set(position[0], position[1], position[2])
     @plane.quaternion = @plane.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), @normal.normalize())
-
+    console.log @plane.position
+    console.log @position
+    
     # for some reason, this isn't quite working. defer.
     @plane.receiveShadow = true;
     @spotLight = new THREE.DirectionalLight(0xffffff, 1)
