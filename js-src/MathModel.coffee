@@ -222,6 +222,7 @@ class MarchingCubesModel extends MathModel
   surface: null
   algorithm: null
 
+  # see march_async below for an explanation of the extras attribute
   constructor: ({@func, @xmin, @xmax,
                 @ymin, @ymax, @zmin, @zmax,
                 @resolution, @smoothingLevel,
@@ -239,6 +240,7 @@ class MarchingCubesModel extends MathModel
     @name ?= "Surface"
     @debug = false
     @algorithm ?= "surfaceNets"
+    @extras ?= ""
 
     # geom = @march()
     # @surface = new THREE.Mesh(geom, @material)
@@ -311,6 +313,8 @@ class MarchingCubesModel extends MathModel
     null
 
   # see http://stackoverflow.com/a/10372280 for starting Workers via blobs
+  # @extras is an additional string of code that will get inserted in the self.onmessage
+  # for example, defining variables for a complicated function
   march_async: (b, algorithm="marchingCubes") ->
     that = @
     debug = @debug

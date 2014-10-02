@@ -61,7 +61,7 @@ physical understanding/intuition than symbol pushing. Here's a rough
 //]]>
 </script>
 
-## 1. Modeling 3D space: Cartesian coordinates
+### 1. Modeling 3D space: Cartesian coordinates
 
 What is 3D space? Here's a picture:
 <br><br><br></br></br></br>
@@ -81,7 +81,7 @@ numbers.") Here's a picture you probably recognize:
 
 ![](media/cartesian.png)
 
-## 2. Objects in space: points and distance!
+### 2. Objects in space: points and distance!
 
 **Exercise:** In the picture, how far is $(x, y, z)$ ("the point x, y, z")
 from the origin, $(0, 0, 0)$? Remember the Pythagorean Theorem as you try
@@ -112,7 +112,7 @@ We can now describe shapes, at least implicitly!
 (Don't worry if you can't do all of these now. Start worrying if you still
 can't do them after we've gone over quadric surfaces.)
 
-## 3. Distinguishing objects in space
+### 3. Distinguishing objects in space
 
 What makes this shape...
 <div id="sphere">
@@ -172,26 +172,93 @@ surface area, volume, ....
 (lines, curves, surfaces, etc.)? Can you make any of them rigorous enough
 to compute for some toy examples?
 
-## 4. What about the trefoil riders?
+### 4. What about the trefoil riders?
 
 Finding out whether or not the trefoil riders will black out will have
 to wait until we've developed enough tools to define and compute the
 acceleration of a point in space.
 
-In the mean time, here's some math love to end on:
+In the meantime, here's some math love to end on:
 <div id="heart">
   <img src="media/lecture-1-heart.png"></img>
 </div>
 <script type="text/javascript">
 //<![CDATA[
 (function() {
-    var scene = new MathScene("heart");
-    var f = function (x, y, z) {
-        return x * x + (9/4) * y * y + z * z - 1 - z * Math.cbrt(x * x + (9/80) * y * y);
+    // polyfill for browsers that don't support Math.cbrt
+    var cbrt =  function (x) {
+        var y = Math.pow(Math.abs(x), 1/3);
+        return x < 0 ? -y : y;
     }
-    var mc = new MarchingCubesModel({func: f, resolution: 150, smoothingLevel: 1});
+
+    var cbr = (Math.cbrt === undefined) ? cbrt : Math.cbrt;
+
+    var scene = new MathScene("heart");
+  
+    /*This awful dynamic code rewrite ensures that the right string is passed 
+    into the worker, so that the correct randomly constructed property of self 
+    is used for the cube root. Please forgive me. Is it possible that using 
+    func.toString() in MathModel when creating the blob for the worker can
+    be improved to avoid this?
+    Once everyone has Math.cbrt, we can just do the following:
+
+    var F = function (x, y, z) {
+        return x * x + (9/4) * y * y + z * z - 1 - z * Math.cbrt(x * x + (9/80) * y * y);
+      };
+    */
+
+    var f = "return x * x + (9/4) * y * y + z * z - 1 - z * READYFORACHANGE(x * x + (9/80) * y * y);";
+    var funcCode = f.toString().replace("READYFORACHANGE", cbr.toString());
+    var F = new Function(["x", "y", "z"], funcCode);
+    var mc = new MarchingCubesModel({func: F, resolution: 150});
     mc.embedInScene(scene);
 }());
 //]]>
 </script>
-Want to know the equation? Read the source.
+Want to know the equation? Read the appendix.
+
+### 5. Appendix: the heart
+
+The heart you see above is the set of solutions to the equation $$f(x, y, z) = (x^2+\frac{9}{4}y^2+z^2-1)^3-x^2z^3-\frac{9}{80}y^2z^3 = 0.$$ It is being shown to you using algorithms that compute solution sets to equations like this (those solutions sets are called "isosurfaces").
+
+As a naive mathematician, I decided to implement this directly. That is, use the equation above together with the simple isosurface algorithms I've chosen. Here's the result: 
+
+<div id="heart-2">
+  <img src="media/lecture-1-heart-2.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+    var scene = new MathScene("heart-2");
+    var f = function (x, y, z) {
+        return Math.pow(x * x + (9/4) * y * y + z * z - 1, 3) - x * x * z * z * z - (9/80) * y * y * z * z * z;
+    }
+    var mc = new MarchingCubesModel({func: f, resolution: 150});
+    mc.embedInScene(scene);
+}());
+//]]>
+</script>
+
+What happened? There's a weird "belt" around the heart! Where does it come from? The algorithm that computes the isosurface works roughly like this:
+
+- Divide space into cubes
+- Evaluate the function on the corners of each cube
+- If the function is positive on some corners and negative on others, this means that the locus where the function takes the value $0$ passes through the cube
+- Figure out how to approximate the function in the cube. The classical algorithm known as "marching cubes" does this linearly. There are more sophisticated ways, but they all come down to making some kind of local approximation.
+
+Now, @eccheng made a clever observation. The zero locus of the function $f(x, y, z)$ is the same as the locus where
+
+$$(x^2+\frac{9}{4}y^2+z^2-1)^3= z^3(x^2-\frac{9}{80}y^2),$$
+
+and, taking cube roots, this is the same as solving
+
+$$x^2+\frac{9}{4}y^2+z^2-1 = z \sqrt[3]{x^2-\frac{9}{80}y^2}.$$
+
+Why is this a good observation to make? Well, while *taking integer powers makes changes get more drastic*, we have that *taking integer roots makes changes more gentle*. If we are trying to use a mesh to approximate the vanishing locus of a function, it is better to use a function with gentler changes, given a fixed mesh resolution.
+
+**Lesson**: formulations that are *mathematically equivalent* can be *computationally inequivalent*. By understanding the underlying properties of a mathematical object, one can make better *practical* decisions. (Similar: read about numerical integration, tracking, and Kalman filters.)
+
+**Challenge**: justify this rigorously with mathematics.
+
+### Content Contributors
+@maxlieblich, @jpswanson, @eccheng
