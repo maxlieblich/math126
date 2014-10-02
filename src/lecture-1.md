@@ -187,8 +187,7 @@ In the mean time, here's some math love to end on:
 (function() {
     var scene = new MathScene("heart");
     var f = function (x, y, z) {
-        return Math.pow(x * x + (9/4) * y * y + z * z - 1, 3)
-          - x * x * z * z * z - (9/80) * y * y * z * z * z;
+        return x * x + (9/4) * y * y + z * z - 1 - z * Math.cbrt(x * x + (9/80) * y * y);
     }
     var mc = new MarchingCubesModel({func: f, resolution: 150, smoothingLevel: 1});
     mc.embedInScene(scene);
