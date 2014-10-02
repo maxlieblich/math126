@@ -453,3 +453,6 @@ solutions to these equations in three variables.
 -   $z^2-x^2-y^2=1$
 -   $x^2+y^2=1$
 -   $x^2-2x+y^2-z^2=0$
+
+### Content Contributors
+@maxlieblich

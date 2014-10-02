@@ -144,3 +144,6 @@ use them to distinguish "inside" from "outside"?
 
 Use the internet to find out if these things come up outside of math
 class!
+
+### Content Contributors
+@maxlieblich

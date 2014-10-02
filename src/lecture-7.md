@@ -245,3 +245,6 @@ Will they collide?
 Now suppose the second car travels at a different speed so that
 $(x',y',z')=(0,\cos(\alpha t),\sin(\alpha t))$. For which
 constants $\alpha$ will the tiny cars collide?
+
+### Content Contributors
+@maxlieblich

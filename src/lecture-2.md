@@ -310,3 +310,6 @@ Hint:
     non-zero number $c$.
 -   Why is this true?
 -   Does this help with the problem?
+
+### Content Contributors
+@maxlieblich, @jpswanson

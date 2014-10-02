@@ -223,3 +223,6 @@ It is starting to smell something like this:
 - Suppose your plane $P$ contains $\mathbf{0}=\langle 0, 0, 0\rangle$. Let $\mathbf{u}$ be a unit vector perpendicular to $P$. 
 - Given a vector $\mathbf{v}$, we can compute the projection of $\mathbf{v}$ into $P$ by simply subtracting off the projection on the perpendicular: $\mathbf{v}-(\mathbf{v}\cdot\mathbf{u})\mathbf{u}$. 
 - Quick check: you should be able to prove that this result is perpendicular to $\mathbf{u}$, if you believe that this is a reasonable idea, since $\mathbf{u}$ is perpendicular to $P$. How do you tell if a vector $\mathbf{y}$ is perpendicular to $\mathbf{u}$, again? That's right, show that $\mathbf{y}\cdot\mathbf{u}=0$.
+
+### Content Contributors
+@maxlieblich

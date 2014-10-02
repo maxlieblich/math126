@@ -89,3 +89,6 @@ then use $r^2=x^2+y^2$ and $r\sin\theta=y$.
     $r=\sin(\theta)+\cos(\theta)$?
 -   How about $r=\cos(\theta)$?
 -   Or $r^2=\sec(\theta)$?
+
+### Content Contributors
+@maxlieblich
