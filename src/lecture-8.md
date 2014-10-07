@@ -1,8 +1,11 @@
-Vector calculus: derivatives
-============================
+Vector calculus
+===============
 
-Question
---------
+Now that we've spent some time wallowing in the details of vector-valued functions and paths in space, let's do some calculus!
+
+Remember our torus question from last time?
+
+### Question
 
 A fun-loving electron is traveling in a spiral path around the surface
 of a torus.
@@ -17,8 +20,6 @@ of a torus.
 
 What is the position and velocity of the electron at time $t$?
 
-Fun-loving electron in action
------------------------------
 <div id="torus">
   <img src="media/lecture-8-torus.png"></img>
 </div>
@@ -65,8 +66,7 @@ Fun-loving electron in action
 </script>
 
 
-It moves!
----------
+#### It moves!
 
 Using the tools from last time, here is a parametric description of the
 motion:
@@ -80,29 +80,25 @@ $$\mathbf{f}(t)=\langle
 
 What is the velocity? What *should* it be?
 
-Velocity: derivative of position, right?
-----------------------------------------
+### Velocity: derivative of position, right?
 
 We should have that the velocity of the electron is $$\mathbf{v}(t)=\mathbf{f}'(t).$$ But what is this?
 
-Classical definition of the derivative still works for vector-valued
-functions:
+It turns out that the classical definition of the derivative still works for vector-valued functions:
 
 $$\mathbf{f}'(t)=\lim_{h\to 0}\frac{\mathbf{f}(t+h)-\mathbf{f}(t)}{h}$$
 
-As usual, the derivative of the position vector is the velocity vector.
+Just like you learned for one variable functions, the derivative of the position *vector* is the velocity *vector*.
 
-Vector derivatives in practice
-==============================
+#### Calculating the derivative in practice
 
-Calculating the derivative in practice
---------------------------------------
+It is wonderful to know that the derivative is a limit in the land of vectors. It's more than wonderful -- that description *uses no coordinates*. It is really an intrinsic mathematical formulation. So, for example, if you are programming a super-precise system to calculate the positions of satellites or locate people's wayward pets using GPS, accelerometers, and drool paths, you can use *any kind of representation of vectors you want*, as long as you can do the calculations you need to do to approximate the limit.
 
-Given a vector function
+Often, you are given a vector function in coordinates:
 
-$$\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle$$
+$$\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle.$$
 
-the derivative is just
+In this case, the derivative is just
 
 $$\mathbf{f}'(t)=\langle x'(t),y'(t),z'(t)\rangle,$$
 
@@ -112,8 +108,7 @@ The usual caveat applies: the derivative must exist for this to make
 sense! I.e., this formula works when all three derivatives exist, and
 when they don't neither does the derivative of $\mathbf{f}(t)$!
 
-Practice
---------
+#### Practice
 
 Given the formula
 
@@ -127,8 +122,7 @@ for the motion of the electron on the torus,
 -   (What is the “speed”, anyway? The magnitude of the velocity vector?
     That sounds right....)
 
-Help the Piglet
----------------
+#### Help the Piglet
 
 The piglet of calculus tried the question on the previous slide and got
 the following answer:
@@ -141,17 +135,16 @@ $$\frac{d\mathbf{f}}{dt}=\langle
 4\cos(t)\sin(4t),\sin(4t)\rangle$$
 
 Every time the piglet enters the answer in webassign, it is marked
-wrong. What mistakes did the piglet make?
+wrong. What mistakes did the piglet make? (Don't read on before you've thought about this.)
 
-The piglet
-----------
+#### The piglet's mistakes
 
-Forgot to differentiate the third component!
+The piglet forgot to differentiate the third component!
 
 -   Wrong: $\sin(4t)$
 -   Right: $4\cos(4t)$
 
-Used the product rule incorrectly in the second component (by just
+The piglet used the product rule incorrectly in the second component (by just
 taking the product of the derivatives)!
 
 -   Wrong: $4\cos(t)\sin(4t)$
@@ -161,11 +154,13 @@ Anything else?
 
 Have you ever made mistakes like these?
 
-Vector integration
-==================
+We are all piglets.
 
-A new problem
--------------
+### Vector integration
+
+Now that we've tasted derivatives (and you have a million places to find more examples and practice problems), let's think about the other main leg of calculus, integration. We'll get started by thinking about a new motivating problem.
+
+#### A bored baby kangaroo
 
 A joey (baby kangaroo) is riding in her mother's pouch. She has a
 smartphone with an accelerometer that continuously reports the
@@ -180,28 +175,23 @@ that mimics the hilarious sounds that giraffes make when embarrassed.
 -   The joey starts at the point $(0,0,1)$
 -   Where is the joey at time $t$?
 
-Integrate!
-----------
+### Integrate!
 
-Just like one variable calculus: reconstruct position from velocity by
-integrating.
+This is just like one variable calculus: you can reconstruct position from velocity by *integrating*. As with derivatives, the theoretical underpinnings are very similar.
 
--   Riemann sums: $\sum\mathbf{v}(t_i)\Delta(t)$
--   Practical: $$\int\langle x(t),y(t),z(t)\rangle
-    dt=\left\langle\int x(t)dt,\int y(t)dt,\int
-    z(t)dt\right\rangle.$$
--   Example: $$\int\langle 1,t,t^2\rangle dt=\langle
-    a,b,c\rangle+\left\langle
-    t,\frac{1}{2}t^2,\frac{1}{3}t^3\right\rangle$$
--   The constant of integration is now a vector!
+You do integration using Riemann sums, but now they look like $\sum\mathbf{v}(t_i)\Delta(t)$ (i.e., you are adding *vectors*, not just numbers). Note: *this is also coordinate-free*. The theory does not care how you represent the objects, as long as you can do the operations you need to do to calculate (approximate) the limit. This is how a mathematician thinks: theories that do not *need* auxilliary structures -- like coordinates, vector space bases, charts on manifolds, explicit matrices, etc. -- are both more beautiful and more flexible. And flexibility can be an asset not only in the abstract realm, but also in the real world. (Digression: for a fascinating example of how the *representation* of a situation affects the *outcome*, see [this](http://image.diku.dk/hauberg/hauberg_imavis2011.pdf). Using standard kinematic models of human bodies to set prior distributions for pose estimation results in much messier outputs than using the embedded manifold model that accounts for the distance relationships between joints. There is a lot of math in there, but if you look at the pictures you can see that these people are working to develop a good model for automated recognition of human poses. Welcome to the future!)
 
-Help the joey
--------------
+If you are given a vector-valued function in coordinates, integration is just like differentiation $$\int\langle x(t),y(t),z(t)\rangle dt=\left\langle\int x(t)dt,\int y(t)dt,\int z(t)dt\right\rangle.$$
+
+Here's an example of an antiderivative using this idea: $$\int\langle 1,t,t^2\rangle dt=\langle a,b,c\rangle+\left\langle t,\frac{1}{2}t^2,\frac{1}{3}t^3\right\rangle.$$
+Each coordinate has its own constant of integration. The constant of integration is now a *vector constant of integration*! Do not let the word "constant" fool you into thinking it is a *scalar*.
+
+#### Help the joey
 
 Using vector integration, compute the path that the joey takes, starting
 at $t=0$. Initial position: $(0,0,1)$, velocity $\langle
 1,t,\sin(t)\rangle$. A looping animation (for $t=0$ to $t=15$ in
-slo-mo):
+slo-mo). (Remember, the animation will only play when you click or touch and hold the scene, in order to save your computer. We will probably tweak the way this work -- and forget to update this statement -- in the future.)
 
 <div id="joeycontainer">
   <img src="media/lecture-8-joeycontainer.png"></img>
