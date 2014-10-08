@@ -3,6 +3,7 @@ header-includes: |
     <script src="js/gooan.js" type="text/javascript"></script>
     <script src="js/scale.fix.js" type="text/javascript"></script>
     <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.flot.min.js" type="text/javascript"></script>
     <script src="js/downloadepub.js" type="text/javascript"></script>
     <script src="js/gotorepo.js" type="text/javascript"></script>
     <script src="js/loader.js" type="text/javascript"></script>
