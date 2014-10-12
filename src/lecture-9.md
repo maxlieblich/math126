@@ -161,9 +161,9 @@ This overdetermined nature of the polar coordinate system makes things harder fo
 2. did not realize what choices you had (tried solving $x^2=x$ with the quadratic formula because your mother told you to)
 3. made a bad choice (screwed up the quadratic formula and got $x = 0.5 \pm 2 i$)
 
+#### Writing equations
 
-Examples
---------
+We can use these formulae to convert equations between coordinate systems. What does this mean? An equation is a constraint that determines a special set of points in the plane. This constraint can be phrased in the Cartesian Language ("$x^2+y^2=1$") or in the Polar Language ("r=1"). Some shapes are easier to describe in one coordinate system than the other. Here a few examples.
 
 -   What is the polar equation of a circle of radius $a$ around the
     origin?
@@ -174,45 +174,239 @@ Examples
 -   Try another one: find the polar equation of the ellipse
     $\frac{1}{2}x^2+\frac{1}{3}y^2=1$
 
-Polar graphs are beautiful
---------------------------
-
-### Here are some examples
-
-You can play with the parameters and see what happens!
-
-Examples
---------
-
-$r=\theta^{\textrm{power}}$, $0\leq\theta\leq
-\textrm{multiple}\cdot\pi$
-
-Examples
---------
-
-$r=\sin(\textrm{love}\cdot\theta)$, $0\leq\theta\leq
-\textrm{multiple}\cdot\pi$
-
-Examples
---------
-
-$r=c+\sin(\textrm{love}\cdot\theta)$, $0\leq\theta\leq
-\textrm{multiple}\cdot\pi$
-
-Try some the other way!
------------------------
-
-Example: the Cartesian equation of the curve with polar equation
-$$r=\sin(\theta)$$ is
-$$x^2+\left(y-\frac{1}{2}\right)^2=\frac{1}{4}.$$
+Here's a more sophisticated example: the Cartesian equation of the curve with polar equation $$r=\sin(\theta)$$ is $$x^2+\left(y-\frac{1}{2}\right)^2=\frac{1}{4}.$$
 
 Trick: multiply both sides by $r$, yielding $r^2=r\sin\theta$,
 then use $r^2=x^2+y^2$ and $r\sin\theta=y$.
 
--   What is the Cartesian equation corresponding to
-    $r=\sin(\theta)+\cos(\theta)$?
+Here are few of these harder ones to try.
+
+-   What is the Cartesian equation corresponding to $r=\sin(\theta)+\cos(\theta)$?
 -   How about $r=\cos(\theta)$?
 -   Or $r^2=\sec(\theta)$?
+
+
+### Polar graphs are beautiful
+
+One of the neatest things about polar coordinates is graphing equations, even simple ones. Enjoy these examples. Play with the parameters and watch the magic unfold. Try to guess what will happen when you change a parameter before you do it, and let what happens guide you in making further conjectures.
+
+#### Example 1: $r=\theta^{\textrm{power}}$, $0\leq\theta\leq
+\textrm{multiple}\cdot\pi$
+
+<div id="plotstickers1-container">
+<div id="plotstickers1controls" style="font-size: small; margin-bottom: 20px;"></div>
+<div id="plotstickers1" style="width: 470px; height: 470px"></div>
+<img src="media/lecture-9-plotstickers1.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    plotstickers1 = function() {
+    $("#plotstickers1-container img").hide();
+    var gui, multiplecontrol, powercontrol, snail, spiral;
+    spiral = function() {
+      this.power = 1;
+      this.multiple = 2;
+      this.render = function(p, m) {
+        var d1, data, nut, options, t;
+        d1 = [];
+        t = 0;
+        while (t <= m * Math.PI) {
+          d1.push([Math.pow(t, p) * Math.cos(t), Math.pow(t, p) * Math.sin(t)]);
+          t += 0.01;
+        }
+        data = [d1];
+        nut = Math.max(Math.pow(this.multiple * Math.PI, this.power), 1 / Math.pow(this.multiple * Math.PI, this.power));
+        options = {
+          series: {
+            lines: {
+              show: true,
+              shadowSize: 0
+            }
+          },
+          xaxis: {
+            max: nut,
+            min: -nut
+          },
+          yaxis: {
+            max: nut,
+            min: -nut
+          }
+        };
+        $.plot($("#plotstickers1"), data, options);
+        return null;
+      };
+      return null;
+    };
+    snail = new spiral();
+    gui = new dat.GUI({
+      autoPlace: false
+    });
+    $("#plotstickers1controls").append(gui.domElement);
+    powercontrol = gui.add(snail, "power", -2, 3);
+    multiplecontrol = gui.add(snail, "multiple", 1, 10);
+    snail.render(snail.power, snail.multiple);
+    powercontrol.onChange(function(value) {
+      snail.render(value, snail.multiple);
+      return null;
+    });
+    multiplecontrol.onChange(function(value) {
+      snail.render(snail.power, value);
+      return null;
+    });
+    return null;
+  };
+
+  plotstickers1();
+}());
+//]]>
+</script>
+
+#### Example 2: $r=\sin(\textrm{love}\cdot\theta)$, $0\leq\theta\leq
+\textrm{multiple}\cdot\pi$
+<div id="plotstickers2-container">
+<div id="plotstickers2controls" style="font-size: small; margin-bottom: 20px;"></div>
+<div id="plotstickers2" style="width: 470px; height: 470px"></div>
+<img src="media/lecture-9-plotstickers2.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    plotstickers2 = function() {
+    $("#plotstickers2-container img").hide();
+    var bowl, gui, multiplecontrol, powercontrol, yummy;
+    yummy = function() {
+      this.love = 8 / 5;
+      this.multiple = 10;
+      this.render = function(p, m) {
+        var d1, data, options, t;
+        d1 = [];
+        t = 0;
+        while (t <= m * Math.PI) {
+          d1.push([Math.sin(p * t) * Math.cos(t), Math.sin(p * t) * Math.sin(t)]);
+          t += 0.01;
+        }
+        data = [d1];
+        options = {
+          series: {
+            lines: {
+              show: true,
+              shadowSize: 0
+            }
+          },
+          xaxis: {
+            max: 1,
+            min: -1
+          },
+          yaxis: {
+            max: 1,
+            min: -1
+          }
+        };
+        $.plot($("#plotstickers2"), data, options);
+        return null;
+      };
+      return null;
+    };
+    bowl = new yummy();
+    gui = new dat.GUI({
+      autoPlace: false
+    });
+    $("#plotstickers2controls").append(gui.domElement);
+    powercontrol = gui.add(bowl, "love", 0, 5).step(0.1);
+    multiplecontrol = gui.add(bowl, "multiple", 10, 50);
+    bowl.render(bowl.love, bowl.multiple);
+    powercontrol.onChange(function(value) {
+      bowl.render(value, bowl.multiple);
+      return null;
+    });
+    multiplecontrol.onChange(function(value) {
+      bowl.render(bowl.love, value);
+      return null;
+    });
+    return null;
+  };
+
+  plotstickers2();
+}());
+//]]>
+</script>
+
+#### Example 3: $r=c+\sin(\textrm{love}\cdot\theta)$, $0\leq\theta\leq
+\textrm{multiple}\cdot\pi$
+<div id="plotstickers3-container">
+<div id="plotstickers3controls" style="font-size: small; margin-bottom: 20px;"></div>
+<div id="plotstickers3" style="width: 470px; height: 470px"></div>
+<img src="media/lecture-9-plotstickers3.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    plotstickers3 = function() {
+    $("#plotstickers3-container img").hide();
+    var bowl, ccontrol, gui, jiggly, multiplecontrol, powercontrol;
+    jiggly = function() {
+      this.c = 1;
+      this.love = 1;
+      this.multiple = 2;
+      this.render = function(c, p, m) {
+        var d1, data, options, t;
+        d1 = [];
+        t = 0;
+        while (t <= m * Math.PI) {
+          d1.push([(c + Math.sin(p * t)) * Math.cos(t), (c + Math.sin(p * t)) * Math.sin(t)]);
+          t += 0.01;
+        }
+        data = [d1];
+        options = {
+          series: {
+            lines: {
+              show: true,
+              shadowSize: 0
+            }
+          },
+          xaxis: {
+            max: 6,
+            min: -6
+          },
+          yaxis: {
+            max: 6,
+            min: -6
+          }
+        };
+        $.plot($("#plotstickers3"), data, options);
+        return null;
+      };
+      return null;
+    };
+    bowl = new jiggly();
+    gui = new dat.GUI({
+      autoPlace: false
+    });
+    $("#plotstickers3controls").append(gui.domElement);
+    powercontrol = gui.add(bowl, "love", 0, 5).step(0.1);
+    multiplecontrol = gui.add(bowl, "multiple", 1, 50);
+    ccontrol = gui.add(bowl, "c", 0, 5);
+    bowl.render(bowl.c, bowl.love, bowl.multiple);
+    powercontrol.onChange(function(value) {
+      bowl.render(bowl.c, value, bowl.multiple);
+      return null;
+    });
+    multiplecontrol.onChange(function(value) {
+      bowl.render(bowl.c, bowl.love, value);
+      return null;
+    });
+    ccontrol.onChange(function(value) {
+      bowl.render(value, bowl.love, bowl.multiple);
+      return null;
+    });
+    return null;
+  };
+
+  plotstickers3();
+}());
+//]]>
+</script>
 
 ### Content Contributors
 @maxlieblich
