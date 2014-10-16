@@ -191,15 +191,12 @@ In the meantime, here's some math love to end on:
         return x < 0 ? -y : y;
     }
 
-    var cbr = (Math.cbrt === undefined) ? cbrt : Math.cbrt;
+    var cbr = (Math.cbrt === undefined) ? cbrt.toString() : "Math.cbrt";
 
     var scene = new MathScene("heart");
   
     /*This awful dynamic code rewrite ensures that the right string is passed 
-    into the worker, so that the correct randomly constructed property of self 
-    is used for the cube root. Please forgive me. Is it possible that using 
-    func.toString() in MathModel when creating the blob for the worker can
-    be improved to avoid this?
+    into the worker so it can properly handle the cube root. Please forgive me.Is it possible that using func.toString() in MathModel when creating the blob for the worker can be improved to avoid this?
     Once everyone has Math.cbrt, we can just do the following:
 
     var F = function (x, y, z) {
@@ -208,8 +205,10 @@ In the meantime, here's some math love to end on:
     */
 
     var f = "return x * x + (9/4) * y * y + z * z - 1 - z * READYFORACHANGE(x * x + (9/80) * y * y);";
-    var funcCode = f.toString().replace("READYFORACHANGE", cbr.toString());
-    var F = new Function(["x", "y", "z"], funcCode);
+    var funcCode = f.replace("READYFORACHANGE", cbr);
+    console.log(funcCode);
+    var F = new Function("x", "y", "z", funcCode);
+    console.log(F);
     var mc = new MarchingCubesModel({func: F, resolution: 150});
     mc.embedInScene(scene);
 }());
