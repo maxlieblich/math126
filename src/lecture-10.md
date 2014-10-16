@@ -1,8 +1,9 @@
 Distance
 ========
 
-Kangaroos++
------------
+We will now see how integration of vector-valued functions gives us insight into computing distances traveled. Let's start with a warm-up problem that we've seen before.
+
+### Kangaroos++
 
 A joey (baby kangaroo) is riding in her mother's pouch with a
 sophisticated inertial navigation system. She is too small to see out of
@@ -15,8 +16,7 @@ the pouch, but her system records the velocity vector at any time.
 -   New question: How long is the joey's path between $t=0$ and
     $t=15$?
 
-Distance by accretion
----------------------
+### Distance by accretion
 
 How can we calculate the distance $s$ travelled by the joey from
 $t=a$ to $t=b$?
@@ -29,8 +29,7 @@ $t=a$ to $t=b$?
 -   Important Note: when you reverse direction, the distance still adds
     up!
 
-Practical distance, I
----------------------
+### Practical distance, I
 
 If we have $\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle$ then the
 distance from the starting point $t=a$ to a variable time $T$ is
@@ -44,23 +43,12 @@ numerical methods, we get a concrete answer for $T=15$:
 
 $$s(15)=115.255\ldots.$$
 
-Practical distance, I
----------------------
-
-If we have $\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle$ then the
-distance from the starting point $t=a$ to a variable time $T$ is
-
-$$s(T)=\int_a^T\sqrt{(x'(t)^2+(y'(t))^2+(z'(t))^2)}dt.$$
-
-Try one:
+Here's one to try:
 
 What is the distance of the cylinder path $\mathbf{f}(t) = \langle
 \cos(t), \sin(t), t/2\pi\rangle,$ from $t=0$ to $t=T$?
 
 Move on only when ready for the answer!
-
-Practical distance, I
----------------------
 
 If we have $\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle$ then the
 distance from the starting point $t=a$ to a variable time $T$ is
@@ -72,22 +60,18 @@ Plugging/chugging:
 $$\int_0^T\sqrt{\frac{4\pi^2+1}{4\pi^2}}dt =
 \frac{T\sqrt{4\pi^2+1}}{2\pi}$$
 
-Arc length
-==========
+### Arc length
 
-Distance vs arc length
-----------------------
+We might ask ourselves how long a path in space is, instead of asking how far we have traveled. (Is there a difference?!)
 
-Important: the integrals in the "Distance" lecture segment give the
-**total distance traveled**.
+#### Distance vs arc length
 
 If you never reverse direction, you are also computing the length of the
 path, not just your choice of traversal.
 
-The physical length of the path is the arc length.
+The physical length of the path is the *arc length*.
 
-Practical arc length, II
-------------------------
+### Practical arc length, II
 
 Here's a funny special case. Suppose that $|\mathbf{f}'(t)|=1$ for all
 $t$. Then the distance traversed from time $0$ to time $T$ is
@@ -102,11 +86,8 @@ $$\langle x,y\rangle=\langle\cos(s),\sin(s)\rangle.$$
 
 Meaning: the arc length as $s$ goes from $0$ to $T$ is $T$!
 
-Practical arc length, II
-------------------------
-
-A parametric vector function $\mathbf{f}(t)$ is parametrized by arc
-length or an arc length parametrization if the arc length traced by
+A parametric vector function $\mathbf{f}(t)$ is *parametrized by arc
+length* or an *arc length parametrization* if the arc length traced by
 $\mathbf{f}$ between $t=a$ and $t=b$ is $b-a$.
 
 $$\int_a^b|\mathbf{f}'(t)|dt=b-a$$
@@ -118,9 +99,6 @@ How do you find these things?
 -   Chain rule: $|\mathbf{f}'(t)| = |\mathbf{f}'(t)t'(s)| = |\mathbf{f}'(t)||t'(s)|$.
 -   In order to ensure that the speed is constant, can try to solve the
     differential equation $t'(s) = |\mathbf{f}'(t(s))|^{-1}.$
-
-Practical arc length, II
-------------------------
 
 Example: circle of radius $2$, parametrized by $\mathbf{f}(t)=\langle 2\cos(t), 2\sin(t)\rangle$
 
@@ -135,11 +113,9 @@ $\mathbf{f}(s)=\langle 2\cos(s/2),2\sin(s/2)\rangle$
 
 Find the arc length parametrization of the circle of radius $r$.
 
-Curvature
-=========
+### Curvature
 
-Unit tangent vectors
---------------------
+#### Unit tangent vectors
 
 Something remarkable happens when parametrizing curves by arc length:
 every tangent vector has length $1$.
@@ -154,8 +130,7 @@ $\mathbf{f}'(t)=\langle 1,t,\sin(t)\rangle$, the unit tangent
 vector at time $a$ is $$\mathbf{T}(a)=\frac{1}{\sqrt{1+t^2+\sin^2(t)}}\langle 1,t,\sin(t)
 \rangle.$$
 
-Practice
---------
+#### Practice
 
 Compute the unit tangent to the parabola $y=x^2$ at the point
 $(a,a^2)$.
@@ -165,8 +140,7 @@ $x=t$. Then calculate $\mathbf{f}'(t)/|\mathbf{f}'(t)|$. What if you
 parametrize (half of) the parabola as $\langle\sqrt t,t\rangle$
 instead?
 
-The benefits of all of this
----------------------------
+#### The benefits of all of this
 
 Why work with arc length and unit tangents?
 
@@ -181,8 +155,7 @@ Indeed, $$0=\frac{d}{dt}1=\frac{d}{dt}|\mathbf{T}(t)|=\frac{d}{dt}\left(\mathbf{
 Meaning: $\mathbf{T}'(t)$, unlike the acceleration in general, is
 always changing the tangent to the curve in the “most efficient” way.
 
-Curvature
----------
+#### Curvature
 
 The curvature of the smooth parametric curve $\mathbf{f}(t)$ is
 defined to be $$\kappa(t)=\left|\frac{d\mathbf{T}(t)}{ds}\right|,$$ where $s$ is the arc length function.
@@ -197,10 +170,9 @@ simplifies to $$\kappa(s)=|\mathbf{f}''(s)|,$$ the acceleration.
 In practice, this is *not* how you will compute it (because you won't
 have paths parametrized by arc length most of the time).
 
-Examples
---------
+### Examples
 
-### *The Circle of Radius $r$* and *The Parabola Fights Back*.
+#### *The Circle of Radius $r$* and *The Parabola Fights Back*.
 
 The equations parametrizing with arc length: $\mathbf{f}(s)=\langle
 r\cos(s/r),r\sin(s/r)\rangle$.
@@ -216,8 +188,7 @@ What about for something like the parabola? Try it. You might consider
 using $\mathbf{f}(t)=\langle t,t^2\rangle$ and $\kappa=|\mathbf{T}'|/|\mathbf{f}'|$, together with your calculation of $\mathbf{T}$
 from before. What a mess!
 
-Curvature in practice
----------------------
+### Curvature in practice
 
 Mathematicians have thought about this one pretty hard, and here is what
 turns out to happen:
@@ -230,8 +201,7 @@ We can dispatch the parabola $\mathbf{f}(t)=\langle t,t^2\rangle$:
 $$\kappa(t)=\frac{|\langle 1,2t,0\rangle\times\langle
 0,2,0\rangle|}{(1+4t^2)^\frac{3}{2}}=\frac{2}{(1+4t^2)^\frac{3}{2}}.$$
 
-Do one!
--------
+#### Do one!
 
 Recall the motion of the joey: $\mathbf{f}(t)=\langle
 t,\frac{1}{2}t^2,2-\cos(t)\rangle$.
