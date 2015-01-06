@@ -309,11 +309,11 @@ a.github {
 }
 
 a.download {
-  background: url(../images/arrow-down.png) no-repeat;
+  background: url(../images/arrow-down.png) no-repeat 1px;
 }
 
 a.menu {
-  background: url(../images/tiny-menu.png) no-repeat;
+  background: url(../images/tiny-menu.png) no-repeat 1px;
 }
 
 a.buttons:hover {
