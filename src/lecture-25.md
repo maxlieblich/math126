@@ -62,3 +62,9 @@ Follow up:
     $0$.
 -   What is $f^{(666)}(0)$?
 
+### Videos
+[25](http://www.math.washington.edu/~lieblich/Math126/video/25.mp4)
+
+### Content contributors
+@maxlieblich 
+

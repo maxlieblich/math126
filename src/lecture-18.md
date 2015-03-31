@@ -105,3 +105,9 @@ Equations: $x^2+y^2+z^2=1$, $x^2+y^2+(z-3/4)^2=1/4$
 
 This time you have to think about your own picture. Dark alley, etc.,
 etc.
+
+### Videos
+[18](http://www.math.washington.edu/~lieblich/Math126/video/18.mp4)
+
+### Content contributors
+@maxlieblich

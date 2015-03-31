@@ -274,5 +274,10 @@ If you don't try these you will never learn anything. Familiarity is not learnin
 -   Describe the intersection of $3x+4y+5z=6$ and $6x+8y+10y=12$.
 -   Describe the intersection of $3x+4y+5z=6$ and $9x+12y+15z=17$.
 
+### Videos
+[4-1](http://www.math.washington.edu/~lieblich/Math126/video/4-1.mp4)
+[4-2](http://www.math.washington.edu/~lieblich/Math126/video/4-2.mp4)
+
+
 ### Content Contributors
 @maxlieblich

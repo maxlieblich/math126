@@ -224,5 +224,11 @@ It is starting to smell something like this:
 - Given a vector $\mathbf{v}$, we can compute the projection of $\mathbf{v}$ into $P$ by simply subtracting off the projection on the perpendicular: $\mathbf{v}-(\mathbf{v}\cdot\mathbf{u})\mathbf{u}$. 
 - Quick check: you should be able to prove that this result is perpendicular to $\mathbf{u}$, if you believe that this is a reasonable idea, since $\mathbf{u}$ is perpendicular to $P$. How do you tell if a vector $\mathbf{y}$ is perpendicular to $\mathbf{u}$, again? That's right, show that $\mathbf{y}\cdot\mathbf{u}=0$.
 
+### Videos
+[3-1](http://www.math.washington.edu/~lieblich/Math126/video/3-1.mp4)
+[3-2](http://www.math.washington.edu/~lieblich/Math126/video/3-2.mp4)
+[3-3](http://www.math.washington.edu/~lieblich/Math126/video/3-3.mp4)
+
+
 ### Content Contributors
 @maxlieblich

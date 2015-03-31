@@ -98,3 +98,8 @@ given points.
 -   $f(x)=\frac{1}{1-x}$ around $b=2$
 -   $f(x)=e^{-1/x^2}$ around $b=0$
 
+### Videos
+[23](http://www.math.washington.edu/~lieblich/Math126/video/23.mp4)
+
+### Content contributors
+@maxlieblich  

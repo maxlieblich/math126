@@ -259,5 +259,11 @@ Why is this a good observation to make? Well, while *taking integer powers makes
 
 **Challenge**: justify this rigorously with mathematics.
 
+### Videos
+[0](http://www.math.washington.edu/~lieblich/Math126/video/0.mp4)
+[1-1](http://www.math.washington.edu/~lieblich/Math126/video/1-1.mp4)
+[1-2](http://www.math.washington.edu/~lieblich/Math126/video/1-2.mp4)
+
+
 ### Content Contributors
 @maxlieblich, @jpswanson, @eccheng

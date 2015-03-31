@@ -146,3 +146,8 @@ $$a_T=\frac{\mathbf{r}'(t)\cdot\mathbf{r}''(t)}{|\mathbf{r}'(t)|}\qquad\quad a_N
 Do one: the electron/rubber blob $$\mathbf{f}(t)=\langle
 \cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle$$
 
+### Videos
+[12](http://www.math.washington.edu/~lieblich/Math126/video/12.mp4)
+
+### Content contributors
+@maxlieblich

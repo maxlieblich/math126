@@ -166,3 +166,10 @@ Find the tangent plane to Mt. Rainier at $(0,0,0)$.
 The equation is $x^3+z^2(y^2+y^3)+x+y+z=0.$
 
 Is the plane too steep for Nedwina?
+
+### Videos
+[14-1](http://www.math.washington.edu/~lieblich/Math126/video/14-1.mp4)
+[14-2](http://www.math.washington.edu/~lieblich/Math126/video/14-2.mp4)
+
+### Content contributors
+@maxlieblich

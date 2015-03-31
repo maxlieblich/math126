@@ -172,3 +172,9 @@ for the following functions:
 -   $f(x)=e^x$ near $b=0$
 -   Challenge: $$f(x)=\begin{cases} e^{-1/x^2} &\mbox{if } x\neq
     0\\ 0&\mbox{if } x=0 \end{cases}$$ near $b=0$.
+
+### Videos
+[22](http://www.math.washington.edu/~lieblich/Math126/video/22.mp4)
+
+### Content contributors
+@maxlieblich  

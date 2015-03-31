@@ -259,5 +259,11 @@ slo-mo). (Remember, the animation will only play when you click or touch and hol
 //]]>
 </script>
 
+### Videos
+[8-1](http://www.math.washington.edu/~lieblich/Math126/video/8-1.mp4)
+[8-2](http://www.math.washington.edu/~lieblich/Math126/video/8-2.mp4)
+[8-3](http://www.math.washington.edu/~lieblich/Math126/video/8-3.mp4)
+
+
 ### Content Contributors
 @maxlieblich
