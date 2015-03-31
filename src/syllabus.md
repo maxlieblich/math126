@@ -4,9 +4,9 @@
 
 **Professor:** [Max Lieblich](http://www.math.washington.edu/~lieblich/)  
 **Office:** Padelford C-529  
-**Office hours:** TBA or by appointment. *This is subject to change at any time.*
+**Office hours:** See Piazza for current times.
 
-**Course Materials:** The primary repository of information for the course will be the [course site](http://maxlieblich.github.io/math126) and [Piazza](http://piazza.com/washington/fall2014/math126gi/home). Quizzes, surveys, and the discussion group will be on [Piazza](http://piazza.com/washington/fall2014/math126gi/home).
+**Course Materials:** The primary repository of information for the course will be the [course site](http://maxlieblich.github.io/math126) and Piazza. The discussion forum and logistical information (among other things) will be on Piazza.
 
 **Text:** Multivariable Calculus by James Stewart.
 
@@ -30,20 +30,16 @@ You are responsible for the sections of the book indicated in the course outline
     sporadically, if at all.
 -   The two **midterm tests** will take place on the dates specified in
     the schedule popup (the small calendar icon) on the [course
-    site](http://www.math.washington.edu/~lieblich/Math126/all.html) and in the "schedule" section of the Resources tab on  [Piazza](http://piazza.com/washington/fall2014/math126gi/home). No
-    make-up exams will be given. You may bring one formula sheet to the
-    exams; this is a single 8.5 by 11 inch piece of paper, with writing
-    permitted on both sides.
+    site](http://www.math.washington.edu/~lieblich/Math126/all.html) and in the "schedule" section of the Resources tab on Piazza. No
+    make-up exams will be given. Rules for the exams will be specified on Piazza.
 -   The **final exam** will contain questions from all the topics
-    covered in the course, and will be held on the dates specified in
-    the schedule popup on the [course
-    site](http://www.math.washington.edu/~lieblich/Math126/all.html)
-    from **1:30 PM to 4:30 PM**. There will be a make-up final on a day
-    during finals period to be announced soon. You may bring one formula
+    covered in the course, and will be held on a date specified in
+    Piazza. There will be a make-up final on a day
+    during finals period. You may bring one formula
     sheet to the exam; this is a single 8.5 by 11 inch piece of paper,
     with writing permitted on both sides.
 
-**Grading:** Your final grade for Math 126 will be computed from your exam scores, your homework, your journal entries, and your quizzes (if applicable). Roughly speaking, each exam will have equal weight. The formula is subject to change at any time and will not be shared. We will periodically update you on your course performance. It is not worth having a conversation about this: just do your best.
+**Grading:** Your final grade for Math 126 will be computed from your exam scores, your homework, your journal entries, and your quizzes (if applicable). Roughly speaking, each exam will have equal weight, but we reserve the right to adjust the weights, with no exam weight ever exceeding 0.5. The exams will be graded together on a curve with median targeted at roughly 2.9. Other course components -- homework, journals, Piazza participation -- will then be treated as indicator variables that make adjustments to the exam-grade. Earning more than roughly 85% of homework points will earn a positive 0.1 adjustment, while earning less than 60% of homework points will result in -0.1 adjustment; anything in between will have no effect. Outstanding journal entries will also result in a positive adjustment of 0.1. Poor work will yield a negative adjustment. Etc. We will periodically update you with comprehensive reports on class exam performance.
 
 **Calculators:** Only simple scientific calculators will be allowed on the midterms and the final exam. Any calculator that can replace your brain (or mine!) is not permitted.
 
