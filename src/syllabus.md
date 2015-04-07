@@ -1,6 +1,6 @@
 # Math 126 Syllabus
 
-*This syllabus is subject to minor revision throughout the quarter; changes will be announced on the [course webpage](http://maxlieblich.github.io/math126), in class, or on [Piazza](http://piazza.com/washington/fall2014/math126gi/home)*.
+*This syllabus is subject to minor revision throughout the quarter; changes will be announced on the [course webpage](http://maxlieblich.github.io/math126), in class, or on Piazza (link provided when you signed up)*.
 
 **Professor:** [Max Lieblich](http://www.math.washington.edu/~lieblich/)  
 **Office:** Padelford C-529  
@@ -19,18 +19,17 @@ You are responsible for the sections of the book indicated in the course outline
 **Work/exams/fun:** All homework will be done through [webassign](https://www.webassign.net/washington/login.html). Dr. Taggart has also written a description of [how to use it](http://www.math.washington.edu/~taggart/m126/howtowebassign.html).
 
 -   The biweekly **homework assignments** will be due on Tuesdays and Thursdays, through webassign. ***Late homework will not be accepted.***
--   You will keep a **weekly calculus journal** online. Each week, you
-    will write an entry describing how the material you are learning
+-   You will keep a **calculus journal** online. You
+    will periodically write an entry describing how the material you are learning
     about appears in your lives. For example, you might make a toy model
     of the terrain between your room/apartment and class and try to
     estimate the total number of meters you actually walk (accounting
-    for elevation changes) to get here. Etc.
+    for elevation changes) to get here. Etc. Due dates will be described in Piazza.
 -   Occasional **quizzes** will be very short multiple choice quizzes
     that are meant to help you keep up with the course. They will happen
     sporadically, if at all.
--   The two **midterm tests** will take place on the dates specified in
-    the schedule popup (the small calendar icon) on the [course
-    site](http://www.math.washington.edu/~lieblich/Math126/all.html) and in the "schedule" section of the Resources tab on Piazza. No
+-   The two **midterm tests** will take place on the dates specified in the 
+-   "schedule" section of the Resources tab on Piazza. No
     make-up exams will be given. Rules for the exams will be specified on Piazza.
 -   The **final exam** will contain questions from all the topics
     covered in the course, and will be held on a date specified in
