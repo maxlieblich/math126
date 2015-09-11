@@ -244,12 +244,9 @@ $$\iint_Rg(x)h(y)dxdy=\left(\int_a^bg(x)dx\right)\cdot\left(\int_c^dh(y)dy\right
 Think about this for a few minutes.
 
 ### Videos
-[17-1](http://www.math.washington.edu/~lieblich/Math126/video/17-1.mp4)
-[17-2](http://www.math.washington.edu/~lieblich/Math126/video/17-2.mp4)
-[17-2](http://www.math.washington.edu/~lieblich/Math126/video/17-2.mp4)
+[Video chunk 17-1](http://www.math.washington.edu/~lieblich/Math126/video/17-1.mp4)
+[Video chunk 17-2](http://www.math.washington.edu/~lieblich/Math126/video/17-2.mp4)
+[Video chunk 17-2](http://www.math.washington.edu/~lieblich/Math126/video/17-2.mp4)
 
 ### Content contributors
 @maxlieblich
-
-
-

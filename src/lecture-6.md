@@ -455,7 +455,7 @@ solutions to these equations in three variables.
 -   $x^2-2x+y^2-z^2=0$
 
 ### Videos
-[6](http://www.math.washington.edu/~lieblich/Math126/video/6.mp4)
+[Video chunk 6](http://www.math.washington.edu/~lieblich/Math126/video/6.mp4)
 
 
 ### Content Contributors

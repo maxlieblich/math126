@@ -122,8 +122,7 @@ rather hard to visualize). Here's an example with
 $f(x,y,z)=x^2+y^2+2z^2$.
 
 ### Videos
-[13](http://www.math.washington.edu/~lieblich/Math126/video/13.mp4)
+[Video chunk 13](http://www.math.washington.edu/~lieblich/Math126/video/13.mp4)
 
 ### Content contributors
 @maxlieblich
-

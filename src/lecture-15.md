@@ -142,8 +142,8 @@ Can you tell which of these critical points are local maxima or minima?
 
 
 ### Videos
-[15-1](http://www.math.washington.edu/~lieblich/Math126/video/15-1.mp4)
-[15-2](http://www.math.washington.edu/~lieblich/Math126/video/15-2.mp4)
+[Video chunk 15-1](http://www.math.washington.edu/~lieblich/Math126/video/15-1.mp4)
+[Video chunk 15-2](http://www.math.washington.edu/~lieblich/Math126/video/15-2.mp4)
 
 ### Content contributors
 @maxlieblich

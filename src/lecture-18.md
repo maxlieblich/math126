@@ -107,7 +107,7 @@ This time you have to think about your own picture. Dark alley, etc.,
 etc.
 
 ### Videos
-[18](http://www.math.washington.edu/~lieblich/Math126/video/18.mp4)
+[Video chunk 18](http://www.math.washington.edu/~lieblich/Math126/video/18.mp4)
 
 ### Content contributors
 @maxlieblich

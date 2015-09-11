@@ -97,4 +97,3 @@ at time $t$.
 -   How do the osculating planes of the electron's path on the torus
     relate to the tangent planes of the torus?
 -   How awesome is this?
-

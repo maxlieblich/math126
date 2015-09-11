@@ -119,7 +119,7 @@ Find an infinite series expansion for the integral
 $\int_1^te^{-x^4}dx$. For which $t$ does it converge?
 
 ### Videos
-[24](http://www.math.washington.edu/~lieblich/Math126/video/24.mp4)
+[Video chunk 24](http://www.math.washington.edu/~lieblich/Math126/video/24.mp4)
 
 ### Content contributors
 @maxlieblich 

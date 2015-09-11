@@ -146,8 +146,8 @@ Use the internet to find out if these things come up outside of math
 class!
 
 ### Videos
-[4-1](http://www.math.washington.edu/~lieblich/Math126/video/4-1.mp4)
-[4-2](http://www.math.washington.edu/~lieblich/Math126/video/4-2.mp4)
+[Video chunk 4-1](http://www.math.washington.edu/~lieblich/Math126/video/4-1.mp4)
+[Video chunk 4-2](http://www.math.washington.edu/~lieblich/Math126/video/4-2.mp4)
 
 ### Content Contributors
 @maxlieblich

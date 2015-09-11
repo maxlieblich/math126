@@ -89,7 +89,7 @@ Do it!
 (The numbers might get ugly. That's ok: eyeballs are messy.)
 
 ### Videos
-[19](http://www.math.washington.edu/~lieblich/Math126/video/19.mp4)
+[Video chunk 19](http://www.math.washington.edu/~lieblich/Math126/video/19.mp4)
 
 ### Content contributors
 @maxlieblich

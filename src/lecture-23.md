@@ -99,7 +99,7 @@ given points.
 -   $f(x)=e^{-1/x^2}$ around $b=0$
 
 ### Videos
-[23](http://www.math.washington.edu/~lieblich/Math126/video/23.mp4)
+[Video chunk 23](http://www.math.washington.edu/~lieblich/Math126/video/23.mp4)
 
 ### Content contributors
 @maxlieblich  

@@ -164,9 +164,8 @@ point $(1,2,3)$ and the paraboloid $z=x^2+y^2$?
 -   You can try this in the comfort of your room.
 
 ### Videos
-[16-1](http://www.math.washington.edu/~lieblich/Math126/video/16-1.mp4)
-[16-2](http://www.math.washington.edu/~lieblich/Math126/video/16-2.mp4)
+[Video chunk 16-1](http://www.math.washington.edu/~lieblich/Math126/video/16-1.mp4)
+[Video chunk 16-2](http://www.math.washington.edu/~lieblich/Math126/video/16-2.mp4)
 
 ### Content contributors
 @maxlieblich
-

@@ -211,9 +211,9 @@ Calculate the limit of the curvature as $t\to\infty$.
 Formulas for curvature: $$\kappa(t)=\left|\frac{d\mathbf{T}}{ds}\right|=\frac{|\mathbf{T}'(t)|}{|s'(t)|}=\frac{|\mathbf{f}'(t)\times\mathbf{f}''(t)|}{|\mathbf{f}'(t)|^3}$$
 
 ### Videos
-[10-1](http://www.math.washington.edu/~lieblich/Math126/video/10-1.mp4)
-[10-2](http://www.math.washington.edu/~lieblich/Math126/video/10-2.mp4)
-[10-3](http://www.math.washington.edu/~lieblich/Math126/video/10-3.mp4)
+[Video chunk 10-1](http://www.math.washington.edu/~lieblich/Math126/video/10-1.mp4)
+[Video chunk 10-2](http://www.math.washington.edu/~lieblich/Math126/video/10-2.mp4)
+[Video chunk 10-3](http://www.math.washington.edu/~lieblich/Math126/video/10-3.mp4)
 
 ### Content contributors
 @maxlieblich

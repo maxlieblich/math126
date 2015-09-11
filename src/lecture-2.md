@@ -312,8 +312,8 @@ Hint:
 -   Does this help with the problem?
 
 ### Videos
-[2-1](http://www.math.washington.edu/~lieblich/Math126/video/2-1.mp4)
-[2-2](http://www.math.washington.edu/~lieblich/Math126/video/2-2.mp4)
+[Video chunk 2-1](http://www.math.washington.edu/~lieblich/Math126/video/2-1.mp4)
+[Video chunk 2-2](http://www.math.washington.edu/~lieblich/Math126/video/2-2.mp4)
 
 ### Content Contributors
 @maxlieblich, @jpswanson

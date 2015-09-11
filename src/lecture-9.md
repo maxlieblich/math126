@@ -409,7 +409,7 @@ One of the neatest things about polar coordinates is graphing equations, even si
 </script>
 
 ### Videos
-[9](http://www.math.washington.edu/~lieblich/Math126/video/9.mp4)
+[Video chunk 9](http://www.math.washington.edu/~lieblich/Math126/video/9.mp4)
 
 ### Content Contributors
 @maxlieblich

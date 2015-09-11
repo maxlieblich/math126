@@ -224,8 +224,8 @@ $(x',y',z')=(0,\cos(\alpha t),\sin(\alpha t))$. For which
 constants $\alpha$ will the tiny cars collide?
 
 ### Videos
-[7-1](http://www.math.washington.edu/~lieblich/Math126/video/7-1.mp4)
-[7-2](http://www.math.washington.edu/~lieblich/Math126/video/7-2.mp4)
+[Video chunk 7-1](http://www.math.washington.edu/~lieblich/Math126/video/7-1.mp4)
+[Video chunk 7-2](http://www.math.washington.edu/~lieblich/Math126/video/7-2.mp4)
 
 ### Content Contributors
 @maxlieblich

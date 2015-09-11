@@ -138,7 +138,7 @@ that $f''(x)=0$ for $x\in[b,c]$? Can we say (or conjecture)
 anything about the structure of $f$?
 
 ### Videos
-[21](http://www.math.washington.edu/~lieblich/Math126/video/21.mp4)
+[Video chunk 21](http://www.math.washington.edu/~lieblich/Math126/video/21.mp4)
 
 ### Content contributors
 @maxlieblich  

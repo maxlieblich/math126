@@ -119,9 +119,8 @@ keeps the total mass constant; find it if you feel like it).
     is the limiting position of the center of mass as $n\to\infty$?
 
 ### Videos
-[20-1](http://www.math.washington.edu/~lieblich/Math126/video/20-1.mp4)
-[20-2](http://www.math.washington.edu/~lieblich/Math126/video/20-2.mp4)
+[Video chunk 20-1](http://www.math.washington.edu/~lieblich/Math126/video/20-1.mp4)
+[Video chunk 20-2](http://www.math.washington.edu/~lieblich/Math126/video/20-2.mp4)
 
 ### Content contributors
 @maxlieblich    
-

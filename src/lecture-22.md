@@ -174,7 +174,7 @@ for the following functions:
     0\\ 0&\mbox{if } x=0 \end{cases}$$ near $b=0$.
 
 ### Videos
-[22](http://www.math.washington.edu/~lieblich/Math126/video/22.mp4)
+[Video chunk 22](http://www.math.washington.edu/~lieblich/Math126/video/22.mp4)
 
 ### Content contributors
 @maxlieblich  
