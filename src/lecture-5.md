@@ -221,7 +221,7 @@ Describe the plane $x-3y+47z-28=0$ using vectors.
 -   Trick: always just use the coefficients of $x$, $y$, and $z$. (This isn't actually a trick; it is math. Try to understand this. If, by the end of this lecture, you have no idea why this is true, start over again. Really. Keep thinking hard about it. If you are still confused, post on the forum or come to office hours. Things like this should not just swim by -- catch this fish and eat it!)
 -   We now have the normal vector, but *we still need our basepoint*. We need to find one solution by eyeballs. A solution: $(-16,1,1)$. (How do we know? It works! How did I find this? Randomly. Strategies you could *try*: set two of the variables equal to $0$ and solve for the third. Danger: that is not guaranteed if you make bad choices.)
 -   So the plane is the set of endpoints of vectors $\mathbf{v}$ such
-    that $$(\mathbf{v} - \langle -16, 1, 1\rangle)\cdot\langle 1, -2, 47\rangle=0.$$
+    that $$(\mathbf{v} - \langle -16, 1, 1\rangle)\cdot\langle 1, -3, 47\rangle=0.$$
 -   Another way to say it: it is what you get when you take the set of
     vectors perpendicular to $\langle 1, -3, 47\rangle$ and
     translate them all to start at $\langle -16, 1, 1\rangle$ (and then just
