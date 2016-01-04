@@ -1,0 +1,77 @@
+<h1 id="making-new-taylor-series-from-old">Making new Taylor series from old</h1>
+<h2 id="warm-up-brain">Warm up brain</h2>
+<p>Here’s a problem to try, to get your brain in the slippery place that lets us manipulate these series: find the Taylor expansion of <span class="math">\(\frac{1}{2-x}\)</span> on the interval <span class="math">\([0,2]\)</span>.</p>
+<p>Hint: let <span class="math">\(y=\frac{1}{2}x\)</span>, so that the function becomes <span class="math">\(\frac{1}{2-2y}=\frac{1}{2}\frac{1}{1-y}\)</span>. Leverage what you know?</p>
+<h2 id="operations-with-taylor-series">Operations with Taylor series</h2>
+<ul>
+<li><strong>Addition</strong>
+<ul>
+<li>Given</li>
+<li><span class="math">\(f(x)=\sum a_n x^n\)</span></li>
+<li><span class="math">\(g(x)=\sum b_n x^n\)</span></li>
+<li>Assuming both converge on <span class="math">\([0,c]\)</span></li>
+<li>Get: <span class="math">\(f(x)+g(x)=\sum(a_n+b_n)x^n\)</span> on the same interval</li>
+<li>Add like polynomials</li>
+</ul></li>
+</ul>
+<h2 id="operations-with-taylor-series-1">Operations with Taylor series</h2>
+<ul>
+<li><strong>Multiplication</strong>
+<ul>
+<li>Given</li>
+<li><span class="math">\(f(x)=\sum a_n x^n\)</span></li>
+<li><span class="math">\(g(x)=\sum b_n x^n\)</span></li>
+<li>Assuming both converge on <span class="math">\([0,c]\)</span></li>
+<li>Get: <span class="math">\(f(x)g(x)=\sum_{n=0}^\infty(\sum_{p+q=n}a_pb_q)x^n\)</span> on the same interval</li>
+<li>Multiply like polynomials</li>
+</ul></li>
+</ul>
+<h2 id="operations-with-taylor-series-2">Operations with Taylor series</h2>
+<ul>
+<li><strong>Differentiation</strong>
+<ul>
+<li>Given</li>
+<li><span class="math">\(f(x)=\sum a_n x^n\)</span></li>
+<li>Assuming the series converges on <span class="math">\([0,c]\)</span></li>
+<li>Get: <span class="math">\(f&#39;(x)=\sum_{n=1}^\infty na_nx^{n-1}\)</span> on the <strong>open</strong> interval <span class="math">\((0,c)\)</span></li>
+<li>Differentiate like polynomials</li>
+</ul></li>
+</ul>
+<h2 id="operations-with-taylor-series-3">Operations with Taylor series</h2>
+<ul>
+<li><strong>Antidifferentiation</strong>
+<ul>
+<li>Given</li>
+<li><span class="math">\(f(x)=\sum a_n x^n\)</span></li>
+<li>Assuming the series converges on <span class="math">\([0,c]\)</span></li>
+<li>Get: <span class="math">\(\int f dx = \sum_{n=0}^\infty \frac{a_n}{n+1}x^{n+1}\)</span> on the same interval</li>
+<li>Integrate like polynomials</li>
+</ul></li>
+</ul>
+<p>Let’s take a couple of these babies out for a spin.</p>
+<h2 id="addition">Addition</h2>
+<p>Find the Taylor series for the function</p>
+<p><span class="math">\[f(x)=\frac{1}{x^2-3x+2}\]</span></p>
+<p>on the interval <span class="math">\([0,1]\)</span>. Thoughts?</p>
+<p>Partial fractions:</p>
+<p><span class="math">\[\frac{1}{x^2-3x+1}=\frac{1}{(2-x)(1-x)}=\frac{1}{1-x}-\frac{1}{2-x}.\]</span></p>
+<p>Independent Taylor expansions: <span class="math">\(\frac{1}{2-x}=\sum\frac{1}{2^{n+1}}x^n\)</span>; <span class="math">\(\frac{1}{1-x}=\sum x^n\)</span>.</p>
+<p>Assemble: <span class="math">\(f(x)=\sum x^n-\sum\frac{1}{2^{n+1}}x^n=\sum (1-\frac{1}{2^{n+1}})x^n=\sum \frac{2^{n+1}-1}{2^{n+1}}x^n\)</span>.</p>
+<h2 id="do-one">Do one!</h2>
+<p>Compute the Taylor series of <span class="math">\(\sin(x)+\cos(x)\)</span> near <span class="math">\(x=0\)</span>.</p>
+<h2 id="integration">Integration</h2>
+<p>Remember how integration is hard? If we have Taylor series at our disposal, we can often give some sort of expression for the integral of a function.</p>
+<p>Example: calculate <span class="math">\(\int_0^t\sin(x^2)dx\)</span>.</p>
+<p>Well, <span class="math">\[\sin(y)=\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}y^{2n+1},\]</span> so <span class="math">\[\sin(x^2)=\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}x^{4n+2}\]</span> (substitute <span class="math">\(x^2\)</span> for <span class="math">\(y\)</span>).</p>
+<p>This converges everywhere.</p>
+<h2 id="integration-1">Integration</h2>
+<p>Thus, <span class="math">\[\begin{align}\int_0^t\sin(x^2)dx&amp;=\int_0^t\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}x^{4n+2}dx\\
+&amp;=\sum_{n=0}^\infty\frac{(-1)^n}{(4n+3)(2n+1)!}x^{4n+3}\Bigr|_0^t\\
+&amp;=\sum_{n=0}^\infty\frac{(-1)^n}{(4n+3)(2n+1)!}t^{4n+3}.\end{align}\]</span></p>
+<p>This may (does!) look inscrutable, but the point is that it is a formula that we could use to compute that integral if we had to.</p>
+<h2 id="try-one">Try one!</h2>
+<p>Find an infinite series expansion for the integral <span class="math">\(\int_1^te^{-x^4}dx\)</span>. For which <span class="math">\(t\)</span> does it converge?</p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/24.mp4">Video chunk 24</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>

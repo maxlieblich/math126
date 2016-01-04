@@ -1,0 +1,78 @@
+<h1 id="differentials">Differentials</h1>
+<h2 id="nedwina-cummerbund-and-the-ankles-of-doom">Nedwina Cummerbund and the Ankles of Doom</h2>
+<p>Nedwina is standing on her favorite part of Rainier, given by the equation <span class="math">\(x^3+z^2(y^2+y^3)+x+y+z=0.\)</span></p>
+<p>The tangent plane: <span class="math">\(x+y+z=0\)</span>.</p>
+<p>The angle with the <span class="math">\(xy\)</span>-plane is the angle between the normal vectors <span class="math">\(\langle 1,0,0\rangle\)</span> and <span class="math">\(\langle 1,1,1\rangle\)</span>: <span class="math">\(\cos(\theta)=\frac{1}{\sqrt{3}}\)</span>.</p>
+<p>The angle is about <span class="math">\(54.74^\circ\)</span>, slightly less than the <span class="math">\(60^\circ\)</span> limit set by the doctor. Phew!</p>
+<p>Nedwina has her pet slug Boffo with her. Boffo is very sensitive to changes in elevation. He asks, sliming with fear:</p>
+<p>“How many cm higher or lower will I be if you follow the path that goes 2cm in the <span class="math">\(x\)</span> direction and 1 cm in the <span class="math">\(y\)</span> direction?”</p>
+<h2 id="centimeters-are-small">Centimeters are small</h2>
+<p>For making small changes, we can use the linear approximation to the function!</p>
+<ul>
+<li>The best linear approximation to the nerd’s model of Rainier at <span class="math">\((0,0,0)\)</span> is the function <span class="math">\(z=-x-y\)</span>.</li>
+<li>Tiny changes in <span class="math">\(x\)</span> and <span class="math">\(y\)</span>: <span class="math">\(\Delta x=0.02\)</span> meters and <span class="math">\(\Delta y=0.01\)</span> meters.</li>
+<li>We get <span class="math">\(\Delta z=-\Delta x-\Delta y=-0.03\)</span> meters, or <span class="math">\(3\)</span> centimeters lower.</li>
+<li>Boffo will not explode.</li>
+</ul>
+<h2 id="name-for-this-differentials">Name for this: differentials</h2>
+<p>These tiny changes are called differentials, and our best linear approximation lets us compute them.</p>
+<p>General formula: if <span class="math">\(z=f(x,y)\)</span> then <span class="math">\(dz=f_x(x,y)dx+f_y(x,y)dy\)</span>. We get the tiny change in <span class="math">\(z\)</span> coming from that tiny change in the position of the point <span class="math">\((x,y)\)</span> using the partial derivatives according to the formula.</p>
+<p>Try one: find the differentials of <span class="math">\(f(x,y)=x^y\)</span>.</p>
+<h2 id="help-the-piglet">Help the piglet</h2>
+<p>Find all of the mistakes in this solution: the differential at the point <span class="math">\((a,b,a^b)\)</span> is</p>
+<p><span class="math">\[dz=yx^{y-1}(x-a)+a^b\ln(a)ydy\]</span></p>
+<p>Correct solution: the differential at <span class="math">\((a,b,a^b)\)</span> is given by <span class="math">\[dz=ba^{b-1}dx+a^b\ln(a)dy.\]</span></p>
+<h2 id="a-real-world-example">A real-world example</h2>
+<p>Roughly how much cheese (in cubic meters) did we shave off a cylinder of cheese of radius <span class="math">\(1\)</span> and height <span class="math">\(4\)</span> if it ends up with radius <span class="math">\(0.99\)</span> and height <span class="math">\(3.98\)</span>?</p>
+<ul>
+<li>Make a model of the volume depending upon two variables.</li>
+<li>Use the differential formula to estimate the change.</li>
+<li>Eat a piece of pizza.</li>
+</ul>
+<h2 id="the-piglet-of-calculus-is-wondering.">The piglet of calculus is wondering….</h2>
+<p>Can we find a differentiable function whose differential in any direction is positive?</p>
+<ul>
+<li>If so, find one.</li>
+<li>If not, explain why not.</li>
+</ul>
+<h2 id="ok-the-piglet-has-a-refined-question">OK, the piglet has a refined question</h2>
+<p>Can we find a differentiable function <span class="math">\(f(x,y)\)</span> and a point <span class="math">\((a,b)\)</span> so that the actual changes when we jiggle the point are all positive?</p>
+<ul>
+<li>If so, find one.</li>
+<li>If not, explain why not.</li>
+</ul>
+<h1 id="optimization">Optimization</h1>
+<h2 id="horizontality-is-not-just-for-napping">Horizontality is not just for napping</h2>
+<p>For the graph to reach a minimum or maximum (i.e., for small changes to be positive or negative), the tangent plane must be horizontal.</p>
+<p>This smacks of local max and min. Remember that?</p>
+<h2 id="local-max-and-min">Local max and min</h2>
+<p>You mastered this for functions <span class="math">\(f(x)\)</span> of one variable:</p>
+<ul>
+<li>Look for points where <span class="math">\(f&#39;(x)\)</span> is undefined.</li>
+<li>Solve <span class="math">\(f&#39;(x)=0\)</span>.</li>
+<li>The options: either <span class="math">\(x\)</span> is a local maximum, a local minimum, or an inflection point.</li>
+<li>Local max/min are sometimes (but not always) distinguished by the sign of <span class="math">\(f&#39;&#39;(x)\)</span>: pos for min, neg for max</li>
+<li>Inflection points occur when <span class="math">\(f&#39;&#39;(x)\)</span> changes sign.</li>
+</ul>
+<p>How does this work for functions of multiple variables?</p>
+<h2 id="locate-potential-local-maxmin">Locate potential local max/min</h2>
+<p>Key observation: if <span class="math">\(f(x,y)\)</span> has a local max/min at <span class="math">\((a,b)\)</span> then <span class="math">\(f_x(a,b)=0\)</span> and <span class="math">\(f_y(a,b)=0\)</span>, or at least one of the partial derivatives is undefined.</p>
+<p>Definition: a point <span class="math">\((a,b)\)</span> is a critical point if <strong>EITHER</strong></p>
+<ol type="1">
+<li><span class="math">\(f_x(a,b)=0\)</span> and <span class="math">\(f_y(a,b)=0\)</span>, <strong>OR</strong></li>
+<li>one of these partial derivatives is undefined at <span class="math">\((a,b)\)</span>.</li>
+</ol>
+<h2 id="critical-point-lovefest">Critical point lovefest</h2>
+<p>Find all critical points for the following functions.</p>
+<ul>
+<li><span class="math">\(f(x,y)=x^2+y^2\)</span></li>
+<li><span class="math">\(f(x,y)=x^2-y^2\)</span></li>
+<li><span class="math">\(f(x,y)=\sin(x)\cos(y)\)</span></li>
+<li><span class="math">\(f(x,y)=x^y\)</span></li>
+<li><span class="math">\(f(x,y)=x^3+y^3+x+y\)</span></li>
+</ul>
+<p>Can you tell which of these critical points are local maxima or minima?</p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/15-1.mp4">Video chunk 15-1</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/15-2.mp4">Video chunk 15-2</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>

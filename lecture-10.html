@@ -1,0 +1,104 @@
+<h1 id="distance">Distance</h1>
+<p>We will now see how integration of vector-valued functions gives us insight into computing distances traveled. Let’s start with a warm-up problem that we’ve seen before.</p>
+<h3 id="kangaroos">Kangaroos++</h3>
+<p>A joey (baby kangaroo) is riding in her mother’s pouch with a sophisticated inertial navigation system. She is too small to see out of the pouch, but her system records the velocity vector at any time.</p>
+<ul>
+<li>The joey records the velocity at time <span class="math">\(t\)</span> as <span class="math">\[\mathbf{v}(t)=\langle 1,t,\sin(t)\rangle\]</span></li>
+<li>The joey starts at the point <span class="math">\((0,0,1)\)</span></li>
+<li>Last time: the position is <span class="math">\(\mathbf{f}(t)=\langle t,\frac{1}{2}t^2,2-\cos(t) \rangle\)</span></li>
+<li>New question: How long is the joey’s path between <span class="math">\(t=0\)</span> and <span class="math">\(t=15\)</span>?</li>
+</ul>
+<h3 id="distance-by-accretion">Distance by accretion</h3>
+<p>How can we calculate the distance <span class="math">\(s\)</span> travelled by the joey from <span class="math">\(t=a\)</span> to <span class="math">\(t=b\)</span>?</p>
+<ul>
+<li>Linear approximation to function near time <span class="math">\(t=a\)</span>: <span class="math">\(\mathbf{L}(t)=\mathbf{f}(a)+(t-a)\mathbf{f}&#39;(a)\)</span>.</li>
+<li>For a small change <span class="math">\(\Delta(t)\)</span>, the distance travelled is thus approximately <span class="math">\(\Delta(s)\approx|\mathbf{f}&#39;(t)|\Delta(t)\)</span>.</li>
+<li>The resulting Riemann sums approximate the integral <span class="math">\[s(t)=\int_a^b|\mathbf{f}&#39;(t)|dt.\]</span></li>
+<li>Important Note: when you reverse direction, the distance still adds up!</li>
+</ul>
+<h3 id="practical-distance-i">Practical distance, I</h3>
+<p>If we have <span class="math">\(\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle\)</span> then the distance from the starting point <span class="math">\(t=a\)</span> to a variable time <span class="math">\(T\)</span> is</p>
+<p><span class="math">\[s(T)=\int_a^T\sqrt{(x&#39;(t)^2+(y&#39;(t))^2+(z&#39;(t))^2)}dt.\]</span></p>
+<p><span class="math">\[s(T)=\int_0^T\sqrt{1+t^2+\sin^2(t)}dt\]</span></p>
+<p>Evaluating this function seems rather mysterious in general. Using numerical methods, we get a concrete answer for <span class="math">\(T=15\)</span>:</p>
+<p><span class="math">\[s(15)=115.255\ldots.\]</span></p>
+<p>Here’s one to try:</p>
+<p>What is the distance of the cylinder path <span class="math">\(\mathbf{f}(t) = \langle \cos(t), \sin(t), t/2\pi\rangle,\)</span> from <span class="math">\(t=0\)</span> to <span class="math">\(t=T\)</span>?</p>
+<p>Move on only when ready for the answer!</p>
+<p>If we have <span class="math">\(\mathbf{f}(t)=\langle x(t),y(t),z(t)\rangle\)</span> then the distance from the starting point <span class="math">\(t=a\)</span> to a variable time <span class="math">\(T\)</span> is</p>
+<p><span class="math">\[s(T)=\int_a^T\sqrt{(x&#39;(t)^2+(y&#39;(t))^2+(z&#39;(t))^2)}dt.\]</span></p>
+<p>Plugging/chugging:</p>
+<p><span class="math">\[\int_0^T\sqrt{\frac{4\pi^2+1}{4\pi^2}}dt =
+\frac{T\sqrt{4\pi^2+1}}{2\pi}\]</span></p>
+<h3 id="arc-length">Arc length</h3>
+<p>We might ask ourselves how long a path in space is, instead of asking how far we have traveled. (Is there a difference?!)</p>
+<h4 id="distance-vs-arc-length">Distance vs arc length</h4>
+<p>If you never reverse direction, you are also computing the length of the path, not just your choice of traversal.</p>
+<p>The physical length of the path is the <em>arc length</em>.</p>
+<h3 id="practical-arc-length-ii">Practical arc length, II</h3>
+<p>Here’s a funny special case. Suppose that <span class="math">\(|\mathbf{f}&#39;(t)|=1\)</span> for all <span class="math">\(t\)</span>. Then the distance traversed from time <span class="math">\(0\)</span> to time <span class="math">\(T\)</span> is <span class="math">\[s(T)=\int_0^T|\mathbf{f}&#39;(t)|dt=\int_0^T1dt=T.\]</span></p>
+<p>In typical circumstances (called “smooth”: <span class="math">\(\mathbf{f}&#39;(t)\)</span> is never <span class="math">\(0\)</span>), one can reparametrize the curve using arc length instead of <span class="math">\(t\)</span>.</p>
+<p>Example: for the unit circle, the arc length parametrization is <span class="math">\[\langle x,y\rangle=\langle\cos(s),\sin(s)\rangle.\]</span></p>
+<p>Meaning: the arc length as <span class="math">\(s\)</span> goes from <span class="math">\(0\)</span> to <span class="math">\(T\)</span> is <span class="math">\(T\)</span>!</p>
+<p>A parametric vector function <span class="math">\(\mathbf{f}(t)\)</span> is <em>parametrized by arc length</em> or an <em>arc length parametrization</em> if the arc length traced by <span class="math">\(\mathbf{f}\)</span> between <span class="math">\(t=a\)</span> and <span class="math">\(t=b\)</span> is <span class="math">\(b-a\)</span>.</p>
+<p><span class="math">\[\int_a^b|\mathbf{f}&#39;(t)|dt=b-a\]</span></p>
+<p>How do you find these things?</p>
+<ul>
+<li>Start with a parametrization: <span class="math">\(\mathbf{f}(t)\)</span>.</li>
+<li>Hypothetical reparametrization: <span class="math">\(t=t(s)\)</span>.</li>
+<li>Chain rule: <span class="math">\(|\mathbf{f}&#39;(t)| = |\mathbf{f}&#39;(t)t&#39;(s)| = |\mathbf{f}&#39;(t)||t&#39;(s)|\)</span>.</li>
+<li>In order to ensure that the speed is constant, can try to solve the differential equation <span class="math">\(t&#39;(s) = |\mathbf{f}&#39;(t(s))|^{-1}.\)</span></li>
+</ul>
+<p>Example: circle of radius <span class="math">\(2\)</span>, parametrized by <span class="math">\(\mathbf{f}(t)=\langle 2\cos(t), 2\sin(t)\rangle\)</span></p>
+<p><span class="math">\[\mathbf{f}&#39;(t) = \langle -2\sin(t), 2\cos(t)\rangle\]</span></p>
+<p><span class="math">\[|\mathbf{f}&#39;(t)|=\sqrt{4\sin^2(t)+4\cos^2(t)}=2\]</span></p>
+<p>So: solve <span class="math">\(t&#39;(s)=1/2\)</span>; one solution is <span class="math">\(t=s/2\)</span></p>
+<p>End result: arc length parametrization of circle of radius <span class="math">\(2\)</span> is <span class="math">\(\mathbf{f}(s)=\langle 2\cos(s/2),2\sin(s/2)\rangle\)</span></p>
+<p>Find the arc length parametrization of the circle of radius <span class="math">\(r\)</span>.</p>
+<h3 id="curvature">Curvature</h3>
+<h4 id="unit-tangent-vectors">Unit tangent vectors</h4>
+<p>Something remarkable happens when parametrizing curves by arc length: every tangent vector has length <span class="math">\(1\)</span>.</p>
+<p>We can do this more generally whenever we know that <span class="math">\(\mathbf{f}&#39;(t)\neq 0\)</span>.</p>
+<p>The unit tangent vector to the curve <span class="math">\(\mathbf{f}(t)\)</span> at a point <span class="math">\(t=a\)</span> is <span class="math">\[\mathbf{T}(a)=\frac{\mathbf{f}&#39;(a)}{|\mathbf{f}&#39;(a)|}.\]</span></p>
+<p>Example: for the joey from the “Distance” lecture segment with <span class="math">\(\mathbf{f}&#39;(t)=\langle 1,t,\sin(t)\rangle\)</span>, the unit tangent vector at time <span class="math">\(a\)</span> is <span class="math">\[\mathbf{T}(a)=\frac{1}{\sqrt{1+t^2+\sin^2(t)}}\langle 1,t,\sin(t)
+\rangle.\]</span></p>
+<h4 id="practice">Practice</h4>
+<p>Compute the unit tangent to the parabola <span class="math">\(y=x^2\)</span> at the point <span class="math">\((a,a^2)\)</span>.</p>
+<p>Hint: one way to do this is to parametrize the path first, say using <span class="math">\(x=t\)</span>. Then calculate <span class="math">\(\mathbf{f}&#39;(t)/|\mathbf{f}&#39;(t)|\)</span>. What if you parametrize (half of) the parabola as <span class="math">\(\langle\sqrt t,t\rangle\)</span> instead?</p>
+<h4 id="the-benefits-of-all-of-this">The benefits of all of this</h4>
+<p>Why work with arc length and unit tangents?</p>
+<ul>
+<li>Capture intrinsic geometric information, not artifacts of the choices we made in our description.</li>
+<li>Recovers delicate static information about the shape.</li>
+</ul>
+<p>For example: <span class="math">\(\mathbf{T}&#39;(t)\cdot\mathbf{T}(t)=0.\)</span> I.e., <span class="math">\(\mathbf{T}&#39;(t)\)</span> is perpendicular to <span class="math">\(\mathbf{T}(t)\)</span>.</p>
+<p>Indeed, <span class="math">\[0=\frac{d}{dt}1=\frac{d}{dt}|\mathbf{T}(t)|=\frac{d}{dt}\left(\mathbf{T}(t)\cdot\mathbf{T}(t)\right)=2\mathbf{T}(t)\cdot\mathbf{T}&#39;(t).\]</span></p>
+<p>Meaning: <span class="math">\(\mathbf{T}&#39;(t)\)</span>, unlike the acceleration in general, is always changing the tangent to the curve in the “most efficient” way.</p>
+<h4 id="curvature-1">Curvature</h4>
+<p>The curvature of the smooth parametric curve <span class="math">\(\mathbf{f}(t)\)</span> is defined to be <span class="math">\[\kappa(t)=\left|\frac{d\mathbf{T}(t)}{ds}\right|,\]</span> where <span class="math">\(s\)</span> is the arc length function.</p>
+<p>Since <span class="math">\(s&#39;(t)=|\mathbf{f}&#39;(t)|\)</span>, we also have <span class="math">\(\kappa(t)=|\mathbf{T}&#39;(t)|/|\mathbf{f}&#39;(t)|\)</span>.</p>
+<p>A lot to digest!</p>
+<p>When <span class="math">\(\mathbf{f}\)</span> is already paramterized by arc length, this simplifies to <span class="math">\[\kappa(s)=|\mathbf{f}&#39;&#39;(s)|,\]</span> the acceleration.</p>
+<p>In practice, this is <em>not</em> how you will compute it (because you won’t have paths parametrized by arc length most of the time).</p>
+<h3 id="examples">Examples</h3>
+<h4 id="the-circle-of-radius-r-and-the-parabola-fights-back."><em>The Circle of Radius <span class="math">\(r\)</span></em> and <em>The Parabola Fights Back</em>.</h4>
+<p>The equations parametrizing with arc length: <span class="math">\(\mathbf{f}(s)=\langle r\cos(s/r),r\sin(s/r)\rangle\)</span>.</p>
+<p>Thus, <span class="math">\[\kappa(s)=\left|\left\langle
+-\frac{1}{r}\cos\left(\frac{s}{r}\right),
+-\frac{1}{r}\sin\left(\frac{s}{r}\right)\right\rangle\right|=\frac{1}{r}.\]</span></p>
+<p>Makes sense: the curvature of a circle of large radius is small. After all, the path is basically a straight line!</p>
+<p>What about for something like the parabola? Try it. You might consider using <span class="math">\(\mathbf{f}(t)=\langle t,t^2\rangle\)</span> and <span class="math">\(\kappa=|\mathbf{T}&#39;|/|\mathbf{f}&#39;|\)</span>, together with your calculation of <span class="math">\(\mathbf{T}\)</span> from before. What a mess!</p>
+<h3 id="curvature-in-practice">Curvature in practice</h3>
+<p>Mathematicians have thought about this one pretty hard, and here is what turns out to happen:</p>
+<p>The curvature of the smooth path parametrized by <span class="math">\(\mathbf{f}(t)\)</span> is <span class="math">\[\kappa(t)=\frac{|\mathbf{f}&#39;(t)\times\mathbf{f}&#39;&#39;(t)|}{|\mathbf{f}&#39;(t)|^3}.\]</span> Any book or the internet contains a proof!</p>
+<p>We can dispatch the parabola <span class="math">\(\mathbf{f}(t)=\langle t,t^2\rangle\)</span>:</p>
+<p><span class="math">\[\kappa(t)=\frac{|\langle 1,2t,0\rangle\times\langle
+0,2,0\rangle|}{(1+4t^2)^\frac{3}{2}}=\frac{2}{(1+4t^2)^\frac{3}{2}}.\]</span></p>
+<h4 id="do-one">Do one!</h4>
+<p>Recall the motion of the joey: <span class="math">\(\mathbf{f}(t)=\langle t,\frac{1}{2}t^2,2-\cos(t)\rangle\)</span>.</p>
+<p>Calculate the limit of the curvature as <span class="math">\(t\to\infty\)</span>.</p>
+<p>Formulas for curvature: <span class="math">\[\kappa(t)=\left|\frac{d\mathbf{T}}{ds}\right|=\frac{|\mathbf{T}&#39;(t)|}{|s&#39;(t)|}=\frac{|\mathbf{f}&#39;(t)\times\mathbf{f}&#39;&#39;(t)|}{|\mathbf{f}&#39;(t)|^3}\]</span></p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/10-1.mp4">Video chunk 10-1</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/10-2.mp4">Video chunk 10-2</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/10-3.mp4">Video chunk 10-3</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>

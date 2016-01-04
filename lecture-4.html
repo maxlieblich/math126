@@ -1,0 +1,94 @@
+<h1 id="cross-products">Cross products</h1>
+<p>Today we’ll learn about the other way to combine vectors: the cross product. The cross product eats two vectors and returns a <strong>vector</strong>, unlike the dot product, which returns a scalar (number).</p>
+<h3 id="warm-up">Warm up</h3>
+<p><strong>Question:</strong> two vectors span a parallelogram.</p>
+<ul>
+<li>What is the area of the parallelogram?</li>
+<li>What is a unit vector perpendicular to the parallelogram?</li>
+</ul>
+<figure>
+<img src="media/lecture4_pic1.png" />
+</figure>
+<p><strong>Example:</strong> how about the parallelogram spanned by the two vectors <span class="math">\(\langle 4,0\rangle\)</span> and <span class="math">\(\langle 3,4\rangle\)</span> in the <span class="math">\(xy\)</span>-plane?</p>
+<p>Here’s picture:</p>
+<figure>
+<img src="media/lecture4_pic1.png" />
+</figure>
+<p>We can slice and dice to get a rectangle:</p>
+<figure>
+<img src="media/lecture4_pic2.png" />
+</figure>
+<p>We know how to compute this area: length times height. The area is thus <span class="math">\(4\cdot 4=16\)</span>.</p>
+<p>How can we generalize this?</p>
+<p><strong>Fun exercise</strong>: use the dot product and projections to do this in general. Do it.</p>
+<h3 id="enter-the-cross-product">Enter the cross product</h3>
+<p>While you can use the dot product to solve this problem (do the fun exercise above!), there is a way to make a <em>single vector</em> encoding <em>both</em> the perpendicular direction and area of the parallelogram.</p>
+<p>Secret sauce: the cross product</p>
+<h4 id="definition">Definition</h4>
+<p>The cross product of two vectors</p>
+<p><span class="math">\[\mathbf{a}=\langle a_1,a_2,a_3\rangle\textrm{, }\mathbf{b}=\langle b_1,b_2,b_3\rangle\]</span></p>
+<p>is the vector</p>
+<p><span class="math">\[ \mathbf{a}\times\mathbf{b}= \langle a_2b_3-a_3b_2,
+a_3b_1-a_1b_3, a_1b_2-a_2b_1\rangle. \]</span></p>
+<p><strong>Note</strong>: unlike the dot product, this <em>is</em> a vector!</p>
+<h3 id="computing-with-a-determinant">Computing with a determinant</h3>
+<p>This is a slight abuse of notation, but we have</p>
+<p><span class="math">\[\mathbf{a}\times\mathbf{b}=\left|\begin{array}{ccc} \mathbf{i} &amp;
+\mathbf{j} &amp; \mathbf{k}\\ a_1 &amp; a_2 &amp; a_3\\ b_1 &amp; b_2 &amp;
+b_3\end{array}\right|\]</span></p>
+<p>Read about this in a textbook or the internet. Let’s briefly review the formula.</p>
+<p><span class="math">\[ \begin{align} \mathbf{a} \times\mathbf{b}&amp;=\left|\begin{array}{ccc} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k}\\
+a_1 &amp; a_2 &amp; a_3\\ b_1 &amp; b_2 &amp;
+b_3\end{array}\right|\\&amp;\\&amp;=\mathbf{i}\left|\begin{array}{cc}a_2 &amp; a_3\\ b_2 &amp;
+b_3\end{array}\right|- \mathbf{j}\left|\begin{array}{cc}a_1 &amp;
+a_3\\ b_1 &amp; b_3\end{array}\right|+ \mathbf{k}\left|\begin{array}{cc}a_1 &amp; a_2\\ b_1 &amp;
+b_2\end{array}\right|\\ &amp;=\mathbf{i}(a_2b_3-a_3b_2)-\mathbf{j}(a_1b_3-a_3b_1)\\ &amp;\quad\quad\quad+\mathbf{k}(a_1b_2-a_2b_1) \end{align}\]</span></p>
+<h4 id="an-example">An example</h4>
+<p><span class="math">\[\begin{align} \langle 1,1,0\rangle\times&amp;\langle
+0,1,1\rangle\\ =&amp;\left|\begin{array}{ccc} \mathbf{i} &amp; \mathbf{j} &amp;
+\mathbf{k}\\ 1 &amp; 1 &amp; 0\\ 0 &amp; 1 &amp; 1\end{array}\right|\\
+=&amp;\mathbf{i}\left|\begin{array}{cc}1 &amp; 0\\ 1 &amp;
+1\end{array}\right|- \mathbf{j}\left|\begin{array}{cc}1 &amp; 0\\ 0 &amp;
+1\end{array}\right|+ \mathbf{k}\left|\begin{array}{cc}1 &amp; 1\\ 0 &amp;
+1\end{array}\right|\\ =&amp;\mathbf{i}-\mathbf{j}+\mathbf{k}=\langle
+1,-1,1\rangle\\ \end{align}\]</span></p>
+<h3 id="brain-squeeze">Brain squeeze</h3>
+<p>Compute these cross products and draw the resulting vectors:</p>
+<ul>
+<li><span class="math">\(\langle 1,2,3\rangle\times\langle 3,6,9\rangle\)</span></li>
+<li><span class="math">\(\mathbf{i}\times\mathbf{i}\)</span></li>
+<li><span class="math">\(\mathbf{i}\times\mathbf{j}\)</span></li>
+<li><span class="math">\(\mathbf{j}\times\mathbf{i}\)</span></li>
+<li><span class="math">\(\mathbf{j}\times \mathbf{k}\)</span></li>
+<li><span class="math">\(\mathbf{k}\times \mathbf{i}\)</span></li>
+</ul>
+<h2 id="geometry">Geometry</h2>
+<p>Just as saw with the dot product, in addition to the simple formula for computing the cross product (that we just saw) there is a compact related formula that helps us understand the geometry associated to the cross product.</p>
+<h3 id="sweet-sweet-theorem-for-times">Sweet Sweet Theorem for <span class="math">\(\times\)</span></h3>
+<p>Given two vectors <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span> with angle <span class="math">\(\theta\)</span></p>
+<ul>
+<li>the vector <span class="math">\(\mathbf{a}\times\mathbf{b}\)</span> is <span class="math">\(\perp\)</span> to both <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span>;</li>
+<li>the list <span class="math">\(\mathbf{a},\mathbf{b},\mathbf{a}\times\mathbf{b}\)</span> satisfies the right-hand rule;</li>
+<li>we have <span class="math">\(|\mathbf{a}\times\mathbf{b}|=|\mathbf{a}||\mathbf{b}|\sin(\theta)\)</span>;</li>
+<li><span class="math">\(|\mathbf{a}\times\mathbf{b}|\)</span> equals the area of the parallelogram spanned by <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span>.</li>
+</ul>
+<p>This formula ties the cross product to <em>area</em> and <em>orientation</em>. The magnitude of the cross product computes an area, and the direction encodes the path you walk around the parallelogram by the order you’ve chosen when you write down the cross product.</p>
+<h3 id="do-one">Do one</h3>
+<p>Find the area of the parallelogram spanned by <span class="math">\(\langle 4,0,0\rangle\)</span> and <span class="math">\(\langle 3,4,0\rangle\)</span></p>
+<p>Compute the cross product!</p>
+<ul>
+<li>Can you predict the direction of the cross product vector without calculating anything?</li>
+<li>Can you predict the magnitude of the cross product without calculating anything?</li>
+</ul>
+<p>Here it is:</p>
+<p><span class="math">\(\langle 4,0,0\rangle\times\langle 3,4,0\rangle=\langle 0,0,16\rangle\)</span></p>
+<p>Phew!</p>
+<p>Hmmm…. Maybe drawing a picture of this (the parallelogram and the cross product) would help you cement this in your mind.</p>
+<h3 id="exploratory-probe">Exploratory probe</h3>
+<p>Suppose you model a surface with a computer: you can’t do continuous or smooth things, so the surface is modeled as having a ton of faces (like the facets of a demonic gem). These faces might be described with coordinates in <span class="math">\(\mathbf{R}^3\)</span>. How can you find the normal vector to one of the faces?</p>
+<p>How many ways are there to make a normal vector? Is it unique? Can you use them to distinguish “inside” from “outside”?</p>
+<p>Use the internet to find out if these things come up outside of math class!</p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/4-1.mp4">Video chunk 4-1</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/4-2.mp4">Video chunk 4-2</a></p>
+<h3 id="content-contributors">Content Contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>

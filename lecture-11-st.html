@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="stylesheets/pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/three.min.js" type="text/javascript"></script>
+  <script src="js/ArrowHelperFixed.js" type="text/javascript"></script>
+  <script src="js/marchingcubesraw.js" type="text/javascript"></script>
+  <script src="js/marchingtetrahedraraw.js" type="text/javascript"></script>
+  <script src="js/surfacenetsraw.js" type="text/javascript"></script>
+  <script src="js/MathScene.js" type="text/javascript"></script>
+  <script src="js/MathModel.js" type="text/javascript"></script>
+  <script src="js/TrackballControls.js" type="text/javascript"></script>
+  <script src="js/OrbitControls.js" type="text/javascript"></script>
+  <script src="js/Detector.js" type="text/javascript"></script>
+  <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
+  <script src="js/dat.gui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="tangents-normals-binormals">Tangents, normals, binormals</h1>
+<h3 id="consider-the-electron-spiraling-around-the-torus">Consider the electron spiraling around the torus</h3>
+<p>The vector description:</p>
+<p><span class="math">\[\mathbf{f}(t)=\langle
+\cos(t)(2-\cos(4t)),\sin(t)(2-\cos(4t)),\sin(4t)\rangle\]</span></p>
+<ul>
+<li>What plane best approximates (makes most contact with) the path followed by the electron? (Any guesses?)</li>
+<li>How can we measure the twisting of the path in three-dimensional space?</li>
+<li>Earlier: curvature measures curvature of path, but does not capture direction of curving.</li>
+</ul>
+<h3 id="visualizing-changes-with-vectors-i">Visualizing changes with vectors, I</h3>
+<p>Here’s a model of the electron path with the unit tangent vector <span class="math">\(\mathbf{T}(t)\)</span> attached.</p>
+<h4 id="how-can-we-recover-more-of-the-curving-structure">How can we recover more of the curving structure?</h4>
+<p>Take the derivative of the unit tangent vector!</p>
+<p><strong>Definition</strong>. The unit normal vector to the parametrized path <span class="math">\(\mathbf{f}(t)\)</span> with unit tangent vector <span class="math">\(\mathbf{T}(t)\)</span> is defined to be <span class="math">\[\mathbf{N}(t)=\frac{\mathbf{T}&#39;(T)}{|\mathbf{T}&#39;(t)|}.\]</span></p>
+<p>We are normalizing the derivative of the unit tangent so that we can get as close to bare intrinsic geometry as possible.</p>
+<p>Why is this called a normal vector?</p>
+<ul>
+<li>Because <span class="math">\(\mathbf{T}(t)\cdot\mathbf{T}&#39;(t)=0\)</span>, as you saw in the “Curvature” lecture segment.</li>
+</ul>
+<h3 id="visualizing-changes-with-vectors-ii">Visualizing changes with vectors, II</h3>
+<p>Here’s a model of the electron path with the unit tangent and unit normal both attached.</p>
+<h4 id="try-an-example">Try an example</h4>
+<p>Consider the helix</p>
+<p><span class="math">\[\mathbf{h}(t)=\langle\cos(t),\sin(t),t\rangle\]</span></p>
+<ul>
+<li>Calculate the unit tangent vector <span class="math">\(\mathbf{T}(t)\)</span></li>
+<li>Calculate the unit normal vector <span class="math">\(\mathbf{N}(t)\)</span></li>
+</ul>
+<h3 id="but-wait-theres-more">But wait, there’s more!</h3>
+<p>Take the cross product now for a free third vector!</p>
+<p><strong>Definition</strong>. the binormal vector at time <span class="math">\(t\)</span> is the unit vector</p>
+<p><span class="math">\[\mathbf{B}(t)=\mathbf{T}(t)\times\mathbf{N}(t).\]</span></p>
+<p>Together, the vectors <span class="math">\(\mathbf{T}(t),\mathbf{N}(t),\mathbf{B}(t)\)</span> form a triad of unit vectors satisfying the right-hand rule. This is called a <em>frame</em>.</p>
+<p>Try this: Complete your unit tangent and unit normal to get the full frame for the helix <span class="math">\(\mathbf{h}(t)=\langle\cos(t),\sin(t),t\rangle\)</span></p>
+<h3 id="visualizing-changes-with-vectors-iii">Visualizing changes with vectors, III</h3>
+<p>Here’s a model of the electron path with the unit tangent, unit normal, and binormal vectors all attached. Observe that the unit normal explains the changes in direction of the unit tangent. The binormal is a bit more mysterious at the moment.</p>
+<h3 id="what-does-this-do-for-us">What does this do for us?</h3>
+<p>We can find the normal plane and the osculating plane!</p>
+<p>Osculating: kiss</p>
+<p>You probably never thought you would be finding planes that kiss curves in your calculus class.</p>
+<ul>
+<li>Math is fun</li>
+</ul>
+<p>The osculating plane is the plane spanned by <span class="math">\(\mathbf{T}\)</span> and <span class="math">\(\mathbf{N}\)</span>. The normal plane is the plane spanned by <span class="math">\(\mathbf{N}\)</span> and <span class="math">\(\mathbf{B}\)</span>.</p>
+<p>Do one: calculate the osculating plane and the normal plane to the helix at time <span class="math">\(t\)</span>.</p>
+<h3 id="more-problems-to-think-about">More problems to think about</h3>
+<ul>
+<li>What are the osculating and normal planes of a parametric curve <span class="math">\((x(t),y(t),0)\)</span>?</li>
+<li>Does the osculating plane depend upon the parametrization? E.g., what about the crazy helix <span class="math">\((\cos(t^2),\sin(t^2),t^2)\)</span>?</li>
+<li>How do the osculating planes of the electron’s path on the torus relate to the tangent planes of the torus?</li>
+<li>How awesome is this?</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<h1 id="errors-in-linear-approximation">Errors in linear approximation</h1>
+<h2 id="nedwina-and-the-piglet-play-the-market">Nedwina and the piglet play the market</h2>
+<p>It’s 1999, right before the bursting of the tech stock bubble, and Nedwina and the piglet of calculus have stock market fever.</p>
+<p>(This is not a good sign.)</p>
+<p>Their friend, the Slimy Stock Snail, tells them that the best linear approximation to the Dow Jones Industrial Average is</p>
+<p><span class="math">\[f(t)=10000+3000t,\]</span></p>
+<p>where <span class="math">\(t\)</span> is the time in days from now.</p>
+<p>What could go wrong?</p>
+<h2 id="more-precisely">More precisely:</h2>
+<p>What kinds of additional information do Nedwina and the piglet need to evaluate the accuracy of the linear approximation?</p>
+<p>Can they be sure that the projection will be within 5000 of the correct value in one year?!?!</p>
+<h2 id="examples">Examples</h2>
+<p>Let’s start with some simple minded examples. Here are a bunch of functions with derivative <span class="math">\(0\)</span> at <span class="math">\(t=0\)</span>:</p>
+<ul>
+<li><span class="math">\(f(t)=t^2\)</span></li>
+<li><span class="math">\(f(t)=t^3\)</span></li>
+<li><span class="math">\(f(t)=\cos(t)-1\)</span></li>
+<li><span class="math">\(f(t)=t^{10}\)</span></li>
+</ul>
+<p>In each case, the best linear approximation around <span class="math">\(t=0\)</span> is the function <span class="math">\(L(t)=0\)</span>.</p>
+<p>How can we capture the error in this approximation at <span class="math">\(t=730\)</span>, i.e., how can we bound the absolute value <span class="math">\(|L(730)-f(730)|\)</span>?</p>
+<h2 id="photographic-evidence">Photographic evidence</h2>
+<p>Here’s a graph showing all of the functions between <span class="math">\(t=0\)</span> and <span class="math">\(t=2\)</span></p>
+<p>None of the functions is especially close, but some are much worse than others.</p>
+<p>The “rate of climb” of each graph seems to predict how far off the approximation is.</p>
+<p><em>The pig is tingling</em>: grasping the first derivative seems to help bound errors?</p>
+<h2 id="if-you-know-more-you-actually-more-i">If you know more, you actually more, I</h2>
+<p>How about we start with a crudely wonderful estimate of values of the function:</p>
+<p>Theorem: if there is a number <span class="math">\(M\)</span> such that <span class="math">\(|f&#39;(x)|\leq M\)</span> for all <span class="math">\(x\)</span> between <span class="math">\(b\)</span> and <span class="math">\(c\)</span> then <span class="math">\[|f(c)-f(b)|\leq M|c-b|.\]</span></p>
+<p>Indication of proof: <span class="math">\[|f(c)-f(b)|=\left|\int_b^c
+f&#39;(x)dx\right|\leq\left|\int_b^c
+|f&#39;(x)|dx\right|\leq\left|\int_b^c Mdx\right|=M|c-b|.\]</span></p>
+<p>Example: <span class="math">\(f(x)=\sin(x)\)</span>: <span class="math">\(|f&#39;(x)|\leq 1\)</span> for all <span class="math">\(x\)</span>, so <span class="math">\(|f(c)-f(b)|\leq|c-b|\)</span> for all <span class="math">\(b,c\)</span>.</p>
+<p>How good an estimate is this?</p>
+<h2 id="if-you-know-more-you-actually-know-more-ii">If you know more, you actually know more, II</h2>
+<p>If we know about more derivatives, we get <em>EVEN MORE</em>.</p>
+<p>Given a differentiable function <span class="math">\(f(t)\)</span> and a point <span class="math">\(b\)</span> where <span class="math">\(f\)</span> is defined, the best linear approx to <span class="math">\(f(t)\)</span> near <span class="math">\(b\)</span> is <span class="math">\(L_b(t)=f(b)+f&#39;(b)(t-b)\)</span>.</p>
+<p>Theorem: if <span class="math">\(M\)</span> is a number such that <span class="math">\(|f&#39;&#39;(x)|\leq M\)</span> for all <span class="math">\(x\)</span> between <span class="math">\(b\)</span> and <span class="math">\(c\)</span> then <span class="math">\(|L_b(c)-f(c)|\leq \frac{1}{2}M|c-b|^2\)</span>.</p>
+<h2 id="examples-1">Examples</h2>
+<ul>
+<li><span class="math">\(f(t)=t^{10}\)</span>: <span class="math">\(|f&#39;&#39;(t)|\leq 10\cdot 9\cdot 2^8=23040\)</span> for <span class="math">\(0\leq t\leq 2\)</span>, so <span class="math">\(|L_0(2)-f(2)|\leq 46080\)</span> (ugh?)</li>
+<li><span class="math">\(f(t)=\sin(t)\)</span>: <span class="math">\(|f&#39;&#39;(t)|\leq 1\)</span> for all <span class="math">\(t\)</span>, so for any value <span class="math">\(c\)</span> we have <span class="math">\(|L_b(c)-f(c)|\leq \frac{1}{2}|c-b|^2\)</span>.</li>
+<li>When (for which <span class="math">\(b\)</span>) is this estimate of the error in the linear approximation to <span class="math">\(\sin\)</span> good? When is it terrible?</li>
+</ul>
+<h2 id="do-one">Do one!</h2>
+<p>In our example: <span class="math">\(L_0(t)=10000+3000t\)</span>.</p>
+<ul>
+<li>What bound on <span class="math">\(|f&#39;&#39;(x)|\)</span> for <span class="math">\(0\leq x\leq 730\)</span> will ensure Nedwina and the piglet that the Stock Snail’s estimate is within 10000 of the DJIA by the end of year 2 (day 730)?</li>
+<li>What bound on <span class="math">\(|f&#39;&#39;(x)|\)</span> for <span class="math">\(0\leq x\leq 730\)</span> will ensure that Nedwina and the piglet do not see the DJIA end up <strong>below</strong> 5000 by year 2 (day 730)?</li>
+<li>Which is a stronger (i.e., harder to achieve) assumption?</li>
+</ul>
+<h2 id="do-one-backwards">Do one backwards!</h2>
+<p>Consider the function <span class="math">\(f(t)=\cos(t)\)</span>. Find a number <span class="math">\(c\)</span> such that on the interval <span class="math">\([\pi/2,c]\)</span>, the linear approximation <span class="math">\(L_{\pi/2}(t)\)</span> to <span class="math">\(f(t)\)</span> is always within <span class="math">\(0.01\)</span> of <span class="math">\(f(t)\)</span>.</p>
+<p>Hint: try to bound the second derivative, and combine this with the theorem: <span class="math">\(|f&#39;&#39;(x)|\leq M\)</span> implies <span class="math">\(|L_b(x)-f(x)|\leq\frac{1}{2}M|x-b|^2\)</span>.</p>
+<h2 id="do-another-one">Do another one!</h2>
+<p>Do the same deal for the function <span class="math">\(f(t)=1/t\)</span>, approximated near <span class="math">\(t=1\)</span> with an accuracy of <span class="math">\(10^{-7}\)</span>.</p>
+<h2 id="theoretical-question">Theoretical question</h2>
+<p>Given a twice continuously differentiable function <span class="math">\(f\)</span>, what if we know that for every value <span class="math">\(t=b\)</span>, there is an interval <span class="math">\([b,c]\)</span> such that <span class="math">\(f&#39;&#39;(x)=0\)</span> for <span class="math">\(x\in[b,c]\)</span>? Can we say (or conjecture) anything about the structure of <span class="math">\(f\)</span>?</p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/21.mp4">Video chunk 21</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>

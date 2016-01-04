@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="stylesheets/pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/three.min.js" type="text/javascript"></script>
+  <script src="js/ArrowHelperFixed.js" type="text/javascript"></script>
+  <script src="js/marchingcubesraw.js" type="text/javascript"></script>
+  <script src="js/marchingtetrahedraraw.js" type="text/javascript"></script>
+  <script src="js/surfacenetsraw.js" type="text/javascript"></script>
+  <script src="js/MathScene.js" type="text/javascript"></script>
+  <script src="js/MathModel.js" type="text/javascript"></script>
+  <script src="js/TrackballControls.js" type="text/javascript"></script>
+  <script src="js/OrbitControls.js" type="text/javascript"></script>
+  <script src="js/Detector.js" type="text/javascript"></script>
+  <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
+  <script src="js/dat.gui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="double-integrals-over-regions">Double integrals over regions</h1>
+<h2 id="the-volume-of-an-eyeball">The volume of an eyeball</h2>
+<p>Here’s a simple model of an eyeball: take two spheres, say one of radius <span class="math">\(1\)</span> and one of radius <span class="math">\(1/2\)</span> and translate the smaller one up by <span class="math">\(3/4\)</span>.</p>
+<p>Equations: <span class="math">\(x^2+y^2+z^2=1\)</span>, <span class="math">\(x^2+y^2+(z-3/4)^2=1/4\)</span></p>
+<p>What is the total volume enclosed in the eyeball (including cornea)?</p>
+<p>Hope (?): set up some kind of double integrals that calculate what we want.</p>
+<p>Think very hard about actually calculating the integrals….</p>
+<h2 id="find-the-sticking-point">Find the sticking point</h2>
+<p>You know about double integrals over rectangles.</p>
+<p>Now think about where your tools might fail in attacking the eyeball problem.</p>
+<p>To get started, you might want to think about how you would like to use the magic of calculus to calculate the extra volume contained in the cornea. (Yes, this question is vague on purpose.)</p>
+<h2 id="the-crux">The crux</h2>
+<p>The two spheres intersect in a circle.</p>
+<p>How do we take double integrals over interesting regions?</p>
+<h2 id="miracle-math">Miracle? Math!</h2>
+<p>Here’s something absolutely amazing.</p>
+<p>When we take an iterated integral <span class="math">\(\int_c^d\int_a^bf(x,y)dxdy\)</span>,</p>
+<p>we can let <span class="math">\(a\)</span> and <span class="math">\(b\)</span> be functions of <span class="math">\(y\)</span>!</p>
+<p>(And we can do the reverse if we integrate in the other order. Make the limits on the inner integral functions of the outer variable.)</p>
+<p>After all, we’re treating <span class="math">\(y\)</span> like a constant when we integrate with respect to <span class="math">\(x\)</span>.</p>
+<p>All that happens is that the limits of the integral change when we change the (static) value of <span class="math">\(y\)</span>.</p>
+<h2 id="example">Example</h2>
+<p>Let’s return to the function <span class="math">\(f(x,y)=x+y\)</span>, but let’s integrate it over the region inside the parabola <span class="math">\(x=y^2\)</span> between <span class="math">\(x=0\)</span> and <span class="math">\(x=1\)</span>.</p>
+<figure>
+<img src="media/region.jpg" />
+</figure>
+<p>The integral becomes <span class="math">\(\int_0^1\int_{-\sqrt x}^\sqrt{x} (x+y)dydx\)</span>.</p>
+<p>Inner: <span class="math">\(\int_{-\sqrt x}^{\sqrt x}(x+y)dy=xy+\frac{1}{2}y^2\Bigr|_{-\sqrt x}^{\sqrt x}=2x^{3/2}\)</span>.</p>
+<p>Outer: <span class="math">\(\int_0^12x^{3/2}dx=\frac{4}{5}x^{5/2}\Bigr|_0^1=\frac{4}{5}\)</span></p>
+<p>Piece of cake!</p>
+<h2 id="do-one">Do one</h2>
+<p>Let’s warm up a bit for our eyeball problem.</p>
+<p>What is the integral of the function <span class="math">\(z=x+\frac{y}{e^{x^2+y^2}}\)</span> over the unit disk?</p>
+<p>If you are afraid, try doing the terms one at a time.</p>
+<p>Standard operating procedure:</p>
+<ul>
+<li>Write the problem as a double integral.</li>
+<li>Choose a way of writing it as an iterated integral, expressing the limits of the inner integral in terms of the outer variable (!).</li>
+<li>See what happens. If you get stuck, try it the other way. Or subdivide the region and try again (less common).</li>
+<li>Remember: integration is HARD, so you cannot expect answers to come to you easily. If you find it hard, you are doing it right.</li>
+</ul>
+<h2 id="return-of-the-eyeball">Return of the eyeball</h2>
+<p>Set up a calculation of the eyeball volume. You might want to use the formula for the volume of a sphere, but also one or more double integrals over regions.</p>
+<p>Equations: <span class="math">\(x^2+y^2+z^2=1\)</span>, <span class="math">\(x^2+y^2+(z-3/4)^2=1/4\)</span></p>
+<p>This time you have to think about your own picture. Dark alley, etc., etc.</p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/18.mp4">Video chunk 18</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>
+</body>
+</html>

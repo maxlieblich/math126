@@ -1,0 +1,199 @@
+<h1 id="vectors-defined-manipulated">Vectors Defined, Manipulated</h1>
+<h2 id="summary">Summary</h2>
+<p>Today we’ll introduce <strong>vectors</strong>. We’ll define some geometric operations on vectors including addition and scaling. Finally we’ll translate our geometric considerations into algebra via coordinates.</p>
+<h2 id="motivating-vectors">Motivating Vectors</h2>
+<p>Imagine pushing a book across a desk with your finger. How would you communicate to someone else precisely how you pushed the book? For a good approximation, you’d need to specify the direction of your push and how strong it was. Now imagine an arrow attached to your finger pointing through the book, with the length of the arrow increasing or decreasing depending on how hard you push. Roughly, that arrow is a <strong>vector</strong> which describes your push quantitatively.</p>
+<p>Continuing informally, a vector is an object with two properties: direction and magnitude. It’s a surprisingly flexible concept. They also model…</p>
+<ul>
+<li>Displacement from a fixed point</li>
+<li>Velocity</li>
+<li>Acceleration</li>
+<li>The law of cosines</li>
+<li>Force applied by angry customers</li>
+<li>Direction of magnetic fields</li>
+<li>Polarization of photons</li>
+<li>…</li>
+</ul>
+<h2 id="defining-vectors">Defining Vectors</h2>
+<p>More formally, a <strong>vector</strong> is a directed line segment up to translation equivalence. That is, a vector has a start point and an end point, but if we move both the start point and end point in the same way, we have the same vector.</p>
+For example, here’s a vector in 3D:
+<div id="vector">
+<img src="media/lecture-2-vector.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    var scene = new MathScene("vector");
+    var vec = new VectorModel({color: 0xff00ff, vector: [1, 2, 2]});
+    scene.scene.add(vec.arrow);
+    scene.scene.add(new THREE.AxisHelper());
+    scene.camera.position.set(4, 6, 5);
+    scene.create();
+})();
+//]]>
+</script>
+<p>This vector starts at the origin and ends at <span class="math">\((1, 2, 2)\)</span>. (Red is the x-axis, green is the y-axis, blue is the z-axis.) We write this vector as <span class="math">\(\langle 1, 2, 2 \rangle\)</span> (read as “The vector one two two”).</p>
+<p>Important yet confusing: two vectors are equivalent if they have the same direction and magnitude, i.e. if you can translate one to the other without rotation or reflection. Here’s four copies of the <strong>same vector</strong> <span class="math">\(\langle 0.1, 0, 1 \rangle\)</span>:</p>
+<div id="equivVectors">
+<img src="media/lecture-2-equivVectors.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    var scene = new MathScene("equivVectors");
+    var makeVector = function (pos, dir) {
+        var vec = new VectorModel({color: 0xff00ff, origin: pos, vector: dir});
+        return vec;
+    }
+    positions = [[0, 0, 0], [1, 0, 0], [1, 1, 1], [0, 2, 0]];
+    for (var i = 0; i < positions.length; i++){
+        var vec = makeVector(positions[i], [0.1, 0, 1]);
+        vec.embedInScene(scene);
+    }
+    scene.scene.add(new THREE.AxisHelper());
+    scene.camera.position.set(-1, 6, 2);
+})();
+//]]>
+</script>
+<p><strong>Exercise:</strong> Which vectors are equivalent to others in this picture? (For simplicity, they live in a plane. Vectors can live in space with any number of dimensions.)</p>
+<div id="vector-check">
+<img src="media/lecture-2-vector-check.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    var scene = new MathScene("vector-check");
+    scene.camera.position.set(0, -10, 0);
+    scene.cameraControls.enabled = false;
+    var makeVector = function (pos, dir) {
+        return new VectorModel({color: 0xff0000, origin: pos, vector: dir});
+    }
+    dir = [3, 0, 4];
+    positions = [[-5, 0, -1], [-3, 0, -1], [-1, 0, -1], [2.5, 0, -1], [4.5, 0, 1]];
+    dirs = [[1.5, 0, 2], [1.5, 0, 2], [2, 0, 3], [-1.5, 0, 2], [-1.5, 0, -2]]
+    vectors = []
+    for (var i = 0; i < positions.length; i++){
+        var vec = makeVector(positions[i], dirs[i]);
+        vec.embedInScene(scene);
+    }
+})();
+//]]>
+</script>
+<h3 id="vectors-points-and-zero">Vectors, Points, and Zero</h3>
+<p>The <strong>zero vector</strong> <span class="math">\(\langle 0, 0, 0 \rangle\)</span> starts and ends at the same point. It represents the “trivial displacement” (go nowhere!). It has magnitude <span class="math">\(0\)</span> and “any” direction; all other vectors have a single direction. (This points out a weakness in the “definition” of a vector as an object with direction and magnitude, since the zero vector has no single direction, but allowing the zero vector will bring us only happiness.)</p>
+<p>We write <span class="math">\(\mathbf{0}\)</span> for the zero vector, though depending on context we may also mean <span class="math">\(\mathbf{0} = \langle 0, 0 \rangle\)</span>. More generally we frequently refer to vectors via bold variables like <span class="math">\(\mathbf{u}\)</span> or <span class="math">\(\mathbf{v}\)</span>. We may instead draw an arrow over variable names like <span class="math">\(\vec{a}\)</span> or <span class="math">\(\vec{b}\)</span>.</p>
+<p>Since a vector can always be thought of as starting at the origin, we will almost always represent vectors as arrows starting at the origin. We will also frequently translate between points and vectors without comment. Finally, given two points <span class="math">\(P\)</span> and <span class="math">\(Q\)</span>, the vector starting at <span class="math">\(P\)</span> ending at <span class="math">\(Q\)</span> is written <span class="math">\(\overrightarrow{PQ}\)</span>.</p>
+<h2 id="adding-vectors-graphically">Adding Vectors Graphically</h2>
+<p>If I jog north-northwest 2 miles and then southwest 3 miles, where do I end up? Represent the NNW leg by a red vector and the SW leg by a blue vector:</p>
+<div id="vector-add-1">
+<img src="media/lecture-2-vector-add-1.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    var scene = new MathScene("vector-add-1");
+    scene.camera.position.set(0, 8, 0);
+    scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, vector: [2, 0, -3]});
+    // scene.scene.add(v1.arrow);
+    // scene.scene.add(v2.arrow);
+    v1.embedInScene(scene);
+    v2.embedInScene(scene);
+})();
+//]]>
+</script>
+<p>Translate the second one so that it starts at the end of the first one:</p>
+<div id="vector-add-2">
+<img src="media/lecture-2-vector-add-2.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    var scene = new MathScene("vector-add-2");
+    scene.camera.position.set(0, 8, 0);
+    scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
+    v1.embedInScene(scene);
+    v2.embedInScene(scene);
+})();
+//]]>
+</script>
+<p>Connect the start of the first with the end of the translated second. This gives purple as the result of adding red and blue:</p>
+<div id="vector-add-3">
+<img src="media/lecture-2-vector-add-3.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+    var scene = new MathScene("vector-add-3");
+    scene.camera.position.set(0, 8, 0);
+    scene.cameraControls.enabled = false;
+    var v1 = new VectorModel({color: 0xff0000, vector: [1, 0, 2]});
+    var v2 = new VectorModel({color: 0x0000ff, origin: [1, 0, 2], vector: [2, 0, -3]});
+    var v3 = new VectorModel({color: 0x551a8b, vector: [3, 0, -1]});
+    v1.embedInScene(scene);
+    v2.embedInScene(scene);
+    v3.embedInScene(scene);
+})();
+//]]>
+</script>
+<p>Moreover, the purple vector represents my final position after jogging both legs, so this is a physically useful operation.</p>
+<p><strong>Exercise:</strong> Check yourself before you wreck yourself! What is the sum of the vector connecting points <span class="math">\(p_1\)</span> and <span class="math">\(p_2\)</span> and the vector connecting points <span class="math">\(p_2\)</span> and <span class="math">\(p_3\)</span>?</p>
+<p><strong>Exercise:</strong></p>
+<ul>
+<li>Let <span class="math">\(A,B,C,D\)</span> be the vertices of a square. Choose a specific example if you want. Compute the sum of vectors <span class="math">\[\overrightarrow{AB}+\overrightarrow{BC}
+  +\overrightarrow{CD}+\overrightarrow{DA}.\]</span></li>
+<li>Let <span class="math">\(A_1,A_2,A_3,A_4,A_5,A_6\)</span> be points. Compute the sum <span class="math">\[\overrightarrow{A_1A_2}+\overrightarrow{A_2A_3}
+  +\overrightarrow{A_3A_4}+\overrightarrow{A_4A_5}
+  +\overrightarrow{A_5A_6}+\overrightarrow{A_6A_1}.\]</span></li>
+</ul>
+<h2 id="scaling-vectors-graphically">Scaling Vectors Graphically</h2>
+<p>Given a vector <span class="math">\(\mathbf{v}\)</span>, there’s an obvious interpretation of <span class="math">\(2\mathbf{v}\)</span>: it’s the same as <span class="math">\(\mathbf{v}\)</span> but twice as long. Likewise <span class="math">\(\mathbf{v}/2\)</span> is <span class="math">\(\mathbf{v}\)</span> but half as long. What about negatives? They reverse the direction of the vector.</p>
+<p><strong>Exercise:</strong> Show graphically that</p>
+<ul>
+<li><span class="math">\(\mathbf{v} + \mathbf{v} = 2\mathbf{v}\)</span>.</li>
+<li><span class="math">\(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\)</span>.</li>
+</ul>
+<p><strong>Exercise:</strong> (Difficult.) Let <span class="math">\(A, B, C\)</span> be vertices of a triangle. What is <span class="math">\[ \frac{A+B+C}{3} \]</span> geometrically? (Here we’re treating <span class="math">\(A\)</span> as the vector <span class="math">\(\overrightarrow{OA}\)</span> where <span class="math">\(O\)</span> is the origin.) Does it lie inside the triangle or outside? (Hint: look up “barycentric coordinates.”)</p>
+<h2 id="manipulating-vectors-algebraically">Manipulating Vectors Algebraically</h2>
+<p>The geometric definitions above are simple and beautiful. They are not particularly efficient: to add two vectors, you have to draw them out. So, we’ll next distill the essence of these definitions into a few algebraic rules. To motivate those rules, try the following concrete examples first:</p>
+<p><strong>Exercise:</strong></p>
+<ol type="1">
+<li>Consider the vectors <span class="math">\(\langle 1,0,0\rangle\)</span> and <span class="math">\(\langle  0,1,0\rangle\)</span>. Find <span class="math">\(a,b,c\)</span> such that <span class="math">\[\langle1,0,0\rangle+\langle 0,1,0\rangle=\langle a,b,c\rangle.\]</span></li>
+<li>Show that <span class="math">\[\langle 0,3,4\rangle+\langle 1,-1,0\rangle=\langle
+ 1,2,4\rangle\]</span> from the geometric definition.</li>
+<li>Calculate the length of the vector connecting the point <span class="math">\((0,2,4)\)</span> to the point <span class="math">\((1,-1,1)\)</span>.</li>
+</ol>
+<p>From these examples (and similar ones) we can guess a few general rules for computing scaled vector sums, which we’ll get to shortly. It’s often convenient to “decompose” a vector into coordinates: for instance, in <span class="math">\(\langle a, b, c\rangle\)</span>, <span class="math">\(a\)</span> is called the x-coordinate, <span class="math">\(b\)</span> is the y-coordinate, and <span class="math">\(c\)</span> is the z-coordinate. Using the first property below, we can frequently reduce general properties of vectors to their one-dimensional counterparts, like the second property below:</p>
+<p><strong>Exercise:</strong> Prove <strong>any three</strong> from the geometric definition:</p>
+<ol type="1">
+<li><span class="math">\[\langle a, b, c \rangle = \langle a, 0, 0 \rangle
+ + \langle 0, b, 0 \rangle + \langle 0, 0, c \rangle.\]</span></li>
+<li><span class="math">\[t \langle a, 0, 0 \rangle = \langle ta, 0, 0 \rangle.\]</span></li>
+<li><span class="math">\[t \langle a, b, c \rangle = \langle ta, tb, tc \rangle.\]</span></li>
+<li><span class="math">\[\langle a, b, c \rangle + \langle a&#39;, b&#39;, c&#39; \rangle
+ = \langle a+a&#39;, b+b&#39;, c+c&#39; \rangle.\]</span></li>
+<li>Show that the vector connecting the point <span class="math">\(A=(a,b,c)\)</span> to the point <span class="math">\(B=(a&#39;,b&#39;,c&#39;)\)</span> is <span class="math">\[\overrightarrow{AB} = \langle a&#39;-a,b&#39;-b,c&#39;-c\rangle.\]</span></li>
+<li>Show that the length of <span class="math">\(\langle a, b, c\rangle\)</span> is <span class="math">\[\sqrt{a^2+b^2+c^2}.\]</span></li>
+</ol>
+<p>We write <span class="math">\(|\mathbf{v}|\)</span> for the <strong>length</strong> or <strong>magnitude</strong> of <span class="math">\(\mathbf{v}\)</span>. If <span class="math">\(\mathbf{v} \neq \mathbf{0}\)</span>, then <span class="math">\[ \frac{\mathbf{v}}{|\mathbf{v}|} \]</span> has length 1 but points in the same direction as <span class="math">\(\mathbf{v}\)</span>. It will frequently be convenient to throw away the length information and keep only direction information using this operation.</p>
+<p>Unimportant remark: vectors behave extremely well under addition and scaling. These operations are associative, commutative, distributive, various inverses exist, identities exist and behave themselves, etc. We will typically assume such properties as geometrically obvious without further comment. If you’re interested in this sort of thing, vectors are formally a “real vector space”. For more on this, see Math 308 or any introductory book on linear algebra.</p>
+<h2 id="brain-massage-use-it-or-lose-it">Brain massage: use it or lose it</h2>
+<p>Here are some problems that require a little creativity–the sort of thing that might show up on an exam.</p>
+<p><strong>Exercise:</strong></p>
+<ul>
+<li>Do the points <span class="math">\[(1,2,3), (2,3,4), (37, 38, 40)\]</span> lie on a single line in <span class="math">\(\mathbf{R}^3\)</span>?</li>
+<li>Find the line containing the largest number of the following points <span class="math">\[(1,0,1), (0,2,0), (1,2,3), (2,2,4), (3,2,5).\]</span></li>
+</ul>
+<p>Hint:</p>
+<ul>
+<li>Two non-zero vectors <span class="math">\(\mathbf{v}\)</span> and <span class="math">\(\mathbf{w}\)</span> have the same or opposite direction if and only if <span class="math">\[\mathbf{v}=c\mathbf{w}\]</span> for some non-zero number <span class="math">\(c\)</span>.</li>
+<li>Why is this true?</li>
+<li>Does this help with the problem?</li>
+</ul>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/2-1.mp4">Video chunk 2-1</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/2-2.mp4">Video chunk 2-2</a></p>
+<h3 id="content-contributors">Content Contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span>, <span class="citation" data-cites="jpswanson">@jpswanson</span></p>

@@ -1,0 +1,83 @@
+<h1 id="partial-derivatives">Partial Derivatives</h1>
+<h2 id="medical-emergency">Medical emergency</h2>
+<p>Nedwina has defective ankles, but like a true Seattleite she has decided to climb Mt. Rainier. Her doctor says she cannot walk on any surface whose angle with the <span class="math">\(xy\)</span>-plane is greater than <span class="math">\(\pi/3\)</span>.</p>
+<p>Nedwina knows a nerd who modeled her favorite part of Rainier by the equation <span class="math">\(x^3+z^2(y^2+y^3)+x+y+z=0.\)</span></p>
+<p>Can Nedwina stand at the point <span class="math">\((0,0,0)\)</span> without violating her doctor’s orders?</p>
+<p>What is the best linear approximation to the surface around the point <span class="math">\((0,0,0)\)</span>?</p>
+<h2 id="heres-the-model-with-000-indicated">Here’s the model with <span class="math">\((0,0,0)\)</span> indicated</h2>
+<h2 id="a-simpler-situation">A simpler situation</h2>
+<p>Find the tangent plane to the paraboloid <span class="math">\(z=x^2+y^2\)</span> at the point <span class="math">\((1,1,2)\)</span>.</p>
+<h2 id="a-silly-observation">A silly observation</h2>
+<p>If we slice the whole package with a plane, we go from a surface and tangent plane to a curve and tangent line!</p>
+<h2 id="partial-derivatives-1">Partial derivatives</h2>
+<p>This process of restricting attention to one variable and taking derivatives “with respect to that variable” is called taking partial derivatives.</p>
+<p>Formal definition: given a function of two variables <span class="math">\(f(x,y)\)</span>, the partial derivatives with respect to <span class="math">\(x\)</span> and <span class="math">\(y\)</span> at a point <span class="math">\((a,b)\)</span> are defined as follows.</p>
+<p><span class="math">\[\frac{\partial f}{\partial x}=f_x(a,b)=\lim_{h\to
+0}\frac{f(a+h,b)-f(a,b)}{h}\]</span></p>
+<p><span class="math">\[\frac{\partial f}{\partial y}=f_y(a,b)=\lim_{h\to
+0}\frac{f(a,b+h)-f(a,b)}{h}\]</span></p>
+<p>Rules</p>
+<ul>
+<li>Treat one variable as a constant</li>
+<li>Differentiate with respect to the other one</li>
+<li>Rejoice</li>
+</ul>
+<h2 id="example">Example</h2>
+<p>For example, consider the function <span class="math">\(f(x,y)=x^2+y^2\)</span>. To compute the partial derivative with respect to <span class="math">\(x\)</span>, we treat <span class="math">\(y\)</span> as a constant and do the usual one-variable differentiation:</p>
+<p><span class="math">\[\frac{\partial f}{\partial x}=2x.\]</span></p>
+<p>Do some! Compute the partial derivatives with respect to <span class="math">\(x\)</span> and <span class="math">\(y\)</span> of these functions.</p>
+<ul>
+<li><span class="math">\(f(x,y)=\sin(x)\cos(y)\)</span></li>
+<li><span class="math">\(f(x,y)=x^y\)</span></li>
+<li><span class="math">\(f(x,y)=y^5\)</span></li>
+</ul>
+<h1 id="tangent-planes">Tangent planes</h1>
+<h2 id="tangent-planes-to-graphs">Tangent planes to graphs</h2>
+<p>One of the main uses of partial derivatives is in producing tangent planes.</p>
+<p>Theorem: for a function <span class="math">\(f(x,y)\)</span>, the tangent plane to the graph <span class="math">\(z=f(x,y)\)</span> at the point <span class="math">\((a,b,c)\)</span> is given by the equation</p>
+<p><span class="math">\[z-c=f_x(a,b)(x-a)+f_y(a,b)(y-b)\]</span></p>
+<p>Example: <span class="math">\(f(x,y)=x^2+y^2\)</span>, <span class="math">\((a,b,c)=(1,1,2)\)</span>, get the plane</p>
+<p><span class="math">\[z-2=2(x-1)+2(y-1).\]</span></p>
+<p>Why does this make sense?</p>
+<ul>
+<li>If we take a vertical or horizontal trace, the tangent plane should give the tangent line. Does it?</li>
+<li>The partial derivatives seem to capture just a vertical and horizontal trace. Is that really enough?</li>
+</ul>
+<h2 id="try-one">Try one!</h2>
+<p>Calculate the tangent plane to the graph of the function <span class="math">\[f(x,y)=\sin(x)\cos(y)\]</span> at the point <span class="math">\((a,b,\sin(a)\cos(b))\)</span>.</p>
+<p>General formula for <span class="math">\(f(x,y)\)</span> at <span class="math">\((a,b,c)\)</span>:</p>
+<p><span class="math">\[z-c=f_x(a,b)(x-a)+f_y(a,b)(y-b)\]</span></p>
+<h2 id="big-but">Big but</h2>
+<p>Our nerd’s Rainier model does not express <span class="math">\(z\)</span> as a function of <span class="math">\(x\)</span> and <span class="math">\(y\)</span>:</p>
+<p><span class="math">\[x^3+z^2(y^2+y^3)+x+y+z=0\]</span></p>
+<p>What should we do?</p>
+<ul>
+<li>Think of <span class="math">\(z\)</span> as an implicit function of <span class="math">\(x\)</span> and <span class="math">\(y\)</span>!</li>
+<li>Do you remember how implicit differentiation works?</li>
+</ul>
+<h2 id="implicit-partial-derivatives">Implicit partial derivatives</h2>
+<p>Follow the procedure you learned in the days of yore. Let’s focus on partial derivatives with respect to <span class="math">\(x\)</span>.</p>
+<ul>
+<li>Pretend <span class="math">\(z\)</span> is a function of <span class="math">\(x\)</span> and <span class="math">\(y\)</span> is a constant, so we have a partial derivative <span class="math">\(\partial z/\partial x\)</span>.</li>
+<li>Use the product rule, chain rule, etc., to take the derivative of the relation.</li>
+<li>Solve for <span class="math">\(\partial z/\partial x\)</span> in terms of <span class="math">\(x\)</span>, <span class="math">\(y\)</span>, <span class="math">\(z\)</span>.</li>
+</ul>
+<p>Example: for the cone <span class="math">\(z^2=x^2+y^2\)</span> we get <span class="math">\(2zz_x=2x\)</span>, so for <span class="math">\(z\neq 0\)</span> we have <span class="math">\[\frac{\partial z}{\partial
+x}=\frac{x}{z}.\]</span></p>
+<h2 id="tangent-plane-to-cone">Tangent plane to cone</h2>
+<p>Continuing the cone example, at a point <span class="math">\((a,b,c)\)</span> of the circular cone <span class="math">\(z^2=x^2+y^2\)</span>, we have <span class="math">\(z_x(a,b)=a/c\)</span> and <span class="math">\(z_y(a,b)=b/c\)</span>. Thus, the tangent plane is</p>
+<p><span class="math">\[z-c=\frac{a}{c}(x-a)+\frac{b}{c}(y-b),\]</span></p>
+<p>or, equivalently,</p>
+<p><span class="math">\[c(z-c)=a(x-a)+b(y-b).\]</span></p>
+<p>For kicks, let’s expand that:</p>
+<p><span class="math">\[cz-c^2=ax-a^2+by-b^2.\]</span></p>
+<p>Since <span class="math">\(c^2=a^2+b^2\)</span>, we can simplify this to <span class="math">\(cz=ax+by\)</span>. Nice!</p>
+<p>Bizarre note: if we scale <span class="math">\(a\)</span>, <span class="math">\(b\)</span>, and <span class="math">\(c\)</span> by the same number, the tangent plane does not change. Is there a reason for this?</p>
+<h2 id="your-turn">Your turn!</h2>
+<p>Find the tangent plane to Mt. Rainier at <span class="math">\((0,0,0)\)</span>.</p>
+<p>The equation is <span class="math">\(x^3+z^2(y^2+y^3)+x+y+z=0.\)</span></p>
+<p>Is the plane too steep for Nedwina?</p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/14-1.mp4">Video chunk 14-1</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/14-2.mp4">Video chunk 14-2</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>

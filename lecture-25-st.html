@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="stylesheets/pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/three.min.js" type="text/javascript"></script>
+  <script src="js/ArrowHelperFixed.js" type="text/javascript"></script>
+  <script src="js/marchingcubesraw.js" type="text/javascript"></script>
+  <script src="js/marchingtetrahedraraw.js" type="text/javascript"></script>
+  <script src="js/surfacenetsraw.js" type="text/javascript"></script>
+  <script src="js/MathScene.js" type="text/javascript"></script>
+  <script src="js/MathModel.js" type="text/javascript"></script>
+  <script src="js/TrackballControls.js" type="text/javascript"></script>
+  <script src="js/OrbitControls.js" type="text/javascript"></script>
+  <script src="js/Detector.js" type="text/javascript"></script>
+  <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
+  <script src="js/dat.gui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="stupid-taylor-tricks">Stupid Taylor tricks</h1>
+<h2 id="warm-up-problem">Warm up problem</h2>
+<p>Find an infinite series expansion for the integral <span class="math">\(\int_1^te^{-x^4}dt\)</span>. For which <span class="math">\(t\)</span> does it converge?</p>
+<p>Answers?</p>
+<h2 id="stupid-taylor-tricks-1">Stupid Taylor tricks</h2>
+<p><strong>Substitute powers</strong></p>
+<p>If the Taylor series of <span class="math">\(f(x)\)</span> is <span class="math">\(\sum a_nx^n\)</span> then <span class="math">\(f(x^m)\)</span> has series <span class="math">\(\sum a_nx^{mn}\)</span> for <span class="math">\(m\&gt;0\)</span>.</p>
+<p>Example:</p>
+<p><span class="math">\[\frac{1}{1-x^2}=1+x^2+x^4+\cdots = \sum_{n=0}^\infty
+x^{2n}\]</span></p>
+<h2 id="stupid-taylor-tricks-2">Stupid Taylor tricks</h2>
+<p><strong>Multiply by powers</strong></p>
+<p>If the Taylor series of <span class="math">\(f(x)\)</span> is <span class="math">\(\sum a_nx^n\)</span> then <span class="math">\(x^mf(x)\)</span> has series <span class="math">\(\sum a_nx^{n+m}\)</span> for <span class="math">\(m\&gt;0\)</span>.</p>
+<p>Example:</p>
+<p><span class="math">\[\frac{x^2}{1-x}=x^2+x^3+x^4+\cdots = \sum_{n=0}^\infty
+x^{n+2}\]</span></p>
+<h2 id="stupid-taylor-tricks-3">Stupid Taylor tricks</h2>
+<p><strong>Leverage derivatives</strong></p>
+<p>If the Taylor series of <span class="math">\(f(x)\)</span> is <span class="math">\(\sum_{n=0}^\infty a_nx^n\)</span> then <span class="math">\(f&#39;(x)\)</span> has series <span class="math">\(\sum_{n=1}^\infty na_nx^{n-1}\)</span>.</p>
+<p>Example:</p>
+<p><span class="math">\[\frac{1}{(1-x)^2}=1+2x+3x^2+4x^3+\cdots = \sum_{n=0}^\infty
+(n+1)x^{n}\]</span></p>
+<h2 id="try-one">Try one!</h2>
+<p>Find the Taylor series for</p>
+<p><span class="math">\[f(x)=\frac{x^4}{(1-x^2)^2}\]</span></p>
+<p>Follow up:</p>
+<ul>
+<li>Find the first four non-zero terms in the series.</li>
+<li>Calculate <span class="math">\(T_5\)</span>, the fifth Taylor polynomial for <span class="math">\(f\)</span> based at <span class="math">\(0\)</span>.</li>
+<li>What is <span class="math">\(f^{(666)}(0)\)</span>?</li>
+</ul>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/25.mp4">Video chunk 25</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>
+</body>
+</html>

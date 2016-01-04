@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="stylesheets/pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/three.min.js" type="text/javascript"></script>
+  <script src="js/ArrowHelperFixed.js" type="text/javascript"></script>
+  <script src="js/marchingcubesraw.js" type="text/javascript"></script>
+  <script src="js/marchingtetrahedraraw.js" type="text/javascript"></script>
+  <script src="js/surfacenetsraw.js" type="text/javascript"></script>
+  <script src="js/MathScene.js" type="text/javascript"></script>
+  <script src="js/MathModel.js" type="text/javascript"></script>
+  <script src="js/TrackballControls.js" type="text/javascript"></script>
+  <script src="js/OrbitControls.js" type="text/javascript"></script>
+  <script src="js/Detector.js" type="text/javascript"></script>
+  <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
+  <script src="js/dat.gui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="introduction-calculus-in-multiple-dimensions">Introduction: Calculus in Multiple Dimensions</h1>
+<p><strong>What is this course about?</strong></p>
+<p>You’ve seen derivatives, integrals, and differential equations in one variable only. We’ve really only equipped you to understand “life on a string”. How can we understand a situation closer to reality, one involving three (or more!) dimensions?</p>
+<p>This course will introduce you to calculus in multiple dimensions. Unlike previous courses, it will rely more heavily on visualization skills and physical understanding/intuition than symbol pushing. Here’s a rough <strong>outline of topics</strong>:</p>
+<ul>
+<li>Baby steps in three dimensions: 3D coordinates, vectors, lines and planes, dot and cross products, quadric surfaces (~Weeks 1-3)</li>
+<li>Beginning Calculus in 3D: properties of parametric curves, functions of two variables, tangent lines and curves, optimization, differentials (~Weeks 4-6); multiple integrals and polar coordinates (~Weeks 7-8)</li>
+<li>Taylor Series: polynomial approximation, error bounds, series (~Weeks 9-11).</li>
+</ul>
+<h2 id="motivation-i-want">Motivation: I want…</h2>
+<ol type="1">
+<li>…to model three-dimensional space;</li>
+<li>…to describe objects in that space;</li>
+<li>…to distinguish objects in that space by their properties (center of mass, speed, sources of acceleration, volume, etc.)</li>
+<li>…to know if a roller coaster shaped like a trefoil knot will make riders black out:</li>
+</ol>
+<div id="trefoil">
+<img src="media/lecture-1-trefoil.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+    var scene = new MathScene("trefoil");
+    var trefoilFunc = function(t) {
+          var t2, t3;
+          t2 = t + t;
+          t3 = t2 + t;
+          return 41 * Math.cos(t) - 18 * Math.sin(t) - 83 * Math.cos(t2)
+          - 83 * Math.sin(t2) - 11 * Math.cos(t3) + 27 * Math.sin(t3);
+        };
+    var trefoilPoint = function(t) {
+          var kScale, x, y, z;
+          kScale = 0.01;
+          x = trefoilFunc(t);
+          y = trefoilFunc(6.283185 - t);
+          z = trefoilFunc(t - 1.828453);
+          return new THREE.Vector3(kScale * x, kScale * y, kScale * z);
+        };
+    var x = function (t) { return trefoilPoint(t).x; }
+    var y = function (t) { return trefoilPoint(t).y; }
+    var z = function (t) { return trefoilPoint(t).z; }
+    var ppath = new ParametricPathModel(x, y, z, [-4, 4], 1.3);
+    ppath.embedInScene(scene);
+    scene.animate();
+}());
+//]]>
+</script>
+<h3 id="modeling-3d-space-cartesian-coordinates">1. Modeling 3D space: Cartesian coordinates</h3>
+<p>What is 3D space? Here’s a picture: <br><br><br></br></br></br></p>
+<p>No, really, that’s a picture. Do you think it’s missing something?</p>
+<p>Rene Descartes (famous for thinking and, therefore, being) thought so. He thought of something brilliant, something that shook the world. No, not that thing about the pineal gland and the soul, the other one: coordinates.</p>
+<p>The 3D space of human experience is the set of ordered triples of numbers:</p>
+<p><span class="math">\[\mathbf{R^3}=\{(x,y,z) \mid x,y,z\in\mathbf{R}\}\]</span> (Read as, “The set of triples x, y, z such that x, y, and z are all real numbers.”) Here’s a picture you probably recognize:</p>
+<figure>
+<img src="media/cartesian.png" />
+</figure>
+<h3 id="objects-in-space-points-and-distance">2. Objects in space: points and distance!</h3>
+<p><strong>Exercise:</strong> In the picture, how far is <span class="math">\((x, y, z)\)</span> (“the point x, y, z”) from the origin, <span class="math">\((0, 0, 0)\)</span>? Remember the Pythagorean Theorem as you try it.</p>
+<p><strong>Exercise:</strong> Explain why your answer to the previous exercise says that the distance between two points <span class="math">\((a,b,c)\)</span> and <span class="math">\((a&#39;,b&#39;,c&#39;)\)</span> is</p>
+<p><span class="math">\[\sqrt{(a-a&#39;)^2+(b-b&#39;)^2+(c-c&#39;)^2}.\]</span></p>
+<p>If you need help, the book has a good explanation of this, but see if you can figure it out before you read it! If you’ve already read it, try before reading it again. (You read each section of the book several times, right?)</p>
+<p>We can now describe shapes, at least implicitly!</p>
+<p><strong>Exercise:</strong></p>
+<ul>
+<li>What is the set of points at distance 1 from <span class="math">\((0,0,0)\)</span>?</li>
+<li>What shape is the set of points <span class="math">\((x,y,z)\)</span> such that <span class="math">\(x+y=z\)</span>?</li>
+<li>…such that <span class="math">\(x^2+y^2=z^2\)</span>?</li>
+<li>…such that <span class="math">\(x^2+y^2=z\)</span>? (How does it differ from the previous one?)</li>
+<li>…such that <span class="math">\(y=x^2\)</span>?</li>
+<li>…such that <span class="math">\(z=4\)</span>?</li>
+</ul>
+<p>(Don’t worry if you can’t do all of these now. Start worrying if you still can’t do them after we’ve gone over quadric surfaces.)</p>
+<h3 id="distinguishing-objects-in-space">3. Distinguishing objects in space</h3>
+What makes this shape…
+<div id="sphere">
+<img src="media/lecture-1-sphere.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+    var scene = new MathScene("sphere");
+    var f = function (x, y, z) {
+        return x*x + y*y + z*z - 1;
+    }
+    var mc = new MarchingCubesModel({func: f, xmin: -1.5, xmax: 1.5, ymin: -1.5, ymax: 1.5, zmin: -1.5, zmax: 1.5, resolution: 50});
+    mc.embedInScene(scene);
+}());
+//]]>
+</script>
+…different from this one?
+<div id="ellipsoid">
+<img src="media/lecture-1-ellipsoid.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+    var scene = new MathScene("ellipsoid");
+    var f = function (x, y, z) {
+        return x*x + 2*y*y + 0.5*z*z - 1;
+    }
+    var mc = new MarchingCubesModel({func: f, xmin: -2, xmax: 2,
+    ymin: -2, ymax: 2, zmin: -2, zmax: 2, resolution: 50});
+    mc.embedInScene(scene);
+}());
+//]]>
+</script>
+<p>Imagine these objects are planets. People living on the first would probably weigh things like humans—stick it on a scale, read a number, utterly ignore any minor changes in gravity’s strength. People on the second would have to say where on the planet they measured things (“45 pounds at latitude 50”). (“Newtons” are more appropriate than “kilograms” in this story’s metric version.)</p>
+<p>This is vague and qualitative, while Math is rigorous and quantitative, so let’s add some rigor. We might try computing the average strength of gravity on the surface of the second world as well as its maximum and minimum strength. Well, averages are just integrals, so let’s integrate gravity… over… a surface?</p>
+<p>Integrating over a surface is a great idea, but it’s a bit too much for us right now, and, sadly, we won’t (really) do surface integrals this quarter; take more multivariable calculus for that experience. This quarter, we’ll focus on properties of objects in space like curvature (what is this?), surface area, volume, ….</p>
+<p><strong>Exercise:</strong> What other mathematical properties might distinguish objects (lines, curves, surfaces, etc.)? Can you make any of them rigorous enough to compute for some toy examples?</p>
+<h3 id="what-about-the-trefoil-riders">4. What about the trefoil riders?</h3>
+<p>Finding out whether or not the trefoil riders will black out will have to wait until we’ve developed enough tools to define and compute the acceleration of a point in space.</p>
+In the meantime, here’s some math love to end on:
+<div id="heart">
+<img src="media/lecture-1-heart.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+    // polyfill for browsers that don't support Math.cbrt
+    var cbrt =  function (x) {
+        var y = Math.pow(Math.abs(x), 1/3);
+        return x < 0 ? -y : y;
+    }
+
+    var cbr = (Math.cbrt === undefined) ? cbrt.toString() : "Math.cbrt";
+
+    var scene = new MathScene("heart");
+  
+    /*This awful dynamic code rewrite ensures that the right string is passed 
+    into the worker so it can properly handle the cube root. Please forgive me.Is it possible that using func.toString() in MathModel when creating the blob for the worker can be improved to avoid this?
+    Once everyone has Math.cbrt, we can just do the following:
+
+    var F = function (x, y, z) {
+        return x * x + (9/4) * y * y + z * z - 1 - z * Math.cbrt(x * x + (9/80) * y * y);
+      };
+    */
+
+    var f = "return x * x + (9/4) * y * y + z * z - 1 - z * READYFORACHANGE(x * x + (9/80) * y * y);";
+    var funcCode = f.replace("READYFORACHANGE", cbr);
+    console.log(funcCode);
+    var F = new Function("x", "y", "z", funcCode);
+    console.log(F);
+    var mc = new MarchingCubesModel({func: F, resolution: 150});
+    mc.embedInScene(scene);
+}());
+//]]>
+</script>
+<p>Want to know the equation? Read the appendix.</p>
+<h3 id="appendix-the-heart">5. Appendix: the heart</h3>
+<p>The heart you see above is the set of solutions to the equation <span class="math">\[f(x, y, z) = (x^2+\frac{9}{4}y^2+z^2-1)^3-x^2z^3-\frac{9}{80}y^2z^3 = 0.\]</span> It is being shown to you using algorithms that compute solution sets to equations like this (those solutions sets are called “isosurfaces”).</p>
+<p>As a naive mathematician, I decided to implement this directly. That is, use the equation above together with the simple isosurface algorithms I’ve chosen. Here’s the result:</p>
+<div id="heart-2">
+<img src="media/lecture-1-heart-2.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+    var scene = new MathScene("heart-2");
+    var f = function (x, y, z) {
+        return Math.pow(x * x + (9/4) * y * y + z * z - 1, 3) - x * x * z * z * z - (9/80) * y * y * z * z * z;
+    }
+    var mc = new MarchingCubesModel({func: f, resolution: 150});
+    mc.embedInScene(scene);
+}());
+//]]>
+</script>
+<p>What happened? There’s a weird “belt” around the heart! Where does it come from? The algorithm that computes the isosurface works roughly like this:</p>
+<ul>
+<li>Divide space into cubes</li>
+<li>Evaluate the function on the corners of each cube</li>
+<li>If the function is positive on some corners and negative on others, this means that the locus where the function takes the value <span class="math">\(0\)</span> passes through the cube</li>
+<li>Figure out how to approximate the function in the cube. The classical algorithm known as “marching cubes” does this linearly. There are more sophisticated ways, but they all come down to making some kind of local approximation.</li>
+</ul>
+<p>Now, <span class="citation" data-cites="eccheng">@eccheng</span> made a clever observation. The zero locus of the function <span class="math">\(f(x, y, z)\)</span> is the same as the locus where</p>
+<p><span class="math">\[(x^2+\frac{9}{4}y^2+z^2-1)^3= z^3(x^2-\frac{9}{80}y^2),\]</span></p>
+<p>and, taking cube roots, this is the same as solving</p>
+<p><span class="math">\[x^2+\frac{9}{4}y^2+z^2-1 = z \sqrt[3]{x^2-\frac{9}{80}y^2}.\]</span></p>
+<p>Why is this a good observation to make? Well, while <em>taking integer powers makes changes get more drastic</em>, we have that <em>taking integer roots makes changes more gentle</em>. If we are trying to use a mesh to approximate the vanishing locus of a function, it is better to use a function with gentler changes, given a fixed mesh resolution.</p>
+<p><strong>Lesson</strong>: formulations that are <em>mathematically equivalent</em> can be <em>computationally inequivalent</em>. By understanding the underlying properties of a mathematical object, one can make better <em>practical</em> decisions. (Similar: read about numerical integration, tracking, and Kalman filters.)</p>
+<p><strong>Challenge</strong>: justify this rigorously with mathematics.</p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/0.mp4">Video chunk 0</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/1-1.mp4">Video chunk 1-1</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/1-2.mp4">Video chunk 1-2</a></p>
+<h3 id="content-contributors">Content Contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span>, <span class="citation" data-cites="jpswanson">@jpswanson</span>, <span class="citation" data-cites="eccheng">@eccheng</span></p>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<h1 id="area">Area</h1>
+<h2 id="an-incredibly-entertaining-application-of-double-integrals-area">An incredibly entertaining application of double integrals: area!</h2>
+<p>We’ve been thinking about double integrals as computing volume.</p>
+<p>They also compute area! Given a region <span class="math">\(R\)</span>,</p>
+<p><span class="math">\[\iint_R1dA=\text{area}(R).\]</span></p>
+<p>This can be useful when we can find nice coordinates.</p>
+<h2 id="example">Example</h2>
+<p>Let’s consider one of the marvelous polar shapes from before.</p>
+<p>How about the area inside the curve <span class="math">\(r=1+\sin(3\theta)\)</span>?</p>
+<figure>
+<img src="media/flower.png" alt="There would be a flower here. Sigh." /><figcaption>There would be a flower here. Sigh.</figcaption>
+</figure>
+<p>The integral becomes <span class="math">\[\int_0^{2\pi}\int_0^{1+\sin(3\theta)}rdrd\theta\]</span></p>
+<p>Evaluate it, get <span class="math">\(\frac{1}{2}\theta-\frac{1}{3}\cos(3\theta)+\frac{1}{24}(6\theta-\sin(6\theta))|_0^{2\pi}=\frac{3}{2}\pi\)</span></p>
+<p>Be careful about how path is traversed!</p>
+<h2 id="do-one">Do one!</h2>
+<p>Consider the delightful logarithmic spiral:</p>
+<p><span class="math">\[r=e^{\theta/5}.\]</span></p>
+<ul>
+<li>What is the area of the first full turn of the spiral (<span class="math">\(0\leq\theta\leq 2\pi\)</span>)?</li>
+<li>What is the limit of the area inside the spiral <span class="math">\(r=e^{\alpha\theta}\)</span> as <span class="math">\(\alpha\)</span> tends to <span class="math">\(0\)</span>?</li>
+</ul>
+<h2 id="one-more-for-extra-fun">One more, for extra fun</h2>
+<p>Suppose there is a snail whose shell is built around the spiral like this: between each point of the spiral and the center there is a circle of shell material. Thus, the circle connecting the center to the point with polar coordinates <span class="math">\((\theta,e^{\theta/5})\)</span> has radius <span class="math">\(\frac{1}{2}e^{\theta/5}\)</span> and is centered at the point with polar coordinates <span class="math">\((\theta,\frac{1}{2}e^{\theta/5})\)</span>. Write down an explicit integral that computes the volume of the shell.</p>
+<h1 id="center-of-mass">Center of mass</h1>
+<h2 id="question">Question</h2>
+<p>Nedwina enjoys eating roadkill. She has found a squashed squirrel in the shape of the unit square centered at the origin in the <span class="math">\(xy\)</span>-plane; its density at a point <span class="math">\((x,y)\)</span> is <span class="math">\(e^{x+y}\)</span>. In order to cook the squirrel correctly, Nedwina has to balance it on the top of a narrow stick. How should she lay the flat and rigid squirrel on the stick?</p>
+<p>Re-phrase: where is the center of mass of the flattened squirrel?</p>
+<p>Here is a representation in which the intensity of color is proportional to the density <span class="math">\(e^{x+y}\)</span>.</p>
+<p>Where do you guess the center of mass will be?</p>
+<h2 id="computing-center-of-mass">Computing center of mass</h2>
+<p>Let’s suppose we have a planar lamina <span class="math">\(D\)</span> with a function <span class="math">\(\rho(x,y)\)</span> describing the density of the lamina at a point <span class="math">\((x,y)\)</span>.</p>
+<p>Just like in Math 125, we compute the center of mass by dividing the moments around the <span class="math">\(x\)</span> and <span class="math">\(y\)</span> axes by the mass. In integrals, the location <span class="math">\((\overline x,\overline y)\)</span> of the center of mass will be:</p>
+<p><span class="math">\[\overline
+x=\frac{\iint_Dx\rho(x,y)dA}{\iint_D\rho(x,y)dA}\]</span></p>
+<p><span class="math">\[\overline
+y=\frac{\iint_Dy\rho(x,y)dA}{\iint_D\rho(x,y)dA}\]</span></p>
+<h2 id="in-our-case">In our case</h2>
+<p>Writing it out for Nedwina’s squirrel:</p>
+<p><span class="math">\[\overline
+x=\frac{\int_{-1/2}^{1/2}\int_{-1/2}^{1/2}xe^{x+y}dxdy}{\int_{-1/2}^{1/2}\int_{-1/2}^{1/2}e^{x+y}dxdy}=\frac{3-e}{2e-2}\]</span></p>
+<p><span class="math">\[\overline
+y=\frac{\int_{-1/2}^{1/2}\int_{-1/2}^{1/2}ye^{x+y}dxdy}{\int_{-1/2}^{1/2}\int_{-1/2}^{1/2}e^{x+y}dxdy}=\frac{3-e}{2e-2}\]</span></p>
+<h2 id="yum"><em>Yum!</em></h2>
+<h2 id="do-one-1">Do one!</h2>
+<p>A steam roller comes by and runs over the squirrel. The poor thing now occupies the square <span class="math">\([-1,1]\times[-1,1]\)</span> with density function <span class="math">\(\rho(x,y)=\alpha e^{x+y}\)</span> (where <span class="math">\(\alpha\)</span> is a constant that keeps the total mass constant; find it if you feel like it).</p>
+<ul>
+<li>What is the new center of mass?</li>
+<li>Suppose this procedure repeats so that the <span class="math">\(n\)</span>th time the steam roller runs over the squirrel the square becomes <span class="math">\([-2+e^{-n},2-e^{-n}]\times [-2+e^{-n},2-e^{-n}]\)</span> and the density becomes <span class="math">\(\rho(x,y)=\alpha_n e^{x/n+y/n}\)</span> (for an appropriate constant <span class="math">\(\alpha_n\)</span> to keep the mass constant). What is the limiting position of the center of mass as <span class="math">\(n\to\infty\)</span>?</li>
+</ul>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/20-1.mp4">Video chunk 20-1</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/20-2.mp4">Video chunk 20-2</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>

@@ -1,0 +1,89 @@
+<h1 id="higher-order-approximation">Higher order approximation</h1>
+<h2 id="nedwina-and-the-piglet-keep-playing-the-market">Nedwina and the piglet keep playing the market</h2>
+<p>It’s still 1999, still before the bursting of the tech stock bubble, and Nedwina and the piglet of calculus have stock market fever.</p>
+<p>(This is still not a good sign.)</p>
+<p>Nedwina and the piglet realize that they need to do better than a linear approximation if they want to outsmart the Slimy Stock Snail. Recall that the best linear approximation is:</p>
+<p><span class="math">\[f(t)=10000+3000t,\]</span></p>
+<p>where <span class="math">\(t\)</span> is the time in days from now. In addition, by analyzing the data, Nedwina and the piglet conclude that the best linear approximation to the first derivative of <span class="math">\(f\)</span> is</p>
+<p><span class="math">\[g(t)=3000-10t.\]</span></p>
+<h2 id="is-it-ever-enough">Is it ever enough?</h2>
+<p>Using their New and Improved Better Tasting Stock Toothpick (© 1999), how far off can N and the P be in six months? What additional information would help? Do they have enough juice?</p>
+<p>What kinds of additional information could N and the P use to evaluate the accuracy of the new approximation?</p>
+<p>Will it ever be enough?</p>
+<h2 id="quadratic-approximation">Quadratic approximation</h2>
+<p>What kind of quadratic approximation do we get from our two pieces?</p>
+<p>If <span class="math">\(D(t)\)</span> is the value of the DJIA, then <span class="math">\(f(t)=10000+3000t\)</span> approximates <span class="math">\(D(t)\)</span> and <span class="math">\(g(t)=3000-10t\)</span> approximates <span class="math">\(D&#39;(t)\)</span>.</p>
+<p>Integrating <span class="math">\(g(t)\)</span> and accounting for the initial value (which we can compute as <span class="math">\(f(0)\)</span>), we get an approximation function</p>
+<p><span class="math">\[h(t)=10000+3000t-5t^2.\]</span></p>
+<p>This is the best quadratic approximation to our function.</p>
+<p>General formula: the best quadratic approximation to <span class="math">\(f(t)\)</span> around the point <span class="math">\(t=b\)</span> is given by <span class="math">\[T_2(x)=f(b)+f&#39;(b)(x-b)+\frac{1}{2}f&#39;&#39;(b)(x-b)^2.\]</span></p>
+<h2 id="examples">Examples</h2>
+<p>Let’s continue with the some examples from last time. Here are a bunch of functions with their quadratic approximations around <span class="math">\(t=0\)</span>:</p>
+<p>Quadratic approx near <span class="math">\(0\)</span>: <span class="math">\(T_2(x) = f(0) + f&#39;(0)x + \frac{1}{2}f&#39;&#39;(0)x^2\)</span></p>
+<ul>
+<li><span class="math">\(f(t)=t^2\)</span>, best quadratic approximation near <span class="math">\(0\)</span>: <span class="math">\(T_2(t)=t^2\)</span></li>
+<li><span class="math">\(f(t)=t^3\)</span>, best quadratic approximation near <span class="math">\(0\)</span>: <span class="math">\(T_2(t)=0\)</span> (!!)</li>
+<li><span class="math">\(f(t)=\sin(t)\)</span>, best quadratic approximation near <span class="math">\(0\)</span>: <span class="math">\(T_2(t)=t\)</span> (!?!)</li>
+<li><span class="math">\(f(t)=t^{367}\)</span>, best quadratic approximation near <span class="math">\(0\)</span>: <span class="math">\(T_2(t)=0\)</span>.</li>
+</ul>
+<h2 id="do-some">Do some!</h2>
+<p>Find the best quadratic approximations <span class="math">\(f(b)+f&#39;(b)(x-b)+\frac{1}{2}f&#39;&#39;(b)(x-b)^2\)</span> to the following functions around the points indicated:</p>
+<ul>
+<li><span class="math">\(f(x)=x^3\)</span> around <span class="math">\(b=1\)</span></li>
+<li><span class="math">\(f(x)=\sin(x)\)</span> around <span class="math">\(b=\pi/2\)</span></li>
+<li><span class="math">\(f(x)=e^{-x^2}\)</span> around <span class="math">\(b=0\)</span></li>
+</ul>
+<h2 id="error">Error</h2>
+<p>We can estimate error just like we did last time.</p>
+<p>The key: the <em>third</em> derivative! (Surprised?)</p>
+<p>Theorem: If <span class="math">\(|f&#39;&#39;&#39;(t)|\leq M\)</span> for all <span class="math">\(t\)</span> between <span class="math">\(b\)</span> and <span class="math">\(c\)</span> then</p>
+<p><span class="math">\[|f(c)-T_2(c)|\leq\frac{M}{6}|c-b|^3.\]</span></p>
+<p>In our example: <span class="math">\(T_2(c)=10000+3000c-5c^2.\)</span></p>
+<p>If <span class="math">\(|D&#39;&#39;&#39;(t)|\leq M\)</span> during the next half year, then we see that</p>
+<p><span class="math">\[|T_2(c) - D(c)|\leq 1004762 M\]</span></p>
+<h2 id="mind-blown">Mind: blown</h2>
+<p>Why stop at quadratic approximations?</p>
+<p>We can approximate to higher and higher order!</p>
+<p>Let’s fix a function <span class="math">\(f(x)\)</span> that is “infinitely differentiable” (every derivative has a derivative).</p>
+<ul>
+<li>Linear approx near <span class="math">\(b\)</span>: <span class="math">\(T_1(x)=f(b)+f&#39;(b)(x-b)\)</span></li>
+<li>Quadratic approx near <span class="math">\(b\)</span>: <span class="math">\(T_2(x)=f(b)+f&#39;(b)(x-b)+\frac{1}{2}f&#39;&#39;(b)(x-b)^2\)</span></li>
+<li>Cubic approx near <span class="math">\(b\)</span>: <span class="math">\(T_3(x)=f(b)+f&#39;(b)(x-b)+\frac{1}{2}f&#39;&#39;(b)(x-b)^2+\frac{1}{6}f&#39;&#39;&#39;(b)(x-b)^3\)</span>.</li>
+<li>General: <span class="math">\(T_n(x)=f(b)+f&#39;(b)(x-b)+\frac{1}{2}f^{(2)}(b)(x-b)^2+\cdots+\frac{1}{n!}f^{(n)}(b)(x-b)^n\)</span>.</li>
+</ul>
+<h2 id="say-what">Say what?</h2>
+<p>Maybe we should refresh our memories about the notation.</p>
+<ul>
+<li><span class="math">\(f^{(n)}(b)\)</span> is the <span class="math">\(n\)</span>th derivative of <span class="math">\(f\)</span> at <span class="math">\(b\)</span> (so <span class="math">\(f=f^{(0)}\)</span>, <span class="math">\(f&#39;=f^{(1)}\)</span>, <span class="math">\(f&#39;&#39;=f^{(2)}\)</span>, etc.)</li>
+<li><span class="math">\(n!=n\cdot(n-1)\cdot(n-2)\cdot\cdots\cdot 2\cdot 1\)</span>, pronounced “<span class="math">\(n\)</span> factorial”, is the product of the integers from <span class="math">\(1\)</span> to <span class="math">\(n\)</span> (so <span class="math">\(1!=1\)</span>, <span class="math">\(2!=2\)</span>, <span class="math">\(3!=6\)</span>, <span class="math">\(4!=24\)</span>,etc.), and by definition <span class="math">\(0!=1\)</span>.</li>
+</ul>
+<p>The formula again: the <span class="math">\(n\)</span>th Taylor polynomial of <span class="math">\(f(x)\)</span> around <span class="math">\(b\)</span> is</p>
+<p><span class="math">\[\begin{align}T_n(x)&amp;=f(b)+f^{(1)}(b)(x-b)+\frac{1}{2}f^{(2)}(b)(x-b)^2+\cdots+\frac{1}{n!}f^{(n)}(b)(x-b)^n\\&amp;
+=\sum_{i=0}^n\frac{1}{i!}f^{(i)}(b)(x-b)^i\end{align}\]</span></p>
+<h2 id="example">Example</h2>
+<p>Let’s wrap the piglet’s head around an example: <span class="math">\(f(x)=\sin(x)\)</span>.</p>
+<ul>
+<li>Linear approximation at <span class="math">\(b=0\)</span>: <span class="math">\(T_1(x)=x\)</span></li>
+<li>Quadratic approx at <span class="math">\(b=0\)</span>: <span class="math">\(T_2(x)=x\)</span></li>
+<li>Cubic: <span class="math">\(T_3(x)=x-\frac{1}{6}x^3\)</span></li>
+<li>Quartic: <span class="math">\(T_4=x-\frac{1}{6}x^3\)</span></li>
+<li>Quintic: <span class="math">\(T_5=x-\frac{1}{6}x^3+\frac{1}{5!}x^5\)</span></li>
+<li>Septic: <span class="math">\(T_7=x-\frac{1}{6}x^3+\frac{1}{5!}x^5-\frac{1}{7!}x^7\)</span></li>
+<li>General, for <span class="math">\(n=2m+1\)</span> odd: <span class="math">\(T_n=\sum_{i=0}^m\frac{(-1)^{i}}{(2i+1)!}x^{2i+1}\)</span> (don’t worry!)</li>
+</ul>
+<h2 id="photographic-evidence">Photographic evidence</h2>
+<p>Here’s a graph showing the approximations of odd degree up to <span class="math">\(9\)</span> between <span class="math">\(t=0\)</span> and <span class="math">\(t=2\pi\)</span></p>
+<p>Approximations of different orders get bad in different ways: end up too high or too low. Is there a pattern?</p>
+<p>Anything else to observe?</p>
+<h2 id="try-some">Try some!</h2>
+<p>Find formulas for <span class="math">\(T_n\)</span> as a sum (with <span class="math">\(\sum\)</span>, some limits, etc.) for the following functions:</p>
+<ul>
+<li><span class="math">\(f(x)=\cos(x)\)</span> near <span class="math">\(b=\pi\)</span></li>
+<li><span class="math">\(f(x)=e^x\)</span> near <span class="math">\(b=0\)</span></li>
+<li>Challenge: <span class="math">\[f(x)=\begin{cases} e^{-1/x^2} &amp;\mbox{if } x\neq
+0\\ 0&amp;\mbox{if } x=0 \end{cases}\]</span> near <span class="math">\(b=0\)</span>.</li>
+</ul>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/22.mp4">Video chunk 22</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>

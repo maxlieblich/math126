@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="stylesheets/pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/three.min.js" type="text/javascript"></script>
+  <script src="js/ArrowHelperFixed.js" type="text/javascript"></script>
+  <script src="js/marchingcubesraw.js" type="text/javascript"></script>
+  <script src="js/marchingtetrahedraraw.js" type="text/javascript"></script>
+  <script src="js/surfacenetsraw.js" type="text/javascript"></script>
+  <script src="js/MathScene.js" type="text/javascript"></script>
+  <script src="js/MathModel.js" type="text/javascript"></script>
+  <script src="js/TrackballControls.js" type="text/javascript"></script>
+  <script src="js/OrbitControls.js" type="text/javascript"></script>
+  <script src="js/Detector.js" type="text/javascript"></script>
+  <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
+  <script src="js/dat.gui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="lines-and-planes-introduction">Lines and planes: introduction</h1>
+<p>In this lecture we will use our new understanding of vectors to attack the simplest shapes: lines and planes. This is our first witness to the raw power of the simple theory we’ve developed.</p>
+<h3 id="warm-up">Warm up</h3>
+<p>Let’s start with a simple question.</p>
+<p><strong>Question:</strong> how can we describe the line of intersection of two planes?</p>
+<div id="warm-up-q">
+<img src="media/lecture-5-warm-up.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+var scene = new MathScene("warm-up-q");
+scene.scene.add(new THREE.AxisHelper(3));
+scene.camera.position.set(6, 8, 4);
+var plane1 = new PlaneShadowModel({
+  normal: [3, 4, 5],
+  position: [0, 0, 0],
+  color: 0xaaaa00
+  });
+var plane2 = new PlaneShadowModel({
+  normal: [-3, 5, 0],
+  position: [0, 0, 0],
+  color: 0x00aaaa
+  });
+  plane1.embedInScene(scene);
+  plane2.embedInScene(scene);
+}());
+//]]>
+</script>
+<hr />
+<p><strong>Simpler:</strong> what is the intersection of the planes <span class="math">\(x=0\)</span> and <span class="math">\(y=0\)</span></p>
+<div id="simple">
+<img src="media/lecture-5-simple.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+var scene = new MathScene("simple");
+scene.scene.add(new THREE.AxisHelper(3));
+scene.camera.position.set(6, 8, 4);
+var plane1 = new PlaneShadowModel({
+  normal: [1, 0, 0],
+  position: [0, 0, 0],
+  color: 0xaaaa00
+  });
+var plane2 = new PlaneShadowModel({
+  normal: [0, 1, 0],
+  position: [0, 0, 0],
+  color: 0x00aaaa
+  });
+  plane1.embedInScene(scene);
+  plane2.embedInScene(scene);
+}());
+//]]>
+</script>
+<h3 id="the-enemy-of-my-enemy">The enemy of my enemy…</h3>
+<p>Since vectors have shown us they have a deep understanding of angles, it turns out that the following description of a plane is key:</p>
+<p><em>A plane <span class="math">\(P\)</span> is perpendicular to the line that is perpendicular to <span class="math">\(P\)</span> (?!?!!?!)</em></p>
+<p>That is to say, if I think of a flagpole above the schoolyard, we get what are known as <em>dual</em> descriptions: “the pole is perpendicular to the yard” is dual to “the yard is perpendicular to the pole”. This lets us use lines to understand planes (or vice versa).</p>
+<h3 id="lines-are-vectors-that-wont-quit">Lines are vectors that won’t quit</h3>
+<p>This duality idea is only helpful if one of the two sides is easy to understand. This is a common theme in mathematics: we often find ourselves doing some kind of transformation that translates information between contexts, and we hope that one of those contexts is simpler to understand. In an ideal setup, the translation procedure loses no information and is perfectly bidirectional. This is precisely the position we find ourselves in here.</p>
+<h4 id="specifying-a-line">Specifying a line</h4>
+<p>To specify a line, we need to give</p>
+<ul>
+<li>a <strong>point</strong> in space that is contained in the line, and</li>
+<li>a <strong>vector</strong> that encodes the direction of the line.</li>
+</ul>
+<p>You get the line by starting at the point and looking at the “line spanned by the vector” – all of the scalar multiples of the vector. The set of all of the endpoints you get this way is precisely the line.</p>
+<p>For example, the line below passes through the point <span class="math">\((1, 2, 3)\)</span> and has direction parallel to <span class="math">\(\langle -3, 2, 1\rangle\)</span>. We’ve embedded a small sphere at the point and a vector along the direction so you can see what is going on. (If you can manipulate it, you can get a sense for how it is embedded in space. Otherwise: make some examples on your own!)</p>
+<div id="line">
+<img src="media/lecture-5-line.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+var scene = new MathScene("line");
+scene.scene.add(new THREE.AxisHelper(3));
+scene.camera.position.set(8, 15, 8);
+var x = function (t) {
+  return 1 - 3 * t;
+}
+var y = function (t) {
+  return 2 + 2 * t;
+}
+var z = function (t) {
+  return 3 + t;
+}
+
+var line = new ParametricPathModel(
+  x, y, z, [-10, 10], 0, 2
+);
+
+line.embedInScene(scene);
+
+var sphGeom = new THREE.SphereGeometry(0.03);
+var sph = new THREE.Mesh(sphGeom, MathScene.UWMaterial.clone());
+sph.position.set(1, 2, 3);
+
+scene.scene.add(sph);
+
+var vec = new VectorModel({origin: [1, 2, 3], vector: [-3, 2, 1], color: 0xff00ff});
+
+vec.embedInScene(scene);
+}());
+//]]>
+</script>
+<h3 id="making-a-plane">Making a plane</h3>
+<p>Here’s the <strong>dual</strong> perspective. Instead of making a <em>line</em> from a point and a vector, we can make a <em>plane</em>: the plane that passes through that point and is perpendicular to that line (i.e., to that vector). Here’s a picture using the same setup as above.</p>
+<div id="line-and-plane">
+<img src="media/lecture-5-line-and-plane.png"></img>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+var scene = new MathScene("line-and-plane");
+scene.scene.add(new THREE.AxisHelper(3));
+scene.camera.position.set(8, 15, 8);
+var x = function (t) {
+  return 1 - 3 * t;
+}
+var y = function (t) {
+  return 2 + 2 * t;
+}
+var z = function (t) {
+  return 3 + t;
+}
+
+var line = new ParametricPathModel(
+  x, y, z, [-10, 10], 0, 2
+);
+
+line.embedInScene(scene);
+
+var sphGeom = new THREE.SphereGeometry(0.03);
+var sph = new THREE.Mesh(sphGeom, MathScene.UWMaterial.clone());
+sph.position.set(1, 2, 3);
+
+scene.scene.add(sph);
+
+var vec = new VectorModel({origin: [1, 2, 3], vector: [-3, 2, 1], color: 0xff00ff});
+
+vec.embedInScene(scene);
+
+var pl = new PlaneShadowModel({normal: [-3, 2, 1], position: [1, 2, 3]});
+pl.embedInScene(scene);
+console.log(pl);
+}());
+//]]>
+</script>
+<h3 id="equations-for-perpendicularity">Equations for perpendicularity</h3>
+<p><strong>Question</strong>: How can you tell if two vectors <span class="math">\(\mathbf{a}\)</span> and <span class="math">\(\mathbf{b}\)</span> are perpendicular?</p>
+<p><strong>(One) Answer</strong>: Test if <span class="math">\(\mathbf{a}\cdot\mathbf{b}=0\)</span>.</p>
+<p>So how do you write the equation describing “the set of all endpoints of vectors <span class="math">\(\mathbf{b}\)</span> that are perpendicular to a fixed vector <span class="math">\(\mathbf{a}\)</span>”? Well, if <span class="math">\(\mathbf{a}=\langle \alpha,\beta,\gamma\rangle\)</span> then the equation is</p>
+<p><span class="math">\[\alpha x+\beta y+\gamma z = 0.\]</span></p>
+<p>Example: if <span class="math">\(\mathbf{a}=\langle 1, 2, -1\rangle\)</span>, you get <span class="math">\(x+2y-z=0\)</span>.</p>
+<p>What shape is that? It’s the solutions to a <em>linear</em> equation, so it should be <em>flat</em>. Convince yourself that this is a plane. Then try to prove it if you really want to think about what is going on.</p>
+<h4 id="the-catch">The catch</h4>
+<p>What we have above has one catch: the perpendicularity of <em>vectors</em> cannot make reference to position, because <strong>vectors do not have a position</strong>. But planes do – they are located <em>somewhere</em>.</p>
+<h4 id="the-fix">The fix</h4>
+<p>Just like what we say with a line, we need to <em>find or fix one point on the plane</em> and use it as a <strong>basepoint</strong>.</p>
+<p><em>NEVER FORGET THIS</em>: use a common basepoint when doing calculations with vectors to describe a plane.</p>
+<h3 id="calculating-the-equation">Calculating the equation</h3>
+<p>If <span class="math">\(\mathbf{u}=\langle\alpha, \beta,\gamma\rangle\)</span> is perpendicular to plane <span class="math">\(P\)</span> and <span class="math">\(u=(a,b,c)\)</span> is a point of <span class="math">\(P\)</span>, we can describe <span class="math">\(P\)</span> like this:</p>
+<p><span class="math">\[P=\{(x,y,z):\langle x-a, y-b, z-c\rangle\cdot\mathbf{u}=0\}\]</span></p>
+<p>This gives us a <em>linear</em> equation for the plane: <span class="math">\(\alpha(x-a)+\beta(y-b)+\gamma(z-c)=0\)</span>. Challenge problem: any linear equation gives a plane. (Most of the challenge here is philosophical – what does “plane” mean? Is there any way to define it other than using a linear equation? Maybe you could define it in terms of perpendicularity to a line, using our “duality formalism”.)</p>
+<h4 id="an-example">An example</h4>
+<p>Describe the plane <span class="math">\(x-3y+47z-28=0\)</span> using vectors.</p>
+<ul>
+<li>Normal vector: <span class="math">\(\langle 1,-3,47\rangle\)</span>. How did I know?</li>
+<li>Trick: always just use the coefficients of <span class="math">\(x\)</span>, <span class="math">\(y\)</span>, and <span class="math">\(z\)</span>. (This isn’t actually a trick; it is math. Try to understand this. If, by the end of this lecture, you have no idea why this is true, start over again. Really. Keep thinking hard about it. If you are still confused, post on the forum or come to office hours. Things like this should not just swim by – catch this fish and eat it!)</li>
+<li>We now have the normal vector, but <em>we still need our basepoint</em>. We need to find one solution by eyeballs. A solution: <span class="math">\((-16,1,1)\)</span>. (How do we know? It works! How did I find this? Randomly. Strategies you could <em>try</em>: set two of the variables equal to <span class="math">\(0\)</span> and solve for the third. Danger: that is not guaranteed if you make bad choices.)</li>
+<li>So the plane is the set of endpoints of vectors <span class="math">\(\mathbf{v}\)</span> such that <span class="math">\[(\mathbf{v} - \langle -16, 1, 1\rangle)\cdot\langle 1, -2, 47\rangle=0.\]</span></li>
+<li>Another way to say it: it is what you get when you take the set of vectors perpendicular to <span class="math">\(\langle 1, -3, 47\rangle\)</span> and translate them all to start at <span class="math">\(\langle -16, 1, 1\rangle\)</span> (and then just keep the set of endpoints).</li>
+</ul>
+<h4 id="one-for-you-to-practice">One for you to practice</h4>
+<p>Describe the plane <span class="math">\(3x-4y-5z=6\)</span> using vectors. In other words: find a <em>point</em> <span class="math">\((a, b, c)\)</span> on the plane and a <em>normal vector</em> <span class="math">\(\mathbf{u}\)</span> to the plane, and use these to think of the equation has having the form <span class="math">\((\langle x, y, z\rangle - \langle a, b, c\rangle\cdot\mathbf{u}\)</span></p>
+<h3 id="one-beautiful-application-of-this-method">One beautiful application of this method</h3>
+<p>Once we have grasped how to describe planes using points and vectors, we can suddenly get a deep understanding of how planes <em>intersect</em>. Let us illustrate with an example.</p>
+<h4 id="example">Example</h4>
+<p>Suppose we want to describe the intersection of the planes <span class="math">\(x-2y-z=0\)</span> and <span class="math">\(2x-y+z=6\)</span>. There are a few options: the intersection could be</p>
+<ol type="1">
+<li>a plane (if the two planes are the same)</li>
+<li>empty (if the two planes are parallel but not the same)</li>
+<li>a line (otherwise)</li>
+</ol>
+<p>How can we tell if two planes are parallel? Using the dual formulation, we can see that two <em>planes</em> are parallel if and only if their <em>normal vectors</em> are parallel. So we need to compute those and start to think.</p>
+<p>We can get normal vectors to the plane from the equations: the first plane has normal vector <span class="math">\(\langle 1,-2,-1\rangle\)</span> and the second has normal vector <span class="math">\(\langle 2,-1,1\rangle\)</span>. (Be careful: the normal vector is not unique. This is perfectly fine, but it can make things confusing. Meta-point: when things are not unique – especially when people have <em>chosen</em> things – the opportunity to make a mistake arises. Be especially careful when choices are being made! Then the math machine is not running by itself and it can grab you by the shirt and grind you to a pulp if you lean in too closely.)</p>
+<p>The two normal vectors are not parallel. What does this tell us? It tells us that the planes have to intersect in a line. But how do we find this line? Well, we need a <em>point</em> on the line and a <em>vector</em> giving the direction of the line. Finding a point is “easy”: we just need a common solution of the two equations. Here’s one: <span class="math">\((2,0,2)\)</span>. (How did I find this? By finding it. There are many ways to do this. Go read about them or watch videos about them and try them!)</p>
+<p>The line of intersection is exactly the points on both planes. But we have conditions defined using vectors that <em>describe</em> what it means to be on each plane. A vector <span class="math">\(\mathbf{v}\)</span> has endpoint in the first plane if <span class="math">\[(\mathbf{v}-\langle 2,0,2\rangle)\cdot\langle 1,-2,-1\rangle=0\]</span> and it has endpoint in the second plane if <span class="math">\[(\mathbf{v}-\langle 2,0,2\rangle)\cdot\langle 2,-1,1\rangle=0.\]</span></p>
+<p>In other words, to be on both planes the vector <span class="math">\(\mathbf{v}-\langle 2,0,2\rangle\)</span> is perpendicular to both <span class="math">\(\langle 1, -2, -1\rangle\)</span> and to <span class="math">\(\langle 2, -1, 1\rangle\)</span>. How do we find one vector that is simultaneously perpendicular to two vectors: using the cross product! That is to say, a direction vector for the line of intersection is given by the cross product <span class="math">\(\langle 1, -2, -1\rangle\times\langle 2, -1, 1\rangle\)</span>.</p>
+<p>Using what we learned about how to describe lines using a point and a vector, we find that the line of intersection is just the endpoints of vectors of the form <span class="math">\[\langle 2,0,2\rangle+t\langle 1,-2,-1\rangle\times\langle 2,-1,1\rangle,\]</span> where <span class="math">\(t\)</span> ranges over all scalars. This is a set of parametric equations for the line!</p>
+<p>Here’s what it looks like with the cross-product computed:</p>
+<ul>
+<li><span class="math">\(\langle 1,-2,-1\rangle\times\langle 2,-1,1\rangle=\langle -3,-3,3\rangle\)</span></li>
+<li>So the line is given by the endpoints of the vectors <span class="math">\(\{\langle 2,0,2\rangle+t\langle -3,-3,3\rangle\}\)</span></li>
+<li>Parametric form: <span class="math">\((x,y,z)=(2-3t,-3t,2+3t)\)</span></li>
+<li>As <span class="math">\(t\)</span> varies, this traces out the line of intersection.</li>
+</ul>
+<h4 id="here-are-some-for-you-to-try">Here are some for you to try</h4>
+<p>If you don’t try these you will never learn anything. Familiarity is not learning. Watching is not doing. Reading is not thinking.</p>
+<ul>
+<li>Describe the intersection of <span class="math">\(3x+4y+5z=6\)</span> and <span class="math">\(y+z=0\)</span>.</li>
+<li>Describe the intersection of <span class="math">\(3x+4y+5z=6\)</span> and <span class="math">\(6x+8y+10y=12\)</span>.</li>
+<li>Describe the intersection of <span class="math">\(3x+4y+5z=6\)</span> and <span class="math">\(9x+12y+15z=17\)</span>.</li>
+</ul>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/4-1.mp4">Video chunk 4-1</a> <a href="http://www.math.washington.edu/~lieblich/Math126/video/4-2.mp4">Video chunk 4-2</a></p>
+<h3 id="content-contributors">Content Contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>
+</body>
+</html>

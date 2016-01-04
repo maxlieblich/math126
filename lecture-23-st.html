@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="stylesheets/pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/three.min.js" type="text/javascript"></script>
+  <script src="js/ArrowHelperFixed.js" type="text/javascript"></script>
+  <script src="js/marchingcubesraw.js" type="text/javascript"></script>
+  <script src="js/marchingtetrahedraraw.js" type="text/javascript"></script>
+  <script src="js/surfacenetsraw.js" type="text/javascript"></script>
+  <script src="js/MathScene.js" type="text/javascript"></script>
+  <script src="js/MathModel.js" type="text/javascript"></script>
+  <script src="js/TrackballControls.js" type="text/javascript"></script>
+  <script src="js/OrbitControls.js" type="text/javascript"></script>
+  <script src="js/Detector.js" type="text/javascript"></script>
+  <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
+  <script src="js/dat.gui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="even-higher-order-approximation">Even higher order approximation</h1>
+<h2 id="nedwina-and-the-piglet-wont-stop-playing-the-market">Nedwina and the piglet won’t stop playing the market</h2>
+<p>It’s still 1999, still before the bursting of the tech stock bubble, and Nedwina and the piglet of calculus have stock market fever.</p>
+<p>Nedwina and the piglet have calculated every Taylor polynomial <span class="math">\(T_n(t)\)</span> of the DJIA.</p>
+<p>Do they have perfect information? Can they now play the market with impunity?</p>
+<p>In purely mathematical terms: can we reconstruct a function from its Taylor polynomials?</p>
+<h2 id="lets-think-about-some-examples">Let’s think about some examples</h2>
+<p>How about <span class="math">\(f(x)=\sin(x)\)</span>?</p>
+<p>We know the Taylor polynomials, say around <span class="math">\(b=0\)</span>: for <span class="math">\(n=2m+1\)</span>,</p>
+<p><span class="math">\[T_n(x)=\sum_{i=0}^m(-1)^i\frac{x^{2i+1}}{(2i+1)!}.\]</span></p>
+<ul>
+<li><span class="math">\(T_1(x)=x\)</span></li>
+<li><span class="math">\(T_3(x)=x-\frac{x^3}{3!}\)</span></li>
+<li><span class="math">\(T_5(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!}\)</span></li>
+<li><span class="math">\(T_7(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}.\)</span></li>
+</ul>
+<h2 id="fix-x-feel-the-love.">Fix <span class="math">\(x\)</span>, feel the love.</h2>
+<p>Given a value of <span class="math">\(x\)</span> and any <span class="math">\(n=2m+1\)</span>, using the techniques we learned last time, we can bound the error like this:</p>
+<p><span class="math">\(|\sin(x)-T_n(x)|\leq \frac{|x^{n+2}|}{(n+2)!}\)</span>.</p>
+<p>What happens as we let <span class="math">\(n\)</span> grow?</p>
+<p>Theorem: for a fixed <span class="math">\(x\)</span>, <span class="math">\(\lim_{N\to\infty}\frac{x^N}{N!}=0\)</span>.</p>
+<p>Idea: pick an integer <span class="math">\(M\)</span> such that <span class="math">\(x\leq M\)</span>. Then <span class="math">\(\frac{x^{M+K}}{(M+K)!}=\frac{x}{1}\cdot\cdots\cdot\frac{x}{M}\cdot\frac{x}{M+1}\cdots\cdot\frac{x}{M+K}\)</span>. The first dotted clump is some fixed number, while the second has every factor less than <span class="math">\(1\)</span> and in fact decreasing. Since <span class="math">\(\lim_{Q\to\infty}\frac{x}{Q}=0\)</span>, we are done.</p>
+<h2 id="infty-bottles-of-beer-on-the-wall."><span class="math">\(\infty\)</span> bottles of beer on the wall….</h2>
+<p>We seem to be seeing the following: for any value of <span class="math">\(x\)</span> we know that <span class="math">\(\lim_{n\to\infty}T_n(x)=\sin(x)\)</span>.</p>
+<p>More suggestively,</p>
+<p><span class="math">\[\sin(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots=\sum_{i=0}^\infty
+(-1)^i\frac{x^{2i+1}}{(2i+1)!}.\]</span></p>
+<p>We call this an “infinite sum,” but of course we can’t add infinitely many things.</p>
+<p>As a function of <span class="math">\(x\)</span>, this infinite sum is called the Taylor series expansion of <span class="math">\(\sin(x)\)</span>.</p>
+<p>To compute <span class="math">\(\sin(x)\)</span> to arbitrary accuracy, we just have to take enough terms to ensure that the error is low.</p>
+<h2 id="example">Example</h2>
+<p>Let’s see what happens if we try to compute <span class="math">\(\sin(\pi)=\pi-\pi^3/3!+\pi^5/5!-\cdots\)</span> using the different approximations.</p>
+<ul>
+<li><span class="math">\(T_1(\pi)=\pi=3.14159269....\)</span>. Good approximation?</li>
+<li><span class="math">\(T_3(\pi)=-2.02612....\)</span></li>
+<li><span class="math">\(T_5(\pi)=0.524044....\)</span></li>
+<li><span class="math">\(T_7(\pi)=-0.0752206\)</span></li>
+<li><span class="math">\(T_9(\pi)=0.00692527\)</span></li>
+<li><span class="math">\(T_{19}(\pi)\approx 5.28918\times 10^{-10}\)</span>. (This is pretty good, but not really that great, eh?)</li>
+</ul>
+<p>Why do the signs alternate?</p>
+<h2 id="make-some">Make some!</h2>
+<p>Write down the Taylor series <span class="math">\(\sum_{i=1}^\infty f^{(n)}(b)\frac{(x-b)^n}{n!}\)</span> of the following functions around the given points.</p>
+<ul>
+<li><span class="math">\(f(x)=e^x\)</span> around <span class="math">\(b=0\)</span></li>
+<li><span class="math">\(f(x)=\frac{1}{1-x}\)</span> around <span class="math">\(b=0\)</span></li>
+<li><span class="math">\(f(x)=1+x+x^2+x^3+427x^7\)</span> around <span class="math">\(b=0\)</span></li>
+<li><span class="math">\(f(x)=\frac{1}{1-x}\)</span> around <span class="math">\(b=2\)</span></li>
+<li><span class="math">\(f(x)=e^{-1/x^2}\)</span> around <span class="math">\(b=0\)</span></li>
+</ul>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/23.mp4">Video chunk 23</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>
+</body>
+</html>

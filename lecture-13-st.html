@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="stylesheets/pandoc.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/three.min.js" type="text/javascript"></script>
+  <script src="js/ArrowHelperFixed.js" type="text/javascript"></script>
+  <script src="js/marchingcubesraw.js" type="text/javascript"></script>
+  <script src="js/marchingtetrahedraraw.js" type="text/javascript"></script>
+  <script src="js/surfacenetsraw.js" type="text/javascript"></script>
+  <script src="js/MathScene.js" type="text/javascript"></script>
+  <script src="js/MathModel.js" type="text/javascript"></script>
+  <script src="js/TrackballControls.js" type="text/javascript"></script>
+  <script src="js/OrbitControls.js" type="text/javascript"></script>
+  <script src="js/Detector.js" type="text/javascript"></script>
+  <script src="js/SubdivisionModifier.js" type="text/javascript"></script>
+  <script src="js/dat.gui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="multivariable-functions">Multivariable functions</h1>
+<h2 id="how-to-describe-mt.-rainier">How to describe Mt. Rainier?</h2>
+<figure>
+<img src="media/Rainier.jpg" alt="There’s supposed to be a picture of a mountain here" /><figcaption>There’s supposed to be a picture of a mountain here</figcaption>
+</figure>
+<h2 id="how-to-describe-mt.-rainier-1">How to describe Mt. Rainier?</h2>
+<ul>
+<li>With poetry.</li>
+<li>By height above the “ground”.</li>
+<li>By depth below a giant tarp hovering at constant altitude above the mountain.</li>
+</ul>
+<h2 id="assume-a-spherical-cow.">“Assume a spherical cow….”</h2>
+<p>Let’s approximate and say that the mountain is shaped roughly like a paraboloid. We can peek under the mountain a bit to see the shadow it casts:</p>
+<h2 id="describe-our-toy-mountain-using-numbers">Describe our toy mountain using numbers</h2>
+<p>For each point in the shadow, record the height of the mountain over that point.</p>
+<p>For our toy model, this function is <span class="math">\(f(x,y)=9-x^2-y^2\)</span></p>
+<p>The general philosophy of functions still works.</p>
+<ul>
+<li>A function takes an input and returns an output.</li>
+<li>There need not be a formula. The function could be defined on weird inputs.</li>
+<li>For example: my desire for coffee (rated as “small”,“medium”, “large”) is a function of my fatigue (“mild”, “moderate”, “extreme”) and my rough Husky card balance (“empty”, “some”, “lots”). Thus, d(mild,lots)=small and d(extreme,some)=large, but perhaps d(extreme,none)=moderate. Etc.</li>
+</ul>
+<h2 id="our-toy-picture-is-a-graph">Our toy picture is a graph</h2>
+<p>The shape you have recorded is the graph of a function of two variables!</p>
+<p>In this toy model, the function is <span class="math">\(f(x,y)=9-x^2-y^2\)</span>, so the graph is described by <span class="math">\(z=9-x^2-y^2\)</span>.</p>
+<p>Take a whack at graphing these:</p>
+<ul>
+<li><span class="math">\(f(x,y)=\sin(x)\)</span></li>
+<li><span class="math">\(f(x,y)=\sin(x)\cos(y)\)</span></li>
+<li><span class="math">\(f(x,y)=\sqrt{1-x^2-y^2}\)</span></li>
+</ul>
+<h2 id="match-the-graph-with-the-function">Match the graph with the function</h2>
+<h3 id="functions">Functions</h3>
+<ul>
+<li><span class="math">\(\sin(x)\)</span></li>
+<li><span class="math">\(\sin(x)\cos(y)\)</span></li>
+<li><span class="math">\(\sqrt{1-x^2-y^2}\)</span></li>
+</ul>
+<h3 id="graphs">Graphs</h3>
+<p><img src="media/jiggly.jpg" /> <img src="media/siny.jpg" /> <img src="media/sphery.jpg" /></p>
+<h2 id="enter-the-domain-of-the-sheep">Enter the domain of the sheep*</h2>
+<p>*My college roommate studied Akkadian and found this written in Akkadian on a Pepsi can in 1999</p>
+<p>Functions of two (or more!) variables have domains just like functions of one variable.</p>
+<p>Sometimes, the domain is a natural consequence of the shape of the function.</p>
+<p>Usually, the domain is specified in advance.</p>
+<p>What are the natural domains of the following functions?</p>
+<ul>
+<li><span class="math">\(f(x,y)=9-x^2-y^2\)</span></li>
+<li><span class="math">\(f(x,y)=\sin(x)+\cos(|y|+\cos(x^{2012}))\)</span></li>
+<li><span class="math">\(f(x,y)=\ln(x+y)\)</span></li>
+</ul>
+<h2 id="a-mountaineer-cannot-lift-mountains">A mountaineer cannot lift mountains</h2>
+<p>She needs to have a map, like this one, with level curves.</p>
+<h2 id="the-level-curves-are-horizontal-traces">The level curves are horizontal traces!</h2>
+<h2 id="telling-things-apart">Telling things apart</h2>
+<p>»Which of these contour maps corresponds to a circular cone?</p>
+<p>»What is the function <span class="math">\(f(x,y)\)</span> whose graph in the region <span class="math">\(0\leq z\leq 9\)</span> is a circular cone with base radius <span class="math">\(3\)</span> and vertex at <span class="math">\((0,0,9)\)</span>?</p>
+<h2 id="people-really-do-this">People really do this</h2>
+<p>Here’s a <a href="http://www.nationalatlas.gov/100topos/Mt_Rainier.html">link</a> to a map of Mt. Rainier from 1924 in the US national atlas.</p>
+<p>What does it mean when the level curves are bunched together?</p>
+<h2 id="what-about-more-variables">What about more variables?</h2>
+<p>We can plot level surfaces for functions of three variables (but it’s rather hard to visualize). Here’s an example with <span class="math">\(f(x,y,z)=x^2+y^2+2z^2\)</span>.</p>
+<h3 id="videos">Videos</h3>
+<p><a href="http://www.math.washington.edu/~lieblich/Math126/video/13.mp4">Video chunk 13</a></p>
+<h3 id="content-contributors">Content contributors</h3>
+<p><span class="citation" data-cites="maxlieblich">@maxlieblich</span></p>
+</body>
+</html>
