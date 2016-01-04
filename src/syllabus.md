@@ -4,7 +4,7 @@
 
 **Professor:** [Max Lieblich](http://www.math.washington.edu/~lieblich/)  
 **Office:** Padelford C-529  
-**Office hours:** See Piazza for current times.
+**Office hours:** See Canvas or Piazza for current times.
 
 **Course Materials:** The primary repository of information for the course will be the [course site](http://maxlieblich.github.io/math126) and Piazza. The discussion forum and logistical information (among other things) will be on Piazza.
 
@@ -24,7 +24,7 @@ You are responsible for the sections of the book indicated in the course outline
     about appears in your lives. For example, you might make a toy model
     of the terrain between your room/apartment and class and try to
     estimate the total number of meters you actually walk (accounting
-    for elevation changes) to get here. Etc. Due dates will be described in Piazza.
+    for elevation changes) to get here. Due dates will be described in Piazza.
 -   Occasional **quizzes** will be very short multiple choice quizzes
     that are meant to help you keep up with the course. They will happen
     sporadically, if at all.
@@ -38,7 +38,7 @@ You are responsible for the sections of the book indicated in the course outline
     sheet to the exam; this is a single 8.5 by 11 inch piece of paper,
     with writing permitted on both sides.
 
-**Grading:** Your final grade for Math 126 will be computed from your exam scores, your homework, your journal entries, and your quizzes (if applicable). Roughly speaking, each exam will have equal weight, but we reserve the right to adjust the weights, with no exam weight ever exceeding 0.5. The exams will be graded together on a curve with median targeted at roughly 2.9. Other course components -- homework, journals, Piazza participation -- will then be treated as indicator variables that make adjustments to the exam-grade. Earning more than roughly 85% of homework points will earn a positive 0.1 adjustment, while earning less than 60% of homework points will result in -0.1 adjustment; anything in between will have no effect. Outstanding journal entries will also result in a positive adjustment of 0.1. Poor work will yield a negative adjustment. Etc. We will periodically update you with comprehensive reports on class exam performance.
+**Grading:** Your final grade for Math 126 will be computed from your exam scores, your homework, your journal entries, and your quizzes (if applicable). Roughly speaking, each exam will have equal weight, but we reserve the right to adjust the weights, with no exam weight ever exceeding 0.5. The exams will be graded together on a curve with median targeted at roughly 2.9. Other course components -- homework, journals, Piazza participation -- will then be treated as indicator variables that make adjustments to the exam-grade. Earning more than roughly 85% of homework points will earn a positive 0.1 adjustment, while earning less than 60% of homework points will result in -0.1 adjustment; anything in between will have no effect. Outstanding journal entries will also result in a positive adjustment of 0.1. Poor work will yield a negative adjustment. We will periodically update you with comprehensive reports on class exam performance.
 
 **Calculators:** Only simple scientific calculators will be allowed on the midterms and the final exam. Any calculator that can replace your brain (or mine!) is not permitted.
 
