@@ -246,7 +246,7 @@ Think about this for a few minutes.
 ### Videos
 [Video chunk 17-1](http://www.math.washington.edu/~lieblich/Math126/video/17-1.mp4)
 [Video chunk 17-2](http://www.math.washington.edu/~lieblich/Math126/video/17-2.mp4)
-[Video chunk 17-2](http://www.math.washington.edu/~lieblich/Math126/video/17-2.mp4)
+[Video chunk 17-3](http://www.math.washington.edu/~lieblich/Math126/video/17-3.mp4)
 
 ### Content contributors
 @maxlieblich
